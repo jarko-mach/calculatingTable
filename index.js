@@ -17,17 +17,63 @@ const tableData = [
 
 const element = document.querySelector('.container')
 
+const dataTypes = [
+    {
+        element: "input",
+        type: "number",
+        class1: "item-data-lp",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-miejsce",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-zmierzone",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-eksploatacyjne1",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-eksploatacyjne2",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-rownomiernosc1",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-rownomiernosc2",
+        class2: "item-data",
+    },
+    {
+        element: "textarea",
+        class1: "item-data-zgodnosc",
+        class2: "item-data",
+    },
+]
+
 const addLine = () => {
-    for (let i = 1; i < 9; i++) {
-        const newElement = document.createElement('textarea')
-        newElement.classList.add(`"item-data${i}"`)
-        newElement.classList.add("item-data")
-        // newElement.setAttribute("type", "button")
-        // newElement.setAttribute("maxlength",3)
-        // newParagraph.innerText = `dane${i}`
+    for (let i = 1; i <= 8; i++) {
+        let newElement = document.createElement(dataTypes[i - 1].element)
+
+        if (Boolean(dataTypes[i - 1].type)) {
+            newElement.setAttribute("type", dataTypes[i - 1].type)
+            console.log("2")
+        }
+        // console.log("3")
+        newElement.classList.add(dataTypes[i - 1].class1)
+        newElement.classList.add(dataTypes[i - 1].class2)
         element.append(newElement)
     }
-    return "dodałem linię"
 }
 
 const createLine = () => {

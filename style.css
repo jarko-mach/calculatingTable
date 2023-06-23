@@ -1,13 +1,17 @@
+.mainContainer {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
 .container {
     text-align: center;
     display: grid;
     gap: 5px;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
     grid-template-areas:
         " lp miejsce zmierzone eksploatacyjne eksploatacyjne rownomiernosc rownomiernosc zgodnosc"
         " lp miejsce zmierzone eksploatacyjne1 eksploatacyjne2 rownomiernosc1 rownomiernosc2 zgodnosc"
-        " myNumber1 myNumber2 myNumber3 myNumber4 myNumber5 myNumber6 myNumber7 myNumber8 "
+        " number1 number2 number3 number4 number5 number6 number7 number8 "
         "data1 data2 data3 data4 data5 data6 data7 data8";
 }
 
@@ -18,20 +22,11 @@
     margin: 0;
 }
 
-.itemThin {
+.itemLow {
     background-color: rgb(230, 230, 230);
     margin: 0;
 }
 
-.item-data {
-    border: solid 1px rgb(194, 194, 194);
-    padding: 7px;
-    align-self: stretch;
-    /* width: 10px; */
-    width: auto;
-    margin: 110;
-    background-color: lightblue;
-}
 
 .item-lp {
     grid-area: lp;
@@ -49,60 +44,100 @@
     grid-area: eksploatacyjne;
 }
 
+.item-eksploatacyjne1 {
+    grid-area: eksploatacyjne1;
+}
+
+.item-eksploatacyjne2 {
+    grid-area: eksploatacyjne2;
+}
+
 .item-rownomiernosc {
     grid-area: rownomiernosc;
+}
+
+.item-rownomiernosc1 {
+    grid-area: rownomiernosc1;
+}
+
+.item-rownomiernosc2 {
+    grid-area: rownomiernosc2;
 }
 
 .item-zgodnosc {
     grid-area: zgodnosc;
 }
 
-.item-myNumber1 {
-    grid-area: myNumber1;
+.item-number1 {
+    grid-area: number1;
 }
 
-.item-myNumber2 {
-    grid-area: myNumber2;
+.item-number2 {
+    grid-area: number2;
 }
 
-.item-myNumber3 {
-    grid-area: myNumber3;
+.item-number3 {
+    grid-area: number3;
 }
 
-.item-myNumber4 {
-    grid-area: myNumber4;
+.item-number4 {
+    grid-area: number4;
 }
 
-.item-myNumber5 {
-    grid-area: myNumber5;
+.item-number5 {
+    grid-area: number5;
 }
 
-.item-myNumber6 {
-    grid-area: myNumber6;
+.item-number6 {
+    grid-area: number6;
 }
 
-.item-myNumber7 {
-    grid-area: myNumber7;
+.item-number7 {
+    grid-area: number7;
 }
 
-.item-myNumber8 {
-    grid-area: myNumber8;
+.item-number8 {
+    grid-area: number8;
 }
 
+.item-data {
+    /* border: solid 1px rgb(194, 194, 194); */
+    padding: 7px;
+    /* align-self: stretch; */
+}
 
-.item-data1 {
+.item-data-lp {
+    max-width: 30px;
     grid-area: data1;
-    background-color: antiquewhite;
 }
 
-.item-data2 {
+.item-data-miejsce {
     grid-area: data2;
 }
 
-.mainContainer {
-    height: 90%;
-    display: flex;
-    flex-direction: column;
+.item-data-zmierzone {
+    grid-area: data3;
+}
+
+.item-data-eksploatacyjne1 {
+    grid-area: data4;
+    /* max-width: 10px; */
+}
+
+.item-data-eksploatacyjne2 {
+    grid-area: data5;
+}
+
+.item-data-rownomiernosc1 {
+    grid-area: data6;
+}
+
+.item-data-rownomiernosc2 {
+    grid-area: data7;
+}
+
+.item-data-zgodnosc {
+    grid-area: data8;
 }
 
 .buttonAdd {
