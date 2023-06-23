@@ -9,10 +9,10 @@
     display: grid;
     gap: 5px;
     grid-template-areas:
-        " lp miejsce zmierzone eksploatacyjne eksploatacyjne rownomiernosc rownomiernosc zgodnosc"
-        " lp miejsce zmierzone eksploatacyjne1 eksploatacyjne2 rownomiernosc1 rownomiernosc2 zgodnosc"
-        " number1 number2 number3 number4 number5 number6 number7 number8 "
-        "data1 data2 data3 data4 data5 data6 data7 data8";
+        " lp miejsce zmierzone eksploatacyjne eksploatacyjne rownomiernosc rownomiernosc zgodnosc puste"
+        " lp miejsce zmierzone eksploatacyjne1 eksploatacyjne2 rownomiernosc1 rownomiernosc2 zgodnosc puste"
+        " number1 number2 number3 number4 number5 number6 number7 number8 puste"
+        "data1 data2 data3 data4 data5 data6 data7 data8 przelicz";
 }
 
 .item {
@@ -27,6 +27,9 @@
     margin: 0;
 }
 
+.itemAboveButtons {
+    margin: 0;
+}
 
 .item-lp {
     grid-area: lp;
@@ -108,39 +111,39 @@
 
 .item-data-lp {
     max-width: 30px;
-    grid-area: data1;
+    /* grid-area: data1; */
 }
 
 .item-data-miejsce {
-    grid-area: data2;
+    /* grid-area: data2; */
 }
 
 .item-data-zmierzone {
-    grid-area: data3;
+    /* grid-area: data3; */
 }
 
 .item-data-eksploatacyjne1 {
-    grid-area: data4;
+    /* grid-area: data4; */
     /* max-width: 10px; */
 }
 
 .item-data-eksploatacyjne2 {
-    grid-area: data5;
+    /* grid-area: data5; */
 }
 
 .item-data-rownomiernosc1 {
-    grid-area: data6;
+    /* grid-area: data6; */
 }
 
 .item-data-rownomiernosc2 {
-    grid-area: data7;
+    /* grid-area: data7; */
 }
 
 .item-data-zgodnosc {
-    grid-area: data8;
+    /* grid-area: data8; */
 }
 
-.buttonAdd {
+.button {
     margin: 10px;
     padding: 7px;
 }

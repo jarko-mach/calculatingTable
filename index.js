@@ -15,12 +15,12 @@ const tableData = [
 
 // console.log("1", tableData[0]?.details.illumination())
 
-const element = document.querySelector('.container')
 
 const dataTypes = [
     {
         element: "input",
         type: "number",
+        value: "1",
         class1: "item-data-lp",
         class2: "item-data",
     },
@@ -59,29 +59,42 @@ const dataTypes = [
         class1: "item-data-zgodnosc",
         class2: "item-data",
     },
+    {
+        element: "button",
+        class1: "item-data",
+        class2: "recalc"
+    },
 ]
 
 const addLine = () => {
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 9; i++) {
+
         let newElement = document.createElement(dataTypes[i - 1].element)
 
-        if (Boolean(dataTypes[i - 1].type)) {
+        if (dataTypes[i - 1].element === "input") {
+            console.log("1", dataTypes[i - 1].element)
             newElement.setAttribute("type", dataTypes[i - 1].type)
-            console.log("2")
+            newElement.setAttribute("value", dataTypes[i - 1].value)
         }
-        // console.log("3")
+
         newElement.classList.add(dataTypes[i - 1].class1)
         newElement.classList.add(dataTypes[i - 1].class2)
-        element.append(newElement)
+        elementTable.append(newElement)
+
+        if (dataTypes[i - 1].element === "button") {
+            newElement = document.querySelectorAll(".recalc").forEach(item => item.innerText = "Przelicz")
+        }
     }
 }
 
-const createLine = () => {
+const createNextLine = () => {
     addLine()
 }
 
-const buttoNewLine = document.querySelector(".buttonAdd")
-buttoNewLine.addEventListener('click', createLine)
+const elementTable = document.querySelector('.container')
+
+const buttoNewLine = document.querySelector("#buttonAdd")
+buttoNewLine.addEventListener('click', createNextLine)
 
 
 
