@@ -16,7 +16,7 @@
 }
 
 .item {
-    padding: 7px;
+    padding: 1px;
     align-self: stretch;
     background-color: lightblue;
     margin: 0;
@@ -125,6 +125,9 @@
 .item-data-eksploatacyjne1 {
     /* grid-area: data4; */
     /* max-width: 10px; */
+    border: 1px solid black;
+    padding: 7px;
+    margin: 0;
 }
 
 .item-data-eksploatacyjne2 {
@@ -133,6 +136,9 @@
 
 .item-data-rownomiernosc1 {
     /* grid-area: data6; */
+    border: 1px solid black;
+    padding: 0px 7px;
+    margin: 0;
 }
 
 .item-data-rownomiernosc2 {
@@ -141,6 +147,9 @@
 
 .item-data-zgodnosc {
     /* grid-area: data8; */
+    border: 1px solid black;
+    padding: 0px 7px;
+    margin: 0;
 }
 
 .button {
