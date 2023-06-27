@@ -128,5 +128,3 @@ const elementTable = document.querySelector('.container')
 
 const buttoNewLine = document.querySelector("#buttonAdd")
 buttoNewLine.addEventListener('click', createNextLine)
-
-// console.log("1", dataTypes[i - 1].element)

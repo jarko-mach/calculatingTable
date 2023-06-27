@@ -1,155 +1,37 @@
 .mainContainer {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
+    margin: 20px 10px;
+    /* border: 1px solid grey; */
 }
 
-.container {
+.tableContainer {
+    margin: 20px 10px;
+    border: 1px solid rgb(128, 128, 128);
+}
+
+.tableHeader {
+    padding: 5px;
     text-align: center;
-    display: grid;
-    gap: 5px;
-    grid-template-areas:
-        " lp miejsce zmierzone eksploatacyjne eksploatacyjne rownomiernosc rownomiernosc zgodnosc puste"
-        " lp miejsce zmierzone eksploatacyjne1 eksploatacyjne2 rownomiernosc1 rownomiernosc2 zgodnosc puste"
-        " number1 number2 number3 number4 number5 number6 number7 number8 puste"
-        "data1 data2 data3 data4 data5 data6 data7 data8 przelicz";
-}
-
-.item {
-    padding: 1px;
-    align-self: stretch;
     background-color: lightblue;
     margin: 0;
 }
 
-.itemLow {
+.tableNumber {
     background-color: rgb(230, 230, 230);
     margin: 0;
+    text-align: center;
+    font-size: smaller;
 }
 
-.itemAboveButtons {
-    margin: 0;
+.cellWidth-small {
+    max-width: 40px;
 }
 
-.item-lp {
-    grid-area: lp;
+.cellWidth-normal {
+    max-width: 80px;
 }
 
-.item-miejsce {
-    grid-area: miejsce;
-}
-
-.item-zmierzone {
-    grid-area: zmierzone;
-}
-
-.item-eksploatacyjne {
-    grid-area: eksploatacyjne;
-}
-
-.item-eksploatacyjne1 {
-    grid-area: eksploatacyjne1;
-}
-
-.item-eksploatacyjne2 {
-    grid-area: eksploatacyjne2;
-}
-
-.item-rownomiernosc {
-    grid-area: rownomiernosc;
-}
-
-.item-rownomiernosc1 {
-    grid-area: rownomiernosc1;
-}
-
-.item-rownomiernosc2 {
-    grid-area: rownomiernosc2;
-}
-
-.item-zgodnosc {
-    grid-area: zgodnosc;
-}
-
-.item-number1 {
-    grid-area: number1;
-}
-
-.item-number2 {
-    grid-area: number2;
-}
-
-.item-number3 {
-    grid-area: number3;
-}
-
-.item-number4 {
-    grid-area: number4;
-}
-
-.item-number5 {
-    grid-area: number5;
-}
-
-.item-number6 {
-    grid-area: number6;
-}
-
-.item-number7 {
-    grid-area: number7;
-}
-
-.item-number8 {
-    grid-area: number8;
-}
-
-.item-data {
-    /* border: solid 1px rgb(194, 194, 194); */
-    padding: 7px;
-    /* align-self: stretch; */
-}
-
-.item-data-lp {
-    max-width: 30px;
-    /* grid-area: data1; */
-}
-
-.item-data-miejsce {
-    /* grid-area: data2; */
-}
-
-.item-data-zmierzone {
-    /* grid-area: data3; */
-}
-
-.item-data-eksploatacyjne1 {
-    /* grid-area: data4; */
-    /* max-width: 10px; */
-    border: 1px solid black;
-    padding: 7px;
-    margin: 0;
-}
-
-.item-data-eksploatacyjne2 {
-    /* grid-area: data5; */
-}
-
-.item-data-rownomiernosc1 {
-    /* grid-area: data6; */
-    border: 1px solid black;
-    padding: 0px 7px;
-    margin: 0;
-}
-
-.item-data-rownomiernosc2 {
-    /* grid-area: data7; */
-}
-
-.item-data-zgodnosc {
-    /* grid-area: data8; */
-    border: 1px solid black;
-    padding: 0px 7px;
-    margin: 0;
+td {
+    text-align: center;
 }
 
 .button {
