@@ -8,6 +8,10 @@
     border: 1px solid rgb(128, 128, 128);
 }
 
+input, textarea {
+    font-size: 16px;
+}
+
 .tableHeader {
     padding: 5px;
     text-align: center;
@@ -23,7 +27,7 @@
 }
 
 .cellWidth-small {
-    max-width: 40px;
+    max-width: 50px;
 }
 
 .cellWidth-normal {
