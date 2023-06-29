@@ -1,59 +1,64 @@
 import { createTableNewLine } from "./app.js"
 
+let dataTable = [
+    {
+        numberLp: 0,
+        place: "",
+        measurings: "",
+        wynik1: 0,
+        norma1: 0,
+        wynik2: 0,
+        norma2: 0,
+        compatibility: "",
+    }
+]
+
 export const saveDoc = () => {
 
-    let dataTable = [
-        {
-            numberLp: 1,
-            place: "",
-            measurings: "",
-            wynik1: 1,
-            norma1: 1,
-            wynik2: 1,
-            norma2: 1,
-            compatibility: "si",
-        }
-    ]
-
     const correctMeasurments = (dataString) => {
-        console.log("zaczynam korektę zapisu", dataString)
-        
-        // dopisuję spację za średnikiem
-        let re = ";";
-        dataString = dataString.replaceAll(re, "; ");
 
-        // zamieniam dwie i więcej spacji na jedną spację
-        re = /\s+/g;
-        dataString = dataString.replaceAll(re, " ");
+        console.log("zaczynam korektę zapisu", dataString, "ilosc znakow:", Boolean(dataString.length))
 
-        // tworzę tablicę szukając przecinka lub średnika
-        re = /[;,]/;
-        let myTable = dataString.split(re);
+        if (dataString.length > 0) {
 
-        // console.log("a co tu mamy:", myTable)
+            // dopisuję spację za średnikiem
+            let re = ";";
+            dataString = dataString.replaceAll(re, "; ");
 
-        myTable.forEach((elem, index) => {
-            if (Number(myTable[index])) {
-                myTable[index] = Number(myTable[index])
-            } else alert("Znaleziono błąd w zapisie wyników")
-        })
-        // console.log("a co to wyszło:", myTable)
-        return myTable.join("; ")
+            // zamieniam dwie i więcej spacji na jedną spację
+            re = /\s+/g;
+            dataString = dataString.replaceAll(re, " ");
+
+            // tworzę tablicę szukając przecinka lub średnika
+            re = /[;,]/;
+            let myTable = dataString.split(re);
+
+            console.log("a co tu mamy:", myTable)
+
+            myTable.forEach((elem, index) => {
+                console.log("index", index, "zawartosc", myTable[index])
+                if (Number(myTable[index])) {
+                    myTable[index] = Number(myTable[index])
+                } else alert("Znaleziono błąd w zapisie wyników")
+            })
+            console.log("a co to wyszło:", myTable)
+            return myTable.join("; ")
+        } else return ""
     }
 
     const rowsNumber = document.querySelectorAll(".addedLine").length
-    console.log("liczba wierszy:", rowsNumber)
+    // console.log("liczba wierszy:", rowsNumber)
 
     while (dataTable.length < rowsNumber) {
         dataTable.push({
-            numberLp: 1,
+            numberLp: 0,
             place: "",
             measurings: "",
-            wynik1: 1,
-            norma1: 1,
-            wynik2: 1,
-            norma2: 1,
-            compatibility: "???",
+            wynik1: 0,
+            norma1: 0,
+            wynik2: 0,
+            norma2: 0,
+            compatibility: "",
         })
     }
 
@@ -76,7 +81,10 @@ export const saveDoc = () => {
         dataTable[row].place = nodeList[1 + addRowElements].value
 
         // element 3 - pomiary
-        // console.log("rząd:", row, "element", 2 + addRowElements, "pomiary", nodeList[2 + addRowElements])
+        // jeżeli brak pomiarów to jest to linia tylko z tekstem, więc resztę punktów w tej linii pomijamy
+        // if (nodeList[2 + addRowElements].value) {
+
+        // console.log("rząd:", row, "element", 2 + addRowElements, "pomiary", Boolean(nodeList[2 + addRowElements].value))
         dataTable[row].measurings = correctMeasurments(nodeList[2 + addRowElements].value)
 
         // element 4 - eksploatacyjne wynik
@@ -95,7 +103,9 @@ export const saveDoc = () => {
 
         // element 8 - zgodnosc
         dataTable[row].compatibility = nodeList[7 + addRowElements].value
+        // }
     }
+    console.log("tabela:", dataTable)
     console.log("JSON", JSON.stringify(dataTable))
     localStorage.setItem("myElement", JSON.stringify(dataTable))
 }
@@ -103,7 +113,7 @@ export const saveDoc = () => {
 
 export const readDoc = () => {
     let dataTable = JSON.parse(localStorage.getItem("myElement"));
-    console.log(dataTable.length);
+    console.log("długość wczytywanej tablicy", dataTable.length);
     while (document.querySelectorAll(".addedLine").length < dataTable.length) { createTableNewLine() }
 
     let nodeList = document.querySelectorAll(".numberLp, .place, .measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
@@ -120,6 +130,7 @@ export const readDoc = () => {
         nodeList[1 + addRowElements].value = dataTable[row].place
 
         // element 3 - pomiary
+        // console.log("Odczytuję pole pomiarów. Wiersz: ", row, "liczba znaków:", dataTable[row].measurings.length)
         nodeList[2 + addRowElements].value = dataTable[row].measurings
 
         // element 4 - eksploatacyjne wynik
