@@ -6,13 +6,13 @@ export const createTableNewLine = () => {
     let newElement = document.createElement("tr")
     newElement.classList.add("addedLine")
     newElement.innerHTML =
-        ` <td> <input class="cellWidth-small numberLp" type="number" value="1"> </td>
-          <td> <textarea rows="4" cols="20" class="place"> </textarea> </td>
-          <td> <textarea rows="4" cols="30" class="measurings"> </textarea> </td>
+        ` <td> <input class="cellWidth-small numberLp" type="number" value="1"></td>
+          <td> <textarea rows="4" cols="20" class="place"></textarea> </td>
+          <td> <textarea rows="4" cols="30" class="measurings"></textarea> </td>
           <td> <input type="number" class="wynik-1 cellWidth-small" disabled></td>
-          <td> <input type="number" class="cellWidth-normal norma-1"> </td>
+          <td> <input type="number" class="cellWidth-normal norma-1"></td>
           <td> <input type="number" class="wynik-2 cellWidth-small" disabled></td>
-          <td> <input type="number" class="cellWidth-normal norma-2" step="0.1"> </td>
+          <td> <input type="number" class="cellWidth-normal norma-2" step="0.1"></td>
           <td> <input type="text" class="compatibility cellWidth-small" disabled></td>
     `
     lastElement.append(newElement)
