@@ -1,15 +1,17 @@
+body {
+    font-size: 15px;
+}
 .mainContainer {
     margin: 20px 10px;
-    /* border: 1px solid grey; */
 }
 
 .tableContainer {
     margin: 20px 10px;
-    border: 1px solid rgb(128, 128, 128);
+    border: 1px solid rgb(221, 221, 221);
 }
 
 input, textarea {
-    font-size: 16px;
+    font-size: 1.05em;
 }
 
 .tableHeader {
@@ -23,9 +25,12 @@ input, textarea {
     background-color: rgb(230, 230, 230);
     margin: 0;
     text-align: center;
-    font-size: smaller;
+    font-size: 0.9em;
 }
 
+td {
+    text-align: center;
+}
 .cellWidth-small {
     max-width: 50px;
 }
@@ -34,11 +39,19 @@ input, textarea {
     max-width: 80px;
 }
 
-td {
-    text-align: center;
-}
-
 .button {
     margin: 10px;
     padding: 7px;
+    width: 80px;
+    font-size: 0.8em;
+}
+
+.footer {
+    display:grid;
+    grid-template-columns: 100px 80%;
+}
+
+footer div p {
+    font-size: 0.9em;
+    line-height: 1.4em;
 }
