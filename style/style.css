@@ -3,7 +3,7 @@ body {
     /* font-family: 'Montserrat', sans-serif; */
     font-size: 15px;
     width: 210mm;
-    height: 297;
+    height: 297mm;
     border: 1px solid red;
     box-sizing: border-box;
     padding: 1mm 7mm 2mm 31mm;
@@ -37,19 +37,15 @@ textarea {
 }
 
 .tableHeader {
+    /* box-sizing: border-box; */
     padding: 5px;
     text-align: center;
-    /* background-color: lightblue; */
+    border: 1px solid rgb(0, 0, 0);
     margin: 0;
 }
 
-.thinLine {
-    /* border-collapse: collapse; */
-    border: 1px solid black;
-}
-
 .tableNumber {
-    /* background-color: rgb(230, 230, 230); */
+    border: 1px solid black;
     margin: 0;
     text-align: center;
     font-size: 0.9em;
@@ -57,15 +53,54 @@ textarea {
 
 td {
     text-align: center;
+    border: 1px solid rgb(0, 0, 0);
 }
 
-.cellWidth-small {
-    max-width: 50px;
+.cell1 {
+    max-width: 7mm;
+    border: 0px;
 }
 
-.cellWidth-normal {
-    max-width: 80px;
+.cell2 {
+    max-width: 50mm;
+    border: 0px;
 }
+
+.cell3 {
+    max-width: 45mm;
+    border: 0px;
+}
+
+.cell4 {
+    max-width: 16mm;
+    border: 0px;
+    text-align: center;
+}
+
+.cell5 {
+    max-width: 12mm;
+    border: 0px;
+    text-align: center;
+}
+
+.cell6 {
+    max-width: 12mm;
+    border: 0px;
+    text-align: center;
+}
+
+.cell7 {
+    max-width: 12mm;
+    border: 0px;
+    text-align: center;
+}
+
+.cell8 {
+    max-width: 12mm;
+    border: 0px;
+    text-align: center;
+}
+
 
 .button {
     margin: 10px;

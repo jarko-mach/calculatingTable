@@ -1,4 +1,5 @@
-import { recalcAll, showAllHidden, createTableNewLine } from "./app.js"
+import { recalcAll, showAllHidden } from "./app.js"
+import { createTableNewLine } from "./tableParamets.js"
 import { saveDoc, readDoc } from "./save-read.js"
 
 export function checkboxChanged() {

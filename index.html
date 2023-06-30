@@ -17,34 +17,27 @@
     <p class="customer">Nazwa i adres Klienta:</p>
     <p class="customer">Miejsce badań:</p>
     <p class="customer">Data wykonania:</p>
+
     <table class="tableContainer">
         <tr>
-            <td rowspan="2" class="tableHeader thinLine">Lp.</td>
-            <td rowspan="2" class="tableHeader thinLine">Miejsce pomiarów<br> <small>(według schematu)</small></td>
-            <td rowspan="2" class="tableHeader thinLine">Zmierzone natężenie oświetlenia elektrycznego <br><i>E</i>[lx]</td>
-            <td colspan="2" class="tableHeader thinLine">Eksploatacyjne natężenie oświetlenia elektrycznego
-                <br><i>E<sub>m</sub></i>
-                [lx]
+            <td rowspan="2" class="tableHeader">Lp.</td>
+            <td rowspan="2" class="tableHeader">Miejsce pomiarów<br> <small>(według schematu)</small></td>
+            <td rowspan="2" class="tableHeader">Zmierzone natężenie oświetlenia elektrycznego <br><i>E</i> [lx]
             </td>
-            <td colspan="2" class="tableHeader thinLine">Równomierność oświetlenia
+            <td colspan="2" class="tableHeader">Eksploatacyjne natężenie oświetlenia elektrycznego
+                <br><i>E<sub>m</sub></i> [lx]
+            </td>
+            <td colspan="2" class="tableHeader">Równomierność oświetlenia
                 elektrycznego<br><i>U<sub>o</sub></i></td>
-            <td rowspan="2" class="tableHeader thinLine">Zgodność z PN</td>
+            <td rowspan="2" class="tableHeader">Zgodność z PN</td>
         </tr>
         <tr>
-            <td class="tableHeader thinLine"> z pomiarów</td>
-            <td class="tableHeader thinLine">wg normy</td>
-            <td class="tableHeader thinLine"> z pomiarów</td>
-            <td class="tableHeader thinLine">wg normy</td>
+            <td class="tableHeader"> z pomiarów</td>
+            <td class="tableHeader">wg normy</td>
+            <td class="tableHeader"> z pomiarów</td>
+            <td class="tableHeader">wg normy</td>
         </tr>
-        <tr>
-            <td class="tableNumber thinLine">1</td>
-            <td class="tableNumber thinLine">2</td>
-            <td class="tableNumber thinLine">3</td>
-            <td class="tableNumber thinLine">4</td>
-            <td class="tableNumber thinLine">5</td>
-            <td class="tableNumber thinLine">6</td>
-            <td class="tableNumber thinLine">7</td>
-            <td class="tableNumber thinLine">8</td>
+        <tr class="showNumbers">
         </tr>
     </table>
     <footer>
@@ -54,6 +47,7 @@
     </footer>
     </div>
     <script src="./app/app.js" type="module"></script>
+    <script src="./app/tableParamets.js" type="module"></script>
 </body>
 
 </html>

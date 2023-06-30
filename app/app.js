@@ -1,22 +1,23 @@
 import { checkboxChanged } from "./btn-description.js"
 import { saveDoc, readDoc } from "./save-read.js"
+import { createTableNewLine, addTableNumbers } from "./tableParamets.js"
 
-export const createTableNewLine = () => {
-    const lastElement = document.querySelector(".tableContainer").lastChild
-    let newElement = document.createElement("tr")
-    newElement.classList.add("addedLine")
-    newElement.innerHTML =
-        ` <td> <input class="cellWidth-small numberLp" type="number" value="1"></td>
-          <td> <textarea rows="4" cols="20" class="place"></textarea> </td>
-          <td> <textarea rows="4" cols="30" class="measurings"></textarea> </td>
-          <td> <input type="number" class="wynik-1 cellWidth-small" disabled></td>
-          <td> <input type="number" class="cellWidth-small norma-1"></td>
-          <td> <input type="number" class="wynik-2 cellWidth-small" disabled></td>
-          <td> <input type="number" class="cellWidth-small norma-2" step="0.1"></td>
-          <td> <input type="text" class="compatibility cellWidth-small" disabled></td>
-    `
-    lastElement.append(newElement)
-}
+// export const createTableNewLine = () => {
+//     const lastElement = document.querySelector(".tableContainer").lastChild
+//     let newElement = document.createElement("tr")
+//     newElement.classList.add("addedLine")
+//     newElement.innerHTML =
+//         ` <td> <input class="cellWidth-small numberLp" type="number" value="1"></td>
+//           <td> <textarea rows="4" cols="20" class="place"></textarea> </td>
+//           <td> <textarea rows="4" cols="30" class="measurings"></textarea> </td>
+//           <td> <input type="number" class="wynik-1 cellWidth-small" disabled></td>
+//           <td> <input type="number" class="cellWidth-small norma-1"></td>
+//           <td> <input type="number" class="wynik-2 cellWidth-small" disabled></td>
+//           <td> <input type="number" class="cellWidth-small norma-2" step="0.1"></td>
+//           <td> <input type="text" class="compatibility cellWidth-small" disabled></td>
+//     `
+//     lastElement.append(newElement)
+// }
 
 export const showAllHidden = function () {
     console.log("pokazuj")
@@ -101,7 +102,7 @@ export const recalcAll = function (e) {
 }
 
 
-
+addTableNumbers()
 checkboxChanged()
 
 document.querySelector("#showDescriptions").addEventListener("click", checkboxChanged)
