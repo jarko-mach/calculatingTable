@@ -36,9 +36,10 @@ const showButtonsDescription = () => {
     <p>Dodaje nową linię / nowy wiersz na końcu listy / na końcu tabeli</p>
 
     <button id="buttonRecalc" class="button">Przelicz</button>
-    <p>Odczytuje zmierzone wartości natężenia oświetlenia z kolumny [3]. Do odseparowania liczb można używać <b>przecinka</b> lub <b>średnika</b>. Do wskazywania części dziesiętnych proszę urzywać <b>kropki</b>. Po poprawnym wczytaniu danych następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
+    <p>Odczytuje zmierzone wartości natężenia oświetlenia z kolumny [3]. Do odseparowania liczb można używać <b>przecinka</b> lub <b>średnika</b>. Do wskazywania części dziesiętnych proszę używać <b>kropki</b>. Po poprawnym wczytaniu danych następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
         Brak wprowadzonych danych wg normy w polach [5] i [7] spowoduje niemożność obliczenia stanu w kolumnie [8]<br>Dla wiersza, w którym w polu [3] brakuje wyników lub wprowadzone
         dane są niepoprawne, pola od [3] do [8] zostaną ukryte. Daje to możliwość dopisania jedynie linii tekstu/nagłówka</p>
+    
         <button id="buttonShow" class="button">Odsłoń wszystko</button>
         <p>Odsłania pola od [3] do [8] w tabeli, które zostały ukryte poleceniem 'Przelicz'.<br> Powodem ukrycia mogą być: <br>1° brak zmierzonych danych <br>2° błędne wpisanie danych - np. wprowadzono literę zamiast cyfry itp.</p>
 

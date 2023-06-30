@@ -5,46 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;600&display=swap');
+    </style>
     <link rel="stylesheet" type="text/css" href="./style/style.css">
 </head>
 
 <body>
-    <div class="mainContainer">
-        <table class="tableContainer">
-            <tr>
-                <td rowspan="2" class="tableHeader">Lp.</td>
-                <td rowspan="2" class="tableHeader">Miejsce pomiarów<br> <small>(według schematu)</small></td>
-                <td rowspan="2" class="tableHeader">Zmierzone natężenie oświetlenia elektrycznego <br><i>E</i>[lx]</td>
-                <td colspan="2" class="tableHeader">Eksploatacyjne natężenie oświetlenia elektrycznego
-                    <br><i>E<sub>m</sub></i>
-                    [lx]
-                </td>
-                <td colspan="2" class="tableHeader">Równomierność oświetlenia
-                    elektrycznego<br><i>U<sub>a</sub></i></td>
-                <td rowspan="2" class="tableHeader">Zgodność z PN</td>
-            </tr>
-            <tr>
-                <td class="tableHeader"> z pomiarów</td>
-                <td class="tableHeader">wg normy</td>
-                <td class="tableHeader"> z pomiarów</td>
-                <td class="tableHeader">wg normy</td>
-            </tr>
-            <tr>
-                <td class="tableNumber">1</td>
-                <td class="tableNumber">2</td>
-                <td class="tableNumber">3</td>
-                <td class="tableNumber">4</td>
-                <td class="tableNumber">5</td>
-                <td class="tableNumber">6</td>
-                <td class="tableNumber">7</td>
-                <td class="tableNumber">8</td>
-            </tr>
-        </table>
-        <footer>
-            <input type="checkbox" id="showDescriptions" name="showDescriptions" value="false">
-            <label for="showDescriptions">Wyświetl opis przycisków</label>
-            <div id="footerButtons"></div>
-        </footer>
+    <p class="siteHeaderTable1">Tabela nr 1.</p>
+    <p class="siteTitle">BADANIA OŚWIETLENIA ELEKTRYCZNEGO</p>
+    <p class="customer">Nazwa i adres Klienta:</p>
+    <p class="customer">Miejsce badań:</p>
+    <p class="customer">Data wykonania:</p>
+    <table class="tableContainer">
+        <tr>
+            <td rowspan="2" class="tableHeader thinLine">Lp.</td>
+            <td rowspan="2" class="tableHeader thinLine">Miejsce pomiarów<br> <small>(według schematu)</small></td>
+            <td rowspan="2" class="tableHeader thinLine">Zmierzone natężenie oświetlenia elektrycznego <br><i>E</i>[lx]</td>
+            <td colspan="2" class="tableHeader thinLine">Eksploatacyjne natężenie oświetlenia elektrycznego
+                <br><i>E<sub>m</sub></i>
+                [lx]
+            </td>
+            <td colspan="2" class="tableHeader thinLine">Równomierność oświetlenia
+                elektrycznego<br><i>U<sub>o</sub></i></td>
+            <td rowspan="2" class="tableHeader thinLine">Zgodność z PN</td>
+        </tr>
+        <tr>
+            <td class="tableHeader thinLine"> z pomiarów</td>
+            <td class="tableHeader thinLine">wg normy</td>
+            <td class="tableHeader thinLine"> z pomiarów</td>
+            <td class="tableHeader thinLine">wg normy</td>
+        </tr>
+        <tr>
+            <td class="tableNumber thinLine">1</td>
+            <td class="tableNumber thinLine">2</td>
+            <td class="tableNumber thinLine">3</td>
+            <td class="tableNumber thinLine">4</td>
+            <td class="tableNumber thinLine">5</td>
+            <td class="tableNumber thinLine">6</td>
+            <td class="tableNumber thinLine">7</td>
+            <td class="tableNumber thinLine">8</td>
+        </tr>
+    </table>
+    <footer>
+        <input type="checkbox" id="showDescriptions" name="showDescriptions" value="false">
+        <label for="showDescriptions">Wyświetl opis przycisków</label>
+        <div id="footerButtons"></div>
+    </footer>
     </div>
     <script src="./app/app.js" type="module"></script>
 </body>

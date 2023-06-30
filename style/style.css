@@ -1,28 +1,55 @@
 body {
+    font-family: 'Carlito', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     font-size: 15px;
+    width: 210mm;
+    height: 297;
+    border: 1px solid red;
+    box-sizing: border-box;
+    padding: 1mm 7mm 2mm 31mm;
 }
-.mainContainer {
-    margin: 20px 10px;
+
+.siteHeaderTable1 {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.siteTitle {
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+}
+
+.customer {
+    font-weight: 400;
+    text-align: left;
+    margin: 5px 0 5px 0;
 }
 
 .tableContainer {
-    margin: 20px 10px;
-    border: 1px solid rgb(221, 221, 221);
+    border: 1px solid rgb(0, 0, 0);
+    border-collapse: collapse;
 }
 
-input, textarea {
+input,
+textarea {
     font-size: 0.85em;
 }
 
 .tableHeader {
     padding: 5px;
     text-align: center;
-    background-color: lightblue;
+    /* background-color: lightblue; */
     margin: 0;
 }
 
+.thinLine {
+    /* border-collapse: collapse; */
+    border: 1px solid black;
+}
+
 .tableNumber {
-    background-color: rgb(230, 230, 230);
+    /* background-color: rgb(230, 230, 230); */
     margin: 0;
     text-align: center;
     font-size: 0.9em;
@@ -31,6 +58,7 @@ input, textarea {
 td {
     text-align: center;
 }
+
 .cellWidth-small {
     max-width: 50px;
 }
@@ -47,7 +75,7 @@ td {
 }
 
 .footer {
-    display:grid;
+    display: grid;
     grid-template-columns: 100px 80%;
 }
 

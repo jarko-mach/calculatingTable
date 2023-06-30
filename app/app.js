@@ -10,9 +10,9 @@ export const createTableNewLine = () => {
           <td> <textarea rows="4" cols="20" class="place"></textarea> </td>
           <td> <textarea rows="4" cols="30" class="measurings"></textarea> </td>
           <td> <input type="number" class="wynik-1 cellWidth-small" disabled></td>
-          <td> <input type="number" class="cellWidth-normal norma-1"></td>
+          <td> <input type="number" class="cellWidth-small norma-1"></td>
           <td> <input type="number" class="wynik-2 cellWidth-small" disabled></td>
-          <td> <input type="number" class="cellWidth-normal norma-2" step="0.1"></td>
+          <td> <input type="number" class="cellWidth-small norma-2" step="0.1"></td>
           <td> <input type="text" class="compatibility cellWidth-small" disabled></td>
     `
     lastElement.append(newElement)
