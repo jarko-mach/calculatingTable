@@ -39,8 +39,8 @@ body {
     font-size: 0.9em;
 }
 
-.tableHeader {
-    /* padding: 5px; */
+.tableLineUp {
+    border-bottom: 2px solid red;
 }
 
 .tableNumber {
@@ -85,10 +85,6 @@ textarea {
     box-sizing: border-box;
 }
 
-/* .tttd {
-    border: 1px solid rgb(0, 0, 0);
-} */
-
 .button {
     margin: 10px;
     padding: 7px;
@@ -96,9 +92,15 @@ textarea {
     font-size: 0.8em;
 }
 
-.footer {
+.footerButtonsWithDescription {
     display: grid;
     grid-template-columns: 100px 80%;
+}
+
+.footerOnlyButtons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 footer div p {

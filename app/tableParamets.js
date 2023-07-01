@@ -19,19 +19,10 @@ export const addTableNumbers = () => {
     `
 }
 
-export const createTableNewLine = () => {
+export const createTableNewDataLine = () => {
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
     newElement.classList.add("addedLine")
-
-    // <td class="cells" width="4%">a</td>
-    // <td class="cells" width="29%">b</td>
-    // <td class="cells" width="26%">b</td>
-    // <td class="cells" width="11%">b</td>
-    // <td class="cells" width="7%">b</td>
-    // <td class="cells" width="9%">b</td>
-    // <td class="cells" width="7%">b</td>
-    // <td class="cells" width="7%">b</td>
 
     newElement.innerHTML =
         ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" value="1"></td>
@@ -42,6 +33,23 @@ export const createTableNewLine = () => {
           <td class="tableGeneral"> <input type="number" class="wynik-2 cellInput" disabled></td>
           <td class="tableGeneral"> <input type="number" class="norma-2 cellInput" step="0.1"></td>
           <td class="tableGeneral"> <input type="text" class="compatibility cellInput" disabled></td>
+    `
+    lastElement.append(newElement)
+}
+
+export const createTableNewDescriptionLine = () => {
+    const lastElement = document.querySelector(".tableContainer").lastChild
+    let newElement = document.createElement("tr")
+    newElement.classList.add("addedLine")
+    newElement.innerHTML =
+        ` <td class="tableLineUp"> <input class="numberLp cellInput" type="number" value="1"></td>
+          <td class="tableLineUp"> <textarea class="place cellInput"></textarea> </td>
+          <td class="tableLineUp"> <textarea class="measurings cellInput"></textarea> </td>
+          <td class="tableLineUp"> <input type="number" class="wynik-1 cellInput" disabled></td>
+          <td class="tableLineUp"> <input type="number" class="norma-1 cellInput"></td>
+          <td class="tableLineUp"> <input type="number" class="wynik-2 cellInput" disabled></td>
+          <td class="tableLineUp"> <input type="number" class="norma-2 cellInput" step="0.1"></td>
+          <td class="tableLineUp"> <input type="text" class="compatibility cellInput" disabled></td>
     `
     lastElement.append(newElement)
 }
