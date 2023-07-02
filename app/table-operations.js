@@ -53,3 +53,19 @@ export const createTableNewDescriptionLine = () => {
     `
     lastElement.append(newElement)
 }
+
+export const createTableThinLine = () => {
+    const lastElement = document.querySelector(".tableContainer").lastChild
+    let newElement = document.createElement("tr")
+    // newElement.classList.add("addedLine")
+    newElement.innerHTML =
+        `   <td colspan="8" class="tableLineUp"></td>
+            
+    `
+    lastElement.append(newElement)
+    // for (let i = 1; i < 31; i++) {
+    //     createTableNewDescriptionLine()
+    // }
+
+    lastElement = document.querySelector(".tableContainer")
+}

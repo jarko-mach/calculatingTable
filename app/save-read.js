@@ -1,4 +1,4 @@
-import { createTableNewDataLine } from "./tableParamets.js"
+import { createTableNewDataLine } from "./table-operations.js"
 
 let dataTable = [
     {

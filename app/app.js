@@ -1,6 +1,6 @@
-import { checkboxChanged } from "./btn-description.js"
+import { checkboxChanged } from "./btn-show-hide-description.js"
 import { saveDoc, readDoc } from "./save-read.js"
-import { createTableNewDataLine, createTableNewDescriptionLine, addTableNumbers } from "./tableParamets.js"
+import { createTableNewDataLine, createTableNewDescriptionLine, addTableNumbers } from "./table-operations.js"
 
 export const showAllHidden = function () {
     console.log("pokazuj")
@@ -86,3 +86,5 @@ export const recalcAll = function (e) {
 
 addTableNumbers()
 checkboxChanged()
+
+document.querySelector("#showDescriptions").addEventListener("click", checkboxChanged)
