@@ -10,13 +10,13 @@ let dataTable = [
         wynik2: 0,
         norma2: 0,
         compatibility: "",
+        typeOfRow: "",
     }
 ]
 
 export const saveDoc = () => {
 
     const correctMeasurments = (dataString) => {
-
         console.log("zaczynam korektę zapisu", dataString, "ilosc znakow:", Boolean(dataString.length))
 
         if (dataString.length > 0) {
@@ -84,7 +84,7 @@ export const saveDoc = () => {
         // jeżeli brak pomiarów to jest to linia tylko z tekstem, więc resztę punktów w tej linii pomijamy
         // if (nodeList[2 + addRowElements].value) {
 
-        // console.log("rząd:", row, "element", 2 + addRowElements, "pomiary", Boolean(nodeList[2 + addRowElements].value))
+        console.log("rząd:", row, "element", 2 + addRowElements, "pomiary", Boolean(nodeList[2 + addRowElements].value))
         dataTable[row].measurings = correctMeasurments(nodeList[2 + addRowElements].value)
 
         // element 4 - eksploatacyjne wynik
@@ -117,7 +117,7 @@ export const readDoc = () => {
     while (document.querySelectorAll(".addedLine").length < dataTable.length) { createTableNewLine() }
 
     let nodeList = document.querySelectorAll(".numberLp, .place, .measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
-    // console.log("liczba elementów:", nodeList.length)
+    console.log("liczba elementów:", nodeList.length)
 
     for (let row = 0; row < dataTable.length; row++) {
 

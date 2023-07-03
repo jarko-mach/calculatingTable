@@ -14,16 +14,26 @@
 <body>
     <p class="siteHeaderTable1">Tabela nr 1.</p>
     <p class="siteTitle">BADANIA OŚWIETLENIA ELEKTRYCZNEGO</p>
-    <p class="customer">Nazwa i adres Klienta:</p>
-    <p class="customer">Miejsce badań:</p>
-    <p class="customer">Data wykonania:</p>
+    <div class="descriptionAndData">
+        <label for="customerName" class="customer">Nazwa i adres Klienta:</label>
+        <input id="customerName" class="castomerInput" type="text" size="50" placeholder="...">
+    </div>
+    <div class="descriptionAndData">
+        <label for="researchAddress" class="customer">Miejsce badań:</label>
+        <input id="researchAddress" class="castomerInput" type="text" size="50" placeholder="...">
+    </div>
+    <div class="descriptionAndData">
+        <label for="researchDate" class="customer">Data wykonania badań:</label>
+        <input id="researchDate" class="castomerInput" type="text" size="50"
+            placeholder="...">
+    </div>
 
     <table class="tableContainer">
         <tr>
             <td rowspan="2" class="tableGeneral tableHeader">Lp.</td>
             <td rowspan="2" class="tableGeneral tableHeader">Miejsce pomiarów<br> <small>(według
                     schematu)</small></td>
-            <td rowspan="2" class="tableGeneral tableHeader">Zmierzone natężenie oświetlenia elektrycznego
+            <td rowspan="2" class="tableGeneral tableHeader">&nbsp Zmierzone natężenie &nbsp oświetlenia elektrycznego
                 <br><i>E</i> [lx]
             </td>
             <td colspan="2" class="tableGeneral tableHeader">Eksploatacyjne natężenie oświetlenia elektrycznego
@@ -31,7 +41,7 @@
             </td>
             <td colspan="2" class="tableGeneral tableHeader">Równomierność oświetlenia
                 elektrycznego<br><i>U<sub>o</sub></i></td>
-            <td rowspan="2" class="tableGeneral tableHeader">Zgodność z PN</td>
+            <td rowspan="2" class="tableGeneral tableHeader">&nbsp Zgodność z PN</td>
         </tr>
         <tr>
             <td class="tableGeneral tableHeader">z pomiarów</td>

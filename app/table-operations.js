@@ -19,10 +19,29 @@ export const addTableNumbers = () => {
     `
 }
 
+export const tableAddOnyTextLine = (withBold) => {
+    const lastElement = document.querySelector(".tableContainer").lastChild
+    let newElement = document.createElement("tr")
+    newElement.classList.add("addedRow")
+    newElement.classList.add("rowDescription")
+    newElement.innerHTML =
+        ` <td class="tableGeneral"><input class="numberLp cellInput" type="number" value="1"></td>
+          <td class="tableGeneral"><textarea class="place cellInput tableDescriptionArea" rows="1"></textarea></td>
+          <td class="tableGeneral"> <input type="text" class="measurings cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="wynik-1 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="norma-1 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="wynik-2 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="norma-2 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="compatibility cellInput" disabled></td>
+    `
+    lastElement.append(newElement)
+}
+
 export const createTableNewDataLine = () => {
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
-    newElement.classList.add("addedLine")
+    newElement.classList.add("addedRow")
+    newElement.classList.add("rowDate")
 
     newElement.innerHTML =
         ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" value="1"></td>
@@ -37,35 +56,13 @@ export const createTableNewDataLine = () => {
     lastElement.append(newElement)
 }
 
-export const createTableNewDescriptionLine = () => {
-    const lastElement = document.querySelector(".tableContainer").lastChild
-    let newElement = document.createElement("tr")
-    newElement.classList.add("addedLine")
-    newElement.innerHTML =
-        ` <td class="tableLineUp"> <input class="numberLp cellInput" type="number" value="1"></td>
-          <td class="tableLineUp"> <textarea class="place cellInput"></textarea> </td>
-          <td class="tableLineUp"> <textarea class="measurings cellInput"></textarea> </td>
-          <td class="tableLineUp"> <input type="number" class="wynik-1 cellInput" disabled></td>
-          <td class="tableLineUp"> <input type="number" class="norma-1 cellInput"></td>
-          <td class="tableLineUp"> <input type="number" class="wynik-2 cellInput" disabled></td>
-          <td class="tableLineUp"> <input type="number" class="norma-2 cellInput" step="0.1"></td>
-          <td class="tableLineUp"> <input type="text" class="compatibility cellInput" disabled></td>
-    `
-    lastElement.append(newElement)
-}
 
 export const createTableThinLine = () => {
-    const lastElement = document.querySelector(".tableContainer").lastChild
-    let newElement = document.createElement("tr")
-    // newElement.classList.add("addedLine")
-    newElement.innerHTML =
-        `   <td colspan="8" class="tableLineUp"></td>
-            
-    `
-    lastElement.append(newElement)
-    // for (let i = 1; i < 31; i++) {
-    //     createTableNewDescriptionLine()
-    // }
 
-    lastElement = document.querySelector(".tableContainer")
+    let lastElement = document.querySelector(".tableContainer").lastChild
+    let newElement = document.createElement("tr")
+    newElement.classList.add("addedRow")
+    newElement.classList.add("rowThinLine")
+    newElement.innerHTML = `<td colspan="8" class="tableHorizontalLine"></td>`
+    lastElement.append(newElement)
 }
