@@ -1,5 +1,5 @@
 import { recalcAll, showAllHidden } from "./app.js"
-import { createTableNewDataLine, createTableThinLine, createTableNewDescriptionLine } from "./table-operations.js"
+import { tableAddDataLine, tableAddTextLine, tableAddThinLine } from "./table-operations.js"
 import { saveDoc, readDoc } from "./save-read.js"
 
 let tableButtonsInfo = [
@@ -8,28 +8,28 @@ let tableButtonsInfo = [
         class: "button",
         buttonText: "Dodaj wiersz nagłówka",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
-        functionPerformed: function () { createTableNewDescriptionLine() },
+        functionPerformed: function () { tableAddTextLine("tableTextBold") },
     },
     {
         id: "buttonAddPlace",
         class: "button",
         buttonText: "Dodaj wiersz opisujący stanowisko",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
-        functionPerformed: function () { createTableNewPlaceLine() },
+        functionPerformed: function () { tableAddTextLine("") },
     },
     {
         id: "buttonAdd",
         class: "button",
         buttonText: "Dodaj wiersz pomiarów",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu stanowiska, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
-        functionPerformed: function () { createTableNewDataLine() },
+        functionPerformed: function () { tableAddDataLine() },
     },
     {
         id: "buttonAddThinLine",
         class: "button",
         buttonText: "Dodaj cienką linię poziomą",
         descriptionText: "<p>Dodaje cienką nową linię na końcu tabeli</p>",
-        functionPerformed: function () { createTableThinLine() },
+        functionPerformed: function () { tableAddThinLine() },
     },
     {
         id: "buttonRecalc",

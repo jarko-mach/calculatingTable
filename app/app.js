@@ -1,6 +1,6 @@
 import { checkboxChanged } from "./btn-show-hide-description.js"
-import { saveDoc, readDoc } from "./save-read.js"
-import { createTableNewDataLine, createTableNewDescriptionLine, addTableNumbers } from "./table-operations.js"
+// import { saveDoc, readDoc } from "./save-read.js"
+import { tableAddNumbers } from "./table-operations.js"
 
 export const showAllHidden = function () {
     console.log("pokazuj")
@@ -22,10 +22,11 @@ export const recalcAll = function (e) {
     let calculatedRownomiernosc
     let normaRownomiernosc
 
+    console.log("zaczynam przeliczać...")
     let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
-    // console.log(nodeList)
+    console.log("trafione punkty do obliczeń:",nodeList)
 
-    const rowsNumber = document.querySelectorAll(".addedLine").length
+    const rowsNumber = document.querySelectorAll(".rowThinLine, .rowDate, .rowText").length
     console.log("liczba wierszy:", rowsNumber)
 
     for (let row = 0; row < rowsNumber; row++) {
@@ -84,7 +85,7 @@ export const recalcAll = function (e) {
     }
 }
 
-addTableNumbers()
+tableAddNumbers()
 checkboxChanged()
 
 document.querySelector("#showDescriptions").addEventListener("click", checkboxChanged)

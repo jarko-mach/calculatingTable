@@ -1,9 +1,5 @@
-// szerokości kolumn tabeli
-// let tableParameters = [7, 50, 45, 18, 12, 15, 12, 12]
-// let converter = 3
-// let convertedTableParameters = tableParameters.map(element => element * converter);
 
-export const addTableNumbers = () => {
+export const tableAddNumbers = () => {
     const lastElement = document.querySelector(".showNumbers")
     lastElement.innerHTML =
         ` <tr>
@@ -19,14 +15,14 @@ export const addTableNumbers = () => {
     `
 }
 
-export const tableAddOnyTextLine = (withBold) => {
+export const tableAddTextLine = (withBold) => {
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
-    newElement.classList.add("addedRow")
-    newElement.classList.add("rowDescription")
+    // newElement.classList.add("addedRow")
+    newElement.classList.add("rowText")
     newElement.innerHTML =
         ` <td class="tableGeneral"><input class="numberLp cellInput" type="number" value="1"></td>
-          <td class="tableGeneral"><textarea class="place cellInput tableDescriptionArea" rows="1"></textarea></td>
+          <td class="tableGeneral"><textarea class="place cellInput tableDescriptionArea ${withBold}" rows="1"></textarea></td>
           <td class="tableGeneral"> <input type="text" class="measurings cellInput" disabled></td>
           <td class="tableGeneral"> <input type="text" class="wynik-1 cellInput" disabled></td>
           <td class="tableGeneral"> <input type="text" class="norma-1 cellInput" disabled></td>
@@ -37,16 +33,16 @@ export const tableAddOnyTextLine = (withBold) => {
     lastElement.append(newElement)
 }
 
-export const createTableNewDataLine = () => {
+export const tableAddDataLine = () => {
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
-    newElement.classList.add("addedRow")
+    // newElement.classList.add("addedRow")
     newElement.classList.add("rowDate")
 
     newElement.innerHTML =
         ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" value="1"></td>
-          <td class="tableGeneral"> <textarea class="place cellInput"></textarea> </td>
-          <td class="tableGeneral"> <textarea class="measurings cellInput"></textarea> </td>
+          <td class="tableGeneral"> <textarea class="place cellInput" rows="1"></textarea> </td>
+          <td class="tableGeneral"> <textarea class="measurings cellInput" rows="1"></textarea> </td>
           <td class="tableGeneral"> <input type="number" class="wynik-1 cellInput" disabled></td>
           <td class="tableGeneral"> <input type="number" class="norma-1 cellInput"></td>
           <td class="tableGeneral"> <input type="number" class="wynik-2 cellInput" disabled></td>
@@ -57,12 +53,23 @@ export const createTableNewDataLine = () => {
 }
 
 
-export const createTableThinLine = () => {
+export const tableAddThinLine = () => {
 
     let lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
-    newElement.classList.add("addedRow")
     newElement.classList.add("rowThinLine")
-    newElement.innerHTML = `<td colspan="8" class="tableHorizontalLine"></td>`
+    // newElement.innerHTML = `<td colspan="8" class="tableHorizontalLine"></td>`
+
+    newElement.innerHTML =
+    ` <td class="tdThinLine"> <input type="text" class="numberLp cellInputThinLine"> </td>
+      <td class="tdThinLine"> <input type="text" class="place cellInputThinLine"> </td>
+      <td class="tdThinLine"> <input type="text" class="measurings cellInputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="wynik-1 cellInputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="norma-1 cellInputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="wynik-2 cellInputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="norma-2 cellInputThinLine" disabled></td>
+      <td class="tdThinLine"> <input type="text" class="compatibility cellInputThinLine" disabled></td>
+`
+
     lastElement.append(newElement)
 }
