@@ -61,14 +61,14 @@ export const tableAddThinLine = () => {
     // newElement.innerHTML = `<td colspan="8" class="tableHorizontalLine"></td>`
 
     newElement.innerHTML =
-    ` <td class="tdThinLine"> <input type="text" class="numberLp cellInputThinLine"> </td>
-      <td class="tdThinLine"> <input type="text" class="place cellInputThinLine"> </td>
-      <td class="tdThinLine"> <input type="text" class="measurings cellInputThinLine" disabled> </td>
-      <td class="tdThinLine"> <input type="text" class="wynik-1 cellInputThinLine" disabled> </td>
-      <td class="tdThinLine"> <input type="text" class="norma-1 cellInputThinLine" disabled> </td>
-      <td class="tdThinLine"> <input type="text" class="wynik-2 cellInputThinLine" disabled> </td>
-      <td class="tdThinLine"> <input type="text" class="norma-2 cellInputThinLine" disabled></td>
-      <td class="tdThinLine"> <input type="text" class="compatibility cellInputThinLine" disabled></td>
+    ` <td class="tdThinLine"> <input type="text" class="numberLp inputThinLine"> </td>
+      <td class="tdThinLine"> <input type="text" class="place inputThinLine"> </td>
+      <td class="tdThinLine"> <input type="text" class="measurings inputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="wynik-1 inputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="norma-1 inputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="wynik-2 inputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="norma-2 inputThinLine" disabled></td>
+      <td class="tdThinLine"> <input type="text" class="compatibility inputThinLine" disabled></td>
 `
 
     lastElement.append(newElement)
