@@ -112,8 +112,15 @@ export const saveDoc = () => {
     localStorage.setItem("myElement", JSON.stringify(dataTableLocal))
 }
 
+const removeAllNewRows = () => {
+    const elements = document.querySelectorAll(".rowThinLine, .rowDate, .rowText ")
+    elements.forEach((elem) => { elem.remove() })
+}
 
 export const readDoc = () => {
+
+    removeAllNewRows()
+
     let dataTable = JSON.parse(localStorage.getItem("myElement"));
     console.log("długość wczytywanej tablicy", dataTable.length);
     console.log("wczytujemy:", dataTable);

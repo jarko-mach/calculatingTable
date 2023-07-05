@@ -28,7 +28,7 @@
     </div>
 
     <table class="tableContainer">
-        <tr>
+        <tr class="nocolor">
             <td rowspan="2" class="tableGeneral tableHeader">Lp.</td>
             <td rowspan="2" class="tableGeneral tableHeader">Miejsce pomiarów<br> <small>(według
                     schematu)</small></td>
@@ -36,13 +36,15 @@
                 <br><i>E</i> [lx]
             </td>
             <td colspan="2" class="tableGeneral tableHeader">Eksploatacyjne natężenie oświetlenia elektrycznego
-                <br><i><elemen>E</elemen><sub>m</sub></i> [lx]
+                <br><i>
+                    <elemen>E</elemen><sub>m</sub>
+                </i> [lx]
             </td>
             <td colspan="2" class="tableGeneral tableHeader">Równomierność oświetlenia
                 elektrycznego<br><i>U<sub>o</sub></i></td>
             <td rowspan="2" class="tableGeneral tableHeader">&nbsp Zgodność z PN</td>
         </tr>
-        <tr>
+        <tr class="nocolor">
             <td class="tableGeneral tableHeader">z pomiarów</td>
             <td class="tableGeneral tableHeader">wg normy</td>
             <td class="tableGeneral tableHeader">z pomiarów</td>
@@ -53,15 +55,16 @@
     </table>
     <footer>
         <div>
-            <input type="checkbox" id="showDescriptions" name="showDescriptions" value="false">
-            <label for="showDescriptions">Wyświetl opis przycisków</label>
-        </div>
-        <div>
             <input type="checkbox" id="removeTableRow" name="removeTableRow" value="false">
             <label for="removeTableRow">Aktywuj usuwanie linii tabeli kliknięciem myszki</label>
         </div>
+        <div>
+            <input type="checkbox" id="showDescriptions" name="showDescriptions" value="false">
+            <label for="showDescriptions">Wyświetl opis przycisków</label>
+        </div>
 
         <div id="footerButtons"></div>
+        <div class="info">Wersja 1.02 <i>JM</i></div>
     </footer>
     <script src="./app/app.js" type="module"></script>
 </body>

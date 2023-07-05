@@ -52,13 +52,6 @@ let tableButtonsInfo = [
         functionPerformed: function () { showAllHidden() },
     },
     {
-        id: "buttonRemove",
-        class: "button",
-        buttonText: "Usuń wiersz",
-        descriptionText: "<p>Usuwa wiersz zaznaczony pozycją kursora</p>",
-        functionPerformed: function () { },
-    }, 
-    {
         id: "buttonSave",
         class: "button",
         buttonText: "Zapisz",

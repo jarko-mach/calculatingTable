@@ -18,7 +18,6 @@ export const tableAddNumbers = () => {
 export const tableAddTextLine = (withBold) => {
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
-    // newElement.classList.add("addedRow")
     newElement.classList.add("rowText")
     newElement.innerHTML =
         ` <td class="tableGeneral"><input class="numberLp cellInput" type="number" value=""></td>
@@ -34,11 +33,10 @@ export const tableAddTextLine = (withBold) => {
 }
 
 export const tableAddDataLine = () => {
+
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
-    // newElement.classList.add("addedRow")
     newElement.classList.add("rowDate")
-
     newElement.innerHTML =
         ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" hidden></td>
           <td class="tableGeneral"> <textarea class="place cellInput" rows="1"></textarea> </td>
@@ -58,8 +56,6 @@ export const tableAddThinLine = () => {
     let lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
     newElement.classList.add("rowThinLine")
-    // newElement.innerHTML = `<td colspan="8" class="tableHorizontalLine"></td>`
-
     newElement.innerHTML =
         ` <td class="tdThinLine"> <input type="text" class="numberLp inputThinLine"> </td>
       <td class="tdThinLine"> <input type="text" class="place inputThinLine"> </td>
@@ -70,33 +66,46 @@ export const tableAddThinLine = () => {
       <td class="tdThinLine"> <input type="text" class="norma-2 inputThinLine" disabled></td>
       <td class="tdThinLine"> <input type="text" class="compatibility inputThinLine" disabled></td>
 `
-
     lastElement.append(newElement)
 }
 
 export const removeTableRow = (e) => {
-    // console.log("e.target", e.target)
-    // console.log("closest tr", e.target.closest("tr"))
 
     let element = e.target.closest("tr")
-    // console.log("element", element)
+    console.log("element", element.classList)
 
-    if (element.classList == "rowText" || element.classList == "rowDate" || element.classList == "rowThinLine") {
-        // element.remove()
-        console.log("usuwam...........")
+    if (element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowThinLine isRedOutline") {
+        element.remove()
+        // console.log("usuwam...........")
     }
+}
+
+const colorTableRow = (e) => {
+    let element = e.target.closest("tr")
+    let myValue = element?.classList?.value
+    // console.log(myValue)
+    if (myValue && myValue !== "showNumbers" && myValue !== "nocolor") { 
+        element.classList.add("isRedOutline") 
+    }
+}
+
+const discolorTableRow = (e) => {
+    let element = e.target.closest("tr")
+    element?.classList?.remove("isRedOutline")
 }
 
 export const checkboxRemoveTableRowChanged = () => {
     let checkBoxState = document.querySelector("#removeTableRow");
-    console.log("checkboxRemoveTableRowChanged", checkBoxState.checked)
+    // console.log("checkboxRemoveTableRowChanged", checkBoxState.checked)
 
     if (checkBoxState.checked == true) {
         document.querySelector(".tableContainer").addEventListener("click", removeTableRow)
-        console.log("checkbox true", checkBoxState.checked)
+        document.querySelector(".tableContainer").addEventListener("mouseover", colorTableRow)
+        document.querySelector(".tableContainer").addEventListener("mouseout", discolorTableRow)
     } else {
-        console.log("checkbox false", checkBoxState.checked)
         document.querySelector(".tableContainer").removeEventListener("click", removeTableRow)
+        document.querySelector(".tableContainer").removeEventListener("mouseover", colorTableRow)
+        document.querySelector(".tableContainer").removeEventListener("mouseout", discolorTableRow)
     }
 
 }

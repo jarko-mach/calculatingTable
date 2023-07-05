@@ -73,6 +73,10 @@ elemen {
     height: 1px;
 }
 
+.isRedOutline {
+    border: 1px solid red;
+}
+
 .tableTextBold {
     font-weight: 800;
 }
@@ -174,4 +178,9 @@ label:hover {
 footer div p {
     font-size: 0.8em;
     line-height: 1.4em;
+}
+
+.info {
+    text-align: right;
+    font-size: 0.6em;
 }
