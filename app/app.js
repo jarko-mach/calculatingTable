@@ -1,6 +1,5 @@
-import { checkboxChanged } from "./btn-show-hide-description.js"
-// import { saveDoc, readDoc } from "./save-read.js"
-import { tableAddNumbers } from "./table-operations.js"
+import { checkboxShowHideChanged } from "./btn-show-hide-description.js"
+import { tableAddNumbers, removeTableRow, checkboxRemoveTableRowChanged } from "./table-operations.js"
 
 export const showAllHidden = function () {
     console.log("pokazuj")
@@ -24,7 +23,7 @@ export const recalcAll = function (e) {
 
     console.log("zaczynam przeliczać...")
     let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
-    console.log("trafione punkty do obliczeń:",nodeList)
+    console.log("trafione punkty do obliczeń:", nodeList)
 
     const rowsNumber = document.querySelectorAll(".rowThinLine, .rowDate, .rowText").length
     console.log("liczba wierszy:", rowsNumber)
@@ -79,13 +78,14 @@ export const recalcAll = function (e) {
         if (normaEksploatacyjne && normaRownomiernosc) {
 
             if (calculatedEksploatacyjne > normaEksploatacyjne && calculatedRownomiernosc > normaRownomiernosc) {
-                nodeList[5 + addRowElements].value = "Tak"
-            } else nodeList[5 + addRowElements].value = "Nie"
+                nodeList[5 + addRowElements].value = "TAK"
+            } else nodeList[5 + addRowElements].value = "NIE"
         }
     }
 }
 
 tableAddNumbers()
-checkboxChanged()
+checkboxShowHideChanged()
 
-document.querySelector("#showDescriptions").addEventListener("click", checkboxChanged)
+document.querySelector("#showDescriptions").addEventListener("click", checkboxShowHideChanged)
+document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)

@@ -21,14 +21,14 @@ let tableButtonsInfo = [
         id: "buttonAdd",
         class: "button",
         buttonText: "Dodaj wiersz pomiarów",
-        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu stanowiska, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
+        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
         functionPerformed: function () { tableAddDataLine() },
     },
     {
         id: "buttonAddThinLine",
         class: "button",
-        buttonText: "Dodaj cienką linię poziomą",
-        descriptionText: "<p>Dodaje cienką nową linię na końcu tabeli</p>",
+        buttonText: "Dodaj widoczną linię poziomą",
+        descriptionText: "<p>Dodaje cienką linię na końcu / na dole tabeli</p>",
         functionPerformed: function () { tableAddThinLine() },
     },
     {
@@ -52,6 +52,13 @@ let tableButtonsInfo = [
         functionPerformed: function () { showAllHidden() },
     },
     {
+        id: "buttonRemove",
+        class: "button",
+        buttonText: "Usuń wiersz",
+        descriptionText: "<p>Usuwa wiersz zaznaczony pozycją kursora</p>",
+        functionPerformed: function () { },
+    }, 
+    {
         id: "buttonSave",
         class: "button",
         buttonText: "Zapisz",
@@ -66,7 +73,7 @@ let tableButtonsInfo = [
         functionPerformed: function () { readDoc() },
     },]
 
-export function checkboxChanged() {
+export function checkboxShowHideChanged() {
 
     let checkBoxState = document.querySelector("#showDescriptions");
     const elementDivWithButtons = document.querySelector("#footerButtons")
