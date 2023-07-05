@@ -1,5 +1,5 @@
 import { checkboxShowHideChanged } from "./btn-show-hide-description.js"
-import { tableAddNumbers, removeTableRow, checkboxRemoveTableRowChanged } from "./table-operations.js"
+import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
 
 let dataTableOriginal = [
     {
@@ -20,7 +20,7 @@ let dataTableJsonS
 let dataTableLocal = []
 
 // classy dla różnych wierszy
-let classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate"]
+export let classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate"]
 
 // classy dla różnych kolumn
 let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
@@ -60,7 +60,7 @@ export const recalcAll = function (e) {
 
     let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
     console.log("trafione punkty do obliczeń:", nodeList)
-    a = classTableColumns
+    // a = classTableColumns
     const rowsNumber = document.querySelectorAll(".rowThinLine, .rowDate, .rowText").length
     console.log("liczba wierszy:", rowsNumber)
 

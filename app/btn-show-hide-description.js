@@ -1,6 +1,5 @@
-import { recalcAll, showAllHidden } from "./app.js"
+import { recalcAll, showAllHidden, saveDoc, readDoc } from "./app.js"
 import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddThinLine } from "./table-operations.js"
-import { saveDoc, readDoc } from "../older/save-read.js"
 
 let tableButtonsInfo = [
     {

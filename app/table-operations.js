@@ -1,3 +1,4 @@
+import { classTableRows } from "./app.js"
 
 export const tableAddNumbers = () => {
     const lastElement = document.querySelector(".showNumbers")
@@ -20,8 +21,8 @@ export const tableAddTextBoldLine = () => {
     let newElement = document.createElement("tr")
     newElement.classList.add("rowTextBold")
     newElement.innerHTML =
-        ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" value=""></td>
-          <td class="tableGeneral"> <textarea class="place cellInput tableDescriptionArea withBold" rows="1"></textarea></td>
+        ` <td class="tableGeneral"> <input class="numberLp cellInput " type="number"></td>
+          <td class="tableGeneral"> <textarea class="place cellInput tableDescriptionArea tableTextBold" rows="1"></textarea></td>
           <td class="tableGeneral"> <input type="text" class="measurings cellInput" disabled></td>
           <td class="tableGeneral"> <input type="text" class="wynik-1 cellInput" disabled></td>
           <td class="tableGeneral"> <input type="text" class="norma-1 cellInput" disabled></td>
@@ -88,7 +89,8 @@ export const tableAddThinLine = () => {
 
 export const removeTableRow = (e) => {
     let element = e.target.closest("tr")
-    if (element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowThinLine isRedOutline") {
+
+    if (element.classList == "rowTextBold isRedOutline" || element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowThinLine isRedOutline") {
         element.remove()
     }
 }
