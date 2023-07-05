@@ -1,6 +1,6 @@
 import { recalcAll, showAllHidden } from "./app.js"
-import { tableAddDataLine, tableAddTextLine, tableAddThinLine } from "./table-operations.js"
-import { saveDoc, readDoc } from "./save-read.js"
+import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddThinLine } from "./table-operations.js"
+import { saveDoc, readDoc } from "../older/save-read.js"
 
 let tableButtonsInfo = [
     {
@@ -8,14 +8,14 @@ let tableButtonsInfo = [
         class: "button",
         buttonText: "Dodaj wiersz nagłówka",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
-        functionPerformed: function () { tableAddTextLine("tableTextBold") },
+        functionPerformed: function () { tableAddTextBoldLine() },
     },
     {
         id: "buttonAddPlace",
         class: "button",
         buttonText: "Dodaj wiersz opisujący stanowisko",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
-        functionPerformed: function () { tableAddTextLine("") },
+        functionPerformed: function () { tableAddTextLine() },
     },
     {
         id: "buttonAdd",

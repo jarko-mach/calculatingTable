@@ -57,7 +57,7 @@ body {
 elemen {
     color: rgb(0, 0, 0);
     border-top: 1px solid;
-    
+
 }
 
 .tableNumber {
@@ -133,7 +133,14 @@ elemen {
     width: 55mm;
 }
 
-input,
+input {
+    font-size: 0.9em;
+    border: 0;
+    font-family: 'Carlito', sans-serif;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
 textarea {
     font-size: 0.9em;
     border: 0;
@@ -142,10 +149,16 @@ textarea {
     box-sizing: border-box;
 }
 
-input[type="checkbox"],
 label {
     font-size: 0.71em;
     color: rgb(89, 89, 89)
+}
+
+input[type="checkbox"] {
+    /* font-size: 0.1em; */
+    width: 7px;
+    height: 7px;
+    color: rgb(89, 89, 89);
 }
 
 input[type="checkbox"],

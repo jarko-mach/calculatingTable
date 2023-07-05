@@ -15,13 +15,30 @@ export const tableAddNumbers = () => {
     `
 }
 
-export const tableAddTextLine = (withBold) => {
+export const tableAddTextBoldLine = () => {
+    const lastElement = document.querySelector(".tableContainer").lastChild
+    let newElement = document.createElement("tr")
+    newElement.classList.add("rowTextBold")
+    newElement.innerHTML =
+        ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" value=""></td>
+          <td class="tableGeneral"> <textarea class="place cellInput tableDescriptionArea withBold" rows="1"></textarea></td>
+          <td class="tableGeneral"> <input type="text" class="measurings cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="wynik-1 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="norma-1 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="wynik-2 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="norma-2 cellInput" disabled></td>
+          <td class="tableGeneral"> <input type="text" class="compatibility cellInput" disabled></td>
+    `
+    lastElement.append(newElement)
+}
+
+export const tableAddTextLine = () => {
     const lastElement = document.querySelector(".tableContainer").lastChild
     let newElement = document.createElement("tr")
     newElement.classList.add("rowText")
     newElement.innerHTML =
-        ` <td class="tableGeneral"><input class="numberLp cellInput" type="number" value=""></td>
-          <td class="tableGeneral"><textarea class="place cellInput tableDescriptionArea ${withBold}" rows="1"></textarea></td>
+        ` <td class="tableGeneral"> <input class="numberLp cellInput" type="number" value=""></td>
+          <td class="tableGeneral"> <textarea class="place cellInput tableDescriptionArea" rows="1"></textarea></td>
           <td class="tableGeneral"> <input type="text" class="measurings cellInput" disabled></td>
           <td class="tableGeneral"> <input type="text" class="wynik-1 cellInput" disabled></td>
           <td class="tableGeneral"> <input type="text" class="norma-1 cellInput" disabled></td>
@@ -70,22 +87,17 @@ export const tableAddThinLine = () => {
 }
 
 export const removeTableRow = (e) => {
-
     let element = e.target.closest("tr")
-    console.log("element", element.classList)
-
     if (element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowThinLine isRedOutline") {
         element.remove()
-        // console.log("usuwam...........")
     }
 }
 
 const colorTableRow = (e) => {
     let element = e.target.closest("tr")
     let myValue = element?.classList?.value
-    // console.log(myValue)
-    if (myValue && myValue !== "showNumbers" && myValue !== "nocolor") { 
-        element.classList.add("isRedOutline") 
+    if (myValue && myValue !== "showNumbers" && myValue !== "nocolor") {
+        element.classList.add("isRedOutline")
     }
 }
 
@@ -96,7 +108,6 @@ const discolorTableRow = (e) => {
 
 export const checkboxRemoveTableRowChanged = () => {
     let checkBoxState = document.querySelector("#removeTableRow");
-    // console.log("checkboxRemoveTableRowChanged", checkBoxState.checked)
 
     if (checkBoxState.checked == true) {
         document.querySelector(".tableContainer").addEventListener("click", removeTableRow)
