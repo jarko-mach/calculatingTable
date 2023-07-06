@@ -5,13 +5,13 @@ let dataTableOriginal = [
     {
         typeOfRow: "",
         info: {
-            numberLp: 0,
+            numberLp: "",
             place: "",
             measurings: "",
-            wynik1: 0,
-            norma1: 0,
-            wynik2: 0,
-            norma2: 0,
+            wynik1: "",
+            norma1: "",
+            wynik2: "",
+            norma2: "",
             compatibility: "",
         }
     }
@@ -145,8 +145,7 @@ export const recalcAll = function (e) {
         calculatedRownomiernosc
             = Number(Math.round(Math.min(...myMeasureTable) / calculatedEksploatacyjne + 'e+2') + 'e-2')
 
-        nodeList[3 + addRowElements].value = calculatedRownomiernosc.replace('.', ',')
-        // console.log("[6] obliczone", calculatedRownomiernosc)
+        nodeList[3 + addRowElements].value = String(calculatedRownomiernosc).replace('.', ',')
 
         // element 4 – norma równomierność
         normaRownomiernosc = nodeList[4 + addRowElements].value.replace(',', '.')
@@ -298,6 +297,10 @@ export const readDoc = () => {
         nodeList[5 + addRowElements].value = dataTable[row].info.norma1
 
         // element 6 - rownomiernosc pomiary
+        // const tempString = dataTable[row].info.wynik2
+        // console.log("tempString", tempString)
+        // const tempString2 = "0".replace('.', ',')
+
         nodeList[6 + addRowElements].value = dataTable[row].info.wynik2.replace('.', ',')
 
         // element 7 - rownomiernosc norma
