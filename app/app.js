@@ -56,13 +56,14 @@ export const recalcAll = function (e) {
     let calculatedRownomiernosc
     let normaRownomiernosc
 
-    console.log("zaczynam przeliczać...")
+    // console.log("zaczynam przeliczać...")
 
     let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
-    console.log("trafione punkty do obliczeń:", nodeList)
-    // a = classTableColumns
-    const rowsNumber = document.querySelectorAll(".rowThinLine, .rowDate, .rowText").length
-    console.log("liczba wierszy:", rowsNumber)
+    // console.log("trafione punkty do obliczeń:", nodeList)
+
+    let readdClass = convertClassesIntoOneString(classTableRows)
+    const rowsNumber = document.querySelectorAll(readdClass).length
+    // console.log("liczba wierszy:", rowsNumber)
 
     for (let row = 0; row < rowsNumber; row++) {
 
@@ -75,14 +76,20 @@ export const recalcAll = function (e) {
 
         const re = /[;,]/;
         let measureTable = measurings.split(re);
+        // console.log("efekt polecenia split", measureTable)
+
         measureTable.forEach((elem, index) => { measureTable[index] = Number(measureTable[index]) })
-        // console.log("22", measureTable)
+        // console.log("zamiana na Number", measureTable)
+
         const computeEksploatacyjne = () => {
-            let average = 0
-            measureTable.forEach((elem) => { average += elem })
-            calculatedEksploatacyjne = Number(Math.round(average / measureTable.length + 'e+0') + 'e-0')
+            let sum = 0
+            measureTable.forEach((value, index) => { sum += value })
+
+            calculatedEksploatacyjne = Number(Math.round(sum / measureTable.length + 'e+0') + 'e-0')
             return calculatedEksploatacyjne
         }
+
+        // console.log("obliczanie kolumny 4", computeEksploatacyjne())
 
         // brak danych liczbowych
         if (!computeEksploatacyjne()) {

@@ -1,7 +1,6 @@
 body {
     font-family: 'Carlito', sans-serif;
     /* font-family: 'Montserrat', sans-serif; */
-    font-size: 14px;
     width: 210mm;
     height: 297mm;
     border: 1px solid rgb(125, 125, 125);
@@ -10,152 +9,169 @@ body {
     margin: 0;
 }
 
-.siteHeaderTable1 {
-    font-weight: 700;
+/* ABOVE TABLE  */
+
+.upperText {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.table1 {
     margin-bottom: 0;
 }
 
-.siteTitle {
-    font-weight: 700;
+.title1 {
+    font-size: 15px;
     text-align: center;
-    margin: 0;
+    margin: 0 0 20px 0;
 }
 
-.customer {
+.customerGrid {
+    display: grid;
+    grid-template-columns: 150px auto;
+    margin: 0 0 6px 10px;
+}
+
+.customerGridData {
+    display: grid;
+    grid-template-columns: 150px 110px;
+    margin: 0 0 0 10px;
+}
+
+.customerLabel {
+    font-size: 14px;
     font-weight: 400;
     text-align: left;
-    margin: 5px 0 5px 0;
-}
-
-.descriptionAndData {
-    display: flex;
     margin: 0;
 }
 
 .castomerInput {
-    background-color: rgb(241, 241, 241);
-    margin: 5px 0 5px 10px;
-    flex-grow: 2;
+    font-weight: 600;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(245, 245, 245);
 }
 
-.tableContainer {
+#researchDate {
+    border: 0;
+    background-color: #ffffff;
+    font-weight: 400;
+    font-family: 'Carlito', sans-serif;
+}
+
+/* PARAMETERS OF TABLE  */
+/* THEAD */
+table {
     margin: 20px 0 20px 0;
     border-collapse: collapse;
-    border-left: 0.6px solid rgb(10, 10, 10);
-    border-right: 0.6px solid rgb(10, 10, 10);
-    border-top: 0.6px solid rgb(10, 10, 10);
-}
-
-.tableGeneral {
-    border-left: 0.6px solid rgb(10, 10, 10);
-    /* border-right: 1px solid rgb(10, 10, 10); */
     text-align: center;
-    margin: 0;
     font-size: 0.7em;
 }
 
-elemen {
-    color: rgb(0, 0, 0);
-    border-top: 1px solid;
-
+thead>tr>td {
+    border: 0.6px solid black;
+    padding: 2px 5px 2px 5px;
 }
 
-.tableNumber {
-    font-size: 0.69em;
+.showNumbers {
     font-style: italic;
-    border: 0.6px solid rgb(10, 10, 10);
 }
 
-.tableHorizontalLine {
-    border-top: 0.6px solid rgb(10, 224, 235);
+upperLine {
+    color: black;
+    border-top: 1px solid;
+}
+
+.widthColumn1 {
+    width: 6mm;
+}
+
+.widthColumn2 {
+    width: 65mm;
+}
+
+.widthColumn3 {
+    width: 45mm;
+}
+
+.widthColumn4 {
+    width: 14mm;
+}
+
+.widthColumn5 {
+    width: 12mm;
+}
+
+.widthColumn6 {
+    width: 11mm;
+}
+
+.widthColumn7 {
+    width: 11mm;
+}
+
+.widthColumn8 {
+    width: 12mm;
+}
+
+/* TBODY */
+
+tbody>tr>td {
+    border-left: 0.6px solid black;
+    border-right: 0.6px solid black;
     padding: 0;
-    box-sizing: border-box;
-    height: 1px;
 }
 
-.isRedOutline {
-    border: 1px solid red;
+.numberLp,
+.place,
+.measurings,
+.wynik-1,
+.norma-1,
+.wynik-2,
+.norma-2,
+.compatibility,
+textarea {
+    text-align: center;
+    font-size: .9em;
+    font-family: 'Carlito', sans-serif;
+    box-sizing: border-box;
+    border: 0px;
+    padding: 0;
+    width: 95%;
+    resize: vertical;
+}
+
+.place {
+    text-align: left;
 }
 
 .tableTextBold {
     font-weight: 800;
 }
 
-.cellInput {
-    width: 97%;
-    background-color: rgb(240, 240, 240);
-    /* resize: none; */
-    resize: vertical;
-}
-
-.inputThinLine {
-    width: 97%;
-    height: 1%;
-    /* background-color: rgb(0, 0, 0); */
-    margin: 0;
-    padding: 0;
-    /* font-size: 0.0em; */
-    /* border-left: 1px solid red; */
-    /* resize: none; */
-    /* visibility: hidden; */
+.isRedOutline {
+    border: 1px solid red;
 }
 
 .tdThinLine {
     font-size: 0.0em;
-    /* background-color: rgb(5, 236, 63); */
-    /* border: 1px 1px 0 1px 0; */
-    /* border-color: black; */
-    border-top: 0.6px solid rgb(0, 0, 0);
-
+    border-top: 0.6px solid black;
 }
 
-.cell007mm {
-    width: 7mm;
+input[type="text"]:disabled {
+    background: #ffffff;
+    color: black;
 }
 
-.cell012mm {
-    width: 12mm;
-}
 
-.cell016mm {
-    width: 16mm;
-}
+/* UNDER TABLE */
 
-.cell018mm {
-    width: 18mm;
-}
-
-.cell045mm {
-    width: 50mm;
-}
-
-.cell050mm {
-    width: 55mm;
-}
-
-input {
-    font-size: 0.9em;
-    border: 0;
-    font-family: 'Carlito', sans-serif;
-    margin: 0px;
-    box-sizing: border-box;
-}
-
-textarea {
-    font-size: 0.9em;
-    border: 0;
-    font-family: 'Carlito', sans-serif;
-    margin: 0px;
-    box-sizing: border-box;
-}
-
-label {
+.labelCB {
     font-size: 0.71em;
-    color: rgb(89, 89, 89)
 }
 
 input[type="checkbox"] {
-    /* font-size: 0.1em; */
     width: 7px;
     height: 7px;
     color: rgb(89, 89, 89);

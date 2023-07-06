@@ -12,55 +12,64 @@
 </head>
 
 <body>
-    <p class="siteHeaderTable1">Tabela nr 1.</p>
-    <p class="siteTitle">BADANIA OŚWIETLENIA ELEKTRYCZNEGO</p>
-    <div class="descriptionAndData">
-        <label for="customerName" class="customer">Nazwa i adres Klienta:</label>
-        <input id="customerName" class="castomerInput" type="text" size="50" placeholder="...">
+    <div class="upperText">
+        <p class="table1">Tabela nr 1.</p>
+        <p class="title1">BADANIA OŚWIETLENIA ELEKTRYCZNEGO</p>
     </div>
-    <div class="descriptionAndData">
-        <label for="researchAddress" class="customer">Miejsce badań:</label>
-        <input id="researchAddress" class="castomerInput" type="text" size="50" placeholder="...">
+    <div class="customerGrid">
+        <p class="customerLabel">Nazwa i adres Klienta:</p>
+        <textarea id="customerName" class="castomerInput" rows="1"></textarea>
     </div>
-    <div class="descriptionAndData">
-        <label for="researchDate" class="customer">Data wykonania badań:</label>
-        <input id="researchDate" class="castomerInput" type="text" size="50" placeholder="...">
+    
+    <div class="customerGrid">
+        <p class="customerLabel">Miejsce badań:</p>
+        <textarea id="researchAddress" class="castomerInput" rows="1"></textarea>
+    </div>
+    
+    <div class="customerGridData">
+        <p class="customerLabel">Data wykonania badań:</p>
+        <input id="researchDate" class="castomerInput" type="date" size="50">
     </div>
 
-    <table class="tableContainer">
-        <tr class="nocolor">
-            <td rowspan="2" class="tableGeneral tableHeader">Lp.</td>
-            <td rowspan="2" class="tableGeneral tableHeader">Miejsce pomiarów<br> <small>(według
-                    schematu)</small></td>
-            <td rowspan="2" class="tableGeneral tableHeader">&nbsp Zmierzone natężenie &nbsp oświetlenia elektrycznego
-                <br><i>E</i> [lx]
-            </td>
-            <td colspan="2" class="tableGeneral tableHeader">Eksploatacyjne natężenie oświetlenia elektrycznego
-                <br><i>
-                    <elemen>E</elemen><sub>m</sub>
-                </i> [lx]
-            </td>
-            <td colspan="2" class="tableGeneral tableHeader">Równomierność oświetlenia
-                elektrycznego<br><i>U<sub>o</sub></i></td>
-            <td rowspan="2" class="tableGeneral tableHeader">&nbsp Zgodność z PN</td>
-        </tr>
-        <tr class="nocolor">
-            <td class="tableGeneral tableHeader">z pomiarów</td>
-            <td class="tableGeneral tableHeader">wg normy</td>
-            <td class="tableGeneral tableHeader">z pomiarów</td>
-            <td class="tableGeneral tableHeader">wg normy</td>
-        </tr>
-        <tr class="showNumbers">
-        </tr>
+    <table>
+        <thead>
+            <tr class="nocolor">
+                <td rowspan="2">Lp.</td>
+                <td rowspan="2">Miejsce pomiarów<br> <small>(według
+                        schematu)</small></td>
+                <td rowspan="2">Zmierzone natężenie oświetlenia
+                    elektrycznego
+                    <br><i>E</i> [lx]
+                </td>
+                <td colspan="2">Eksploatacyjne natężenie oświetlenia elektrycznego
+                    <br><i>
+                        <upperLine>E</upperLine><sub>m</sub>
+                    </i> [lx]
+                </td>
+                <td colspan="2">Równomierność oświetlenia
+                    elektrycznego<br><i>U<sub>o</sub></i></td>
+                <td rowspan="2">&nbsp Zgodność z PN</td>
+            </tr>
+            <tr class="nocolor">
+                <td>z pomiarów</td>
+                <td>wg normy</td>
+                <td>z pomiarów</td>
+                <td>wg normy</td>
+            </tr>
+            <tr class="showNumbers">
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
     </table>
     <footer>
         <div>
             <input type="checkbox" id="removeTableRow" name="removeTableRow" value="false">
-            <label for="removeTableRow">Aktywuj usuwanie linii tabeli kliknięciem myszki</label>
+            <label for="removeTableRow" class="labelCB">Aktywuj usuwanie linii tabeli kliknięciem myszki</label>
         </div>
         <div>
             <input type="checkbox" id="showDescriptions" name="showDescriptions" value="false">
-            <label for="showDescriptions">Wyświetl opis przycisków</label>
+            <label for="showDescriptions" class="labelCB">Wyświetl opis przycisków</label>
         </div>
 
         <div id="footerButtons"></div>
