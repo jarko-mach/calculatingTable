@@ -1,18 +1,18 @@
 import { checkboxShowHideChanged } from "./btn-show-hide-description.js"
-import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
+import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
 
 let dataTableOriginal = [
     {
-        typeOfRow: "B",
+        typeOfRow: "",
         info: {
-            numberLp: 11,
-            place: "B",
-            measurings: "111",
-            wynik1: 111,
-            norma1: 111,
-            wynik2: 111,
-            norma2: 111,
-            compatibility: "B",
+            numberLp: 0,
+            place: "",
+            measurings: "",
+            wynik1: 0,
+            norma1: 0,
+            wynik2: 0,
+            norma2: 0,
+            compatibility: "",
         }
     }
 ]
@@ -20,7 +20,7 @@ let dataTableJsonS
 let dataTableLocal = []
 
 // classy dla różnych wierszy
-export let classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate"]
+export let classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate", "rowEmpty"]
 
 // classy dla różnych kolumn
 let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
@@ -50,6 +50,25 @@ export const showAllHidden = function () {
     }
 }
 
+const convertDotComa = (operation, elementIn) => {
+    switch (operation) {
+        case ("read"):
+            console.log("wczytuję");
+
+            break;
+        case ("save"):
+            console.log("zapisuję");
+
+            break;
+        case ("calculate"):
+            // console.log("obliczam");
+            let nString = elementIn
+            // console.log("nString", nString)
+            return nString.replace(',', '.')
+            break;
+    }
+}
+
 export const recalcAll = function (e) {
     let calculatedEksploatacyjne
     let normaEksploatacyjne
@@ -72,24 +91,39 @@ export const recalcAll = function (e) {
 
         // wybieram pięć pierwszych elementów
         // element 0 i obliczam element 1 – oblicz eksploatacyjne
-        let measurings = nodeList[0 + addRowElements].value
 
-        const re = /[;,]/;
-        let measureTable = measurings.split(re);
-        // console.log("efekt polecenia split", measureTable)
+        // ***********************************************************************
+        let myMeasurings = nodeList[0 + addRowElements].value
+        // console.log("wiersz", row, "pomiary string", myMeasurings)
 
-        measureTable.forEach((elem, index) => { measureTable[index] = Number(measureTable[index]) })
-        // console.log("zamiana na Number", measureTable)
+        let re1 = /(\d\s+\d)|[a-z]|(,\s+)$|[,]$/gi
+        const foudError = re1.test(myMeasurings)
+        // console.log("czy znaleziono zabroniony znak?", foudError)
+
+        if (foudError) {
+            // console.log("bum")
+            nodeList[0 + addRowElements].classList.add("measuringsError")
+            continue
+        } else {
+            nodeList[0 + addRowElements].classList.remove("measuringsError")
+        }
+
+        let re2 = /[,;]/gi
+        let myMeasureTable = myMeasurings.split(re2);
+        // console.log("efekt polecenia split", myMeasureTable)
+
+        myMeasureTable.forEach((elem, index) => { myMeasureTable[index] = Number(myMeasureTable[index]) })
+        // console.log("zamiana na Number", myMeasureTable)
 
         const computeEksploatacyjne = () => {
             let sum = 0
-            measureTable.forEach((value, index) => { sum += value })
+            myMeasureTable.forEach((value, index) => { sum += value })
 
-            calculatedEksploatacyjne = Number(Math.round(sum / measureTable.length + 'e+0') + 'e-0')
+            calculatedEksploatacyjne = Number(Math.round(sum / myMeasureTable.length + 'e+0') + 'e-0')
             return calculatedEksploatacyjne
         }
 
-        // console.log("obliczanie kolumny 4", computeEksploatacyjne())
+        // console.log("[4] obliczone", computeEksploatacyjne())
 
         // brak danych liczbowych
         if (!computeEksploatacyjne()) {
@@ -105,15 +139,17 @@ export const recalcAll = function (e) {
 
         // element 2 - norma
         normaEksploatacyjne = nodeList[2 + addRowElements].value
+        // console.log("[5] wpisane", normaEksploatacyjne, "number", Number(normaEksploatacyjne))
 
         // element 3 - oblicz równomierność
         calculatedRownomiernosc
-            = Number(Math.round(Math.min(...measureTable) / calculatedEksploatacyjne + 'e+2') + 'e-2')
+            = Number(Math.round(Math.min(...myMeasureTable) / calculatedEksploatacyjne + 'e+2') + 'e-2')
 
-        nodeList[3 + addRowElements].value = calculatedRownomiernosc
+        nodeList[3 + addRowElements].value = calculatedRownomiernosc.replace('.', ',')
+        // console.log("[6] obliczone", calculatedRownomiernosc)
 
         // element 4 – norma równomierność
-        normaRownomiernosc = nodeList[4 + addRowElements].value
+        normaRownomiernosc = nodeList[4 + addRowElements].value.replace(',', '.')
 
         // element 5 - Tak/Nie
         nodeList[5 + addRowElements].value = "????"
@@ -230,6 +266,7 @@ export const readDoc = () => {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
         if (dataTable[i].typeOfRow === "rowText") { tableAddTextLine() }
         if (dataTable[i].typeOfRow === "rowDate") { tableAddDataLine() }
+        if (dataTable[i].typeOfRow === "rowEmpty") { tableAddEmptyLine() }
         if (dataTable[i].typeOfRow === "rowThinLine") { tableAddThinLine() }
     }
 
@@ -261,7 +298,7 @@ export const readDoc = () => {
         nodeList[5 + addRowElements].value = dataTable[row].info.norma1
 
         // element 6 - rownomiernosc pomiary
-        nodeList[6 + addRowElements].value = dataTable[row].info.wynik2
+        nodeList[6 + addRowElements].value = dataTable[row].info.wynik2.replace('.', ',')
 
         // element 7 - rownomiernosc norma
         nodeList[7 + addRowElements].value = dataTable[row].info.norma2
@@ -271,9 +308,39 @@ export const readDoc = () => {
     }
 }
 
+const checkboxGreyBackgroundChanged = () => {
+    let checkBoxState = document.querySelector("#addGreyBackground");
+    console.log("stan cheku", checkBoxState.checked)
+
+    const classesToFind = convertClassesIntoOneString(classTableColumns)
+    // console.log("classy do znalezienia", classesToFind)
+
+    const element = document.querySelectorAll(classesToFind)
+    // console.log("lista elementów", element)
+
+    if (checkBoxState.checked) {
+        element.forEach((element, index) => {
+            if (!element.disabled) {
+                element.classList.add("addGreyBackground")
+                // console.log(index)
+            }
+        })
+    } else {
+        element.forEach((element, index) => {
+            if (!element.disabled) {
+                element.classList.remove("addGreyBackground")
+                // console.log(index)
+            }
+        })
+    }
+
+}
+
 
 tableAddNumbers()
 checkboxShowHideChanged()
+checkboxGreyBackgroundChanged()
 
-document.querySelector("#showDescriptions").addEventListener("click", checkboxShowHideChanged)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
+document.querySelector("#addGreyBackground").addEventListener("click", checkboxGreyBackgroundChanged)
+document.querySelector("#showDescriptions").addEventListener("click", checkboxShowHideChanged)

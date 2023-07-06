@@ -1,32 +1,39 @@
 import { recalcAll, showAllHidden, saveDoc, readDoc } from "./app.js"
-import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddThinLine } from "./table-operations.js"
+import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine } from "./table-operations.js"
 
 let tableButtonsInfo = [
     {
         id: "buttonAddHeader",
         class: "button",
-        buttonText: "Dodaj wiersz nagłówka",
+        buttonText: "Dodaj wiersz <b>nagłówka</b>",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         functionPerformed: function () { tableAddTextBoldLine() },
     },
     {
         id: "buttonAddPlace",
         class: "button",
-        buttonText: "Dodaj wiersz opisujący stanowisko",
+        buttonText: "Dodaj wiersz opisujący <b>stanowisko</b>",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
         functionPerformed: function () { tableAddTextLine() },
     },
     {
         id: "buttonAdd",
         class: "button",
-        buttonText: "Dodaj wiersz pomiarów",
+        buttonText: "Dodaj wiersz <b>pomiarów</b>",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
         functionPerformed: function () { tableAddDataLine() },
     },
     {
+        id: "buttonAddSpace",
+        class: "button",
+        buttonText: "Dodaj <b>pusty</b> wiersz",
+        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
+        functionPerformed: function () { tableAddEmptyLine() },
+    },
+    {
         id: "buttonAddThinLine",
         class: "button",
-        buttonText: "Dodaj widoczną linię poziomą",
+        buttonText: "Dodaj widoczną <b>linię</b> poziomą",
         descriptionText: "<p>Dodaje cienką linię na końcu / na dole tabeli</p>",
         functionPerformed: function () { tableAddThinLine() },
     },
@@ -36,7 +43,7 @@ let tableButtonsInfo = [
         buttonText: "Przelicz",
         descriptionText: `<p>Odczytuje zmierzone wartości natężenia oświetlenia z kolumny [3]. 
     Do odseparowania liczb można używać <b>przecinka</b> lub <b>średnika</b>. 
-    Do wskazywania części dziesiętnych proszę używać <b>kropki</b>. 
+    Do wskazywania części dziesiętnych można używać <b>przecinka</b>. 
     Po poprawnym wczytaniu danych następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
     Brak wprowadzonych danych wg normy w polach [5] i [7] spowoduje niemożność obliczenia stanu w kolumnie [8]<br>
     Dla wiersza, w którym w polu [3] brakuje wyników lub wprowadzone dane są niepoprawne, pola od [3] do [8] zostaną ukryte</p>`,

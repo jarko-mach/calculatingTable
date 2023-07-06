@@ -21,14 +21,14 @@ export const tableAddTextBoldLine = () => {
     // console.log(lastElement, newElement)
     newElement.classList.add("rowTextBold")
     newElement.innerHTML =
-        ` <td > <input type="text" class="numberLp " ></td>
+        ` <td > <input type="text" class="numberLp"></td>
           <td > <textarea class="place tableTextBold" rows="1"></textarea></td>
-          <td > <input type="text" class="measurings " disabled></td>
-          <td > <input type="text" class="wynik-1 " disabled></td>
-          <td > <input type="text" class="norma-1 " disabled></td>
-          <td > <input type="text" class="wynik-2 " disabled></td>
-          <td > <input type="text" class="norma-2 " disabled></td>
-          <td > <input type="text" class="compatibility " disabled></td>
+          <td > <input type="text" class="measurings" disabled></td>
+          <td > <input type="text" class="wynik-1" disabled></td>
+          <td > <input type="text" class="norma-1" disabled></td>
+          <td > <input type="text" class="wynik-2" disabled></td>
+          <td > <input type="text" class="norma-2" disabled></td>
+          <td > <input type="text" class="compatibility" disabled></td>
     `
     lastElement.append(newElement)
 }
@@ -45,7 +45,7 @@ export const tableAddTextLine = () => {
           <td > <input type="text" class="norma-1" disabled></td>
           <td > <input type="text" class="wynik-2" disabled></td>
           <td > <input type="text" class="norma-2" disabled></td>
-          <td > <input type="text" class="compatibility " disabled></td>
+          <td > <input type="text" class="compatibility" disabled></td>
     `
     lastElement.append(newElement)
 }
@@ -64,6 +64,24 @@ export const tableAddDataLine = () => {
           <td > <input type="text" class="wynik-2" disabled></td>
           <td > <input type="text" class="norma-2" step="0.01"></td>
           <td > <input type="text" class="compatibility " disabled></td>
+    `
+    lastElement.append(newElement)
+}
+
+export const tableAddEmptyLine = () => {
+
+    const lastElement = document.querySelector("tbody")
+    let newElement = document.createElement("tr")
+    newElement.classList.add("rowEmpty")
+    newElement.innerHTML =
+        ` <td > <input type="text" class="numberLp" hidden></td>
+          <td > <input type="text" class="place" disabled></td>
+          <td > <input type="text" class="measurings" disabled></td>
+          <td > <input type="text" class="wynik-1" disabled></td>
+          <td > <input type="text" class="norma-1" disabled></td>
+          <td > <input type="text" class="wynik-2" disabled></td>
+          <td > <input type="text" class="norma-2" disabled></td>
+          <td > <input type="text" class="compatibility" disabled></td>
     `
     lastElement.append(newElement)
 }
@@ -90,7 +108,7 @@ export const tableAddThinLine = () => {
 export const removeTableRow = (e) => {
     let element = e.target.closest("tr")
 
-    if (element.classList == "rowTextBold isRedOutline" || element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowThinLine isRedOutline") {
+    if (element.classList == "rowTextBold isRedOutline" || element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowEmpty isRedOutline" || element.classList == "rowThinLine isRedOutline") {
         element.remove()
     }
 }
