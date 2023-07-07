@@ -107,7 +107,7 @@ export const tableAddThinLine = () => {
 
 export const removeTableRow = (e) => {
     let element = e.target.closest("tr")
-
+    console.log("element", element)
     if (element.classList == "rowTextBold isRedOutline" || element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowEmpty isRedOutline" || element.classList == "rowThinLine isRedOutline") {
         element.remove()
     }

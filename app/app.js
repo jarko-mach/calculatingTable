@@ -81,7 +81,7 @@ export const recalcAll = function (e) {
         let addRowElements = row * 8
         // console.log("Jeśli to kolejny rząd, to zwiększam i o:", addRowElements)
 
-        //  kolumna nr 3 – odczytuję pomiary
+        //  kolumna nr 3 – odczytuję pomiary -----------------------------------------------------------------
         let measurementsRow = nodeList[2 + addRowElements].value
         // console.log("wiersz", row, "pomiary w stringu:", measurementsRow)
 
@@ -117,18 +117,30 @@ export const recalcAll = function (e) {
         // console.log(" obliczona suma wyników pomiarów", computeEksploatacyjne())
 
         // brak danych liczbowych
+        // kolumna nr 8 - Tak/Nie
+        // nodeList[7 + addRowElements].value = "????"
+
         if (!computeEksploatacyjne()) {
             // console.log("WYPAD: brak danych")
             continue
         }
 
-        // kolumna nr 4
+        // kolumna nr 4  -----------------------------------------------------------------
         nodeList[3 + addRowElements].value = computeEksploatacyjne()
 
-        // kolumna nr 5 - norma / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki
+        // kolumna nr 5 - norma / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki ----------------
         eksploatacionNorm = Number(nodeList[4 + addRowElements].value)
+
+        console.log("eksploatacionNorm", eksploatacionNorm)
+
         foundError = re3.test(eksploatacionNorm)
-        if (foundError) {
+        console.log("foundError", foundError)
+
+        // brak danych liczbowych
+        // kolumna nr 8 - Tak/Nie
+        nodeList[7 + addRowElements].value = "????"
+
+        if (foundError || eksploatacionNorm === 0) {
             nodeList[4 + addRowElements].classList.add("measuringsError")
             // console.log("WYPAD: dziwne dane")
             continue
@@ -137,17 +149,25 @@ export const recalcAll = function (e) {
         }
         // console.log("wpisane", eksploatacionNorm, "number", Number(eksploatacionNorm))
 
-        // kolumna nr 6 - oblicz równomierność
+        // kolumna nr 6 - oblicz równomierność ------------------------------------------------
         uniformityCalculated
             = Number(Math.round(Math.min(...measurementsRowTable) / eksploatacionCalculated + 'e+2') + 'e-2')
 
         nodeList[5 + addRowElements].value = String(uniformityCalculated).replace('.', ',')
 
-        // kolumna nr 7 – norma równomierność / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki
+        // kolumna nr 7 – norma równomierność / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki ---------------
         uniformityNorm = Number(String(nodeList[6 + addRowElements].value).replace(',', '.'))
+
         // console.log("uniformityNorm", uniformityNorm)
+
         foundError = re3.test(uniformityNorm)
-        if (foundError) {
+        // console.log("foundError", foundError)
+
+        // brak danych liczbowych
+        // kolumna nr 8 - Tak/Nie
+        nodeList[7 + addRowElements].value = "????"
+
+        if (foundError || uniformityNorm === 0) {
             nodeList[6 + addRowElements].classList.add("measuringsError")
             // console.log("WYPAD: dziwne?? dane")
             continue
@@ -190,29 +210,6 @@ export const recalcAll = function (e) {
         } else {
             nodeList[7 + addRowElements].value = "NIE"
         }
-
-        // if (eksploatacionNorm && uniformityNorm) {
-
-        //     if (eksploatacionCalculated >= eksploatacionNorm && uniformityCalculated >= uniformityNorm) {
-        //         nodeList[7 + addRowElements].value = "TAK"
-        //     } else {
-        //         nodeList[7 + addRowElements].value = "NIE"
-
-        //         if (eksploatacionCalculated < eksploatacionNorm) {
-        //             nodeList[3 + addRowElements].classList.add("measuringsToLow")
-        //         } else {
-        //             console.log(nodeList[3 + addRowElements])
-        //             nodeList[3 + addRowElements].classList.remove("measuringsToLow")
-        //         }
-
-        //         if (uniformityCalculated < uniformityNorm) {
-
-        //             nodeList[5 + addRowElements].classList.add("measuringsToLow")
-        //         } else {
-        //             nodeList[5 + addRowElements].classList.remove("measuringsToLow")
-        //         }
-        //     }
-        // }
     }
 }
 
