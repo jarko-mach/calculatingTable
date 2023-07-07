@@ -19,10 +19,10 @@ let dataTableOriginal = [
 let dataTableJsonS
 let dataTableLocal = []
 
-// classy dla różnych wierszy
+// classy dla różnych wierszy tabeli
 export let classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate", "rowEmpty"]
 
-// classy dla różnych kolumn
+// classy dla różnych kolumn tabeli
 let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
 
 let classTableAll = [...classTableRows, ...classTableColumns]
@@ -35,6 +35,7 @@ const convertClassesIntoOneString = (myTable) => {
     return readClasses
 }
 
+// to chyba nie działa
 
 export const showAllHidden = function () {
     // console.log("pokazuj")
@@ -50,121 +51,176 @@ export const showAllHidden = function () {
     }
 }
 
-const convertDotComa = (operation, elementIn) => {
-    switch (operation) {
-        case ("read"):
-            console.log("wczytuję");
-
-            break;
-        case ("save"):
-            console.log("zapisuję");
-
-            break;
-        case ("calculate"):
-            // console.log("obliczam");
-            let nString = elementIn
-            // console.log("nString", nString)
-            return nString.replace(',', '.')
-            break;
-    }
-}
+// RECALCULATING
 
 export const recalcAll = function (e) {
-    let calculatedEksploatacyjne
-    let normaEksploatacyjne
-    let calculatedRownomiernosc
-    let normaRownomiernosc
+    let eksploatacionCalculated
+    let eksploatacionNorm
+    let uniformityCalculated  //Rownomiernosc
+    let uniformityNorm
 
     // console.log("zaczynam przeliczać...")
 
-    let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
+    // wczytuję classy dla kolumn
+    let readedClasses = convertClassesIntoOneString(classTableColumns)
+    const nodeList = document.querySelectorAll(readedClasses)
     // console.log("trafione punkty do obliczeń:", nodeList)
 
-    let readdClass = convertClassesIntoOneString(classTableRows)
-    const rowsNumber = document.querySelectorAll(readdClass).length
+    // wczytuję classy dla wierszy tabeli
+    readedClasses = convertClassesIntoOneString(classTableRows)
+    const rowsNumber = document.querySelectorAll(readedClasses).length
     // console.log("liczba wierszy:", rowsNumber)
+
+    const re1 = /(\d\s+\d)|[a-z]|(,\s+)$|[,]$/i   //* szukam błędów we wpisach pomiarów
+    const re2 = /[,;]/gi        //* przecinek lub średnik stanowi powód do splitowania dla kolumny measurings
+    const re3 = /[a-z]/i      // szukam liter w kolumnach [5] i [7]
+    let foundError = false
 
     for (let row = 0; row < rowsNumber; row++) {
 
-        let addRowElements = row * 6
+        let addRowElements = row * 8
         // console.log("Jeśli to kolejny rząd, to zwiększam i o:", addRowElements)
 
-        // wybieram pięć pierwszych elementów
-        // element 0 i obliczam element 1 – oblicz eksploatacyjne
+        //  kolumna nr 3 – odczytuję pomiary
+        let measurementsRow = nodeList[2 + addRowElements].value
+        // console.log("wiersz", row, "pomiary w stringu:", measurementsRow)
 
-        // ***********************************************************************
-        let myMeasurings = nodeList[0 + addRowElements].value
-        // console.log("wiersz", row, "pomiary string", myMeasurings)
+        foundError = re1.test(measurementsRow)
+        // console.log("czy znaleziono zabroniony znak?", foundError)
 
-        let re1 = /(\d\s+\d)|[a-z]|(,\s+)$|[,]$/gi
-        const foudError = re1.test(myMeasurings)
-        // console.log("czy znaleziono zabroniony znak?", foudError)
-
-        if (foudError) {
+        if (foundError) {
             // console.log("bum")
-            nodeList[0 + addRowElements].classList.add("measuringsError")
+            nodeList[2 + addRowElements].classList.add("measuringsError")
+            nodeList[3 + addRowElements].value = ""
+            nodeList[5 + addRowElements].value = ""
+            nodeList[7 + addRowElements].value = "????"
+            foundError = false
             continue
         } else {
-            nodeList[0 + addRowElements].classList.remove("measuringsError")
+            nodeList[2 + addRowElements].classList.remove("measuringsError")
         }
 
-        let re2 = /[,;]/gi
-        let myMeasureTable = myMeasurings.split(re2);
-        // console.log("efekt polecenia split", myMeasureTable)
+        const measurementsRowTable = measurementsRow.split(re2);
+        // console.log("efekt polecenia split", measurementsRowTable)
 
-        myMeasureTable.forEach((elem, index) => { myMeasureTable[index] = Number(myMeasureTable[index]) })
-        // console.log("zamiana na Number", myMeasureTable)
+        measurementsRowTable.forEach((elem, index) => { measurementsRowTable[index] = Number(measurementsRowTable[index]) })
+        // console.log("zamiana na Number", measurementsRowTable)
 
         const computeEksploatacyjne = () => {
             let sum = 0
-            myMeasureTable.forEach((value, index) => { sum += value })
+            measurementsRowTable.forEach((value, index) => { sum += value })
 
-            calculatedEksploatacyjne = Number(Math.round(sum / myMeasureTable.length + 'e+0') + 'e-0')
-            return calculatedEksploatacyjne
+            eksploatacionCalculated = Number(Math.round(sum / measurementsRowTable.length + 'e+0') + 'e-0')
+            return eksploatacionCalculated
         }
 
-        // console.log("[4] obliczone", computeEksploatacyjne())
+        // console.log(" obliczona suma wyników pomiarów", computeEksploatacyjne())
 
         // brak danych liczbowych
         if (!computeEksploatacyjne()) {
-
-            for (let i = 0; i < 6; i++) {
-                nodeList[i + addRowElements].style.visibility = "hidden"
-            }
-            // console.log("brak danych, zwiększono i o liczbę:", addRowElements)
+            // console.log("WYPAD: brak danych")
             continue
         }
 
-        nodeList[1 + addRowElements].value = computeEksploatacyjne()
+        // kolumna nr 4
+        nodeList[3 + addRowElements].value = computeEksploatacyjne()
 
-        // element 2 - norma
-        normaEksploatacyjne = nodeList[2 + addRowElements].value
-        // console.log("[5] wpisane", normaEksploatacyjne, "number", Number(normaEksploatacyjne))
-
-        // element 3 - oblicz równomierność
-        calculatedRownomiernosc
-            = Number(Math.round(Math.min(...myMeasureTable) / calculatedEksploatacyjne + 'e+2') + 'e-2')
-
-        nodeList[3 + addRowElements].value = String(calculatedRownomiernosc).replace('.', ',')
-
-        // element 4 – norma równomierność
-        normaRownomiernosc = nodeList[4 + addRowElements].value.replace(',', '.')
-
-        // element 5 - Tak/Nie
-        nodeList[5 + addRowElements].value = "????"
-
-        if (normaEksploatacyjne && normaRownomiernosc) {
-
-            if (calculatedEksploatacyjne > normaEksploatacyjne && calculatedRownomiernosc > normaRownomiernosc) {
-                nodeList[5 + addRowElements].value = "TAK"
-            } else nodeList[5 + addRowElements].value = "NIE"
+        // kolumna nr 5 - norma / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki
+        eksploatacionNorm = Number(nodeList[4 + addRowElements].value)
+        foundError = re3.test(eksploatacionNorm)
+        if (foundError) {
+            nodeList[4 + addRowElements].classList.add("measuringsError")
+            // console.log("WYPAD: dziwne dane")
+            continue
+        } else {
+            nodeList[4 + addRowElements].classList.remove("measuringsError")
         }
+        // console.log("wpisane", eksploatacionNorm, "number", Number(eksploatacionNorm))
+
+        // kolumna nr 6 - oblicz równomierność
+        uniformityCalculated
+            = Number(Math.round(Math.min(...measurementsRowTable) / eksploatacionCalculated + 'e+2') + 'e-2')
+
+        nodeList[5 + addRowElements].value = String(uniformityCalculated).replace('.', ',')
+
+        // kolumna nr 7 – norma równomierność / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki
+        uniformityNorm = Number(String(nodeList[6 + addRowElements].value).replace(',', '.'))
+        // console.log("uniformityNorm", uniformityNorm)
+        foundError = re3.test(uniformityNorm)
+        if (foundError) {
+            nodeList[6 + addRowElements].classList.add("measuringsError")
+            // console.log("WYPAD: dziwne?? dane")
+            continue
+        } else {
+            nodeList[6 + addRowElements].classList.remove("measuringsError")
+        }
+
+        // kolumna nr 8 - Tak/Nie
+        nodeList[7 + addRowElements].value = "????"
+
+        // console.log("skoro tu jesteś, to są poprawne wyniki")
+
+        // console.log("co wyszło:", eksploatacionCalculated, eksploatacionNorm, uniformityCalculated, uniformityNorm)
+
+        let measurmentsEksploatacionOk = true
+        let measurmentsUniformityOk = true
+
+        if (eksploatacionNorm !== "") {
+            if (eksploatacionCalculated >= eksploatacionNorm) {
+                nodeList[3 + addRowElements].classList.remove("measuringsToLow")
+                measurmentsEksploatacionOk = true
+            } else {
+                nodeList[3 + addRowElements].classList.add("measuringsToLow")
+                measurmentsEksploatacionOk = false
+            }
+        }
+
+        if (uniformityNorm !== "") {
+            if (uniformityCalculated >= uniformityNorm) {
+                nodeList[5 + addRowElements].classList.remove("measuringsToLow")
+                measurmentsUniformityOk = true
+            } else {
+                nodeList[5 + addRowElements].classList.add("measuringsToLow")
+                measurmentsUniformityOk = false
+            }
+        }
+
+        if (measurmentsEksploatacionOk && measurmentsUniformityOk) {
+            nodeList[7 + addRowElements].value = "TAK"
+        } else {
+            nodeList[7 + addRowElements].value = "NIE"
+        }
+
+        // if (eksploatacionNorm && uniformityNorm) {
+
+        //     if (eksploatacionCalculated >= eksploatacionNorm && uniformityCalculated >= uniformityNorm) {
+        //         nodeList[7 + addRowElements].value = "TAK"
+        //     } else {
+        //         nodeList[7 + addRowElements].value = "NIE"
+
+        //         if (eksploatacionCalculated < eksploatacionNorm) {
+        //             nodeList[3 + addRowElements].classList.add("measuringsToLow")
+        //         } else {
+        //             console.log(nodeList[3 + addRowElements])
+        //             nodeList[3 + addRowElements].classList.remove("measuringsToLow")
+        //         }
+
+        //         if (uniformityCalculated < uniformityNorm) {
+
+        //             nodeList[5 + addRowElements].classList.add("measuringsToLow")
+        //         } else {
+        //             nodeList[5 + addRowElements].classList.remove("measuringsToLow")
+        //         }
+        //     }
+        // }
     }
 }
 
+
 // SAVE READ
+
 let correctMeasurments = (dataString) => {
-    console.log("zaczynam korektę zapisu", dataString, "ilosc znakow:", Boolean(dataString.length))
+    // console.log("zaczynam korektę zapisu", dataString, "ilosc znakow:", Boolean(dataString.length))
 
     if (dataString.length > 0) {
         // dopisuję spację za średnikiem
@@ -178,7 +234,7 @@ let correctMeasurments = (dataString) => {
         let myTable = dataString.split(re);
         // console.log("a co tu mamy:", myTable)
         myTable.forEach((elem, index) => {
-            console.log("index", index, "zawartosc", myTable[index])
+            // console.log("index", index, "zawartosc", myTable[index])
             if (Number(myTable[index])) {
                 myTable[index] = Number(myTable[index])
             } else alert("Znaleziono błąd w zapisie wyników")
@@ -188,12 +244,15 @@ let correctMeasurments = (dataString) => {
     } else return ""
 }
 
+
+// SAVING DATA
+
 export const saveDoc = () => {
 
     // odczytuję liczbę wierszy zapisanej tabeli
     let readedClassesFromTable = convertClassesIntoOneString(classTableRows)
     const rowsNumber = document.querySelectorAll(readedClassesFromTable).length
-    console.log("powinien być strong", readedClassesFromTable, "liczba wierszy zapisu", rowsNumber)
+    // console.log("powinien być strong", readedClassesFromTable, "liczba wierszy zapisu", rowsNumber)
 
     // zwiększam tabelę z danymi o liczbę wierszy
     while (dataTableLocal.length < rowsNumber) {
@@ -243,23 +302,25 @@ export const saveDoc = () => {
             dataTableLocal[row].info.compatibility = nodeList[8 + addRowElements].value
         }
     }
-    console.log("tabela:", dataTableLocal)
-    console.log("JSON", JSON.stringify(dataTableLocal))
+    // console.log("tabela:", dataTableLocal)
+    // console.log("JSON", JSON.stringify(dataTableLocal))
     localStorage.setItem("myElement", JSON.stringify(dataTableLocal))
 }
+
+// READING DATA
 
 const removeAllNewRows = () => {
     let elementsToRemove = convertClassesIntoOneString(classTableRows)
     const elements = document.querySelectorAll(elementsToRemove)
-    console.log("usuwando", elements)
+    // console.log("usuwando", elements)
     elements.forEach((elem) => { elem.remove() })
 }
 
 export const readDoc = () => {
     removeAllNewRows()
     let dataTable = JSON.parse(localStorage.getItem("myElement"));
-    console.log("długość wczytywanej tablicy", dataTable.length);
-    console.log("wczytujemy:", dataTable);
+    // console.log("długość wczytywanej tablicy", dataTable.length);
+    // console.log("wczytujemy:", dataTable);
 
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
@@ -297,10 +358,6 @@ export const readDoc = () => {
         nodeList[5 + addRowElements].value = dataTable[row].info.norma1
 
         // element 6 - rownomiernosc pomiary
-        // const tempString = dataTable[row].info.wynik2
-        // console.log("tempString", tempString)
-        // const tempString2 = "0".replace('.', ',')
-
         nodeList[6 + addRowElements].value = dataTable[row].info.wynik2.replace('.', ',')
 
         // element 7 - rownomiernosc norma
@@ -311,9 +368,11 @@ export const readDoc = () => {
     }
 }
 
+// SHOWING GREY BACKGROUND 
+
 const checkboxGreyBackgroundChanged = () => {
     let checkBoxState = document.querySelector("#addGreyBackground");
-    console.log("stan cheku", checkBoxState.checked)
+    // console.log("stan cheku", checkBoxState.checked)
 
     const classesToFind = convertClassesIntoOneString(classTableColumns)
     // console.log("classy do znalezienia", classesToFind)
