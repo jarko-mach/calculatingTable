@@ -20,11 +20,10 @@ let dataTableJsonS
 let dataTableLocal = []
 
 // classy dla różnych wierszy tabeli
-export let classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate", "rowEmpty"]
+export const classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate", "rowEmpty"]
 
 // classy dla różnych kolumn tabeli
 let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
-
 let classTableAll = [...classTableRows, ...classTableColumns]
 
 const convertClassesIntoOneString = (myTable) => {
@@ -71,7 +70,7 @@ export const recalcAll = function (e) {
     const rowsNumber = document.querySelectorAll(readedClasses).length
     // console.log("liczba wierszy:", rowsNumber)
 
-    const re1 = /(\d\s+\d)|[a-z]|(,\s+)$|[,]$/i   //* szukam błędów we wpisach pomiarów
+    const re1 = /(\d\s+\d)|[a-z]|([,;]\s+)$|[,]$/i   //* szukam błędów we wpisach pomiarów
     const re2 = /[,;]/gi        //* przecinek lub średnik stanowi powód do splitowania dla kolumny measurings
     const re3 = /[a-z]/i      // szukam liter w kolumnach [5] i [7]
     let foundError = false
@@ -92,7 +91,9 @@ export const recalcAll = function (e) {
             // console.log("bum")
             nodeList[2 + addRowElements].classList.add("measuringsError")
             nodeList[3 + addRowElements].value = ""
+            nodeList[3 + addRowElements].classList.remove("measuringsToLow")
             nodeList[5 + addRowElements].value = ""
+            nodeList[5 + addRowElements].classList.remove("measuringsToLow")
             nodeList[7 + addRowElements].value = "????"
             foundError = false
             continue
@@ -213,7 +214,6 @@ export const recalcAll = function (e) {
     }
 }
 
-
 // SAVE READ
 
 let correctMeasurments = (dataString) => {
@@ -245,6 +245,18 @@ let correctMeasurments = (dataString) => {
 // SAVING DATA
 
 export const saveDoc = () => {
+
+
+    function localStorageTest() {           // ----------------------------------------------------------
+        const test = "test" + new Date().valueOf();
+        try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
 
     // odczytuję liczbę wierszy zapisanej tabeli
     let readedClassesFromTable = convertClassesIntoOneString(classTableRows)
@@ -309,15 +321,15 @@ export const saveDoc = () => {
 const removeAllNewRows = () => {
     let elementsToRemove = convertClassesIntoOneString(classTableRows)
     const elements = document.querySelectorAll(elementsToRemove)
-    // console.log("usuwando", elements)
+    console.log("usuwando", elements)
     elements.forEach((elem) => { elem.remove() })
 }
 
 export const readDoc = () => {
     removeAllNewRows()
     let dataTable = JSON.parse(localStorage.getItem("myElement"));
-    // console.log("długość wczytywanej tablicy", dataTable.length);
-    // console.log("wczytujemy:", dataTable);
+    console.log("długość wczytywanej tablicy", dataTable.length);
+    console.log("wczytujemy:", dataTable);
 
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
@@ -329,7 +341,7 @@ export const readDoc = () => {
 
     let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
     let nodeList = document.querySelectorAll(readedClassesFromTable)
-    // console.log("liczba elementów:", nodeList.length)
+    console.log("liczba elementów:", nodeList.length)
     // console.log("tabela:", dataTable)
     // console.log("elementy:", nodeList)
 
@@ -344,9 +356,11 @@ export const readDoc = () => {
 
         // element 2 - miejsce pomiarów
         nodeList[2 + addRowElements].value = dataTable[row].info.place
+        nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 45)
 
         // element 3 - pomiary
         nodeList[3 + addRowElements].value = dataTable[row].info.measurings
+        nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
 
         // element 4 - eksploatacyjne wynik
         nodeList[4 + addRowElements].value = dataTable[row].info.wynik1
@@ -394,7 +408,6 @@ const checkboxGreyBackgroundChanged = () => {
     }
 
 }
-
 
 tableAddNumbers()
 checkboxShowHideChanged()

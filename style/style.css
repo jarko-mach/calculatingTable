@@ -137,7 +137,7 @@ textarea {
     font-family: 'Carlito', sans-serif;
     box-sizing: border-box;
     border: 0px;
-    padding: 0;
+    padding: 0 3px 0 3px;
     width: 95%;
     resize: vertical;
 }
@@ -172,6 +172,7 @@ input[type="text"]:disabled {
     background: #ffffff;
     color: black;
 }
+
 
 .addGreyBackground {
     background-color: rgb(223, 223, 223);

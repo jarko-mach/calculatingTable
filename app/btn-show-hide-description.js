@@ -43,20 +43,19 @@ let tableButtonsInfo = [
         buttonText: "Przelicz",
         descriptionText: `<p>Odczytuje zmierzone wartości natężenia oświetlenia z kolumny [3]. 
     Do odseparowania liczb można używać <b>przecinka</b> lub <b>średnika</b>. 
-    Do wskazywania części dziesiętnych można używać <b>przecinka</b>. 
-    Po poprawnym wczytaniu danych następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
-    Brak wprowadzonych danych wg normy w polach [5] i [7] spowoduje niemożność obliczenia stanu w kolumnie [8]<br>
-    Dla wiersza, w którym w polu [3] brakuje wyników lub wprowadzone dane są niepoprawne, pola od [3] do [8] zostaną ukryte</p>`,
+    Do wskazywania części dziesiętnych można używać <b>kropki</b> lub <b>przecinka</b>. 
+    Po sprawdzeniu, że dane zostały wpisane poprawnie, następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
+    Brak wprowadzonych danych /błędnie wprowadzone dane wg normy w polach [5] i [7] spowoduje niemożność obliczenia stanu w kolumnie [8]</p>`,
         functionPerformed: function () { recalcAll() },
     },
-    {
-        id: "buttonShow",
-        class: "button",
-        buttonText: "Odsłoń wszystko",
-        descriptionText: `<p>Odsłania pola od [3] do [8] w tabeli, które zostały ukryte poleceniem 'Przelicz'.<br> 
-    Powodem ukrycia mogą być: <br>1° brak zmierzonych danych <br>2° błędne wpisanie danych - np. wprowadzono literę zamiast cyfry itp.</p>`,
-        functionPerformed: function () { showAllHidden() },
-    },
+    // {
+    //     id: "buttonShow",
+    //     class: "button",
+    //     buttonText: "Odsłoń wszystko",
+    //     descriptionText: `<p>Odsłania pola od [3] do [8] w tabeli, które zostały ukryte poleceniem 'Przelicz'.<br> 
+    // Powodem ukrycia mogą być: <br>1° brak zmierzonych danych <br>2° błędne wpisanie danych - np. wprowadzono literę zamiast cyfry itp.</p>`,
+    //     functionPerformed: function () { showAllHidden() },
+    // },
     {
         id: "buttonSave",
         class: "button",
