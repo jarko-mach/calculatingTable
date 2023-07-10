@@ -1,4 +1,4 @@
-import { recalcAll, showAllHidden, saveDoc, readDoc } from "./app.js"
+import { recalcAll, saveReport, readReport, saveDoc, readDoc } from "./app.js"
 import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine } from "./table-operations.js"
 
 let tableButtonsInfo = [
@@ -61,14 +61,14 @@ let tableButtonsInfo = [
         class: "button",
         buttonText: "Zapisz",
         descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
-        functionPerformed: function () { saveDoc() },
+        functionPerformed: function () { saveReport(); saveDoc() },
     },
     {
         id: "buttonRead",
         class: "button",
         buttonText: "Wczytaj",
         descriptionText: "<p>Odczytuje zapisane dane</p>",
-        functionPerformed: function () { readDoc() },
+        functionPerformed: function () { readDoc(); readReport() },
     },]
 
 export function checkboxShowHideChanged() {

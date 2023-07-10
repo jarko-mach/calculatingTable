@@ -11,6 +11,45 @@ body {
 
 /* ABOVE TABLE  */
 
+.threeColumns {
+    font-family: 'Carlito', sans-serif;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    place-items: center;
+    border: 0.6px solid black;
+    margin: 25px auto 30px auto;
+}
+
+.threeColumns p {
+    padding: 3px;
+    margin: 0;
+}
+
+.threeColumns .yearTSO {
+    width: 24px;
+    border: 0;
+    font-size: 9px;
+}
+
+.threeColumns .numberTSO,
+.threeColumns .pageTSO,
+.threeColumns .pagesTSO {
+    width: 12px;
+    border: 0;
+    font-size: 9px;
+}
+
+.threeColumns .pageTSO{
+    text-align: right;
+}
+
+.threeColumns .pagesTSO{
+    text-align: left;
+}
+
 .upperText {
     font-size: 14px;
     font-weight: 600;

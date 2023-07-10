@@ -1,6 +1,18 @@
 import { checkboxShowHideChanged } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
 
+let dataReportOriginal = {
+    id: 1,
+    numberTSO: 111,
+    year: 2023,
+    page: 1,
+    pages: 11,
+    customer: "P.H.U",
+    placeOfMeasurings: "Hurtownie",
+    dateOfMeasurings: Date(),
+    tables: ["tabela1"],
+}
+
 let dataTableOriginal = [
     {
         typeOfRow: "",
@@ -13,7 +25,7 @@ let dataTableOriginal = [
             wynik2: "",
             norma2: "",
             compatibility: "",
-        }
+        },
     }
 ]
 let dataTableJsonS
@@ -316,6 +328,66 @@ export const saveDoc = () => {
     localStorage.setItem("myElement", JSON.stringify(dataTableLocal))
 }
 
+// SAVE REPORT
+
+// let report = [
+//     {
+//         id: 1,
+//         numberTSO: 111,
+//         year: 2023,
+//         page: 1,
+//         pages: 11,
+//         customer: "P.H.U",
+//         placeOfMeasurings: "Hurtownie",
+//         dateOfMeasurings: Date(),
+//         tables: ["tabela1"],
+//     }
+// 
+
+export const saveReport = () => {
+    // classy użyte do nagłówka i danych klienta
+    const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
+    let readedClassesFromTable = convertClassesIntoOneString(tableThreeColumns)
+    console.log("readedClassesFromTable", readedClassesFromTable)
+
+    const findCustomerAndDate = `, #customerName, #researchAddress, #researchDate`
+    readedClassesFromTable += findCustomerAndDate
+    const nodeList = document.querySelectorAll(readedClassesFromTable)
+
+
+    let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
+
+    // element 1 - numberTSO
+    dataReport.numberTSO = nodeList[0].value
+
+    // element 2 - year
+    dataReport.year = nodeList[1].value
+
+    // element 3 - page
+    dataReport.page = nodeList[2].value
+
+    // element 4 - pages
+    dataReport.pages = nodeList[3].value
+
+    // element 5 - customer
+    dataReport.customer = nodeList[4].value
+
+    // element 6 - placesof 
+    dataReport.placeOfMeasurings = nodeList[5].value
+
+    // element 7 - date
+    dataReport.dateOfMeasurings = nodeList[6].value
+
+    // element 8 - tables
+    // dataReport.tables = nodeList[7].value
+
+    console.log("tabela:", dataReport)
+    console.log("JSON", JSON.stringify(dataReport))
+    localStorage.setItem("myReport", JSON.stringify(dataReport))
+}
+
+
+
 // READING DATA
 
 const removeAllNewRows = () => {
@@ -378,6 +450,46 @@ export const readDoc = () => {
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
     }
 }
+
+export const readReport = () => {
+
+    let dataReport = JSON.parse(localStorage.getItem("myReport"));
+
+    // classy użyte do nagłówka i danych klienta
+    const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
+    let readedClassesFromTable = convertClassesIntoOneString(tableThreeColumns)
+    // console.log("readedClassesFromTable", readedClassesFromTable)
+
+    const findCustomerAndDate = `, #customerName, #researchAddress, #researchDate`
+    readedClassesFromTable += findCustomerAndDate
+    const nodeList = document.querySelectorAll(readedClassesFromTable)
+    // console.log("nodeList", nodeList)
+
+    // element 1 - numberTSO
+    nodeList[0].value = dataReport.numberTSO
+
+    // element 2 - year
+    nodeList[1].value = dataReport.year
+
+    // element 3 - page
+    nodeList[2].value = dataReport.page
+
+    // element 4 - pages
+    nodeList[3].value = dataReport.pages
+
+    // element 5 - customer
+    nodeList[4].value = dataReport.customer
+
+    // element 6 - placesof 
+    nodeList[5].value = dataReport.placeOfMeasurings
+
+    // element 7 - date
+    nodeList[6].value = dataReport.dateOfMeasurings
+
+    // element 8 - tables
+    // dataReport.tables = nodeList[7].value
+}
+
 
 // SHOWING GREY BACKGROUND 
 
