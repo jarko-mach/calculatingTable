@@ -42,12 +42,17 @@ body {
     font-size: 9px;
 }
 
-.threeColumns .pageTSO{
+.threeColumns .pageTSO {
     text-align: right;
 }
 
-.threeColumns .pagesTSO{
+.threeColumns .pagesTSO {
     text-align: left;
+}
+
+.threeColumns .numberTSO {
+    width: 15px;
+    text-align: center;
 }
 
 .upperText {

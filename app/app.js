@@ -478,9 +478,25 @@ export const readReport = () => {
     nodeList[3].value = dataReport.pages
 
     // element 5 - customer
+    nodeList[4].rows = 1
+    let myRegExp = /\n/ig
+    let ifTrue
+    do {
+        ifTrue = myRegExp.test(dataReport.customer)
+        if (!ifTrue) break
+        nodeList[4].rows++
+    } while (ifTrue)
+
     nodeList[4].value = dataReport.customer
 
     // element 6 - placesof 
+    nodeList[5].rows = 1
+    do {
+        ifTrue = myRegExp.test(dataReport.placeOfMeasurings)
+        if (!ifTrue) break
+        nodeList[5].rows++
+    } while (ifTrue)
+
     nodeList[5].value = dataReport.placeOfMeasurings
 
     // element 7 - date
