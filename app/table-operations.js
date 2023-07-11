@@ -21,7 +21,7 @@ export const tableAddTextBoldLine = () => {
     // console.log(lastElement, newElement)
     newElement.classList.add("rowTextBold")
     newElement.innerHTML =
-        ` <td > <input type="text" class="numberLp"></td>
+        ` <td > <input type="text" class="numberLp  tableTextBold"></td>
           <td > <textarea class="place tableTextBold" rows="1"></textarea></td>
           <td > <input type="text" class="measurings" disabled></td>
           <td > <input type="text" class="wynik-1" disabled></td>
@@ -106,6 +106,7 @@ export const tableAddThinLine = () => {
 }
 
 export const removeTableRow = (e) => {
+    
     let element = e.target.closest("tr")
     console.log("element", element)
     if (element.classList == "rowTextBold isRedOutline" || element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowEmpty isRedOutline" || element.classList == "rowThinLine isRedOutline") {

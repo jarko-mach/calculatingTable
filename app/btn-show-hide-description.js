@@ -92,3 +92,6 @@ export function checkboxShowHideChanged() {
     })
 }
 
+export const prepareToPrint = () => {
+    document.querySelector("footer").classList.toggle("footerHide")
+}

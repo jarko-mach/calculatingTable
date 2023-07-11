@@ -1,4 +1,4 @@
-import { checkboxShowHideChanged } from "./btn-show-hide-description.js"
+import { checkboxShowHideChanged, prepareToPrint } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
 
 let dataReportOriginal = {
@@ -541,6 +541,7 @@ tableAddNumbers()
 checkboxShowHideChanged()
 checkboxGreyBackgroundChanged()
 
+document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
 document.querySelector("#addGreyBackground").addEventListener("click", checkboxGreyBackgroundChanged)
 document.querySelector("#showDescriptions").addEventListener("click", checkboxShowHideChanged)
