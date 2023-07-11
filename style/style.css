@@ -208,13 +208,17 @@ textarea {
 }
 
 .isRedOutline {
-    border: 3px solid red;
-    box-sizing: border-box;
+    border: 2px solid red;
 }
 
 .tdThinLine {
     font-size: 0.0em;
     border-top: 0.6px solid black;
+}
+
+.tdThinLineLarger {
+    font-size: 0.1em;
+    /* border: 0.6px solid black; */
 }
 
 input[type="text"]:disabled {

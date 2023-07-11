@@ -106,17 +106,22 @@ export const tableAddThinLine = () => {
 }
 
 export const removeTableRow = (e) => {
-    
+
     let element = e.target.closest("tr")
-    console.log("element", element)
-    if (element.classList == "rowTextBold isRedOutline" || element.classList == "rowText isRedOutline" || element.classList == "rowDate isRedOutline" || element.classList == "rowEmpty isRedOutline" || element.classList == "rowThinLine isRedOutline") {
+    // console.log("element", element)
+    if (element.classList == "rowTextBold isRedOutline" ||
+        element.classList == "rowText isRedOutline" ||
+        element.classList == "rowDate isRedOutline" ||
+        element.classList == "rowEmpty isRedOutline" ||
+        element.classList == "rowThinLine isRedOutline") {
         element.remove()
     }
 }
 
 const colorTableRow = (e) => {
     let element = e.target.closest("tr")
-    let myValue = element?.classList?.value
+    let myValue = element.classList
+    console.log("myValue", myValue)
     if (myValue && myValue !== "showNumbers" && myValue !== "nocolor") {
         element.classList.add("isRedOutline")
     }
@@ -124,17 +129,23 @@ const colorTableRow = (e) => {
 
 const discolorTableRow = (e) => {
     let element = e.target.closest("tr")
-    element?.classList?.remove("isRedOutline")
+    element.classList.remove("isRedOutline")
 }
 
 export const checkboxRemoveTableRowChanged = () => {
     let checkBoxState = document.querySelector("#removeTableRow");
-
+    console.log("checkbox", checkBoxState)
     if (checkBoxState.checked == true) {
+        document.querySelectorAll(".tdThinLine").forEach((element, index) => {
+            element.classList.add("tdThinLineLarger")
+        })
         document.querySelector("tbody").addEventListener("click", removeTableRow)
         document.querySelector("tbody").addEventListener("mouseover", colorTableRow)
         document.querySelector("tbody").addEventListener("mouseout", discolorTableRow)
     } else {
+        document.querySelectorAll(".tdThinLine").forEach((element, index) => {
+            element.classList.remove("tdThinLineLarger")
+        })
         document.querySelector("tbody").removeEventListener("click", removeTableRow)
         document.querySelector("tbody").removeEventListener("mouseover", colorTableRow)
         document.querySelector("tbody").removeEventListener("mouseout", discolorTableRow)
