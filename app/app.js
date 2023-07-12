@@ -1,6 +1,6 @@
 import { checkboxShowHideChanged, prepareToPrint } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
-import { checkToStartNewSite } from "./next-page.js"
+import { checkToStartNewPage } from "./next-page.js"
 
 let dataReportOriginal = {
     id: 1,
@@ -39,7 +39,7 @@ export const classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate
 let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
 let classTableAll = [...classTableRows, ...classTableColumns]
 
-const convertClassesIntoOneString = (myTable) => {
+export const convertClassesIntoOneString = (myTable) => {
     let readClasses = ""
     myTable.forEach((value, index) => {
         readClasses = (index <= myTable.length - 2) ? readClasses += `.${value}, ` : readClasses += `.${value}`
@@ -384,9 +384,9 @@ const removeAllNewRows = () => {
 
 export const readDoc = () => {
     removeAllNewRows()
-    let dataTable = JSON.parse(localStorage.getItem("myElement"));
-    console.log("długość wczytywanej tablicy", dataTable.length);
-    console.log("wczytujemy:", dataTable);
+    let dataTable = JSON.parse(localStorage.getItem("myElement"))
+    console.log("długość wczytywanej tablicy", dataTable.length)
+    console.log("wczytujemy:", dataTable)
 
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
@@ -394,7 +394,6 @@ export const readDoc = () => {
         if (dataTable[i].typeOfRow === "rowDate") { tableAddDataLine() }
         if (dataTable[i].typeOfRow === "rowEmpty") { tableAddEmptyLine() }
         if (dataTable[i].typeOfRow === "rowThinLine") { tableAddThinLine() }
-        checkToStartNewSite()
     }
 
     let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
@@ -434,7 +433,9 @@ export const readDoc = () => {
 
         // element 8 - zgodnosc
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
+        
     }
+    checkToStartNewPage()
 }
 
 export const readReport = () => {
