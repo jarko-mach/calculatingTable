@@ -378,15 +378,15 @@ export const saveReport = () => {
 const removeAllNewRows = () => {
     let elementsToRemove = convertClassesIntoOneString(classTableRows)
     const elements = document.querySelectorAll(elementsToRemove)
-    console.log("usuwando", elements)
+    // console.log("usuwando", elements)
     elements.forEach((elem) => { elem.remove() })
 }
 
 export const readDoc = () => {
     removeAllNewRows()
     let dataTable = JSON.parse(localStorage.getItem("myElement"))
-    console.log("długość wczytywanej tablicy", dataTable.length)
-    console.log("wczytujemy:", dataTable)
+    // console.log("długość wczytywanej tablicy", dataTable.length)
+    // console.log("wczytujemy:", dataTable)
 
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
@@ -398,7 +398,7 @@ export const readDoc = () => {
 
     let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
     let nodeList = document.querySelectorAll(readedClassesFromTable)
-    console.log("liczba elementów:", nodeList.length)
+    // console.log("liczba elementów:", nodeList.length)
     // console.log("tabela:", dataTable)
     // console.log("elementy:", nodeList)
 
@@ -435,7 +435,7 @@ export const readDoc = () => {
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
         
     }
-    checkToStartNewPage()
+    // checkToStartNewPage()
 }
 
 export const readReport = () => {
@@ -529,7 +529,7 @@ const checkboxGreyBackgroundChanged = () => {
 tableAddNumbers()
 checkboxShowHideChanged()
 checkboxGreyBackgroundChanged()
-addFirstThreeColumnsHeader()
+// addFirstThreeColumnsHeader()
 
 
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)

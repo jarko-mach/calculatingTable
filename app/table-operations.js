@@ -126,6 +126,9 @@ export const removeTableRow = (e) => {
         element.classList == "rowEmpty isRedOutline" ||
         element.classList == "rowThinLine isRedOutline") {
         element.remove()
+        let checkBoxState = document.querySelector("#removeTableRow")
+        checkBoxState.checked = false
+        checkboxRemoveTableRowChanged()
     }
 }
 
