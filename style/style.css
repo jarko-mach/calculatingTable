@@ -17,15 +17,23 @@ body {
     font-size: 10px;
     font-weight: 400;
     display: grid;
+    column-gap: 1px;
     grid-template-columns: 25% 50% 25%;
-    place-items: center;
+    gap: 0;
+    /* place-items: center; */
+    /* align-items: center; */
     border: 0.6px solid black;
     margin: 60px auto 30px auto;
 }
 
 .threeColumns p {
+    width: 100%;
+    height: 100%;
     padding: 3px;
     margin: 0;
+    border: 0.6px solid rgb(0, 0, 0);
+    box-sizing: border-box;
+
 }
 
 .threeColumns .yearTSO {
@@ -62,9 +70,10 @@ body {
 
 .table1Text {
     margin-bottom: 0;
-    background-color:#ffffff;
+    background-color: #ffffff;
     border: 0;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .title1 {
@@ -75,14 +84,8 @@ body {
 
 .customerGrid {
     display: grid;
-    grid-template-columns: 150px auto;
+    grid-template-columns: 180px auto;
     margin: 0 0 6px 10px;
-}
-
-.customerGridData {
-    display: grid;
-    grid-template-columns: 150px 110px;
-    margin: 0 0 0 10px;
 }
 
 .customerLabel {
@@ -102,10 +105,7 @@ body {
 
 #researchDate {
     border: 0;
-    background-color: #ffffff;
-    font-weight: 400;
-    font-family: 'Carlito', sans-serif;
-    width: 130px;
+    font-weight: 600;
 }
 
 /* PARAMETERS OF TABLE  */
@@ -239,8 +239,8 @@ input[type="text"]:disabled {
 }
 
 input[type="checkbox"] {
-    width: 7px;
-    height: 7px;
+    width: 11px;
+    height: 11px;
     color: rgb(89, 89, 89);
 }
 

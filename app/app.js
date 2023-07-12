@@ -1,5 +1,6 @@
 import { checkboxShowHideChanged, prepareToPrint } from "./btn-show-hide-description.js"
-import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
+import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
+import { checkToStartNewPage } from "./next-page.js"
 
 let dataReportOriginal = {
     id: 1,
@@ -38,28 +39,12 @@ export const classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate
 let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
 let classTableAll = [...classTableRows, ...classTableColumns]
 
-const convertClassesIntoOneString = (myTable) => {
+export const convertClassesIntoOneString = (myTable) => {
     let readClasses = ""
     myTable.forEach((value, index) => {
         readClasses = (index <= myTable.length - 2) ? readClasses += `.${value}, ` : readClasses += `.${value}`
     })
     return readClasses
-}
-
-// to chyba nie działa
-
-export const showAllHidden = function () {
-    // console.log("pokazuj")
-    let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
-    const rowsNumber = document.querySelectorAll(".addedLine").length
-    // console.log(rowsNumber)
-
-    for (let row = 0; row < rowsNumber; row++) {
-        let addRowElements = row * 6
-        for (let i = 0; i < 6; i++) {
-            nodeList[i + addRowElements].style.visibility = "visible"
-        }
-    }
 }
 
 // RECALCULATING
@@ -393,15 +378,15 @@ export const saveReport = () => {
 const removeAllNewRows = () => {
     let elementsToRemove = convertClassesIntoOneString(classTableRows)
     const elements = document.querySelectorAll(elementsToRemove)
-    console.log("usuwando", elements)
+    // console.log("usuwando", elements)
     elements.forEach((elem) => { elem.remove() })
 }
 
 export const readDoc = () => {
     removeAllNewRows()
-    let dataTable = JSON.parse(localStorage.getItem("myElement"));
-    console.log("długość wczytywanej tablicy", dataTable.length);
-    console.log("wczytujemy:", dataTable);
+    let dataTable = JSON.parse(localStorage.getItem("myElement"))
+    // console.log("długość wczytywanej tablicy", dataTable.length)
+    // console.log("wczytujemy:", dataTable)
 
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
@@ -413,7 +398,7 @@ export const readDoc = () => {
 
     let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
     let nodeList = document.querySelectorAll(readedClassesFromTable)
-    console.log("liczba elementów:", nodeList.length)
+    // console.log("liczba elementów:", nodeList.length)
     // console.log("tabela:", dataTable)
     // console.log("elementy:", nodeList)
 
@@ -448,7 +433,9 @@ export const readDoc = () => {
 
         // element 8 - zgodnosc
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
+        
     }
+    // checkToStartNewPage()
 }
 
 export const readReport = () => {
@@ -537,9 +524,13 @@ const checkboxGreyBackgroundChanged = () => {
 
 }
 
+
+
 tableAddNumbers()
 checkboxShowHideChanged()
 checkboxGreyBackgroundChanged()
+// addFirstThreeColumnsHeader()
+
 
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)

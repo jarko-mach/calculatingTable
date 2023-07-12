@@ -1,7 +1,18 @@
 
+export const addFirstThreeColumnsHeader = () => {
+    const myElement = document.querySelector(".threeColumns")
+    console.log(myElement)
+    myElement.innerHTML =
+        ` 
+        <p>TECHNO-SERVICE S.A. <br> Pracownia Ochrony Środowiska</p>
+        <p> Sprawozdanie TSO &nbsp / <input type="text" class="numberTSO"> / <input type="text" class="yearTSO"></p>
+        <p>Strona / Stron <input type="text" class="pageTSO"> / <input type="text" class="pagesTSO"></p>
+    `
+}
+
 export const tableAddNumbers = () => {
-    const lastElement = document.querySelector(".showNumbers")
-    lastElement.innerHTML =
+    const lastElement = document.querySelectorAll(".showNumbers")
+    lastElement[lastElement.length - 1].innerHTML =
         ` <tr>
         <td class="widthColumn1">1</td>
         <td class="widthColumn2">2</td>
@@ -93,8 +104,8 @@ export const tableAddThinLine = () => {
     let newElement = document.createElement("tr")
     newElement.classList.add("rowThinLine")
     newElement.innerHTML =
-        ` <td class="tdThinLine"> <input type="text" class="numberLp inputThinLine"> </td>
-      <td class="tdThinLine"> <input type="text" class="place inputThinLine"> </td>
+        ` <td class="tdThinLine"> <input type="text" class="numberLp inputThinLine" disabled> </td>
+      <td class="tdThinLine"> <input type="text" class="place inputThinLine" disabled> </td>
       <td class="tdThinLine"> <input type="text" class="measurings inputThinLine" disabled> </td>
       <td class="tdThinLine"> <input type="text" class="wynik-1 inputThinLine" disabled> </td>
       <td class="tdThinLine"> <input type="text" class="norma-1 inputThinLine" disabled> </td>
@@ -115,13 +126,16 @@ export const removeTableRow = (e) => {
         element.classList == "rowEmpty isRedOutline" ||
         element.classList == "rowThinLine isRedOutline") {
         element.remove()
+        let checkBoxState = document.querySelector("#removeTableRow")
+        checkBoxState.checked = false
+        checkboxRemoveTableRowChanged()
     }
 }
 
 const colorTableRow = (e) => {
     let element = e.target.closest("tr")
     let myValue = element.classList
-    console.log("myValue", myValue)
+    // console.log("myValue", myValue)
     if (myValue && myValue !== "showNumbers" && myValue !== "nocolor") {
         element.classList.add("isRedOutline")
     }
