@@ -1,5 +1,6 @@
 import { checkboxShowHideChanged, prepareToPrint } from "./btn-show-hide-description.js"
-import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged } from "./table-operations.js"
+import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
+import { checkToStartNewSite } from "./next-page.js"
 
 let dataReportOriginal = {
     id: 1,
@@ -44,22 +45,6 @@ const convertClassesIntoOneString = (myTable) => {
         readClasses = (index <= myTable.length - 2) ? readClasses += `.${value}, ` : readClasses += `.${value}`
     })
     return readClasses
-}
-
-// to chyba nie działa
-
-export const showAllHidden = function () {
-    // console.log("pokazuj")
-    let nodeList = document.querySelectorAll(".measurings, .wynik-1, .norma-1, .wynik-2, .norma-2, .compatibility")
-    const rowsNumber = document.querySelectorAll(".addedLine").length
-    // console.log(rowsNumber)
-
-    for (let row = 0; row < rowsNumber; row++) {
-        let addRowElements = row * 6
-        for (let i = 0; i < 6; i++) {
-            nodeList[i + addRowElements].style.visibility = "visible"
-        }
-    }
 }
 
 // RECALCULATING
@@ -409,6 +394,7 @@ export const readDoc = () => {
         if (dataTable[i].typeOfRow === "rowDate") { tableAddDataLine() }
         if (dataTable[i].typeOfRow === "rowEmpty") { tableAddEmptyLine() }
         if (dataTable[i].typeOfRow === "rowThinLine") { tableAddThinLine() }
+        checkToStartNewSite()
     }
 
     let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
@@ -537,9 +523,13 @@ const checkboxGreyBackgroundChanged = () => {
 
 }
 
+
+
 tableAddNumbers()
 checkboxShowHideChanged()
 checkboxGreyBackgroundChanged()
+addFirstThreeColumnsHeader()
+
 
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
