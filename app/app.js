@@ -529,7 +529,7 @@ const checkboxGreyBackgroundChanged = () => {
 tableAddNumbers()
 checkboxShowHideChanged()
 checkboxGreyBackgroundChanged()
-// addFirstThreeColumnsHeader()
+addFirstThreeColumnsHeader()
 
 
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)

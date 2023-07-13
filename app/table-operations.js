@@ -4,8 +4,8 @@ export const addFirstThreeColumnsHeader = () => {
     console.log(myElement)
     myElement.innerHTML =
         ` 
-        <p>TECHNO-SERVICE S.A. <br> Pracownia Ochrony Środowiska</p>
-        <p> Sprawozdanie TSO &nbsp / <input type="text" class="numberTSO"> / <input type="text" class="yearTSO"></p>
+        <span>TECHNO-SERVICE S.A. <br> Pracownia Ochrony Środowiska</span>
+        <p> Sprawozdanie TSO /<input type="text" class="numberTSO"> / <input type="text" class="yearTSO"></p>
         <p>Strona / Stron <input type="text" class="pageTSO"> / <input type="text" class="pagesTSO"></p>
     `
 }
