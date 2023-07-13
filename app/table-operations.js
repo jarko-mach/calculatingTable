@@ -151,7 +151,7 @@ export const checkboxRemoveTableRowChanged = () => {
     console.log("checkbox", checkBoxState)
     if (checkBoxState.checked == true) {
         document.querySelector(".labelCB").classList.add("redLabel")
-        document.querySelector(".labelCB").textContent = "Usuwanie linii tabeli kliknięciem myszki jest aktywne"
+        document.querySelector(".labelCB").textContent = "Usuwasz"
 
         document.querySelectorAll(".tdThinLine").forEach((element, index) => {
             element.classList.add("tdThinLineLarger")
@@ -161,7 +161,7 @@ export const checkboxRemoveTableRowChanged = () => {
         document.querySelector("tbody").addEventListener("mouseout", discolorTableRow)
     } else {
         document.querySelector(".labelCB").classList.remove("redLabel")
-        document.querySelector(".labelCB").textContent = "Aktywuj usuwanie linii tabeli kliknięciem myszki"
+        document.querySelector(".labelCB").textContent = "Usuń"
 
         document.querySelectorAll(".tdThinLine").forEach((element, index) => {
             element.classList.remove("tdThinLineLarger")
