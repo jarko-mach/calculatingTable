@@ -7,35 +7,35 @@ let tableButtonsInfo = [
         class: "button",
         buttonText: "Dodaj wiersz <b>nagłówka</b>",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
-        functionPerformed: function () { tableAddTextBoldLine() },
+        functionPerformed: function () { tableAddTextBoldLine(); operationIsDone() },
     },
     {
         id: "buttonAddPlace",
         class: "button",
         buttonText: "Dodaj wiersz opisujący <b>stanowisko</b>",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
-        functionPerformed: function () { tableAddTextLine() },
+        functionPerformed: function () { tableAddTextLine(); operationIsDone() },
     },
     {
         id: "buttonAdd",
         class: "button",
         buttonText: "Dodaj wiersz <b>pomiarów</b>",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
-        functionPerformed: function () { tableAddDataLine() },
+        functionPerformed: function () { tableAddDataLine(); operationIsDone() },
     },
     {
         id: "buttonAddSpace",
         class: "button",
         buttonText: "Dodaj <b>pusty</b> wiersz",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
-        functionPerformed: function () { tableAddEmptyLine() },
+        functionPerformed: function () { tableAddEmptyLine(); operationIsDone() },
     },
     {
         id: "buttonAddThinLine",
         class: "button",
         buttonText: "Dodaj widoczną <b>linię</b> poziomą",
         descriptionText: "<p>Dodaje cienką linię na końcu / na dole tabeli</p>",
-        functionPerformed: function () { tableAddThinLine() },
+        functionPerformed: function () { tableAddThinLine(); operationIsDone() },
     },
     {
         id: "buttonRecalc",
@@ -46,7 +46,7 @@ let tableButtonsInfo = [
     Do wskazywania części dziesiętnych można używać <b>kropki</b> lub <b>przecinka</b>. 
     Po sprawdzeniu, że dane zostały wpisane poprawnie, następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
     Brak wprowadzonych danych /błędnie wprowadzone dane wg normy w polach [5] i [7] spowoduje niemożność obliczenia stanu w kolumnie [8]</p>`,
-        functionPerformed: function () { recalcAll() },
+        functionPerformed: function () { recalcAll(); operationIsDone() },
     },
     // {
     //     id: "buttonShow",
@@ -61,14 +61,14 @@ let tableButtonsInfo = [
         class: "button",
         buttonText: "Zapisz",
         descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
-        functionPerformed: function () { saveReport(); saveDoc() },
+        functionPerformed: function () { saveReport(); saveDoc(); operationIsDone() },
     },
     {
         id: "buttonRead",
         class: "button",
         buttonText: "Wczytaj",
         descriptionText: "<p>Odczytuje zapisane dane</p>",
-        functionPerformed: function () { readDoc(); readReport() },
+        functionPerformed: function () { readDoc(); readReport(); operationIsDone(this) },
     },]
 
 export function checkboxShowHideChanged() {
@@ -94,4 +94,8 @@ export function checkboxShowHideChanged() {
 
 export const prepareToPrint = () => {
     document.querySelector("footer").classList.toggle("footerHide")
+}
+
+const operationIsDone = (element) => {
+    console.log(element)
 }
