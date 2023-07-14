@@ -250,6 +250,7 @@ input[type="text"]:disabled {
     display: flex;
     align-items: center;
 }
+
 .labelCB {
     font-size: 0.56em;
 }
@@ -271,10 +272,20 @@ label:hover {
 
 /* BUTTONS */
 
+.buttonsShowAll {
+    position: relative;
+    z-index: 2;
+}
+
+.buttonsDescriptions {
+    z-index: 1;
+    position: relative;
+}
+
 .textMenu {
     color: rgb(11, 139, 75);
     font-size: 9px;
-    margin: 10px 0 0 4px;
+    margin: 5px 0 0 4px;
     line-height: 11px;
 }
 
@@ -284,52 +295,59 @@ label:hover {
     top: 30px;
     left: 10px;
     width: 70px;
+    
 }
 
 .allDescription {
     background-color: rgb(255, 233, 186);
     position: fixed;
-    left: 60px;
-    width: 80%;
+    left: -100%;
+    width: 500px;
     font-size: 10px;
+    /* visibility: hidden; */
+    transition: transform 1s ease-out;
 }
 
 .footerDisplayDescription0 {
-    top: 85px;
+    top: 50px;
 }
 
 .footerDisplayDescription1 {
-    top: 110px;
+    top: 72px;
 }
 
 .footerDisplayDescription2 {
-    top: 135px;
+    top: 91px;
 }
 
 .footerDisplayDescription3 {
-    top: 160px;
+    top: 114px;
 }
 
 .footerDisplayDescription4 {
-    top: 185px;
+    top: 135px;
 }
 
 .footerDisplayDescription5 {
-    top: 210px;
+    top: 165px;
 }
 
 .footerDisplayDescription6 {
-    top: 235px;
+    top: 220px;
 }
 
 .footerDisplayDescription7 {
+    top: 240px;
+}
 
-    top: 260px;
+.footerDisplayDescriptionVisible {
+    visibility: visible;
+    transform: translateX(150%) ;
 }
 
 
 .button {
-    margin: 8px 0 0 4px;
+    margin: 2px 0 0 4px;
     padding: 2px;
     width: 60px;
     font-size: 0.5em;

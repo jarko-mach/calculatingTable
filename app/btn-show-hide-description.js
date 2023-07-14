@@ -87,53 +87,58 @@ export function checkboxShowHideChanged() {
     let textDivWithButtons = `<div class="buttonsShowAll">`
 
     tableButtonsInfo.forEach((element, index) => {
-        if (index === 0) { textDivWithButtons += `<p class="textMenu">Dodaj do tabeli:</p>` }
+        if (index === 0) { textDivWithButtons += `<p class="textMenu">Dodaj do tabeli wiersz:</p>` }
         if (index === 5) { textDivWithButtons += `<p class="textMenu">Sprawdź poprawność:</p>` }
         if (index === 6) { textDivWithButtons += `<p class="textMenu">Zapamiętaj:</p>` }
         textDivWithButtons += `<button id=${element.id} class=${element.class}> ${element.buttonText}</button>`
     })
-
+    textDivWithButtons += `<p class="textMenu">Włącz:</p>`
     elementDivWithButtons.innerHTML = textDivWithButtons
 
     tableButtonsInfo.forEach((element, index) => {
         document.querySelector(`#${tableButtonsInfo[index].id}`).addEventListener("click", tableButtonsInfo[index].functionPerformed)
     })
-
-    // displayButtonsDescription()
 }
 
 const displayButtonsDescription = () => {
-    const localElement = document.querySelector(".buttonDescription");
-
+    const divElement = document.querySelector(".buttonsDescriptions");
     tableButtonsInfo.forEach((element, index) => {
-        const localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
-        localElement.innerHTML += `<p class="allDescription footerDisplayDescription${index}">${localString}</p>`
+        let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
+        divElement.innerHTML += `<p class="allDescription footerDisplayDescription${index}">${localString}</p>`
     })
+}
 
+const showDescription = () => {
 
-    const showHelp = (elem => {
-        console.log("najazd, srcElement", elem.srcElement.id)
-        const index = tableButtonsInfo.findIndex((element, index) => {
-            console.log(element.descriptionClass)
-            element.descriptionClass === elem.srcElement.id
-        })
-        console.log(index)
-    })
+    const showHelp = elem => {
+        let found = elem.srcElement.id
+        // console.log(found)
+        let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+        const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
+        pElement.classList.add("footerDisplayDescriptionVisible")
+    }
 
-    // const hideHelp = (elem => {
+    const hideHelp = elem => {
+        let found = elem.srcElement.id
+        // console.log(found)
+        let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+        const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
+        pElement.classList.remove("footerDisplayDescriptionVisible")
+    }
 
-    //     console.log("odjazd", elem.srcElement)
-    // })
+    const allButtons = document.querySelectorAll(".buttonsShowAll .button")
+    console.log("allButtons", allButtons)
 
-    let allDesc = document.querySelectorAll("button")
-    console.log("allDesc", allDesc)
-    allDesc.forEach((element, index) => {
+    allButtons.forEach((element, index) => {
         element.addEventListener("mouseover", showHelp)
-        // element.addEventListener("mouseout", hideHelp)
+        element.addEventListener("mouseout", hideHelp)
+        console.log(index, element)
     })
+}
 
-
-
+export const startLeftMenu = () => {
+    displayButtonsDescription()
+    showDescription()
 }
 
 export const prepareToPrint = () => {

@@ -1,4 +1,4 @@
-import { checkboxShowHideChanged, prepareToPrint } from "./btn-show-hide-description.js"
+import { checkboxShowHideChanged, prepareToPrint, startLeftMenu } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
 import { checkToStartNewPage } from "./next-page.js"
 
@@ -523,13 +523,19 @@ const checkboxGreyBackgroundChanged = () => {
     }
 
 }
-
+const menuHide = () => {
+    const foundMenu = document.querySelector(".footerDisplayThinLeft")
+    console.log("found",foundMenu.hasAttribute("childElement"))  
+}
 
 
 tableAddNumbers()
 checkboxShowHideChanged()
 checkboxGreyBackgroundChanged()
 addFirstThreeColumnsHeader()
+startLeftMenu()
+
+menuHide()
 
 
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
