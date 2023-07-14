@@ -30,7 +30,7 @@ let tableButtonsInfo = [
         id: "buttonAddSpace",
         class: "button",
         buttonText: "pusty wiersz",
-        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
+        descriptionText: "<p>Dodaje do tabeli jeden pusty wiersz - można go używać do: <br> 1° oddzielania kilku grup linii tekstu od siebie <br> 2° oddzielenia linii tekstu od linii graficznej</p>",
         descriptionClass: "footerDisplayDescription3",
         functionPerformed: function () { tableAddEmptyLine(); operationIsDone() },
     },
@@ -38,7 +38,7 @@ let tableButtonsInfo = [
         id: "buttonAddThinLine",
         class: "button",
         buttonText: "linię",
-        descriptionText: "<p>Dodaje cienką linię na końcu / na dole tabeli</p>",
+        descriptionText: "<p>Dodaje cienką widoczną graficzną linię na końcu tabeli</p>",
         descriptionClass: "footerDisplayDescription4",
         functionPerformed: function () { tableAddThinLine(); operationIsDone() },
     },
@@ -49,19 +49,11 @@ let tableButtonsInfo = [
         descriptionText: `<p>Odczytuje zmierzone wartości natężenia oświetlenia z kolumny [3]. 
     Do odseparowania liczb można używać <b>przecinka</b> lub <b>średnika</b>. 
     Do wskazywania części dziesiętnych można używać <b>kropki</b> lub <b>przecinka</b>. 
-    Po sprawdzeniu, że dane zostały wpisane poprawnie, następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. 
-    Brak wprowadzonych danych /błędnie wprowadzone dane wg normy w polach [5] i [7] spowoduje niemożność obliczenia stanu w kolumnie [8]</p>`,
+    Po sprawdzeniu, że dane zostały wpisane poprawnie, następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. <br>
+    Brak wprowadzonych danych lub błędnie wprowadzone dane w kolumnach [5] i [7] spowodują niemożność obliczenia stanu w kolumnie [8]</p>`,
         descriptionClass: "footerDisplayDescription5",
         functionPerformed: function () { recalcAll(); operationIsDone() },
     },
-    // {
-    //     id: "buttonShow",
-    //     class: "button",
-    //     buttonText: "Odsłoń wszystko",
-    //     descriptionText: `<p>Odsłania pola od [3] do [8] w tabeli, które zostały ukryte poleceniem 'Przelicz'.<br> 
-    // Powodem ukrycia mogą być: <br>1° brak zmierzonych danych <br>2° błędne wpisanie danych - np. wprowadzono literę zamiast cyfry itp.</p>`,
-    //     functionPerformed: function () { showAllHidden() },
-    // },
     {
         id: "buttonSave",
         class: "button",
@@ -74,7 +66,7 @@ let tableButtonsInfo = [
         id: "buttonRead",
         class: "button",
         buttonText: "Wczytaj",
-        descriptionText: "<p>Odczytuje zapisane dane</p>",
+        descriptionText: "<p>Odczytuje dane zapisane lokalnie na dysku</p>",
         descriptionClass: "footerDisplayDescription7",
         functionPerformed: function () { readDoc(); readReport(); operationIsDone(this) },
     },]
@@ -100,7 +92,7 @@ export function checkboxShowHideChanged() {
     })
 }
 
-const displayButtonsDescription = () => {
+const addButtonsDescription = () => {
     const divElement = document.querySelector(".buttonsDescriptions");
     tableButtonsInfo.forEach((element, index) => {
         let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
@@ -108,11 +100,10 @@ const displayButtonsDescription = () => {
     })
 }
 
-const showDescription = () => {
+const addDescriptionEventsToButtons = () => {
 
     const showHelp = elem => {
         let found = elem.srcElement.id
-        // console.log(found)
         let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
         const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
         pElement.classList.add("footerDisplayDescriptionVisible")
@@ -120,14 +111,13 @@ const showDescription = () => {
 
     const hideHelp = elem => {
         let found = elem.srcElement.id
-        // console.log(found)
         let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
         const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
         pElement.classList.remove("footerDisplayDescriptionVisible")
     }
 
     const allButtons = document.querySelectorAll(".buttonsShowAll .button")
-    console.log("allButtons", allButtons)
+    // console.log("allButtons", allButtons)
 
     allButtons.forEach((element, index) => {
         element.addEventListener("mouseover", showHelp)
@@ -137,8 +127,8 @@ const showDescription = () => {
 }
 
 export const startLeftMenu = () => {
-    displayButtonsDescription()
-    showDescription()
+    addButtonsDescription()
+    addDescriptionEventsToButtons()
 }
 
 export const prepareToPrint = () => {
