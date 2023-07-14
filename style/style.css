@@ -301,7 +301,7 @@ label:hover {
 .allDescription {
     background-color: rgb(255, 233, 186);
     position: fixed;
-    left: -100%;
+    left: -500px;
     width: 500px;
     font-size: 10px;
     /* visibility: hidden; */
@@ -342,7 +342,7 @@ label:hover {
 
 .footerDisplayDescriptionVisible {
     visibility: visible;
-    transform: translateX(150%) ;
+    transform: translateX(585px) ;
 }
 
 
