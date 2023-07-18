@@ -1,6 +1,6 @@
-import { checkboxShowHideChanged, prepareToPrint, startLeftMenu } from "./btn-show-hide-description.js"
+import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
-import { checkToStartNewPage } from "./next-page.js"
+// import { checkToStartNewPage } from "./next-page.js"
 
 let dataReportOriginal = {
     id: 1,
@@ -433,7 +433,7 @@ export const readDoc = () => {
 
         // element 8 - zgodnosc
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
-        
+
     }
     // checkToStartNewPage()
 }
@@ -497,7 +497,7 @@ export const readReport = () => {
 // SHOWING GREY BACKGROUND 
 
 const checkboxGreyBackgroundChanged = () => {
-    let checkBoxState = document.querySelector("#addGreyBackground");
+    let checkBoxState = document.querySelector("#addGreyBackground")
     // console.log("stan cheku", checkBoxState.checked)
 
     const classesToFind = convertClassesIntoOneString(classTableColumns)
@@ -524,21 +524,24 @@ const checkboxGreyBackgroundChanged = () => {
 
 }
 const menuHide = () => {
-    const foundMenu = document.querySelector(".footerDisplayThinLeft")
-    console.log("found",foundMenu.hasAttribute("childElement"))  
+    const foundMenu = document.querySelector(".menu")
+    console.log("found", foundMenu.hasAttribute("childElement"))
 }
 
 
 tableAddNumbers()
-checkboxShowHideChanged()
-checkboxGreyBackgroundChanged()
 addFirstThreeColumnsHeader()
-startLeftMenu()
-
-menuHide()
+addMenuButtons()
+addMenuCheckboxes()
+addHelpToMenu()
+checkboxGreyBackgroundChanged()
+document.querySelector("#showDescriptions").checked = true
+document.querySelector("#addGreyBackground").disabled = true
+document.querySelector("#removeTableRow").disabled = true
+showHideMenuDescriptions()
 
 
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
 document.querySelector("#addGreyBackground").addEventListener("click", checkboxGreyBackgroundChanged)
-document.querySelector("#showDescriptions").addEventListener("click", checkboxShowHideChanged)
+document.querySelector("#showDescriptions").addEventListener("click", showHideMenuDescriptions)

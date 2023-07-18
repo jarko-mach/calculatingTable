@@ -272,12 +272,12 @@ label:hover {
 
 /* BUTTONS */
 
-.buttonsShowAll {
+.menuButtons {
     position: relative;
     z-index: 2;
 }
 
-.buttonsDescriptions {
+.menuButtonsDescriptions {
     z-index: 1;
     position: relative;
 }
@@ -287,16 +287,15 @@ label:hover {
     font-size: 9px;
     margin: 5px 0 0 4px;
     line-height: 11px;
-    cursor:default;
+    cursor: default;
 }
 
-.footerDisplayThinLeft {
+.menu {
     background-color: rgb(210, 241, 223);
     position: fixed;
     top: 30px;
     left: 10px;
     width: 70px;
-    
 }
 
 .allDescription {
@@ -304,9 +303,10 @@ label:hover {
     position: fixed;
     left: -510px;
     width: 500px;
+    color: rgb(210, 241, 223);
     font-size: 10px;
     padding: 15px 5px 15px 10px;
-    transition: transform 0.4s ease-out;
+    transition: color 3s ease, transform 0.4s ease;
 }
 
 .footerDisplayDescription0 {
@@ -343,7 +343,8 @@ label:hover {
 
 .footerDisplayDescriptionVisible {
     visibility: visible;
-    transform: translateX(600px) ;
+    transform: translateX(600px);
+    color: black;
 }
 
 

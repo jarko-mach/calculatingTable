@@ -69,14 +69,70 @@ let tableButtonsInfo = [
         descriptionText: "<p>Odczytuje dane zapisane lokalnie na dysku</p>",
         descriptionClass: "footerDisplayDescription7",
         functionPerformed: function () { readDoc(); readReport(); operationIsDone(this) },
-    },]
+    },
+]
 
-export function checkboxShowHideChanged() {
+let tableCheckBoxInfo = [
+    {
+        id: "removeTableRow",
+        name: "removeTableRow",
+        value: false,
+        labelId: "labelCB1",
+        labelFor: "removeTableRow",
+        class: "labelCB",
+        checkboxText: "usuwanie",
+        descriptionText: "<p>Pozwala usuwać wybrane wiersze tabeli badań kliknięciem myszki</p>",
+        descriptionClass: "footerDisplayDescription8",
+        functionPerformed: function () { },
+    },
+    {
+        id: "addGreyBackground",
+        name: "addGreyBackground",
+        value: true,
+        labelId: "labelCB2",
+        labelFor: "addGreyBackground",
+        class: "labelCB",
+        checkboxText: "wyszarzenie",
+        descriptionText: "<p>Pozwala dodawać wybrane wiersze tabeli badań</p>",
+        descriptionClass: "footerDisplayDescription9",
+        functionPerformed: function () { },
+    },
+    {
+        id: "showDescriptions",
+        name: "showDescriptions",
+        value: false,
+        labelId: "labelCB3",
+        labelFor: "showDescriptions",
+        class: "labelCB",
+        checkboxText: "opis przycisków",
+        descriptionText: "<p>włącza wyłąza pojawianie się pól z wyjaśnieniami</p>",
+        descriptionClass: "footerDisplayDescription11",
+        functionPerformed: function () { },
+    },
+]
 
-    let checkBoxState = document.querySelector("#showDescriptions");
-    const elementDivWithButtons = document.querySelector(".buttonsShowAll")
+export function addMenuCheckboxes() {
+    const elementDivWithCheck = document.querySelector(".menuCheckboxes")
+    let textDivWithCheck = ""
 
-    let textDivWithButtons = `<div class="buttonsShowAll">`
+    tableCheckBoxInfo.forEach((element, index) => {
+        textDivWithCheck += `<div class="checkboxDiv">
+                                <input type="checkbox" id="${element.id}" name="${element.name}" value="${element.value}">
+                                <label id="${element.labelId}" for="${element.labelFor}" class="${element.class}"> ${element.checkboxText}</label>
+                             </div>`
+        console.log("tDWC", textDivWithCheck)
+    })
+
+    elementDivWithCheck.innerHTML = textDivWithCheck 
+
+    // tableButtonsInfo.forEach((element, index) => {
+    //     document.querySelector(`#${tableButtonsInfo[index].id}`).addEventListener("click", tableButtonsInfo[index].functionPerformed)
+    // })
+}
+
+export function addMenuButtons() {
+    const elementDivWithButtons = document.querySelector(".menuButtons")
+    let textDivWithButtons = `<div class="menuButtons">`
 
     tableButtonsInfo.forEach((element, index) => {
         if (index === 0) { textDivWithButtons += `<p class="textMenu">Dodaj do tabeli wiersz:</p>` }
@@ -84,7 +140,7 @@ export function checkboxShowHideChanged() {
         if (index === 6) { textDivWithButtons += `<p class="textMenu">Zapamiętaj:</p>` }
         textDivWithButtons += `<button id=${element.id} class=${element.class}> ${element.buttonText}</button>`
     })
-    textDivWithButtons += `<p class="textMenu">Włącz:</p>`
+    textDivWithButtons += `<p class="textMenu">Włącz/Wyłącz:</p>`
     elementDivWithButtons.innerHTML = textDivWithButtons
 
     tableButtonsInfo.forEach((element, index) => {
@@ -92,43 +148,44 @@ export function checkboxShowHideChanged() {
     })
 }
 
-const addButtonsDescription = () => {
-    const divElement = document.querySelector(".buttonsDescriptions");
+const showHelp = elem => {
+    let found = elem.srcElement.id
+    let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+    const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
+    pElement.classList.add("footerDisplayDescriptionVisible")
+}
+
+const hideHelp = elem => {
+    let found = elem.srcElement.id
+    let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+    const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
+    pElement.classList.remove("footerDisplayDescriptionVisible")
+}
+
+export const addHelpToMenu = () => {
+    const divElement = document.querySelector(".menuDescriptions");
     tableButtonsInfo.forEach((element, index) => {
         let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
         divElement.innerHTML += `<p class="allDescription footerDisplayDescription${index}">${localString}</p>`
     })
 }
 
-const addDescriptionEventsToButtons = () => {
+export const showHideMenuDescriptions = () => {
+    let checkBoxState = document.querySelector("#showDescriptions")
+    const allButtons = document.querySelectorAll(".menuButtons .button")
 
-    const showHelp = elem => {
-        let found = elem.srcElement.id
-        let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
-        const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
-        pElement.classList.add("footerDisplayDescriptionVisible")
+    if (checkBoxState.checked) {
+        allButtons.forEach((element, index) => {
+            element.addEventListener("mouseover", showHelp)
+            element.addEventListener("mouseout", hideHelp)
+        })
+
+    } else {
+        allButtons.forEach((element, index) => {
+            element.removeEventListener("mouseover", showHelp)
+            element.removeEventListener("mouseout", hideHelp)
+        })
     }
-
-    const hideHelp = elem => {
-        let found = elem.srcElement.id
-        let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
-        const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
-        pElement.classList.remove("footerDisplayDescriptionVisible")
-    }
-
-    const allButtons = document.querySelectorAll(".buttonsShowAll .button")
-    // console.log("allButtons", allButtons)
-
-    allButtons.forEach((element, index) => {
-        element.addEventListener("mouseover", showHelp)
-        element.addEventListener("mouseout", hideHelp)
-        console.log(index, element)
-    })
-}
-
-export const startLeftMenu = () => {
-    addButtonsDescription()
-    addDescriptionEventsToButtons()
 }
 
 export const prepareToPrint = () => {
@@ -137,4 +194,6 @@ export const prepareToPrint = () => {
 
 const operationIsDone = (element) => {
     console.log(element)
+    document.querySelector("#addGreyBackground").disabled = false
+    document.querySelector("#removeTableRow").disabled = false
 }
