@@ -1,7 +1,7 @@
 
 export const addFirstThreeColumnsHeader = () => {
     const myElement = document.querySelector(".threeColumns")
-    console.log(myElement)
+    // console.log(myElement)
     myElement.innerHTML =
         ` 
         <span>TECHNO-SERVICE S.A. <br> Pracownia Ochrony Środowiska</span>

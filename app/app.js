@@ -1,4 +1,4 @@
-import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes } from "./btn-show-hide-description.js"
+import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes, addMenuCheckboxesDescriptions } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
 // import { checkToStartNewPage } from "./next-page.js"
 
@@ -523,17 +523,26 @@ const checkboxGreyBackgroundChanged = () => {
     }
 
 }
-const menuHide = () => {
-    const foundMenu = document.querySelector(".menu")
-    console.log("found", foundMenu.hasAttribute("childElement"))
+
+// OPERATION IS DONE
+
+export const operationIsDone = () => {
+    const element = document.querySelector(".confElement")
+    element.classList.add("confElementChange")
+    setTimeout(() => {
+        element.classList.remove("confElementChange")
+        // console.log("element", element, element.classList)
+    }, 400)
 }
 
+
+// START
 
 tableAddNumbers()
 addFirstThreeColumnsHeader()
 addMenuButtons()
-addMenuCheckboxes()
 addHelpToMenu()
+addMenuCheckboxes()
 checkboxGreyBackgroundChanged()
 document.querySelector("#showDescriptions").checked = true
 document.querySelector("#addGreyBackground").disabled = true

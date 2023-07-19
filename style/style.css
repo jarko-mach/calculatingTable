@@ -269,18 +269,31 @@ label:hover {
     color: rgb(249, 0, 0);
 }
 
-
-/* BUTTONS */
+/* MENU Z-Index */
 
 .menuButtons {
     position: relative;
-    z-index: 2;
+    z-index: 11;
 }
 
-.menuButtonsDescriptions {
+.menuDescriptions {
     z-index: 1;
     position: relative;
 }
+
+.menuCheckboxes {
+    position: relative;
+    z-index: 22;
+}
+
+.menuCheckboxesDescriptions {
+    z-index: 2;
+    position: relative;
+}
+
+
+/* BUTTONS */
+
 
 .textMenu {
     color: rgb(11, 139, 75);
@@ -301,7 +314,7 @@ label:hover {
 .allDescription {
     background-color: rgb(210, 241, 223);
     position: fixed;
-    left: -510px;
+    left: -530px;
     width: 500px;
     color: rgb(210, 241, 223);
     font-size: 10px;
@@ -341,12 +354,30 @@ label:hover {
     top: 240px;
 }
 
+/* DISPLAY HELP FOR CHECKBOXES */
+
+.footerDisplayDescription100 {
+    top: 260px;
+    width: 100px;
+}
+
+.footerDisplayDescription101 {
+    top: 280px;
+    width: 100px;
+}
+
+.footerDisplayDescription102 {
+    top: 300px;
+    width: 100px;
+}
+
 .footerDisplayDescriptionVisible {
     visibility: visible;
-    transform: translateX(600px);
+    transform: translateX(620px);
     color: black;
 }
 
+/* DISPLAY HELP FOR BUTTONS */
 
 .button {
     margin: 2px 0 0 4px;
@@ -373,3 +404,64 @@ footer div p {
 .footerHide {
     display: none;
 }
+
+/* CONFIRMATION */
+
+.confContainerParent {
+    position: fixed;
+    left: 10px;
+    top: 25px;
+    width: 70px;
+    height: 10px;
+    /* background-color: rgba(75, 67, 187, 0.238); */
+    z-index: 0;
+}
+
+.confContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* background-color: rgba(187, 173, 67, 0.238); */
+}
+
+.confElement {
+    /* background-color: rgba(9, 218, 117, 0.379); */
+    font-size: 12px;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.confElementChange {
+    background-color: rgb(233, 219, 128);
+    /* width: 20px; */
+    /* height: 20px; */
+    opacity: 1;
+    transform: translateY(-10px);
+}
+
+
+/* .confirm1 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 0.4;
+}
+
+.confirm2 {
+    position: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+.confirmation {
+    background-color: rgb(15, 179, 146);
+    transition: all 3s ease-in-out;
+}
+
+.confirmation2 {
+    background-color: rgb(179, 15, 51);
+    width: 120px;
+    height: 120px;
+} */
