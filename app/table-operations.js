@@ -101,6 +101,7 @@ export const tableAddEmptyLine = () => {
 export const tableAddThinLine = () => {
 
     let lastElement = document.querySelector("tbody")
+    console.log("lastElement", lastElement.lastElementChild)
     let newElement = document.createElement("tr")
     newElement.classList.add("rowThinLine")
     newElement.innerHTML =

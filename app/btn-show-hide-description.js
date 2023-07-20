@@ -1,4 +1,4 @@
-import { recalcAll, saveReport, readReport, saveDoc, readDoc, operationIsDone } from "./app.js"
+import { recalcAll, saveReportAndTable, readReport, readDoc, operationIsDone } from "./app.js"
 import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine } from "./table-operations.js"
 
 let tableButtonsInfo = [
@@ -8,7 +8,7 @@ let tableButtonsInfo = [
         buttonText: "nagłówek",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDisplayDescription0",
-        functionPerformed: function () { tableAddTextBoldLine(),checkboxesDisabledFalse(), operationIsDone() },
+        functionPerformed: function () { tableAddTextBoldLine(), checkboxesDisabledFalse(), operationIsDone() },
     },
     {
         id: "buttonAddPlace",
@@ -60,7 +60,7 @@ let tableButtonsInfo = [
         buttonText: "Zapisz",
         descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
         descriptionClass: "footerDisplayDescription6",
-        functionPerformed: function () { saveReport(); saveDoc(), operationIsDone() },
+        functionPerformed: function () { saveReportAndTable(), operationIsDone() },
     },
     {
         id: "buttonRead",
@@ -160,16 +160,27 @@ export function removeMenuCheckboxesDescriptions() {
 
 export function addMenuButtons() {
     const elementDivWithButtons = document.querySelector(".menuButtons")
+    const elementDivWithButtonsInLine = document.querySelector(".menuButtonsInLine")
     let textDivWithButtons = `<div class="menuButtons">`
+    let textDivWithButtonsInLine = `<div class="menuButtonsInLine">`
 
-    tableButtonsInfo.forEach((element, index) => {
-        if (index === 0) { textDivWithButtons += `<p class="textMenu">Dodaj na końcu tabeli wiersz:</p>` }
-        if (index === 5) { textDivWithButtons += `<p class="textMenu">Sprawdź poprawność:</p>` }
-        if (index === 6) { textDivWithButtons += `<p class="textMenu">Zapamiętaj:</p>` }
-        textDivWithButtons += `<button id=${element.id} class=${element.class}> ${element.buttonText}</button>`
-    })
+    for (let i = 0; i < tableButtonsInfo.length; i++) {
+        // under table
+        if (i <= 4) {
+            if (i === 0) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
+            textDivWithButtonsInLine += `<button id=${tableButtonsInfo[i].id} class=${tableButtonsInfo[i].class}> ${tableButtonsInfo[i].buttonText}</button>`
+        }
+        // left menu
+        if (i > 4) {
+            if (i === 5) { textDivWithButtons += `<p class="textMenu">Sprawdź poprawność:</p>` }
+            if (i === 6) { textDivWithButtons += `<p class="textMenu">Tabelę z danymi:</p>` }
+            textDivWithButtons += `<button id=${tableButtonsInfo[i].id} class=${tableButtonsInfo[i].class}> ${tableButtonsInfo[i].buttonText}</button>`
+        }
+    }
+
     textDivWithButtons += `<p class="textMenu">Włącz/Wyłącz:</p>`
     elementDivWithButtons.innerHTML = textDivWithButtons
+    elementDivWithButtonsInLine.innerHTML = textDivWithButtonsInLine
 
     tableButtonsInfo.forEach((element, index) => {
         document.querySelector(`#${tableButtonsInfo[index].id}`).addEventListener("click", tableButtonsInfo[index].functionPerformed)
@@ -200,7 +211,7 @@ export const addHelpToMenu = () => {
 
 export const showHideMenuDescriptions = () => {
     let checkBoxState = document.querySelector("#showDescriptions")
-    const allButtons = document.querySelectorAll(".menuButtons .button")
+    const allButtons = document.querySelectorAll(".menuButtons .button, .menuButtonsInLine")
 
     if (checkBoxState.checked) {
         allButtons.forEach((element, index) => {

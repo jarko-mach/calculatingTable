@@ -1,5 +1,6 @@
 import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes, addMenuCheckboxesDescriptions } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
+import { getFileName } from "./misc.js"
 // import { checkToStartNewPage } from "./next-page.js"
 
 let dataReportOriginal = {
@@ -241,8 +242,7 @@ let correctMeasurments = (dataString) => {
 
 // SAVING DATA
 
-export const saveDoc = () => {
-
+export const saveDoc = (nameOfTable) => {
 
     function localStorageTest() {           // ----------------------------------------------------------
         const test = "test" + new Date().valueOf();
@@ -310,7 +310,7 @@ export const saveDoc = () => {
     }
     // console.log("tabela:", dataTableLocal)
     // console.log("JSON", JSON.stringify(dataTableLocal))
-    localStorage.setItem("myElement", JSON.stringify(dataTableLocal))
+    localStorage.setItem(nameOfTable, JSON.stringify(dataTableLocal))
 }
 
 // SAVE REPORT
@@ -329,9 +329,12 @@ export const saveDoc = () => {
 //     }
 // 
 
-export const saveReport = () => {
+
+export const saveReport = (nameOfReport) => {
+
     // classy użyte do nagłówka i danych klienta
     const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
+
     let readedClassesFromTable = convertClassesIntoOneString(tableThreeColumns)
     console.log("readedClassesFromTable", readedClassesFromTable)
 
@@ -365,12 +368,17 @@ export const saveReport = () => {
 
     // element 8 - tables
     // dataReport.tables = nodeList[7].value
-
     console.log("tabela:", dataReport)
     console.log("JSON", JSON.stringify(dataReport))
-    localStorage.setItem("myReport", JSON.stringify(dataReport))
+    localStorage.setItem(nameOfReport, JSON.stringify(dataReport))
 }
 
+export const saveReportAndTable = () => {
+    const nameOfReport = ""
+    const nameOfTable = ""
+    saveReport(nameOfReport)
+    saveDoc(nameOfTable)
+}
 
 
 // READING DATA
@@ -533,8 +541,15 @@ export const operationIsDone = () => {
         element.classList.remove("confElementChange")
         // console.log("element", element, element.classList)
     }, 400)
+    // console.log(e.pageY, e.pageX)
 }
 
+export const readPositionOfMouse = (e) => {
+    // console.log("xxx ", e.pageY)
+    // const element = document.querySelector(".footerDisplayDescription5")
+    return `${-30 + e.pageX}px`
+    // element.style.top = `${-30 + e.pageX}px`
+}
 
 // START
 
@@ -544,12 +559,14 @@ addMenuButtons()
 addHelpToMenu()
 addMenuCheckboxes()
 checkboxGreyBackgroundChanged()
+
 document.querySelector("#showDescriptions").checked = true
 document.querySelector("#addGreyBackground").disabled = true
 document.querySelector("#removeTableRow").disabled = true
+
 showHideMenuDescriptions()
-
-
+getFileName()
+document.querySelector("body").addEventListener("mouseover", readPositionOfMouse)
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
 document.querySelector("#addGreyBackground").addEventListener("click", checkboxGreyBackgroundChanged)
