@@ -1,4 +1,7 @@
 
+let actualTableName = ""
+let actualTableChanged = false
+
 export const addFirstThreeColumnsHeader = () => {
     const myElement = document.querySelector(".threeColumns")
     // console.log(myElement)

@@ -452,45 +452,48 @@ footer div p {
     left: 0px;
     width: 100%;
     height: 100%;
-    font-size: 0.7em;
+    font-size: 0.65em;
 }
 
 .dialogBox {
     background-color: rgb(210, 241, 223);
-    box-shadow: 3px 3px 5px rgb(218, 218, 218);
+    box-shadow: 10px 10px 5px rgb(218, 218, 218);
 }
 
 .dialogBoxHeader {
-    width: 300px;
+    width: 320px;
     height: 20px;
     box-sizing: border-box;
     background-color: rgb(171, 216, 214);
-    /* font-weight: 600; */
-    padding: 2.5px 0 0 10px;
+    padding: 4px 0 0 10px;
 }
 
 .dialogBoxChild {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 35px;
+    width: 320px;
+    height: 45px;
 }
 
 .dialogBoxChild input {
-    margin: 10px;
+    margin: 10px 20px 10px 7px;
     font-size: 0.85em;
-    /* border: 0.16px solid; */
-    padding: 4px;
+    padding: 2px;
+    background-color: rgb(237, 252, 243);
+    border: 0.16px solid;
+    /* outline: 0px solid rgb(0, 81, 255); */
 }
 
 .dialogBoxChild button {
-    margin: 0 40px;
-    padding: 4px 6px;
+    margin: 0 2px;
+    padding: 2px 6px;
     font-size: 0.8em;
-    /* border: 0.6px solid; */
 }
 
-.dialogBoxChild input:focus {
-    outline: 0px solid rgb(0, 81, 255);
+/* .dialogBoxChild input:focus {
+} */
+
+.inputError {
+    outline: 2px solid red;
 }

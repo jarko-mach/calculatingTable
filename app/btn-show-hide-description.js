@@ -1,5 +1,7 @@
 import { recalcAll, saveReportAndTable, readReport, readDoc, operationIsDone } from "./app.js"
 import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine } from "./table-operations.js"
+import { fileSaveAs, fileSave } from "./misc.js"
+import { generate } from "./misc.js"
 
 let tableButtonsInfo = [
     {
@@ -63,12 +65,29 @@ let tableButtonsInfo = [
         functionPerformed: function () { saveReportAndTable(), operationIsDone() },
     },
     {
+        id: "buttonSaveAs",
+        class: "button",
+        buttonText: "Zapisz jako",
+        descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
+        descriptionClass: "footerDisplayDescription6",
+        functionPerformed: function () { fileSaveAs() },
+        // saveReportAndTable(), operationIsDone() },
+    },
+    {
         id: "buttonRead",
         class: "button",
         buttonText: "Wczytaj",
         descriptionText: "<p>Odczytuje dane zapisane lokalnie na dysku</p>",
         descriptionClass: "footerDisplayDescription7",
         functionPerformed: function () { readDoc(); readReport(); checkboxesDisabledFalse(this), operationIsDone() },
+    },
+    {
+        id: "buttonExport",
+        class: "button",
+        buttonText: "Eksportuj",
+        descriptionText: "<p>zobaczymy........</p>",
+        descriptionClass: "footerDisplayDescription8",
+        functionPerformed: function () { generate(), operationIsDone() },
     },
 ]
 
@@ -120,7 +139,6 @@ export function addMenuCheckboxes() {
                                 <input type="checkbox" id="${element.id}" name="${element.name}" value="${element.value}">
                                 <label id="${element.labelId}" for="${element.labelFor}" class="${element.class}"> ${element.checkboxText}</label>
                              </div>`
-        // console.log("tDWC", textDivWithCheck)
     })
 
     elementDivWithCheck.innerHTML = textDivWithCheck
@@ -135,8 +153,8 @@ export function addMenuCheckboxes() {
 export function addMenuCheckboxesDescriptions() {
     const allCheckBoxes = document.querySelectorAll(".checkboxDiv")
     const allCheckBoxesDescription = document.querySelectorAll(".menuCheckboxesDescriptions p")
-    console.log("allCheckBoxes", allCheckBoxes)
-    console.log("allCheckBoxesDescription", allCheckBoxesDescription)
+    // console.log("allCheckBoxes", allCheckBoxes)
+    // console.log("allCheckBoxesDescription", allCheckBoxesDescription)
 
     allCheckBoxes.forEach((element, index) => {
         element.addEventListener("mouseover", () => {
@@ -161,8 +179,8 @@ export function removeMenuCheckboxesDescriptions() {
 export function addMenuButtons() {
     const elementDivWithButtons = document.querySelector(".menuButtons")
     const elementDivWithButtonsInLine = document.querySelector(".menuButtonsInLine")
-    let textDivWithButtons = `<div class="menuButtons">`
-    let textDivWithButtonsInLine = `<div class="menuButtonsInLine">`
+    let textDivWithButtons = ``
+    let textDivWithButtonsInLine = ``
 
     for (let i = 0; i < tableButtonsInfo.length; i++) {
         // under table
@@ -190,15 +208,20 @@ export function addMenuButtons() {
 const showHelp = elem => {
     let found = elem.srcElement.id
     let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
-    const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
-    pElement.classList.add("footerDisplayDescriptionVisible")
+    if (myIndexFound !== -1) {
+        const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
+        pElement.classList.add("footerDisplayDescriptionVisible")
+
+    }
 }
 
 const hideHelp = elem => {
     let found = elem.srcElement.id
     let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
-    const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
-    pElement.classList.remove("footerDisplayDescriptionVisible")
+    if (myIndexFound !== -1) {
+        const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
+        pElement.classList.remove("footerDisplayDescriptionVisible")
+    }
 }
 
 export const addHelpToMenu = () => {

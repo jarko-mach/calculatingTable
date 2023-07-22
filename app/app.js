@@ -1,6 +1,5 @@
 import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes, addMenuCheckboxesDescriptions } from "./btn-show-hide-description.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
-import { getFileName } from "./misc.js"
 // import { checkToStartNewPage } from "./next-page.js"
 
 let dataReportOriginal = {
@@ -47,6 +46,7 @@ export const convertClassesIntoOneString = (myTable) => {
     })
     return readClasses
 }
+
 
 // RECALCULATING
 
@@ -311,6 +311,9 @@ export const saveDoc = (nameOfTable) => {
     // console.log("tabela:", dataTableLocal)
     // console.log("JSON", JSON.stringify(dataTableLocal))
     localStorage.setItem(nameOfTable, JSON.stringify(dataTableLocal))
+
+    let actualTableName = ""
+    let actualTableChanged = true
 }
 
 // SAVE REPORT
@@ -565,7 +568,7 @@ document.querySelector("#addGreyBackground").disabled = true
 document.querySelector("#removeTableRow").disabled = true
 
 showHideMenuDescriptions()
-getFileName()
+
 document.querySelector("body").addEventListener("mouseover", readPositionOfMouse)
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
