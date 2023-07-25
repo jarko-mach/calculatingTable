@@ -1,43 +1,50 @@
+import { saveReport, saveTable, operationIsDone } from "./app.js"
 
-// import * as dell from "https://unpkg.com/docx@7.1.0/build/index.js"
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+// DIALOG BOXES 
 
-import { Document, Paragraph, TextRun, Packer } from "../node_modules/docx/build/index.js"
-// import { saveAs } from "../node_modules/file-saver/src/FileSaver.js"
+const showDialogBox = (header, labelString, commandType, function1, function2, function3) => {
 
-// console.log(dell)
-
-const showDialogBox = (header, labelString, commandType) => {
-
-    const getOKButton = () => {
-        const foundInputText = document.querySelector(".openDialogBox #fileName").value
-        // console.log("OK", foundInputText)
-        const foundElement = document.querySelector(".openDialogBox")
-        foundElement.innerHTML = `<div class="openDialogBox"></div>`
-    }
-
-    const getCancelButton = () => {
-        // console.log("Cancel")
-        const foundElement = document.querySelector(".openDialogBox")
-        foundElement.innerHTML = `<div class="openDialogBox"></div>`
-    }
-
-    const onChangeInput = () => {
-        const foundInput = document.querySelector(".openDialogBox #fileName")
-        const foundInputText = foundInput.value
-        const re1 = /(\s\s+)|[\.\,\;\*\/\{\[\}\]\}]|[.,;]$/i   //* szukam błędów we wpisach pomiarów
-        const foundError = re1.test(foundInputText)
-        if (foundError) {
-            foundInput.classList.add("inputError")
-        } else { foundInput.classList.remove("inputError") }
-        // console.log("zmiana, czy błęnie?", foundError)
-    }
-
+  const getOKButton = () => {
+    const foundInputText = document.querySelector(".openDialogBox #fileName").value
+    // console.log("OK", foundInputText)
     const foundElement = document.querySelector(".openDialogBox")
-    const newElement = document.createElement("div")
-    newElement.classList.add("dialogBoxParent")
-    newElement.innerHTML =
-        ` <div class="dialogBox">
+    foundElement.innerHTML = `<div class="openDialogBox"></div>`
+    function1(foundInputText);
+    function2(foundInputText);
+    function3(foundInputText);
+  }
+
+  const getCancelButton = () => {
+    // console.log("Cancel")
+    const foundElement = document.querySelector(".openDialogBox")
+    foundElement.innerHTML = `<div class="openDialogBox"></div>`
+  }
+
+  const onChangeInput = () => {
+    const foundInput = document.querySelector(".openDialogBox #fileName")
+    const foundInputText = foundInput.value
+    const re1 = /(\s\s+)|[\.\,\;\*\{\[\}\]\}]|[.,;]$/i   //* szukam błędów we wpisach pomiarów
+    const foundError = re1.test(foundInputText)
+
+    let foundButtonOK = document.querySelector(".openDialogBox .okSave")
+    console.log("foundButtonOK.classList", foundButtonOK.classList)
+
+    if (foundError) {
+      console.log("foundError", foundError)
+      foundInput.classList.add("inputError")
+      foundButtonOK.disabled = true
+    } else {
+      console.log("foundError", foundError)
+      foundInput.classList.remove("inputError")
+      foundButtonOK.disabled = false
+    }
+  }
+
+  const foundElement = document.querySelector(".openDialogBox")
+  const newElement = document.createElement("div")
+  newElement.classList.add("dialogBoxParent")
+  newElement.innerHTML =
+    ` <div class="dialogBox">
             <div class="dialogBoxHeader" > ${header}
             </div>
             <div class="dialogBoxChild">
@@ -49,30 +56,36 @@ const showDialogBox = (header, labelString, commandType) => {
             </div>
           </div>
     `
-    foundElement.append(newElement)
+  foundElement.append(newElement)
 
-    const foundButtonOK = document.querySelector(".openDialogBox .okSave")
-    foundButtonOK.addEventListener("click", getOKButton)
+  const foundButtonOK = document.querySelector(".openDialogBox .okSave")
+  foundButtonOK.addEventListener("click", getOKButton)
 
-    const foundButtonCancel = document.querySelector(".openDialogBox .noCancel")
-    foundButtonCancel.addEventListener("click", getCancelButton)
+  const foundButtonCancel = document.querySelector(".openDialogBox .noCancel")
+  foundButtonCancel.addEventListener("click", getCancelButton)
 
-    const foundInput = document.querySelector(".openDialogBox input")
-    foundInput.focus()
-    // console.log("foundInput", foundInput)
-    foundInput.addEventListener("input", onChangeInput)
+  const foundInput = document.querySelector(".openDialogBox input")
+  foundInput.focus()
+  // console.log("foundInput", foundInput)
+  foundInput.addEventListener("input", onChangeInput)
+}
+
+export const fileNew = () => {
+  showDialogBox("Utwórz nową tabelę do sprawozdania", "Zapisz jako", "Zapisz", saveReport, saveTable, operationIsDone)
 }
 
 export const fileSave = () => {
-    const answer = showDialogBox("Zapis danych", "Podaj nazwę pliku", "Zapisz")
+  const answer = showDialogBox("Zapis danych", "Podaj nazwę pliku", "Zapisz")
 }
 
 export const fileSaveAs = () => {
-    const answer = showDialogBox("Zapis danych", "Zapisz dane jako", "Zapisz")
+  const answer = showDialogBox("Zapis danych", "Zapisz jako", "Zapisz")
 }
 
 
-// EXPORT
+
+
+// EXPORT WORD DOCUMENT
 
 export function generate() {
   const doc = new docx.Document({
@@ -82,7 +95,7 @@ export function generate() {
         children: [
           new docx.Paragraph({
             children: [
-              new docx.TextRun("Hello World"),
+              new docx.TextRun("BADANIA OŚWIETLENIA ELEKTRYCZNEGO"),
               new docx.TextRun({
                 text: "Foo Bar",
                 bold: true
@@ -99,7 +112,7 @@ export function generate() {
   });
 
   docx.Packer.toBlob(doc).then((blob) => {
-    console.log("blob",blob);
+    console.log("blob", blob);
     saveAs(blob, "example.docx");
     console.log("Document created successfully");
   });

@@ -1,6 +1,4 @@
-
-let actualTableName = ""
-let actualTableChanged = false
+// import { checkToUnblockSaveButton } from "./menu-btn-dscr-check.js"
 
 export const addFirstThreeColumnsHeader = () => {
     const myElement = document.querySelector(".threeColumns")
@@ -11,6 +9,7 @@ export const addFirstThreeColumnsHeader = () => {
         <p> Sprawozdanie TSO /<input type="text" class="numberTSO"> / <input type="text" class="yearTSO"></p>
         <p>Strona / Stron <input type="text" class="pageTSO"> / <input type="text" class="pagesTSO"></p>
     `
+    // myElement.addEventListener("click", checkToUnblockSacheckToUnblockSaveButtonveButton)
 }
 
 export const tableAddNumbers = () => {

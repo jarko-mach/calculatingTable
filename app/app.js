@@ -1,5 +1,7 @@
-import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes, addMenuCheckboxesDescriptions } from "./btn-show-hide-description.js"
+import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes, addMenuCheckboxesDescriptions } from "./menu-btn-dscr-check.js"
 import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
+// import { dataTableTemp } from "./misc.js"
+
 // import { checkToStartNewPage } from "./next-page.js"
 
 let dataReportOriginal = {
@@ -46,7 +48,6 @@ export const convertClassesIntoOneString = (myTable) => {
     })
     return readClasses
 }
-
 
 // RECALCULATING
 
@@ -242,7 +243,7 @@ let correctMeasurments = (dataString) => {
 
 // SAVING DATA
 
-export const saveDoc = (nameOfTable) => {
+export const saveTable = (nameOfTable) => {
 
     function localStorageTest() {           // ----------------------------------------------------------
         const test = "test" + new Date().valueOf();
@@ -308,12 +309,9 @@ export const saveDoc = (nameOfTable) => {
             dataTableLocal[row].info.compatibility = nodeList[8 + addRowElements].value
         }
     }
-    // console.log("tabela:", dataTableLocal)
-    // console.log("JSON", JSON.stringify(dataTableLocal))
-    localStorage.setItem(nameOfTable, JSON.stringify(dataTableLocal))
-
-    let actualTableName = ""
-    let actualTableChanged = true
+    console.log("tabela:", dataTableLocal)
+    console.log("JSON", JSON.stringify(dataTableLocal))
+    localStorage.setItem(`${nameOfTable}Table`, JSON.stringify(dataTableLocal))
 }
 
 // SAVE REPORT
@@ -373,15 +371,10 @@ export const saveReport = (nameOfReport) => {
     // dataReport.tables = nodeList[7].value
     console.log("tabela:", dataReport)
     console.log("JSON", JSON.stringify(dataReport))
-    localStorage.setItem(nameOfReport, JSON.stringify(dataReport))
+    localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
 
-export const saveReportAndTable = () => {
-    const nameOfReport = ""
-    const nameOfTable = ""
-    saveReport(nameOfReport)
-    saveDoc(nameOfTable)
-}
+
 
 
 // READING DATA
@@ -554,6 +547,7 @@ export const readPositionOfMouse = (e) => {
     // element.style.top = `${-30 + e.pageX}px`
 }
 
+
 // START
 
 tableAddNumbers()
@@ -563,14 +557,15 @@ addHelpToMenu()
 addMenuCheckboxes()
 checkboxGreyBackgroundChanged()
 
-document.querySelector("#showDescriptions").checked = true
-document.querySelector("#addGreyBackground").disabled = true
-document.querySelector("#removeTableRow").disabled = true
+// document.querySelector("#showDescriptions").checked = true
+// document.querySelector("#addGreyBackground").disabled = true
+// document.querySelector("#removeTableRow").disabled = true
 
 showHideMenuDescriptions()
 
-document.querySelector("body").addEventListener("mouseover", readPositionOfMouse)
+// document.querySelector("body").addEventListener("mouseover", readPositionOfMouse)
 document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
 document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
 document.querySelector("#addGreyBackground").addEventListener("click", checkboxGreyBackgroundChanged)
 document.querySelector("#showDescriptions").addEventListener("click", showHideMenuDescriptions)
+

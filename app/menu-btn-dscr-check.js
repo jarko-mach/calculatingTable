@@ -1,48 +1,47 @@
-import { recalcAll, saveReportAndTable, readReport, readDoc, operationIsDone } from "./app.js"
+import { recalcAll, convertClassesIntoOneString, readReport, readDoc, operationIsDone } from "./app.js"
 import { tableAddTextLine, tableAddTextBoldLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine } from "./table-operations.js"
-import { fileSaveAs, fileSave } from "./misc.js"
+import { fileSaveAs, fileSave, fileNew } from "./misc.js"
 import { generate } from "./misc.js"
 
 let tableButtonsInfo = [
     {
-        id: "buttonAddHeader",
+        id: "buttonNew",
         class: "button",
-        buttonText: "nagłówek",
-        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
-        descriptionClass: "footerDisplayDescription0",
-        functionPerformed: function () { tableAddTextBoldLine(), checkboxesDisabledFalse(), operationIsDone() },
-    },
-    {
-        id: "buttonAddPlace",
-        class: "button",
-        buttonText: "stanowisko",
-        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
+        buttonText: "Nowa",
+        descriptionText: `<p>Rozpoczyna nowe sprawozdanie. Dla nowego sprawozdania wymagana jest nowa nazwa.<br>Dalsze prace odbywać się będą pod ustaloną nazwą, 
+                            aktywny będą pozostałe klawisze</p>`,
         descriptionClass: "footerDisplayDescription1",
-        functionPerformed: function () { tableAddTextLine(); checkboxesDisabledFalse(), operationIsDone() },
+        disabled: "",
+        functionPerformed: function () { fileNew() },
+        //  saveReportAndTable(), operationIsDone() },
     },
     {
-        id: "buttonAdd",
+        id: "buttonSave",
         class: "button",
-        buttonText: "pomiary",
-        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
-        descriptionClass: "footerDisplayDescription2",
-        functionPerformed: function () { tableAddDataLine(); checkboxesDisabledFalse(), operationIsDone() },
+        buttonText: "Zapisz",
+        descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { fileSaveAs() },
+        //  saveReportAndTable(), operationIsDone() },
     },
     {
-        id: "buttonAddSpace",
+        id: "buttonRead",
         class: "button",
-        buttonText: "pusty wiersz",
-        descriptionText: "<p>Dodaje do tabeli jeden pusty wiersz - można go używać do: <br> 1° oddzielania kilku grup linii tekstu od siebie <br> 2° oddzielenia linii tekstu od linii graficznej</p>",
-        descriptionClass: "footerDisplayDescription3",
-        functionPerformed: function () { tableAddEmptyLine(); checkboxesDisabledFalse(), operationIsDone() },
+        buttonText: "Wczytaj",
+        descriptionText: "<p>Odczytuje sprawozdanie zapisane wcześniej lokalnie na dysku</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "",
+        functionPerformed: function () { readDoc(); readReport(); checkboxesDisabledFalse(this), operationIsDone() },
     },
     {
-        id: "buttonAddThinLine",
+        id: "buttonExport",
         class: "button",
-        buttonText: "linię",
-        descriptionText: "<p>Dodaje cienką widoczną graficzną linię na końcu tabeli</p>",
-        descriptionClass: "footerDisplayDescription4",
-        functionPerformed: function () { tableAddThinLine(); checkboxesDisabledFalse(), operationIsDone() },
+        buttonText: "Eksportuj",
+        descriptionText: "<p>zobaczymy........</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { generate(), operationIsDone() },
     },
     {
         id: "buttonRecalc",
@@ -53,41 +52,54 @@ let tableButtonsInfo = [
     Do wskazywania części dziesiętnych można używać <b>kropki</b> lub <b>przecinka</b>. 
     Po sprawdzeniu, że dane zostały wpisane poprawnie, następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. <br>
     Brak wprowadzonych danych lub błędnie wprowadzone dane w kolumnach [5] i [7] spowodują niemożność obliczenia stanu w kolumnie [8]</p>`,
-        descriptionClass: "footerDisplayDescription5",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
         functionPerformed: function () { recalcAll(), operationIsDone() },
     },
     {
-        id: "buttonSave",
+        id: "buttonAddHeader",
         class: "button",
-        buttonText: "Zapisz",
-        descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
-        descriptionClass: "footerDisplayDescription6",
-        functionPerformed: function () { saveReportAndTable(), operationIsDone() },
+        buttonText: "nagłówek",
+        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { tableAddTextBoldLine(), checkboxesDisabledFalse(), operationIsDone() },
     },
     {
-        id: "buttonSaveAs",
+        id: "buttonAddPlace",
         class: "button",
-        buttonText: "Zapisz jako",
-        descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
-        descriptionClass: "footerDisplayDescription6",
-        functionPerformed: function () { fileSaveAs() },
-        // saveReportAndTable(), operationIsDone() },
+        buttonText: "stanowisko",
+        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { tableAddTextLine(); checkboxesDisabledFalse(), operationIsDone() },
     },
     {
-        id: "buttonRead",
+        id: "buttonAdd",
         class: "button",
-        buttonText: "Wczytaj",
-        descriptionText: "<p>Odczytuje dane zapisane lokalnie na dysku</p>",
-        descriptionClass: "footerDisplayDescription7",
-        functionPerformed: function () { readDoc(); readReport(); checkboxesDisabledFalse(this), operationIsDone() },
+        buttonText: "pomiary",
+        descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { tableAddDataLine(); checkboxesDisabledFalse(), operationIsDone() },
     },
     {
-        id: "buttonExport",
+        id: "buttonAddSpace",
         class: "button",
-        buttonText: "Eksportuj",
-        descriptionText: "<p>zobaczymy........</p>",
-        descriptionClass: "footerDisplayDescription8",
-        functionPerformed: function () { generate(), operationIsDone() },
+        buttonText: "pusty wiersz",
+        descriptionText: "<p>Dodaje do tabeli jeden pusty wiersz - można go używać do: <br> 1° oddzielania kilku grup linii tekstu od siebie <br> 2° oddzielenia linii tekstu od linii graficznej</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { tableAddEmptyLine(); checkboxesDisabledFalse(), operationIsDone() },
+    },
+    {
+        id: "buttonAddThinLine",
+        class: "button",
+        buttonText: "linię",
+        descriptionText: "<p>Dodaje cienką widoczną graficzną linię na końcu tabeli</p>",
+        descriptionClass: "footerDisplayDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { tableAddThinLine(); checkboxesDisabledFalse(), operationIsDone() },
     },
 ]
 
@@ -95,7 +107,8 @@ let tableCheckBoxInfo = [
     {
         id: "removeTableRow",
         name: "removeTableRow",
-        value: false,
+        checked: "",
+        disabled: "disabled",
         labelId: "labelCB1",
         labelFor: "removeTableRow",
         class: "labelCB",
@@ -107,7 +120,8 @@ let tableCheckBoxInfo = [
     {
         id: "addGreyBackground",
         name: "addGreyBackground",
-        value: true,
+        checked: "",
+        disabled: "disabled",
         labelId: "labelCB2",
         labelFor: "addGreyBackground",
         class: "labelCB",
@@ -119,7 +133,8 @@ let tableCheckBoxInfo = [
     {
         id: "showDescriptions",
         name: "showDescriptions",
-        value: false,
+        checked: "checked",
+        disabled: "",
         labelId: "labelCB3",
         labelFor: "showDescriptions",
         class: "labelCB",
@@ -136,7 +151,7 @@ export function addMenuCheckboxes() {
 
     tableCheckBoxInfo.forEach((element, index) => {
         textDivWithCheck += `<div class="checkboxDiv">
-                                <input type="checkbox" id="${element.id}" name="${element.name}" value="${element.value}">
+                                <input type="checkbox" id="${element.id}" name="${element.name}" ${element.disabled} ${element.checked}>
                                 <label id="${element.labelId}" for="${element.labelFor}" class="${element.class}"> ${element.checkboxText}</label>
                              </div>`
     })
@@ -183,16 +198,18 @@ export function addMenuButtons() {
     let textDivWithButtonsInLine = ``
 
     for (let i = 0; i < tableButtonsInfo.length; i++) {
-        // under table
-        if (i <= 4) {
-            if (i === 0) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
-            textDivWithButtonsInLine += `<button id=${tableButtonsInfo[i].id} class=${tableButtonsInfo[i].class}> ${tableButtonsInfo[i].buttonText}</button>`
-        }
+        let tempString = `<button id=${tableButtonsInfo[i].id} class=${tableButtonsInfo[i].class} ${tableButtonsInfo[i].disabled}> ${tableButtonsInfo[i].buttonText}</button>`
         // left menu
+        if (i <= 4) {
+            if (i === 0) { textDivWithButtons += `<p class="textMenu">Tabela z danymi:</p>` }
+            if (i === 4) { textDivWithButtons += `<p class="textMenu">Sprawdź poprawność:</p>` }
+            textDivWithButtons += tempString
+            console.log(i, tableButtonsInfo[i].id)
+        }
+        // under table
         if (i > 4) {
-            if (i === 5) { textDivWithButtons += `<p class="textMenu">Sprawdź poprawność:</p>` }
-            if (i === 6) { textDivWithButtons += `<p class="textMenu">Tabelę z danymi:</p>` }
-            textDivWithButtons += `<button id=${tableButtonsInfo[i].id} class=${tableButtonsInfo[i].class}> ${tableButtonsInfo[i].buttonText}</button>`
+            if (i === 5) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
+            textDivWithButtonsInLine += tempString
         }
     }
 
@@ -208,6 +225,7 @@ export function addMenuButtons() {
 const showHelp = elem => {
     let found = elem.srcElement.id
     let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+    // console.log("found",found, myIndexFound)
     if (myIndexFound !== -1) {
         const pElement = document.querySelector(".footerDisplayDescription" + myIndexFound);
         pElement.classList.add("footerDisplayDescriptionVisible")
@@ -260,3 +278,48 @@ const checkboxesDisabledFalse = (element) => {
     document.querySelector("#addGreyBackground").disabled = false
     document.querySelector("#removeTableRow").disabled = false
 }
+
+
+// CHECK POSIBILITY OF SAVE'ING REPORT AND TABLE 1
+
+// export const checkToUnblockSaveButton = () => {
+//     // classy użyte do nagłówka i danych klienta
+//     const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
+
+//     let readedClassesFromTable = convertClassesIntoOneString(tableThreeColumns)
+//     console.log("readedClassesFromTable", readedClassesFromTable)
+
+//     const findCustomerAndDate = `, #customerName, #researchAddress, #researchDate`
+//     readedClassesFromTable += findCustomerAndDate
+//     const nodeList = document.querySelectorAll(readedClassesFromTable)
+
+
+//     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
+
+//     // element 1 - numberTSO
+//     dataReport.numberTSO = nodeList[0].value
+
+//     // element 2 - year
+//     dataReport.year = nodeList[1].value
+
+//     // element 3 - page
+//     dataReport.page = nodeList[2].value
+
+//     // element 4 - pages
+//     dataReport.pages = nodeList[3].value
+
+//     // element 5 - customer
+//     dataReport.customer = nodeList[4].value
+
+//     // element 6 - placesof 
+//     dataReport.placeOfMeasurings = nodeList[5].value
+
+//     // element 7 - date
+//     dataReport.dateOfMeasurings = nodeList[6].value
+
+//     // element 8 - tables
+//     // dataReport.tables = nodeList[7].value
+//     console.log("tabela:", dataReport)
+//     console.log("JSON", JSON.stringify(dataReport))
+//     localStorage.setItem("testowy", JSON.stringify(dataReport))
+// }
