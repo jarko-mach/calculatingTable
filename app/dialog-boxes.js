@@ -1,4 +1,4 @@
-import { AlignmentType, HeadingLevel } from "../node_modules/docx/build/index.js";
+// import { AlignmentType, HeadingLevel } from "../node_modules/docx/build/index.js";
 
 import {
   infoTablesNamesSave,
@@ -174,7 +174,7 @@ export const fileRead = () => {
 
 // EXPORT WORD DOCUMENT
 
-export const exportDocument = () => {
+const exportDocument = () => {
 
   const paragraph_title = new docx.Paragraph({
     text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",
@@ -210,7 +210,7 @@ export const exportDocument = () => {
   });
 }
 
-export function generate() {
+function generate() {
   const doc = new docx.Document({
     sections: [
       {

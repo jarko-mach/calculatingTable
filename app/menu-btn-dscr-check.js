@@ -17,7 +17,11 @@ import {
     checkboxRemoveTableRowChanged
 } from "./table-operations.js"
 
-import { fileNew, fileSave, fileRead, exportDocument } from "./dialog-boxes.js"
+import {
+    fileNew,
+    fileSave,
+    fileRead
+} from "./dialog-boxes.js"
 
 
 // START DEFINITION OF BUTTONS IN MENU
@@ -58,7 +62,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>zobaczymy........</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { exportDocument(), operationIsDone() },
+        functionPerformed: function () { }, //exportDocument(), operationIsDone() 
     },
     {
         id: "buttonRecalc",
