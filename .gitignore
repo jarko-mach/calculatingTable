@@ -1,4 +1,3 @@
 older/
 *.docx
 node_modules/
-package-lock.*
