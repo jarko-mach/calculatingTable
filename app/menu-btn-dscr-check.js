@@ -20,8 +20,7 @@ import {
 import {
     fileNew,
     fileSave,
-    fileRead,
-    exportDocument
+    fileRead
 } from "./dialog-boxes.js"
 
 
@@ -63,7 +62,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>zobaczymy........</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { exportDocument() }, //exportDocument(), operationIsDone() 
+        functionPerformed: function () { }, //exportDocument(), operationIsDone() 
     },
     {
         id: "buttonRecalc",
