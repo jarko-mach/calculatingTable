@@ -71,12 +71,12 @@ export const convertClassesIntoOneString = (myTable) => {
 
 export const saveTemporaryTableReportName = (tabRepName) => {
     localStorage.setItem(`tempTabName`, JSON.stringify(tabRepName))
-    console.log("zapis do temp.", tabRepName)
+    // console.log("zapis do temp.", tabRepName)
 }
 
 export const readTemporaryTableReportName = () => {
     let tabRepName = localStorage.getItem(`tempTabName`)
-    console.log("odczyt z temp.", tabRepName)
+    // console.log("odczyt z temp.", tabRepName)
     return tabRepName
 }
 
