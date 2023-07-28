@@ -103,7 +103,7 @@ export const tableAddEmptyLine = () => {
 export const tableAddThinLine = () => {
 
     let lastElement = document.querySelector("tbody")
-    console.log("lastElement", lastElement.lastElementChild)
+    // console.log("lastElement", lastElement.lastElementChild)
     let newElement = document.createElement("tr")
     newElement.classList.add("rowThinLine")
     newElement.innerHTML =
@@ -151,7 +151,7 @@ const discolorTableRow = (e) => {
 
 export const checkboxRemoveTableRowChanged = () => {
     let checkBoxState = document.querySelector("#removeTableRow");
-    console.log("checkbox", checkBoxState)
+    // console.log("checkbox", checkBoxState)
     if (checkBoxState.checked == true) {
         document.querySelector(".labelCB").classList.add("redLabel")
         document.querySelector(".labelCB").textContent = "usuwasz!"

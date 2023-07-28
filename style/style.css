@@ -322,28 +322,30 @@ label:hover {
     transition: color 3s ease, transform 0.4s ease;
 }
 
-.footerDisplayDescription1 {
-    bottom: 20px;
+.footerDescription1 {
+    /* bottom: 20px; */
 }
 
 /* DISPLAY HELP FOR CHECKBOXES */
 
-.footerDisplayDescription100 {
+.footerDescription100 {
     top: 160px;
     width: 100px;
 }
 
-.footerDisplayDescription101 {
+.footerDescription101 {
     top: 180px;
     width: 100px;
 }
 
-.footerDisplayDescription102 {
+.footerDescription102 {
     top: 200px;
     width: 100px;
 }
 
-.footerDisplayDescriptionVisible {
+/* SHOW BUTTONS AND CHECKBOXES HELP */
+
+.footerDescriptionVisible {
     visibility: visible;
     transform: translateX(620px);
     color: black;
@@ -453,8 +455,6 @@ footer div p {
     font-size: 0.85em;
     padding: 2px;
     background-color: rgb(237, 252, 243);
-    /* border: 0.7px solid; */
-    /* outline-style: .7px; */
 }
 
 .dialogBoxChild button {
@@ -471,6 +471,9 @@ footer div p {
     outline: 2px solid red;
 }
 
-.aa {
-    disabled: false;
+.dialogBoxChild select {
+    margin: 10px 20px 10px 7px;
+    font-size: 1em;
+    padding: 2px 7px;
+    background-color: rgb(237, 252, 243);
 }

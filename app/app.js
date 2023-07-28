@@ -1,8 +1,26 @@
-import { showHideMenuDescriptions, addMenuButtons, addHelpToMenu, prepareToPrint, addMenuCheckboxes, addMenuCheckboxesDescriptions } from "./menu-btn-dscr-check.js"
-import { tableAddNumbers, tableAddTextBoldLine, tableAddTextLine, tableAddDataLine, tableAddEmptyLine, tableAddThinLine, checkboxRemoveTableRowChanged, addFirstThreeColumnsHeader } from "./table-operations.js"
-// import { dataTableTemp } from "./misc.js"
+import { exportDocument } from "./dialog-boxes.js"
+import {
+    setButtonsEnabledDisabled,
+    menu_buttons,
+    menu_checkboxes,
+    menu_checkboxShowHideAllDescriptions,
+    menu_checkboxGreyBackgroundChanged,
+    menu_addListeners,
+    prepareToPrint,
+    tableButtonsInfo
+} from "./menu-btn-dscr-check.js"
 
-// import { checkToStartNewPage } from "./next-page.js"
+import {
+    tableAddNumbers,
+    tableAddTextBoldLine,
+    tableAddTextLine,
+    tableAddDataLine,
+    tableAddEmptyLine,
+    tableAddThinLine,
+    checkboxRemoveTableRowChanged,
+    addFirstThreeColumnsHeader
+} from "./table-operations.js"
+
 
 let dataReportOriginal = {
     id: 1,
@@ -38,8 +56,8 @@ let dataTableLocal = []
 export const classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate", "rowEmpty"]
 
 // classy dla różnych kolumn tabeli
-let classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
-let classTableAll = [...classTableRows, ...classTableColumns]
+export const classTableColumns = ["numberLp", "place", "measurings", "wynik-1", "norma-1", "wynik-2", "norma-2", "compatibility"]
+export const classTableAll = [...classTableRows, ...classTableColumns]
 
 export const convertClassesIntoOneString = (myTable) => {
     let readClasses = ""
@@ -48,6 +66,55 @@ export const convertClassesIntoOneString = (myTable) => {
     })
     return readClasses
 }
+
+// aktualnie aktywne sprawozdanie
+
+export const saveTemporaryTableReportName = (tabRepName) => {
+    localStorage.setItem(`tempTabName`, JSON.stringify(tabRepName))
+    console.log("zapis do temp.", tabRepName)
+}
+
+export const readTemporaryTableReportName = () => {
+    let tabRepName = localStorage.getItem(`tempTabName`)
+    console.log("odczyt z temp.", tabRepName)
+    return tabRepName
+}
+
+// zapamiętuje utworzone nazwy sprawozdań lokalnie
+
+let infoTableName = [{
+    creatingDate: "333",
+    tableName: "444",
+    tableSuffix: "Table",
+    reportSuffix: "Report",
+}]
+
+export const infoTablesNamesSave = (nameOfTable) => {
+    let oldNames = JSON.parse(localStorage.getItem("infoTablesNames"));
+    const infoJsonString = JSON.parse(JSON.stringify(infoTableName))
+    if (!oldNames) { oldNames = [] }
+    oldNames.push(...infoJsonString)
+    oldNames[oldNames.length - 1].creatingDate = new Date()
+    oldNames[oldNames.length - 1].tableName = nameOfTable
+    localStorage.setItem(`infoTablesNames`, JSON.stringify(oldNames))
+}
+
+export const infoTablesNamesRead = () => {
+    const names = JSON.parse(localStorage.getItem("infoTablesNames"));
+    let localNames = []
+    if (names?.length) {
+        names.forEach((element, index) => { localNames.push(element.tableName) })
+    }
+    // console.log("localNames", localNames)
+    if (names) {
+        // console.log("jest kilka tablic", names[0].tableName)
+        return localNames
+    } else {
+        // console.log("nie ma tablic")
+        return ""
+    }
+}
+
 
 // RECALCULATING
 
@@ -131,10 +198,10 @@ export const recalcAll = function (e) {
         // kolumna nr 5 - norma / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki ----------------
         eksploatacionNorm = Number(nodeList[4 + addRowElements].value)
 
-        console.log("eksploatacionNorm", eksploatacionNorm)
+        // console.log("eksploatacionNorm", eksploatacionNorm)
 
         foundError = re3.test(eksploatacionNorm)
-        console.log("foundError", foundError)
+        // console.log("foundError", foundError)
 
         // brak danych liczbowych
         // kolumna nr 8 - Tak/Nie
@@ -309,8 +376,8 @@ export const saveTable = (nameOfTable) => {
             dataTableLocal[row].info.compatibility = nodeList[8 + addRowElements].value
         }
     }
-    console.log("tabela:", dataTableLocal)
-    console.log("JSON", JSON.stringify(dataTableLocal))
+    // console.log("tabela:", dataTableLocal)
+    // console.log("JSON", JSON.stringify(dataTableLocal))
     localStorage.setItem(`${nameOfTable}Table`, JSON.stringify(dataTableLocal))
 }
 
@@ -337,7 +404,7 @@ export const saveReport = (nameOfReport) => {
     const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
 
     let readedClassesFromTable = convertClassesIntoOneString(tableThreeColumns)
-    console.log("readedClassesFromTable", readedClassesFromTable)
+    // console.log("readedClassesFromTable", readedClassesFromTable)
 
     const findCustomerAndDate = `, #customerName, #researchAddress, #researchDate`
     readedClassesFromTable += findCustomerAndDate
@@ -369,8 +436,8 @@ export const saveReport = (nameOfReport) => {
 
     // element 8 - tables
     // dataReport.tables = nodeList[7].value
-    console.log("tabela:", dataReport)
-    console.log("JSON", JSON.stringify(dataReport))
+    // console.log("tabela:", dataReport)
+    // console.log("JSON", JSON.stringify(dataReport))
     localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
 
@@ -386,9 +453,9 @@ const removeAllNewRows = () => {
     elements.forEach((elem) => { elem.remove() })
 }
 
-export const readDoc = () => {
+export const readDoc = (nameOfTable) => {
     removeAllNewRows()
-    let dataTable = JSON.parse(localStorage.getItem("myElement"))
+    let dataTable = JSON.parse(localStorage.getItem(`${nameOfTable}Table`))
     // console.log("długość wczytywanej tablicy", dataTable.length)
     // console.log("wczytujemy:", dataTable)
 
@@ -439,12 +506,11 @@ export const readDoc = () => {
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
 
     }
-    // checkToStartNewPage()
 }
 
-export const readReport = () => {
+export const readReport = (nameOfReport) => {
 
-    let dataReport = JSON.parse(localStorage.getItem("myReport"));
+    let dataReport = JSON.parse(localStorage.getItem(`${nameOfReport}Report`));
 
     // classy użyte do nagłówka i danych klienta
     const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
@@ -498,36 +564,6 @@ export const readReport = () => {
 }
 
 
-// SHOWING GREY BACKGROUND 
-
-const checkboxGreyBackgroundChanged = () => {
-    let checkBoxState = document.querySelector("#addGreyBackground")
-    // console.log("stan cheku", checkBoxState.checked)
-
-    const classesToFind = convertClassesIntoOneString(classTableColumns)
-    // console.log("classy do znalezienia", classesToFind)
-
-    const element = document.querySelectorAll(classesToFind)
-    // console.log("lista elementów", element)
-
-    if (checkBoxState.checked) {
-        element.forEach((element, index) => {
-            if (!element.disabled) {
-                element.classList.add("addGreyBackground")
-                // console.log(index)
-            }
-        })
-    } else {
-        element.forEach((element, index) => {
-            if (!element.disabled) {
-                element.classList.remove("addGreyBackground")
-                // console.log(index)
-            }
-        })
-    }
-
-}
-
 // OPERATION IS DONE
 
 export const operationIsDone = () => {
@@ -542,7 +578,7 @@ export const operationIsDone = () => {
 
 export const readPositionOfMouse = (e) => {
     // console.log("xxx ", e.pageY)
-    // const element = document.querySelector(".footerDisplayDescription5")
+    // const element = document.querySelector(".footerDescription5")
     return `${-30 + e.pageX}px`
     // element.style.top = `${-30 + e.pageX}px`
 }
@@ -552,20 +588,6 @@ export const readPositionOfMouse = (e) => {
 
 tableAddNumbers()
 addFirstThreeColumnsHeader()
-addMenuButtons()
-addHelpToMenu()
-addMenuCheckboxes()
-checkboxGreyBackgroundChanged()
-
-// document.querySelector("#showDescriptions").checked = true
-// document.querySelector("#addGreyBackground").disabled = true
-// document.querySelector("#removeTableRow").disabled = true
-
-showHideMenuDescriptions()
-
-// document.querySelector("body").addEventListener("mouseover", readPositionOfMouse)
-document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
-document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
-document.querySelector("#addGreyBackground").addEventListener("click", checkboxGreyBackgroundChanged)
-document.querySelector("#showDescriptions").addEventListener("click", showHideMenuDescriptions)
-
+setButtonsEnabledDisabled("startApp")
+// setButtonsEnabledDisabled("tableReaded")
+// startDoc()
