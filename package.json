@@ -2,5 +2,22 @@
   "dependencies": {
     "docx": "^8.2.2",
     "file-saver": "^2.0.5"
-  }
+  },
+  "name": "tabelka-pomiarow-swiatla",
+  "version": "1.2.0",
+  "description": "Create table for counting params for lot of measuring places",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarko-mach/calculatingTable.git"
+  },
+  "author": "Jarko Mach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jarko-mach/calculatingTable/issues"
+  },
+  "homepage": "https://github.com/jarko-mach/calculatingTable#readme"
 }
