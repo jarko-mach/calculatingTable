@@ -1,4 +1,6 @@
-// import { AlignmentType, HeadingLevel } from "../node_modules/docx/build/index.js"
+import { AlignmentType, HeadingLevel } from "../docx/build/index.js"
+
+// node_modules/docx/build/index.js
 // import * as docx from "../node_modules/docx/build/index.js"
 
 import {
@@ -175,7 +177,7 @@ export const fileRead = () => {
 
 // EXPORT WORD DOCUMENT
 
-const exportDocument = () => {
+export const exportWordDocument = () => {
   // console.log("nastąpiła próba wysłania dokumentu WORD")
   const paragraph_title = new docx.Paragraph({
     text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",

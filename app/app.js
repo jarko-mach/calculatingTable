@@ -1,4 +1,5 @@
-// import { exportDocument } from "./dialog-boxes.js"
+import { exportWordDocument } from "./dialog-boxes.js"
+
 import {
     setButtonsEnabledDisabled,
     menu_buttons,
