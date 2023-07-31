@@ -1,5 +1,3 @@
-import { AlignmentType, HeadingLevel } from "../docx/build/index.js"
-
 // node_modules/docx/build/index.js
 // import * as docx from "../node_modules/docx/build/index.js"
 
@@ -174,73 +172,3 @@ export const fileRead = () => {
   const foundButtonCancel = document.querySelector(".openDialogBox .noCancel")
   foundButtonCancel.addEventListener("click", getCancelButton)
 }
-
-// EXPORT WORD DOCUMENT
-
-export const exportWordDocument = () => {
-  // console.log("nastąpiła próba wysłania dokumentu WORD")
-  const paragraph_title = new docx.Paragraph({
-    text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",
-    heading: HeadingLevel.HEADING_1,
-    alignment: AlignmentType.CENTER,
-  })
-
-  const paragraph2 = new docx.Paragraph({
-    text: "Tu powinno coś być w niedługim czasie :)",
-    heading: HeadingLevel.HEADING_2,
-    alignment: AlignmentType.LEFT,
-  });
-
-  const paragraphEmpty = new docx.Paragraph({
-    text: "",
-    heading: HeadingLevel.HEADING_2,
-    alignment: AlignmentType.LEFT,
-  });
-
-  const doc = new docx.Document({
-    sections: [
-      {
-        properties: {},
-        children: [paragraph_title, paragraphEmpty, paragraph2]
-      }
-    ]
-  });
-
-  docx.Packer.toBlob(doc).then((blob) => {
-    console.log("blob", blob);
-    saveAs(blob, "example.docx");
-    console.log("Document created successfully");
-  });
-}
-
-function generate() {
-  const doc = new docx.Document({
-    sections: [
-      {
-        properties: {},
-        children: [
-          new docx.Paragraph({
-            children: [
-              new docx.TextRun("Badania oświetlenia elektrycznego"),
-              new docx.TextRun({
-                text: "Foo Bar",
-                bold: true
-              }),
-              new docx.TextRun({
-                text: "\tGithub is the best",
-                bold: true
-              })
-            ]
-          })
-        ]
-      }
-    ]
-  });
-
-  docx.Packer.toBlob(doc).then((blob) => {
-    console.log("blob", blob);
-    saveAs(blob, "example.docx");
-    console.log("Document created successfully");
-  });
-}
-

@@ -20,9 +20,10 @@ import {
 import {
     fileNew,
     fileSave,
-    fileRead,
-    exportWordDocument
+    fileRead
 } from "./dialog-boxes.js"
+
+import { newTable } from "./export-word-docx.js"
 
 
 // START DEFINITION OF BUTTONS IN MENU
@@ -60,10 +61,10 @@ export let tableButtonsInfo = [
         id: "buttonExport",
         class: "button",
         buttonText: "Eksportuj",
-        descriptionText: "<p>zobaczymy........</p>",
+        descriptionText: "<p>Po zakończeniu pracy eksportuje wszystkie dane do formatu Word'a</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { exportWordDocument() }, //exportDocument(), operationIsDone() 
+        functionPerformed: function () { newTable() }, //exportDocument(), operationIsDone() 
     },
     {
         id: "buttonRecalc",

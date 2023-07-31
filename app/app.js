@@ -1,4 +1,7 @@
-import { exportWordDocument } from "./dialog-boxes.js"
+import {
+    newTable,
+    exportWordDocument
+} from "./export-word-docx.js"
 
 import {
     setButtonsEnabledDisabled,
@@ -592,3 +595,5 @@ addFirstThreeColumnsHeader()
 setButtonsEnabledDisabled("startApp")
 // setButtonsEnabledDisabled("tableReaded")
 // startDoc()
+// newTable()
+// exportWordDocument()
