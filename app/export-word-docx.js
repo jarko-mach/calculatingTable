@@ -1,4 +1,5 @@
 // import { TextRun } from "docx"
+// import { TextRun } from "docx";
 import {
     Document,
     convertMillimetersToTwip,
@@ -15,7 +16,8 @@ import {
     TextDirection,
     WidthType,
     PageOrientation,
-    BorderStyle
+    BorderStyle,
+    TableBorders
 } from "../docx/build/index.js"
 
 import { readTemporaryTableReportName } from "./app.js"
@@ -85,7 +87,9 @@ export const newTable = () => {
     const tabName = readTemporaryTableReportName()
     const localTabName = tabName.slice(1, tabName.length - 1)
     // console.log(localTabName)
+
     let dataReport = JSON.parse(localStorage.getItem(`${localTabName}Report`))
+
     // newTable(dataReport)
     // console.log("doc dataReport", dataReport)
 
@@ -171,17 +175,146 @@ export const newTable = () => {
                     ],
                 }),
             ],
-
-
-        }
-
-        )
-        ]
+        })]
     })
 
-    const paragraph_title = new docx.Paragraph({
+    const paragraphTabela1 = new docx.Paragraph({
+        style: "table1",
+        text: "Tabela nr 1",
+        alignment: AlignmentType.LEFT,
+    })
+
+    const paragraphBadania = new docx.Paragraph({
+        style: "title",
         text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",
         alignment: AlignmentType.CENTER,
+    })
+
+    // const customerBorders = {
+    //     top: {
+    //         style: BorderStyle.THICK,
+    //         size: convertMillimetersToTwip(0),
+    //         color: "FFFFFF",
+    //     },
+    //     bottom: {
+    //         style: BorderStyle.THICK,
+    //         size: convertMillimetersToTwip(0),
+    //         color: "FFFFFF",
+    //     },
+    //     left: {
+    //         style: BorderStyle.THICK,
+    //         size: convertMillimetersToTwip(0),
+    //         color: "FFFFFF",
+    //     },
+    //     right: {
+    //         style: BorderStyle.THICK,
+    //         size: convertMillimetersToTwip(0),
+    //         color: "FFFFFF",
+    //     },
+    // };
+
+    const customerTable = new docx.Table({
+        // alignment: AlignmentType.LEFT,
+        // verticalAlign: docx.VerticalAlign.CENTER,
+        borders: TableBorders.NONE,
+        rows: [
+            new docx.TableRow({
+                children: [
+                    new docx.TableCell({
+                        width: {
+                            size: convertMillimetersToTwip(45),
+                            type: docx.WidthType.DXA,
+                        },
+                        children: [
+                            new docx.Paragraph({
+                                style: "customer",
+                                text: "Nazwa i adres Klienta:",
+                            }),
+                        ],
+                    }),
+                    new docx.TableCell({
+                        width: {
+                            size: convertMillimetersToTwip(125),
+                            type: docx.WidthType.DXA,
+                        },
+                        children: [
+                            new docx.Paragraph({
+                                style: "customer",
+                                children: [
+                                    new docx.TextRun({
+                                        text: `${dataReport.customer}`,
+                                        bold: true,
+                                    })
+                                ],
+                            }),
+                        ],
+                    }),]
+            }),
+            new docx.TableRow({
+                children: [
+                    new docx.TableCell({
+                        width: {
+                            size: convertMillimetersToTwip(45),
+                            type: docx.WidthType.DXA,
+                        },
+                        children: [
+                            new docx.Paragraph({
+                                style: "customer",
+                                text: "Miejsce wykonania badań:",
+                            }),
+                        ],
+                    }),
+                    new docx.TableCell({
+                        width: {
+                            size: convertMillimetersToTwip(125),
+                            type: docx.WidthType.DXA,
+                        },
+                        children: [
+                            new docx.Paragraph({
+                                style: "customer",
+                                children: [
+                                    new docx.TextRun({
+                                        text: `${dataReport.placeOfMeasurings}`,
+                                        bold: true,
+                                    })
+                                ],
+                            }),
+                        ],
+                    }),]
+            }),
+            new docx.TableRow({
+                children: [
+                    new docx.TableCell({
+                        width: {
+                            size: convertMillimetersToTwip(45),
+                            type: docx.WidthType.DXA,
+                        },
+                        children: [
+                            new docx.Paragraph({
+                                style: "customer",
+                                text: "Data wykonania badań:",
+                            }),
+                        ],
+                    }),
+                    new docx.TableCell({
+                        width: {
+                            size: convertMillimetersToTwip(125),
+                            type: docx.WidthType.DXA,
+                        },
+                        children: [
+                            new docx.Paragraph({
+                                style: "customer",
+                                children: [
+                                    new docx.TextRun({
+                                        text: `${dataReport.dateOfMeasurings}`,
+                                        bold: true,
+                                    })
+                                ],
+                            }),
+                        ],
+                    }),]
+            }),
+        ]
     })
 
     const tableRowNumbers = new docx.TableRow({
@@ -419,7 +552,7 @@ export const newTable = () => {
                 },
                 {
                     id: "headerTxt",
-                    name: "Naglowek",
+                    name: "Nagłówek tabeli",
                     run: {
                         // italics: true,
                         size: "9pt",
@@ -427,6 +560,19 @@ export const newTable = () => {
                     },
                     paragraph: {
                         alignment: docx.AlignmentType.CENTER,
+                    },
+                },
+                {
+                    id: "table1",
+                    name: "Tabela nr 1",
+                    run: {
+                        bold: true,
+                        size: "14pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.RIGHT,
+                        spacing: { line: 300, before: 650, after: 0 },
                     },
                 },
                 {
@@ -439,6 +585,20 @@ export const newTable = () => {
                     },
                     paragraph: {
                         alignment: docx.AlignmentType.CENTER,
+                        spacing: { line: 300, before: 250, after: 320 },
+                    },
+                },
+                {
+                    id: "customer",
+                    name: "Klient",
+                    run: {
+                        // bold: true,
+                        size: "11pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.LEFT,
+                        spacing: { line: 300, before: 50, after: 32 },
                     },
                 },
             ],
@@ -471,7 +631,13 @@ export const newTable = () => {
                 },
                 children: [
                     tableTS,
-                    paragraph_title,
+                    paragraphTabela1,
+                    paragraphBadania,
+                    customerTable,
+                    new docx.Paragraph({
+                        style: "headerTxt",
+                        text: " ",
+                    }),
                     new docx.Table({
                         alignment: AlignmentType.CENTER,
                         columnWidths: [convertMillimetersToTwip(6), convertMillimetersToTwip(65), convertMillimetersToTwip(45), convertMillimetersToTwip(14), convertMillimetersToTwip(12), convertMillimetersToTwip(11), convertMillimetersToTwip(11), convertMillimetersToTwip(12)],
