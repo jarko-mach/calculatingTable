@@ -23,7 +23,9 @@ import {
     fileRead
 } from "./dialog-boxes.js"
 
-import { newTable } from "./export-word-docx.js"
+import {
+    newTable
+} from "./export-word-docx.js"
 
 
 // START DEFINITION OF BUTTONS IN MENU
