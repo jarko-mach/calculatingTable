@@ -1,5 +1,6 @@
 // import { TextRun } from "docx"
 // import { TextRun } from "docx";
+// import { Border } from "docx"
 import {
     Document,
     convertMillimetersToTwip,
@@ -17,68 +18,67 @@ import {
     WidthType,
     PageOrientation,
     BorderStyle,
-    TableBorders
+    TableBorders,
+    Border
 } from "../docx/build/index.js"
 
 import { readTemporaryTableReportName } from "./app.js"
 
 // START
 
+const readDocDocx = (nameOfTable) => {
+    // removeAllNewRows()
+    let dataTable = JSON.parse(localStorage.getItem(`${nameOfTable}Table`))
+    // console.log("długość wczytywanej tablicy", dataTable.length)
+    // console.log("wczytujemy:", dataTable)
 
-const startReadReport = (nameOfReport) => {
+    for (let i = 0; i < dataTable.length; i++) {
+        if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
+        if (dataTable[i].typeOfRow === "rowText") { tableAddTextLine() }
+        if (dataTable[i].typeOfRow === "rowDate") { tableAddDataLine() }
+        if (dataTable[i].typeOfRow === "rowEmpty") { tableAddEmptyLine() }
+        if (dataTable[i].typeOfRow === "rowThinLine") { tableAddThinLine() }
+    }
 
-    dataReport = JSON.parse(localStorage.getItem(`${nameOfReport}Report`));
-    console.log("dataReport", dataReport, nameOfReport)
+    let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
+    let nodeList = document.querySelectorAll(readedClassesFromTable)
+    // console.log("liczba elementów:", nodeList.length)
+    // console.log("tabela:", dataTable)
+    // console.log("elementy:", nodeList)
 
-    // classy użyte do nagłówka i danych klienta
-    // const tableThreeColumns = ["numberTSO", "yearTSO", "pageTSO", "pagesTSO"]
-    // let readedClassesFromTable = convertClassesIntoOneString(tableThreeColumns)
-    // console.log("readedClassesFromTable", readedClassesFromTable)
+    for (let row = 0; row < dataTable.length; row++) {
 
-    // const findCustomerAndDate = `, #customerName, #researchAddress, #researchDate`
-    // readedClassesFromTable += findCustomerAndDate
-    // const nodeList = document.querySelectorAll(readedClassesFromTable)
-    // console.log("nodeList", nodeList)
+        let addRowElements = row * 9
 
-    // element 1 - numberTSO
-    // nodeList[0].value = dataReport.numberTSO
+        // element 0 - typ wiersza
 
-    // element 2 - year
-    // nodeList[1].value = dataReport.year
+        // element 1 - lp
+        nodeList[1 + addRowElements].value = dataTable[row].info.numberLp
 
-    // element 3 - page
-    // nodeList[2].value = dataReport.page
+        // element 2 - miejsce pomiarów
+        nodeList[2 + addRowElements].value = dataTable[row].info.place
+        nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 45)
 
-    // element 4 - pages
-    // nodeList[3].value = dataReport.pages
+        // element 3 - pomiary
+        nodeList[3 + addRowElements].value = dataTable[row].info.measurings
+        nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
 
-    // element 5 - customer
-    // nodeList[4].rows = 1
-    // let myRegExp = /\n/ig
-    // let ifTrue
-    // do {
-    //     ifTrue = myRegExp.test(dataReport.customer)
-    //     if (!ifTrue) break
-    //     nodeList[4].rows++
-    // } while (ifTrue)
+        // element 4 - eksploatacyjne wynik
+        nodeList[4 + addRowElements].value = dataTable[row].info.wynik1
 
-    // nodeList[4].value = dataReport.customer
+        // element 5 - eksploatacyjne norma 
+        nodeList[5 + addRowElements].value = dataTable[row].info.norma1
 
-    // element 6 - placesof 
-    // nodeList[5].rows = 1
-    // do {
-    //     ifTrue = myRegExp.test(dataReport.placeOfMeasurings)
-    //     if (!ifTrue) break
-    //     nodeList[5].rows++
-    // } while (ifTrue)
+        // element 6 - rownomiernosc pomiary
+        nodeList[6 + addRowElements].value = dataTable[row].info.wynik2.replace('.', ',')
 
-    // nodeList[5].value = dataReport.placeOfMeasurings
+        // element 7 - rownomiernosc norma
+        nodeList[7 + addRowElements].value = dataTable[row].info.norma2
 
-    // element 7 - date
-    // nodeList[6].value = dataReport.dateOfMeasurings
+        // element 8 - zgodnosc
+        nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
 
-    // element 8 - tables
-    // dataReport.tables = nodeList[7].value
+    }
 }
 
 
@@ -86,46 +86,134 @@ export const newTable = () => {
 
     const tabName = readTemporaryTableReportName()
     const localTabName = tabName.slice(1, tabName.length - 1)
-    // console.log(localTabName)
 
     let dataReport = JSON.parse(localStorage.getItem(`${localTabName}Report`))
+    let dataTable = JSON.parse(localStorage.getItem(`${localTabName}Table`))
+    console.log(dataTable[0].info.numberLp)
+
+    const loopForDataTable = () => {
+        const localDataTable = new docx.Table({
+            rows: [...dataTable.map((element, index) => {
+                return new docx.TableRow({
+                    children: [
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(6),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                alignment: docx.AlignmentType.CENTER,
+                                children: [
+                                    new docx.TextRun({
+                                        text: element.info.numberLp,
+                                        bold: true,
+                                    })
+                                ],
+                            })
+                            ],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(65),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                alignment: docx.AlignmentType.LEFT,
+                                children: [
+                                    new docx.TextRun({
+                                        text: element.info.place,
+                                        bold: true,
+                                    })
+                                ],
+                            })],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(45),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                text: element.info.measurings,
+                            })],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(14),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                text: element.info.wynik1,
+                            })],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(12),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                text: element.info.norma1,
+                            })
+                            ],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(11),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                text: element.info.wynik2,
+                            })],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(11),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                text: element.info.norma2,
+                            })],
+                        }),
+                        new docx.TableCell({
+                            width: {
+                                size: convertMillimetersToTwip(12),
+                                type: docx.WidthType.DXA,
+                            },
+                            children: [new docx.Paragraph({
+                                style: "normalData",
+                                text: element.info.compatibility,
+                            })],
+                        }),
+                    ],
+                })
+            })
+            ]
+        })
+        return localDataTable
+    }
+
 
     // newTable(dataReport)
     // console.log("doc dataReport", dataReport)
 
-    const borders = {
-        top: {
-            style: BorderStyle.THICK,
-            size: convertMillimetersToTwip(0.1),
-            color: "000000",
-        },
-        bottom: {
-            style: BorderStyle.THICK,
-            size: convertMillimetersToTwip(0.1),
-            color: "000000",
-        },
-        left: {
-            style: BorderStyle.THICK,
-            size: convertMillimetersToTwip(0.1),
-            color: "000000",
-        },
-        right: {
-            style: BorderStyle.THICK,
-            size: convertMillimetersToTwip(0.1),
-            color: "000000",
-        },
-    };
-
-    const tableTS = new docx.Table({
+    const tableTS3Columns = new docx.Table({
         alignment: AlignmentType.CENTER,
         verticalAlign: docx.VerticalAlign.CENTER,
-        // columnWidths: [convertMillimetersToTwip(45),
-        // convertMillimetersToTwip(80),
-        // convertMillimetersToTwip(35)],
         rows: [new docx.TableRow({
             children: [
                 new docx.TableCell({
-                    borders,
+                    borders: {
+                        top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    },
                     verticalAlign: docx.VerticalAlign.CENTER,
                     width: {
                         size: convertMillimetersToTwip(45),
@@ -149,7 +237,12 @@ export const newTable = () => {
                 }),
 
                 new docx.TableCell({
-                    borders,
+                    borders: {
+                        top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    },
                     verticalAlign: docx.VerticalAlign.CENTER,
                     width: {
                         size: convertMillimetersToTwip(80),
@@ -162,7 +255,12 @@ export const newTable = () => {
                     ],
                 }),
                 new docx.TableCell({
-                    borders,
+                    borders: {
+                        top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    },
                     verticalAlign: docx.VerticalAlign.CENTER,
                     width: {
                         size: convertMillimetersToTwip(35),
@@ -189,29 +287,6 @@ export const newTable = () => {
         text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",
         alignment: AlignmentType.CENTER,
     })
-
-    // const customerBorders = {
-    //     top: {
-    //         style: BorderStyle.THICK,
-    //         size: convertMillimetersToTwip(0),
-    //         color: "FFFFFF",
-    //     },
-    //     bottom: {
-    //         style: BorderStyle.THICK,
-    //         size: convertMillimetersToTwip(0),
-    //         color: "FFFFFF",
-    //     },
-    //     left: {
-    //         style: BorderStyle.THICK,
-    //         size: convertMillimetersToTwip(0),
-    //         color: "FFFFFF",
-    //     },
-    //     right: {
-    //         style: BorderStyle.THICK,
-    //         size: convertMillimetersToTwip(0),
-    //         color: "FFFFFF",
-    //     },
-    // };
 
     const customerTable = new docx.Table({
         // alignment: AlignmentType.LEFT,
@@ -320,6 +395,12 @@ export const newTable = () => {
     const tableRowNumbers = new docx.TableRow({
         children: [
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(6),
                     type: docx.WidthType.DXA,
@@ -331,6 +412,12 @@ export const newTable = () => {
                 ],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(65),
                     type: docx.WidthType.DXA,
@@ -341,6 +428,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(45),
                     type: docx.WidthType.DXA,
@@ -351,6 +444,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(14),
                     type: docx.WidthType.DXA,
@@ -361,6 +460,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -372,6 +477,12 @@ export const newTable = () => {
                 ],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(11),
                     type: docx.WidthType.DXA,
@@ -382,6 +493,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(11),
                     type: docx.WidthType.DXA,
@@ -392,6 +509,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -407,6 +530,12 @@ export const newTable = () => {
     const tableHeader1Text = new docx.TableRow({
         children: [
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(6),
                     type: docx.WidthType.DXA,
@@ -420,6 +549,12 @@ export const newTable = () => {
                 ],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(65),
                     type: docx.WidthType.DXA,
@@ -432,6 +567,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(45),
                     type: docx.WidthType.DXA,
@@ -444,6 +585,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(24),
                     type: docx.WidthType.DXA,
@@ -456,6 +603,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(24),
                     type: docx.WidthType.DXA,
@@ -469,6 +622,12 @@ export const newTable = () => {
                 ],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -486,6 +645,12 @@ export const newTable = () => {
     const tableHeader2Text = new docx.TableRow({
         children: [
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -498,6 +663,12 @@ export const newTable = () => {
                 ],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -509,6 +680,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -520,6 +697,12 @@ export const newTable = () => {
                 })],
             }),
             new docx.TableCell({
+                borders: {
+                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                },
                 width: {
                     size: convertMillimetersToTwip(12),
                     type: docx.WidthType.DXA,
@@ -601,6 +784,20 @@ export const newTable = () => {
                         spacing: { line: 300, before: 50, after: 32 },
                     },
                 },
+                {
+                    id: "normalData",
+                    name: "treść",
+                    run: {
+                        // italics: true,
+                        size: "9pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
+                        spacing: { line: 200, before: 50, after: 20 },
+                    },
+                },
             ],
             characterStyles: [
                 {
@@ -610,47 +807,201 @@ export const newTable = () => {
                         size: "8pt",
                     },
                 }],
-        },
-        sections: [
-            {
-                properties: {
-                    page: {
-                        size: {
+            },
+            sections: [
+                {
+                    properties: {
+                        page: {
+                            size: {
                             // orientation: PageOrientation.PORTRAIT,
                             width: "210mm",
                             height: "297mm",
-
+                            
                         },
                         margin: {
-                            top: "10mm",
+                            top: "20mm",
                             right: "10mm",
                             bottom: "10mm",
-                            left: "10mm",
+                            left: "20mm",
                         }
                     },
                 },
                 children: [
-                    tableTS,
+                    tableTS3Columns,
                     paragraphTabela1,
                     paragraphBadania,
                     customerTable,
                     new docx.Paragraph({
                         style: "headerTxt",
-                        text: " ",
+                        text: "  ",
                     }),
                     new docx.Table({
+                        // borders: TableBorders.NONE,
+                        borders: docx.TableBorders.NONE,
                         alignment: AlignmentType.CENTER,
                         columnWidths: [convertMillimetersToTwip(6), convertMillimetersToTwip(65), convertMillimetersToTwip(45), convertMillimetersToTwip(14), convertMillimetersToTwip(12), convertMillimetersToTwip(11), convertMillimetersToTwip(11), convertMillimetersToTwip(12)],
                         rows: [
                             tableHeader1Text,
                             tableHeader2Text,
                             tableRowNumbers,
+                            ...dataTable.map((element, index) => {
+                                return new docx.TableRow({
+                                    children: [
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(6),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                alignment: docx.AlignmentType.CENTER,
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: element.info.numberLp,
+                                                        bold: element.typeOfRow === "rowTextBold" ? true : false,
+                                                    })
+                                                ],
+                                            })
+                                            ],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(65),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                alignment: docx.AlignmentType.LEFT,
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: element.info.place,
+                                                        bold: element.typeOfRow === "rowTextBold" ? true : false,
+                                                    })
+                                                ],
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(45),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                text: element.info.measurings,
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(14),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                text: element.info.wynik1,
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(12),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                text: element.info.norma1,
+                                            })
+                                            ],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(11),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                text: element.info.wynik2,
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(11),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                text: element.info.norma2,
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(12),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "normalData",
+                                                text: element.info.compatibility,
+                                            })],
+                                        }),
+                                    ],
+                                })
+                            })
                         ],
                     }),
+                    // loopForParagraph(),
+                    // loopForDataTable(),
                 ],
             },
         ],
     });
+
+
 
     docx.Packer.toBlob(doc).then((blob) => {
         // console.log("blob", blob);
