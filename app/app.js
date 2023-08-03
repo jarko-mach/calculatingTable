@@ -365,13 +365,19 @@ export const saveTable = (nameOfTable) => {
             dataTableLocal[row].info.measurings = correctMeasurments(nodeList[3 + addRowElements].value)
 
             // element 5 - eksploatacyjne wynik
-            dataTableLocal[row].info.wynik1 = nodeList[4 + addRowElements].value
+            let wynik1Class = ""
+            if (nodeList[4 + addRowElements].className == "wynik-1 measuringsToLow") { wynik1Class = false }
+
+            dataTableLocal[row].info.wynik1 = nodeList[4 + addRowElements].value + wynik1Class
 
             // element 6 - eksploatacyjne norma 
             dataTableLocal[row].info.norma1 = nodeList[5 + addRowElements].value
 
-            // element 7 - rownomiernosc pomiary
-            dataTableLocal[row].info.wynik2 = nodeList[6 + addRowElements].value
+            // element 7 - rownomiernosc pomiary            
+            let wynik2Class = ""
+            if (nodeList[6 + addRowElements].className == "wynik-2 measuringsToLow") { wynik2Class = false }
+
+            dataTableLocal[row].info.wynik2 = nodeList[6 + addRowElements].value + wynik2Class
 
             // element 8 - rownomiernosc norma
             dataTableLocal[row].info.norma2 = nodeList[7 + addRowElements].value
@@ -495,20 +501,32 @@ export const readDoc = (nameOfTable) => {
         nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
 
         // element 4 - eksploatacyjne wynik
-        nodeList[4 + addRowElements].value = dataTable[row].info.wynik1
+
+        let localString4 = dataTable[row].info.wynik1
+        let foundIndex4 = localString4.indexOf("false")
+        // jeżeli do wyniku dopisano false, to ten wynik powinien byc podkreslony, jest błędny i nie spełnia normy PN
+        if (foundIndex4 !== -1) {
+            nodeList[4 + addRowElements].value = localString4.slice(0, foundIndex4)
+            nodeList[4 + addRowElements].classList.add("measuringsToLow")
+        } else { nodeList[4 + addRowElements].value = localString4 }
 
         // element 5 - eksploatacyjne norma 
         nodeList[5 + addRowElements].value = dataTable[row].info.norma1
 
         // element 6 - rownomiernosc pomiary
-        nodeList[6 + addRowElements].value = dataTable[row].info.wynik2.replace('.', ',')
+        let localString6 = dataTable[row].info.wynik2.replace('.', ',')
+        let foundIndex6 = localString6.indexOf("false")
+        // jeżeli do wyniku dopisano false, to ten wynik powinien byc podkreslony, jest błędny i nie spełnia normy PN
+        if (foundIndex6 !== -1) {
+            nodeList[6 + addRowElements].value = localString6.slice(0, foundIndex6)
+            nodeList[6 + addRowElements].classList.add("measuringsToLow")
+        } else { nodeList[6 + addRowElements].value = localString6 }
 
         // element 7 - rownomiernosc norma
         nodeList[7 + addRowElements].value = dataTable[row].info.norma2
 
         // element 8 - zgodnosc
         nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
-
     }
 }
 

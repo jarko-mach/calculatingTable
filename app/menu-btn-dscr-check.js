@@ -442,10 +442,10 @@ export const setButtonsEnabledDisabled = (expr) => {
             break;
 
         case 'zapisano':
-            console.log('............');
+            // console.log('............');
             break;
         default:
-            console.log(`Sorry, we are out of ${expr}.`);
+            // console.log(`Sorry, we are out of ${expr}.`);
     }
     menu_buttons()
     menu_checkboxes()

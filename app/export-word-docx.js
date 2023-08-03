@@ -19,7 +19,8 @@ import {
     PageOrientation,
     BorderStyle,
     TableBorders,
-    Border
+    Border,
+    UnderlineType
 } from "../docx/build/index.js"
 
 import { readTemporaryTableReportName } from "./app.js"
@@ -89,7 +90,7 @@ export const newTable = () => {
 
     let dataReport = JSON.parse(localStorage.getItem(`${localTabName}Report`))
     let dataTable = JSON.parse(localStorage.getItem(`${localTabName}Table`))
-    console.log(dataTable[0].info.numberLp)
+    // console.log(dataTable[0].info.numberLp)
 
     const loopForDataTable = () => {
         const localDataTable = new docx.Table({
@@ -275,6 +276,7 @@ export const newTable = () => {
             ],
         })]
     })
+
 
     const paragraphTabela1 = new docx.Paragraph({
         style: "table1",
@@ -716,9 +718,36 @@ export const newTable = () => {
         ],
     })
 
+    const removeFalse = (arg) => {
+        let localString1 = ""
+        let localString2 = arg
+        let foundIndex = localString2.indexOf("false")
+        // jeżeli do wyniku dopisano false, to ten wynik powinien byc podkreslony, jest błędny i nie spełnia normy PN
+        if (foundIndex !== -1) {
+            localString1 = `  ${localString2.slice(0, foundIndex)}  `
+        } else { localString1 = localString2 }
+        return localString1
+    }
+
+    const setUnderline = (arg) => {
+        let localStyle = ""
+        let foundIndex = arg.indexOf("false")
+        // jeżeli do wyniku dopisano false, to ten wynik powinien byc podkreslony, jest błędny i nie spełnia normy PN
+        if (foundIndex !== -1) { localStyle = "underln" }
+        return localStyle
+    }
+
+    const addBottomBorder = (arg) => {
+        // console.log("arg", arg)
+        if (arg !== "rowThinLine") {
+            return { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" }
+        } else {
+            return { style: BorderStyle.THICK, size: 1 * 8, color: "000000" }
+        }
+    }
+
     const doc = new docx.Document({
         // pageOrientation: docx.PageOrientation.LANDSCAPE,
-        // pageOrientation: LANDSCAPE,
         styles: {
             paragraphStyles: [
                 {
@@ -806,17 +835,28 @@ export const newTable = () => {
                     run: {
                         size: "8pt",
                     },
-                }],
-            },
-            sections: [
+                },
                 {
-                    properties: {
-                        page: {
-                            size: {
+                    id: "underln",
+                    name: "podkreślenie",
+                    run: {
+                        size: "9pt",
+                        underline: {
+                            type: UnderlineType.THICK,
+                        },
+                    },
+                }
+            ],
+        },
+        sections: [
+            {
+                properties: {
+                    page: {
+                        size: {
                             // orientation: PageOrientation.PORTRAIT,
                             width: "210mm",
                             height: "297mm",
-                            
+
                         },
                         margin: {
                             top: "20mm",
@@ -848,9 +888,10 @@ export const newTable = () => {
                                 return new docx.TableRow({
                                     children: [
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -871,9 +912,10 @@ export const newTable = () => {
                                             ],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -893,9 +935,10 @@ export const newTable = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -909,9 +952,10 @@ export const newTable = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -921,13 +965,19 @@ export const newTable = () => {
                                             },
                                             children: [new docx.Paragraph({
                                                 style: "normalData",
-                                                text: element.info.wynik1,
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: `${removeFalse(element.info.wynik1)}`,
+                                                        style: `${setUnderline(element.info.wynik1)}`,
+                                                    }),
+                                                ]
                                             })],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -942,9 +992,10 @@ export const newTable = () => {
                                             ],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -954,13 +1005,20 @@ export const newTable = () => {
                                             },
                                             children: [new docx.Paragraph({
                                                 style: "normalData",
-                                                text: element.info.wynik2,
+
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: `${removeFalse(element.info.wynik2)}`,
+                                                        style: `${setUnderline(element.info.wynik2)}`,
+                                                    }),
+                                                ]
                                             })],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -974,9 +1032,10 @@ export const newTable = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
-                                                bottom: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
                                                 left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                                 right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
                                             },
@@ -1084,9 +1143,9 @@ export const exportWordDocument = () => {
     });
 
     docx.Packer.toBlob(doc).then((blob) => {
-        console.log("blob", blob);
+        // console.log("blob", blob);
         saveAs(blob, "example.docx");
-        console.log("Document created successfully");
+        // console.log("Document created successfully");
     });
 }
 
@@ -1116,9 +1175,9 @@ function generate() {
     });
 
     docx.Packer.toBlob(doc).then((blob) => {
-        console.log("blob", blob);
+        // console.log("blob", blob);
         saveAs(blob, "example.docx");
-        console.log("Document created successfully");
+        // console.log("Document created successfully");
     });
 }
 

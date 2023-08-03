@@ -27,7 +27,7 @@ export const fileNew = () => {
 
   const getOKButton = () => {
     const foundInputText = document.querySelector(".openDialogBox #fileName").value
-    console.log("OK", foundInputText)
+    // console.log("OK", foundInputText)
     const foundElement = document.querySelector(".openDialogBox")
     foundElement.innerHTML = `<div class="openDialogBox"></div>`
     infoTablesNamesSave(foundInputText)
