@@ -1,7 +1,4 @@
-import {
-    newTable,
-    exportWordDocument
-} from "./export-word-docx.js"
+import { newTable } from "./export-word-docx.js"
 
 import {
     setButtonsEnabledDisabled,

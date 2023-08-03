@@ -1,6 +1,4 @@
-// import { TextRun } from "docx"
-// import { TextRun } from "docx";
-// import { Border } from "docx"
+
 import {
     Document,
     convertMillimetersToTwip,
@@ -27,62 +25,6 @@ import { readTemporaryTableReportName } from "./app.js"
 
 // START
 
-const readDocDocx = (nameOfTable) => {
-    // removeAllNewRows()
-    let dataTable = JSON.parse(localStorage.getItem(`${nameOfTable}Table`))
-    // console.log("długość wczytywanej tablicy", dataTable.length)
-    // console.log("wczytujemy:", dataTable)
-
-    for (let i = 0; i < dataTable.length; i++) {
-        if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
-        if (dataTable[i].typeOfRow === "rowText") { tableAddTextLine() }
-        if (dataTable[i].typeOfRow === "rowDate") { tableAddDataLine() }
-        if (dataTable[i].typeOfRow === "rowEmpty") { tableAddEmptyLine() }
-        if (dataTable[i].typeOfRow === "rowThinLine") { tableAddThinLine() }
-    }
-
-    let readedClassesFromTable = convertClassesIntoOneString(classTableAll)
-    let nodeList = document.querySelectorAll(readedClassesFromTable)
-    // console.log("liczba elementów:", nodeList.length)
-    // console.log("tabela:", dataTable)
-    // console.log("elementy:", nodeList)
-
-    for (let row = 0; row < dataTable.length; row++) {
-
-        let addRowElements = row * 9
-
-        // element 0 - typ wiersza
-
-        // element 1 - lp
-        nodeList[1 + addRowElements].value = dataTable[row].info.numberLp
-
-        // element 2 - miejsce pomiarów
-        nodeList[2 + addRowElements].value = dataTable[row].info.place
-        nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 45)
-
-        // element 3 - pomiary
-        nodeList[3 + addRowElements].value = dataTable[row].info.measurings
-        nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
-
-        // element 4 - eksploatacyjne wynik
-        nodeList[4 + addRowElements].value = dataTable[row].info.wynik1
-
-        // element 5 - eksploatacyjne norma 
-        nodeList[5 + addRowElements].value = dataTable[row].info.norma1
-
-        // element 6 - rownomiernosc pomiary
-        nodeList[6 + addRowElements].value = dataTable[row].info.wynik2.replace('.', ',')
-
-        // element 7 - rownomiernosc norma
-        nodeList[7 + addRowElements].value = dataTable[row].info.norma2
-
-        // element 8 - zgodnosc
-        nodeList[8 + addRowElements].value = dataTable[row].info.compatibility
-
-    }
-}
-
-
 export const newTable = () => {
 
     const tabName = readTemporaryTableReportName()
@@ -91,116 +33,6 @@ export const newTable = () => {
     let dataReport = JSON.parse(localStorage.getItem(`${localTabName}Report`))
     let dataTable = JSON.parse(localStorage.getItem(`${localTabName}Table`))
     // console.log(dataTable[0].info.numberLp)
-
-    const loopForDataTable = () => {
-        const localDataTable = new docx.Table({
-            rows: [...dataTable.map((element, index) => {
-                return new docx.TableRow({
-                    children: [
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(6),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                alignment: docx.AlignmentType.CENTER,
-                                children: [
-                                    new docx.TextRun({
-                                        text: element.info.numberLp,
-                                        bold: true,
-                                    })
-                                ],
-                            })
-                            ],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(65),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                alignment: docx.AlignmentType.LEFT,
-                                children: [
-                                    new docx.TextRun({
-                                        text: element.info.place,
-                                        bold: true,
-                                    })
-                                ],
-                            })],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(45),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                text: element.info.measurings,
-                            })],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(14),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                text: element.info.wynik1,
-                            })],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(12),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                text: element.info.norma1,
-                            })
-                            ],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(11),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                text: element.info.wynik2,
-                            })],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(11),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                text: element.info.norma2,
-                            })],
-                        }),
-                        new docx.TableCell({
-                            width: {
-                                size: convertMillimetersToTwip(12),
-                                type: docx.WidthType.DXA,
-                            },
-                            children: [new docx.Paragraph({
-                                style: "normalData",
-                                text: element.info.compatibility,
-                            })],
-                        }),
-                    ],
-                })
-            })
-            ]
-        })
-        return localDataTable
-    }
-
-
-    // newTable(dataReport)
     // console.log("doc dataReport", dataReport)
 
     const tableTS3Columns = new docx.Table({
@@ -1053,15 +885,11 @@ export const newTable = () => {
                             })
                         ],
                     }),
-                    // loopForParagraph(),
-                    // loopForDataTable(),
                 ],
             },
         ],
     });
 
-
-
     docx.Packer.toBlob(doc).then((blob) => {
         // console.log("blob", blob);
         saveAs(blob, "example.docx");
@@ -1069,116 +897,3 @@ export const newTable = () => {
     });
 
 }
-
-
-// KKKKKKKKKKKKKKK
-
-export const exportWordDocument = () => {
-    // console.log("nastąpiła próba wysłania dokumentu WORD")
-
-    const paragraph_title = new docx.Paragraph({
-        text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",
-        heading: HeadingLevel.HEADING_2,
-        alignment: AlignmentType.CENTER,
-    })
-
-    const paragraph2 = new docx.Paragraph({
-        text: "Tu powinno coś być w niedługim czasie :)",
-        heading: HeadingLevel.HEADING_2,
-        alignment: AlignmentType.LEFT,
-    });
-
-    const paragraphEmpty = new docx.Paragraph({
-        text: "",
-        style: "numbers",
-    });
-
-    const doc = new docx.Document({
-        styles: {
-            paragraphStyles: [
-                {
-                    id: "numbers",
-                    name: "Numerki",
-                    // basedOn: "Normal",
-                    // next: "Normal",
-                    run: {
-                        // bold: true,
-                        // italics: true,
-                    },
-                    paragraph: {
-                        alignment: docx.AlignmentType.CENTER,
-                    }
-                },
-                {
-                    id: "aside",
-                    name: "Aside",
-                    basedOn: "Normal",
-                    next: "Normal",
-                    run: {
-                        color: "999999",
-                        italics: true,
-                    },
-                    paragraph: {
-                        indent: {
-                            left: convertInchesToTwip(0.5),
-                        },
-                        spacing: {
-                            line: 276,
-                        },
-                    },
-                }]
-        },
-        sections: [
-            {
-                properties: {},
-                children: [
-                    paragraph_title,
-                    new docx.Paragraph({
-                        text: "TESTUJMY...",
-                        style: "numbers",
-                    }),
-                ]
-            }
-        ]
-    });
-
-    docx.Packer.toBlob(doc).then((blob) => {
-        // console.log("blob", blob);
-        saveAs(blob, "example.docx");
-        // console.log("Document created successfully");
-    });
-}
-
-function generate() {
-    const doc = new docx.Document({
-        sections: [
-            {
-                properties: {},
-                children: [
-                    new docx.Paragraph({
-                        style: "numbers",
-                        children: [
-                            new docx.TextRun("Badania oświetlenia elektrycznego"),
-                            new docx.TextRun({
-                                text: "Foo Bar",
-                                bold: true
-                            }),
-                            new docx.TextRun({
-                                text: "\tGithub is the best",
-                                bold: true
-                            })
-                        ]
-                    })
-                ]
-            }
-        ]
-    });
-
-    docx.Packer.toBlob(doc).then((blob) => {
-        // console.log("blob", blob);
-        saveAs(blob, "example.docx");
-        // console.log("Document created successfully");
-    });
-}
-
-
