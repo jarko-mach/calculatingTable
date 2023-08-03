@@ -221,6 +221,10 @@ textarea {
     border: 2px solid red;
 }
 
+.isGreenOutline {
+    border: 2px solid green;
+}
+
 .tdThinLine {
     font-size: 0.0em;
     border-top: 0.6px solid black;
@@ -267,6 +271,10 @@ label:hover {
 
 .redLabel {
     color: rgb(249, 0, 0);
+}
+
+.greenLabel {
+    color: rgb(32, 118, 5);
 }
 
 /* MENU Z-Index */

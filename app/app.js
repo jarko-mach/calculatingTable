@@ -9,7 +9,7 @@ import {
     menu_addListeners,
     prepareToPrint,
     tableButtonsInfo
-} from "./menu-btn-dscr-check.js"
+} from "./menu-btn-check.js"
 
 import {
     tableAddNumbers,
@@ -172,7 +172,7 @@ export const recalcAll = function (e) {
         // console.log("efekt polecenia split", measurementsRowTable)
 
         measurementsRowTable.forEach((elem, index) => { measurementsRowTable[index] = Number(measurementsRowTable[index]) })
-        // console.log("zamiana na Number", measurementsRowTable)
+        console.log("zamiana na Number", measurementsRowTable)
 
         const computeEksploatacyjne = () => {
             let sum = 0
@@ -237,7 +237,6 @@ export const recalcAll = function (e) {
 
         if (foundError || uniformityNorm === 0) {
             nodeList[6 + addRowElements].classList.add("measuringsError")
-            // console.log("WYPAD: dziwne?? dane")
             continue
         } else {
             nodeList[6 + addRowElements].classList.remove("measuringsError")

@@ -13,7 +13,7 @@ import {
   readTemporaryTableReportName
 } from "./app.js"
 
-import { setButtonsEnabledDisabled } from "./menu-btn-dscr-check.js";
+import { setButtonsEnabledDisabled } from "./menu-btn-check.js";
 
 ////// DIALOG BOXES 
 

@@ -46,6 +46,24 @@ export const tableAddTextBoldLine = () => {
     lastElement.append(newElement)
 }
 
+export const tableAddTextBoldLineCursor = () => {
+    const lastElement = document.querySelector("tbody")
+    let newElement = document.createElement("tr")
+    // console.log(lastElement, newElement)
+    newElement.classList.add("rowTextBold")
+    newElement.innerHTML =
+        ` <td > <input type="text" class="numberLp  tableTextBold"></td>
+          <td > <textarea class="place tableTextBold" rows="1"></textarea></td>
+          <td > <input type="text" class="measurings" disabled></td>
+          <td > <input type="text" class="wynik-1" disabled></td>
+          <td > <input type="text" class="norma-1" disabled></td>
+          <td > <input type="text" class="wynik-2" disabled></td>
+          <td > <input type="text" class="norma-2" disabled></td>
+          <td > <input type="text" class="compatibility" disabled></td>
+    `
+    lastElement.append(newElement)
+}
+
 export const tableAddTextLine = () => {
     const lastElement = document.querySelector("tbody")
     let newElement = document.createElement("tr")
@@ -81,8 +99,12 @@ export const tableAddDataLine = () => {
     lastElement.append(newElement)
 }
 
-export const tableAddEmptyLine = () => {
+export const tableAddEmptyLine = (method, element) => {
+    if (method==="after") {
 
+    } else {
+        
+    }
     const lastElement = document.querySelector("tbody")
     let newElement = document.createElement("tr")
     newElement.classList.add("rowEmpty")
@@ -119,6 +141,8 @@ export const tableAddThinLine = () => {
     lastElement.append(newElement)
 }
 
+// REMOVE TABLE ROW
+
 export const removeTableRow = (e) => {
 
     let element = e.target.closest("tr")
@@ -153,7 +177,7 @@ export const checkboxRemoveTableRowChanged = () => {
     let checkBoxState = document.querySelector("#removeTableRow");
     // console.log("checkbox", checkBoxState)
     if (checkBoxState.checked == true) {
-        document.querySelector(".labelCB").classList.add("redLabel")
+        document.querySelector("#labelCB1").classList.add("redLabel")
         document.querySelector(".labelCB").textContent = "usuwasz!"
 
         document.querySelectorAll(".tdThinLine").forEach((element, index) => {
@@ -163,7 +187,7 @@ export const checkboxRemoveTableRowChanged = () => {
         document.querySelector("tbody").addEventListener("mouseover", colorTableRow)
         document.querySelector("tbody").addEventListener("mouseout", discolorTableRow)
     } else {
-        document.querySelector(".labelCB").classList.remove("redLabel")
+        document.querySelector("#labelCB1").classList.remove("redLabel")
         document.querySelector(".labelCB").textContent = "usuwanie"
 
         document.querySelectorAll(".tdThinLine").forEach((element, index) => {
@@ -172,6 +196,67 @@ export const checkboxRemoveTableRowChanged = () => {
         document.querySelector("tbody").removeEventListener("click", removeTableRow)
         document.querySelector("tbody").removeEventListener("mouseover", colorTableRow)
         document.querySelector("tbody").removeEventListener("mouseout", discolorTableRow)
+    }
+
+}
+
+// ADD TABLE ROW
+
+export const addTableRow = (e) => {
+
+    let element = e.target.closest("tr")
+    console.log("element", element, element.classList)
+    // if (element.classList == "rowTextBold isRedOutline" ||
+    // element.classList == "rowText isRedOutline" ||
+    // element.classList == "rowDate isRedOutline" ||
+    // element.classList == "rowEmpty isRedOutline" ||
+    // element.classList == "rowThinLine isRedOutline") {
+    // element.remove()
+    let checkBoxState = document.querySelector("#addTableRow")
+    checkBoxState.checked = false
+    tableAddEmptyLine("after", element)
+    // checkboxRemoveTableRowChanged()
+    // }
+}
+
+const colorGreenTableRow = (e) => {
+    let element = e.target.closest("tr")
+    let myValue = element.classList
+    // console.log("myValue", myValue)
+    if (myValue && myValue !== "showNumbers" && myValue !== "nocolor") {
+        element.classList.add("isGreenOutline")
+    }
+}
+
+const discolorGreenTableRow = (e) => {
+    let element = e.target.closest("tr")
+    element.classList.remove("isGreenOutline")
+}
+
+
+export const checkboxADDTableRowChanged = () => {
+    let checkBoxState = document.querySelector("#addTableRow");
+    console.log("checkbox", checkBoxState)
+    if (checkBoxState.checked == true) {
+        document.querySelector("#labelCB2").classList.add("greenLabel")
+        document.querySelector("#labelCB2").textContent = "wstawiasz"
+
+        //     document.querySelectorAll(".tdThinLine").forEach((element, index) => {
+        //         element.classList.add("tdThinLineLarger")
+        //     })
+        document.querySelector("tbody").addEventListener("click", addTableRow)
+        document.querySelector("tbody").addEventListener("mouseover", colorGreenTableRow)
+        document.querySelector("tbody").addEventListener("mouseout", discolorGreenTableRow)
+    } else {
+        document.querySelector("#labelCB2").classList.remove("greenLabel")
+        document.querySelector("#labelCB2").textContent = "wstawianie"
+
+        //     document.querySelectorAll(".tdThinLine").forEach((element, index) => {
+        //         element.classList.remove("tdThinLineLarger")
+        //     })
+        document.querySelector("tbody").removeEventListener("click", addTableRow)
+        document.querySelector("tbody").removeEventListener("mouseover", colorGreenTableRow)
+        document.querySelector("tbody").removeEventListener("mouseout", discolorGreenTableRow)
     }
 
 }

@@ -14,14 +14,16 @@ import {
     tableAddEmptyLine,
     tableAddThinLine,
     removeTableRow,
-    checkboxRemoveTableRowChanged
+    checkboxRemoveTableRowChanged,
+    tableAddTextBoldLineCursor,
+    checkboxADDTableRowChanged
 } from "./table-operations.js"
 
 import {
     fileNew,
     fileSave,
     fileRead
-} from "./dialog-boxes.js"
+} from "./file-new-save-read.js"
 
 import {
     newTable
@@ -89,7 +91,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddTextBoldLine(), menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        functionPerformed: function () { tableAddTextBoldLineCursor(), menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddPlace",
@@ -98,7 +100,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddTextLine();menu_checkboxGreyBackgroundChanged(),  operationIsDone() },
+        functionPerformed: function () { tableAddTextLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAdd",
@@ -146,11 +148,24 @@ let tableCheckBoxInfo = [
         functionPerformed: function () { },
     },
     {
+        id: "addTableRow",
+        name: "addTableRow",
+        checked: "",
+        disabled: "disabled",
+        labelId: "labelCB2",
+        labelFor: "addTableRow",
+        class: "labelCB",
+        checkboxText: "wstawianie",
+        descriptionText: "<p>Jeżeli .........</p>",
+        descriptionClass: "footerDescription101",
+        functionPerformed: function () { },
+    },
+    {
         id: "addGreyBackground",
         name: "addGreyBackground",
         checked: "",
         disabled: "disabled",
-        labelId: "labelCB2",
+        labelId: "labelCB3",
         labelFor: "addGreyBackground",
         class: "labelCB",
         checkboxText: "wyszarzenie",
@@ -163,7 +178,7 @@ let tableCheckBoxInfo = [
         name: "showDescriptions",
         checked: "checked",
         disabled: "",
-        labelId: "labelCB3",
+        labelId: "labelCB4",
         labelFor: "showDescriptions",
         class: "labelCB",
         checkboxText: "opis przycisków",
@@ -377,6 +392,7 @@ export const menu_checkboxGreyBackgroundChanged = () => {
 export const menu_addListeners = () => {
     document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
     document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
+    document.querySelector("#addTableRow").addEventListener("click", checkboxADDTableRowChanged)
     document.querySelector("#addGreyBackground").addEventListener("click", menu_checkboxGreyBackgroundChanged)
     document.querySelector("#showDescriptions").addEventListener("click", menu_checkboxShowHideAllDescriptions)
 }
@@ -412,6 +428,8 @@ export const setButtonsEnabledDisabled = (expr) => {
 
             tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].disabled = "disabled"
             tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].checked = ""
+            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].disabled = "disabled"
+            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].checked = ""
             tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].disabled = "disabled"
             tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].checked = ""
             tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].disabled = ""
@@ -436,6 +454,8 @@ export const setButtonsEnabledDisabled = (expr) => {
 
             tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].disabled = ""
             tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].checked = ""
+            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].disabled = ""
+            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].checked = ""
             tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].disabled = ""
             tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].checked = ""
             tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].disabled = ""
