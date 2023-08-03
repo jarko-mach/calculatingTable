@@ -35,8 +35,9 @@ export let tableButtonsInfo = [
         id: "buttonNew",
         class: "button",
         buttonText: "Nowa",
-        descriptionText: `<p>Rozpoczyna nowe sprawozdanie. Dla nowego sprawozdania wymagana jest nowa nazwa.<br>Dalsze prace odbywać się będą pod ustaloną nazwą, 
-                            aktywny będą pozostałe klawisze</p>`,
+        descriptionText: `<p>Rozpoczyna nowe sprawozdanie / nową tabelę nr 1. Dla nowego sprawozdania wymagana jest nowa nazwa.<br>
+            Dalsze prace odbywać się będą pod ustaloną nazwą, aktywne będą pozostałe klawisze. <br>
+            Nazwa musi mieć co najmniej 5 znaków, nie może mieć kropek i przecinków, maksymalnie obok siebie może być tylko 1 spacja</p>`,
         descriptionClass: "footerDescription1",
         disabled: "",
         functionPerformed: function () { fileNew() },
@@ -45,7 +46,7 @@ export let tableButtonsInfo = [
         id: "buttonSave",
         class: "button",
         buttonText: "Zapisz",
-        descriptionText: "<p>Zapisuje zawartość tabelki lokalnie na dysku</p>",
+        descriptionText: "<p>Zapisuje zawartość widocznej tabelki lokalnie na dysku twardym</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
         functionPerformed: function () { fileSave() },
@@ -54,7 +55,7 @@ export let tableButtonsInfo = [
         id: "buttonRead",
         class: "button",
         buttonText: "Wczytaj",
-        descriptionText: "<p>Odczytuje sprawozdanie zapisane wcześniej lokalnie na dysku</p>",
+        descriptionText: "<p>Może istnieć kilka sprawozdań, każde z inną nazwą. Tutaj można wybrać określone sprawozdanie z rozwijanej listy.</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
         functionPerformed: function () { fileRead() }
@@ -63,7 +64,7 @@ export let tableButtonsInfo = [
         id: "buttonExport",
         class: "button",
         buttonText: "Eksportuj",
-        descriptionText: "<p>Po zakończeniu pracy eksportuje wszystkie dane do formatu Word'a</p>",
+        descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
         functionPerformed: function () { newTable() }, //exportDocument(), operationIsDone() 
@@ -88,7 +89,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddTextBoldLine(), operationIsDone() },
+        functionPerformed: function () { tableAddTextBoldLine(), menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddPlace",
@@ -97,7 +98,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddTextLine(); operationIsDone() },
+        functionPerformed: function () { tableAddTextLine();menu_checkboxGreyBackgroundChanged(),  operationIsDone() },
     },
     {
         id: "buttonAdd",
@@ -106,7 +107,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddDataLine(); operationIsDone() },
+        functionPerformed: function () { tableAddDataLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddSpace",
@@ -115,7 +116,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden pusty wiersz - można go używać do: <br> 1° oddzielania kilku grup linii tekstu od siebie <br> 2° oddzielenia linii tekstu od linii graficznej</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddEmptyLine(); operationIsDone() },
+        functionPerformed: function () { tableAddEmptyLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddThinLine",
@@ -124,7 +125,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje cienką widoczną graficzną linię na końcu tabeli</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddThinLine(); operationIsDone() },
+        functionPerformed: function () { tableAddThinLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
 ]
 
@@ -153,7 +154,7 @@ let tableCheckBoxInfo = [
         labelFor: "addGreyBackground",
         class: "labelCB",
         checkboxText: "wyszarzenie",
-        descriptionText: "<p>Jeżeli poza nagłówkiem tabeli istnieją dopisane wiersze (dane), to dodaje szare tło do pól, które można edytować</p>",
+        descriptionText: "<p>Jeżeli poza nagłówkiem tabeli istnieją dopisane wiersze (dane), to dodaje szare tło tylko do tych pól, które można edytować</p>",
         descriptionClass: "footerDescription102",
         functionPerformed: function () { },
     },
@@ -445,7 +446,7 @@ export const setButtonsEnabledDisabled = (expr) => {
             // console.log('............');
             break;
         default:
-            // console.log(`Sorry, we are out of ${expr}.`);
+        // console.log(`Sorry, we are out of ${expr}.`);
     }
     menu_buttons()
     menu_checkboxes()
