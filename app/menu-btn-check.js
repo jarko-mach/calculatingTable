@@ -15,7 +15,6 @@ import {
     tableAddThinLine,
     removeTableRow,
     checkboxRemoveTableRowChanged,
-    tableAddTextBoldLineCursor,
     checkboxADDTableRowChanged
 } from "./table-operations.js"
 
@@ -91,7 +90,7 @@ export let tableButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
         disabled: "disabled",
-        functionPerformed: function () { tableAddTextBoldLineCursor(), menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        functionPerformed: function () { tableAddTextBoldLine(), menu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddPlace",

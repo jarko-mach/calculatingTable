@@ -172,7 +172,7 @@ export const recalcAll = function (e) {
         // console.log("efekt polecenia split", measurementsRowTable)
 
         measurementsRowTable.forEach((elem, index) => { measurementsRowTable[index] = Number(measurementsRowTable[index]) })
-        console.log("zamiana na Number", measurementsRowTable)
+        // console.log("zamiana na Number", measurementsRowTable)
 
         const computeEksploatacyjne = () => {
             let sum = 0

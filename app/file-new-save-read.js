@@ -29,7 +29,7 @@ export const fileNew = () => {
     const foundInputText = document.querySelector(".openDialogBox #fileName").value
     // console.log("OK", foundInputText)
     const foundElement = document.querySelector(".openDialogBox")
-    foundElement.innerHTML = `<div class="openDialogBox"></div>`
+    foundElement.innerHTML = ``
     infoTablesNamesSave(foundInputText)
     saveReport(foundInputText)
     saveTable(foundInputText)
@@ -122,7 +122,9 @@ export const fileRead = () => {
     const foundInputText = document.querySelector(".openDialogBox #fileName").value
     // console.log("OK", foundInputText)
     const foundElement = document.querySelector(".openDialogBox")
-    foundElement.innerHTML = `<div class="openDialogBox"></div>`
+    // console.log("OK foundElement", foundElement)
+
+    foundElement.innerHTML = ` `
     readDoc(foundInputText)
     readReport(foundInputText)
     saveTemporaryTableReportName(foundInputText)
@@ -136,6 +138,7 @@ export const fileRead = () => {
 
   const getCancelButton = () => {
     const foundElement = document.querySelector(".openDialogBox")
+    // console.log("CANCEL foundElement", foundElement)
     foundElement.innerHTML = `<div class="openDialogBox"></div>`
   }
 
