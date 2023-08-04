@@ -155,7 +155,7 @@ let tableCheckBoxInfo = [
         labelFor: "addTableRow",
         class: "labelCB",
         checkboxText: "wstawianie",
-        descriptionText: "<p>Jeżeli .........</p>",
+        descriptionText: "<p>Po kliknięciu myszką w istniejącą wiersz tabeli otwiera się okno dialogowe, które pozwala wybrać gdzie i jaki wiersz zostanie dodany do tabeli.</p>",
         descriptionClass: "footerDescription101",
         functionPerformed: function () { },
     },
