@@ -443,7 +443,7 @@ footer div p {
 }
 
 .dialogBoxHeader {
-    width: 340px;
+    width: 360px;
     height: 20px;
     box-sizing: border-box;
     background-color: rgb(171, 216, 214);
@@ -454,7 +454,7 @@ footer div p {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 340px;
+    width: 360px;
     height: 45px;
 }
 
