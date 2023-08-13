@@ -397,6 +397,12 @@ export const menu_addListeners = () => {
 }
 
 
+// START DESCRIPTION
+
+const menu_showDescription = () => {
+    console.log("o co tu chodzi")
+}
+
 //  SETS THE CURRENT STATE OF THE BUTTONS
 
 export const setButtonsEnabledDisabled = (expr) => {
@@ -471,4 +477,5 @@ export const setButtonsEnabledDisabled = (expr) => {
     menu_checkboxes()
     menu_checkboxShowHideAllDescriptions()
     menu_addListeners()
+    // menu_showDescription()
 }

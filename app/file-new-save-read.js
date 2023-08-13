@@ -20,8 +20,8 @@ import { setButtonsEnabledDisabled } from "./menu-btn-check.js";
 // FILE NEW
 
 export const fileNew = () => {
-  const header = "Utwórz nowe sprawozdanie wraz z tabelą do ";
-  const labelString = "Zapisz jako";
+  const header = "Utwórz nową Tabelę nr 1 wraz z danymi klienta i numerem TSO";
+  const labelString = "Podaj dowolną nazwę:";
   const commandType = "Zapisz";
   const wasNames = infoTablesNamesRead()
 
@@ -78,10 +78,19 @@ export const fileNew = () => {
             </div>
             <div class="dialogBoxChild">
                 <label for="fileName">${labelString}</label>
-                <input type="text" id="fileName" placeholder="co najmniej 5 znaków...">
+                <input type="text" id="fileName" class="inputError" placeholder="co najmniej 5 znaków...">
             
                 <button class="okSave" disabled>${commandType}</button>
                 <button class="noCancel">Anuluj</button>
+            </div>
+            <div class="dialogBoxComment">
+            <p>Czerwona obwódka świadczy o tym, że podana nazwa nie zostanie zaakceptowana. <br>
+            Nazwa zostanie zakceptowana, gdy jednocześnie:<br>
+            – będzie dłuższa niż 4 znaki, <br>
+            – nie będzie zawierać kropki, <br>
+            – nie będzie zawierać przecinka, <br>
+            – nie będzie 2 spacji obok siebie, <br>
+            – no i nie będzie identyczna, jak nazwa utworzona wcześniej i zapisana lokalnie na dysku.</p>
             </div>
           </div>
     `

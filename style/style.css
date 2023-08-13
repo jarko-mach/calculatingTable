@@ -486,6 +486,14 @@ footer div p {
     background-color: rgb(237, 252, 243);
 }
 
+.dialogBoxComment {
+    width: 310px;
+    /* height: 45px;    */
+    font-style: italic;
+    color: darkolivegreen;
+    margin: 0 auto;
+}
+
 /* DIALOG BOX ADD ROW*/
 
 .dialogBoxParent_Add {
