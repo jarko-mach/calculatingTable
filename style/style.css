@@ -351,6 +351,11 @@ label:hover {
     width: 100px;
 }
 
+.footerDescription103 {
+    top: 230px;
+    width: 100px;
+}
+
 /* SHOW BUTTONS AND CHECKBOXES HELP */
 
 .footerDescriptionVisible {
@@ -455,7 +460,7 @@ footer div p {
     justify-content: center;
     align-items: center;
     width: 360px;
-    height: 45px;
+    height: 50px;
 }
 
 .dialogBoxChild input {
@@ -487,11 +492,12 @@ footer div p {
 }
 
 .dialogBoxComment {
-    width: 310px;
-    /* height: 45px;    */
+    width: 340px;
+    /* height: 100px; */
+    font-size: 0.8em;
     font-style: italic;
     color: darkolivegreen;
-    margin: 0 auto;
+    margin: -10px auto 0 auto;
 }
 
 /* DIALOG BOX ADD ROW*/

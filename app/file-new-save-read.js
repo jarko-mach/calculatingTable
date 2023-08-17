@@ -1,3 +1,4 @@
+"use strict"
 // node_modules/docx/build/index.js
 // import * as docx from "../node_modules/docx/build/index.js"
 

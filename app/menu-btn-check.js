@@ -1,3 +1,5 @@
+"use strict";
+
 import {
     classTableColumns,
     recalcAll,
@@ -202,7 +204,7 @@ function menu_addButtons() {
         // left menu
         if (i <= 4) {
             if (i === 0) { textDivWithButtons += `<p class="textMenu">Tabela z danymi:</p>` }
-            if (i === 4) { textDivWithButtons += `<p class="textMenu">Sprawdź poprawność:</p>` }
+            if (i === 4) { textDivWithButtons += `<p class="textMenu">Sprawdź zgodność z PN:</p>` }
             textDivWithButtons += tempString
             // console.log(i, tableButtonsInfo[i].id)
         }

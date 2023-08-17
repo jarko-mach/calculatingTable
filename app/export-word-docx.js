@@ -1,3 +1,4 @@
+"use strict";
 
 import {
     Document,
@@ -83,7 +84,7 @@ export const newTable = () => {
                     },
                     children: [new docx.Paragraph({
                         style: "headerTxt",
-                        text: `Sprawozdanie TSO/${dataReport.numberTSO}/${dataReport.year}`,
+                        text: `Sprawozdanie numer TSO/${dataReport.numberTSO}/${dataReport.year}`,
                     })
                     ],
                 }),

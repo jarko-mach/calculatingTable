@@ -1,3 +1,5 @@
+"use strict";
+
 import { newTable } from "./export-word-docx.js"
 
 import {
@@ -322,7 +324,11 @@ export const saveTable = (nameOfTable) => {
             return false;
         }
     }
-
+    
+    if (!localStorageTest()) {
+        alert("Błąd zapisu na dysku twardym. Program nie będzie działał poprawnie")
+        
+    }
     // odczytuję liczbę wierszy zapisanej tabeli
     let readedClassesFromTable = convertClassesIntoOneString(classTableRows)
     const rowsNumber = document.querySelectorAll(readedClassesFromTable).length

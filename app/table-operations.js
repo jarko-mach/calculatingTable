@@ -1,3 +1,5 @@
+"use strict"
+
 // import { checkToUnblockSaveButton } from "./menu-btn-dscr-check.js"
 
 export const addFirstThreeColumnsHeader = () => {
@@ -6,7 +8,7 @@ export const addFirstThreeColumnsHeader = () => {
     myElement.innerHTML =
         ` 
         <span>TECHNO-SERVICE S.A. <br> Pracownia Ochrony Środowiska</span>
-        <p> Sprawozdanie TSO /<input type="text" class="numberTSO"> / <input type="text" class="yearTSO"></p>
+        <p> Sprawozdanie numer TSO /<input type="text" class="numberTSO"> / <input type="text" class="yearTSO"></p>
         <p>Strona / Stron <input type="text" class="pageTSO"> / <input type="text" class="pagesTSO"></p>
     `
     // myElement.addEventListener("click", checkToUnblockSacheckToUnblockSaveButtonveButton)
