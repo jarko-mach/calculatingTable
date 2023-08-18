@@ -430,7 +430,7 @@ export const saveReport = (nameOfReport) => {
 
     // element 2 - year
     dataReport.year = nodeList[1].value
-
+    debugger
     // element 3 - page
     dataReport.page = nodeList[2].value
 
@@ -440,7 +440,7 @@ export const saveReport = (nameOfReport) => {
     // element 5 - customer
     dataReport.customer = nodeList[4].value
 
-    // element 6 - placesof 
+    // element 6 - place of 
     dataReport.placeOfMeasurings = nodeList[5].value
 
     // element 7 - date
@@ -452,8 +452,6 @@ export const saveReport = (nameOfReport) => {
     // console.log("JSON", JSON.stringify(dataReport))
     localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
-
-
 
 
 // READING DATA
@@ -608,11 +606,11 @@ export const readPositionOfMouse = (e) => {
 }
 
 
-// START
+// START TABLE
 
-tableAddNumbers()
-addFirstThreeColumnsHeader()
-setButtonsEnabledDisabled("startApp")
+// tableAddNumbers()
+// addFirstThreeColumnsHeader()
+// setButtonsEnabledDisabled("startApp")
 // setButtonsEnabledDisabled("tableReaded")
 // startDoc()
 // newTable()

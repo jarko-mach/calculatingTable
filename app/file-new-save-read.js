@@ -135,6 +135,7 @@ export const fileRead = () => {
     // console.log("OK foundElement", foundElement)
 
     foundElement.innerHTML = ` `
+    debugger
     readDoc(foundInputText)
     readReport(foundInputText)
     saveTemporaryTableReportName(foundInputText)
