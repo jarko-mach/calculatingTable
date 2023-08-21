@@ -22,6 +22,7 @@ body {
     grid-template-columns: 25% 50% 25%;
     border: 0.6px solid black;
     margin: 60px auto 30px auto;
+    
 }
 
 .threeColumns span {
@@ -84,7 +85,7 @@ body {
     font-size: 12pt;
 }
 
-.badania {
+.entry {
     font-size: 15pt;
     font-weight: 600;
     text-align: center;
@@ -529,8 +530,6 @@ legend {
 .dialogBoxChild_Add input {
     margin: 2px 4px 0 2px;
     width: 8px;
-    /* font-size: 0.65em; */
-    /* padding: 2px; */
     background-color: rgb(237, 252, 243);
 }
 
@@ -681,7 +680,7 @@ legend {
 
 .tableSummary td {
     padding: 5px 9px 0px 9px;
-    width: 150px;
+    width: 100px;
 }
 
 .tableSummary .customerLabel {
@@ -697,4 +696,9 @@ legend {
     margin: 10px;
     padding: 1px;
     border: 1px solid rgb(143, 116, 116);
+}
+
+.fieldToFill {
+    background-color: rgb(254, 243, 243);
+    border: 0.6px solid black;
 }

@@ -1,21 +1,17 @@
 "use strict";
 
 import {
-    infoTablesNamesSave,
     infoTablesNamesRead,
-    saveReport,
-    saveTable,
-    operationIsDone,
-    // readDoc,
-    // readReport,
+    infoTablesNamesSave,
     saveTemporaryTableReportName,
-    // readTemporaryTableReportName
-} from "./app.js"
+    operationIsDone
+} from "../app.js";
 
+import { showStartingMenu } from "./starting-menu.js";
 
 // FILE NEW 
 
-const etap1_FileNew = () => {
+export const startNewReport = () => {
     const header = "Utwórz nowe sprawozdanie";
     const labelString = "Podaj dowolną nazwę:";
     const commandType = "Utwórz";
@@ -27,8 +23,8 @@ const etap1_FileNew = () => {
         foundElement.innerHTML = ``
         infoTablesNamesSave(foundInputText)
         saveTemporaryTableReportName(foundInputText)
+        showStartingTable()
         operationIsDone()
-        etap1_Start()
     }
 
     const getCancelButton = () => {
@@ -165,7 +161,7 @@ const etap1_FileRead = () => {
 
 // STARTING DIALOG BOX
 
-const etap1_DisplayDialogbox = () => {
+const chooseOldNewReport = () => {
     let whatNext = ""
 
     const getOKButton = () => {
@@ -173,12 +169,11 @@ const etap1_DisplayDialogbox = () => {
         for (const radio1 of radioGroupNewOrOld) {
             if (radio1.checked) {
                 whatNext = radio1.value;
-                // console.log("whatNext",whatNext)
                 break;
             }
         }
         getCancelButton();
-        if (whatNext === "new") etap1_FileNew()
+        if (whatNext === "new") startNewReport()
     }
 
     const getCancelButton = () => {
@@ -228,50 +223,48 @@ const etap1_DisplayDialogbox = () => {
     foundButtonCancel.addEventListener("click", getCancelButton)
 }
 
-const etap1_Start = () => {
-    const foundElement = document.querySelector(".badania")
+const showStartingTable = () => {
+
+    const removeFieldToFill = (e) => {
+        console.log("e", e)
+        e.target.classList.remove("fieldToFill")
+    }
+
+    const foundElement = document.querySelector(".entry")
     console.log("foundElement", foundElement)
 
-    const newDiv1 = document.createElement("div")
-    newDiv1.classList.add("badania_E2")
+    // const newDiv1 = document.createElement("div")
+    // newDiv1.classList.add("badania_E2")
 
-    foundElement.replaceWith(newDiv1)
-    newDiv1.innerHTML =
-        `
+    // foundElement.append(newDiv1)
+    foundElement.innerHTML =
+        `<div class="badania_E2">
             <p> SPRAWOZDANIE NUMER TSO /
-            <input type="text" class="numberTSO"> / 
-            <input type="text" class="yearTSO">
+            <input type="text" class="numberTSO fieldToFill"> / 
+            <input type="text" class="yearTSO fieldToFill">
             </p>
-        `
-    const newDiv2 = document.createElement("div")
-    newDiv2.classList.add("badania_E2")
-    newDiv2.innerHTML =
-        `
-         <span>Badania oświetlenia elektrycznego</span>
-        `
-    newDiv1.after(newDiv2)
-
-    const newDiv3 = document.createElement("div")
-    newDiv3.innerHTML = `
-
+        </div>
+        <div  class="badania_E2">
+            <span>Badania oświetlenia elektrycznego</span>
+        </div>
         <div class="customerGrid">
             <p class="customerLabel">Nazwa i adres Klienta:</p>
-            <textarea id="customerName" class="castomerInput" rows="1"></textarea>
+            <textarea id="customerName" class="castomerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <div class="customerGrid">
             <p class="customerLabel">Miejsce wykonania badań:</p>
-            <textarea id="researchAddress" class="castomerInput" rows="1"></textarea>
+            <textarea id="researchAddress" class="castomerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <div class="customerGrid">
             <p class="customerLabel">Badane czynniki:</p>
-            <textarea id="factorsTested" class="castomerInput" rows="1"></textarea>
+            <textarea id="factorsTested" class="castomerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <div class="customerGrid">
             <p class="customerLabel">Sporządził/a i autoryzował/a:</p>
-            <textarea id="complied" class="castomerInput" rows="1"></textarea>
+            <textarea id="complied" class="castomerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <table class="tableSummary">
@@ -279,30 +272,44 @@ const etap1_Start = () => {
             <tr>
                 <td>
                     <p class="customerLabel">Data wykonania badań:</p>
-                    <input id="researchDate" class="castomerInput" type="text">
+                    <input id="researchDate" class="castomerInput fieldToFill" type="text">
                 </td>
                 <td>
                     <p class="customerLabel">Data sporządzenia sprawozdania:</p>
-                    <input id="reportDate" class="castomerInput" type="text">
+                    <input id="reportDate" class="castomerInput fieldToFill" type="text">
                 </td>
                 <td>
                     <p class="customerLabel">Egzemplarz sprawozdania:</p>
-                    <input id="copyReportNumber" class="castomerInput" type="text">
+                    <input id="copyReportNumber" class="castomerInput fieldToFill" type="text">
                 </td>
                 <td>
                     <p class="customerLabel">Łączna liczba stron sprawozdania:</p>
-                    <input id="allPages" class="castomerInput" type="text">
+                    <input id="allPages" class="castomerInput fieldToFill" type="text">
                 </td>
             </tr>
           </tbody>
         </table>
         `
-    newDiv2.after(newDiv3)
-
+    document.addEventListener("change", removeFieldToFill)
 }
+
+const etap1_addTextPoints = () => {
+    const foundElement = document.querySelector(".openDialogBox")
+    const newDiv1 = document.createElement("div")
+    newDiv1.innerHTML =
+        `<p class="table1Text"><br>1. PODSTAWA WYKONANIA BADAŃ<br></p>
+        <p class="table1Text"><br>2. CEL BADAŃ<br></p>
+        <p class="table1Text"><br>3. METODYKA BADAŃ<br></p>
+        <p class="table1Text"><br>4. MIEJSCE I OKOLICZNOŚCI BADAŃ<br></p>
+        <p class="table1Text"><br>5. ZESTAWIENIE BADAŃ<br></p>
+        `
+    foundElement.before(newDiv1)
+}
+
 
 //   START PROGRAM
 
-etap1_DisplayDialogbox()
+// chooseOldNewReport()
+showStartingTable()
+showStartingMenu()
 
-// etap2_Start()

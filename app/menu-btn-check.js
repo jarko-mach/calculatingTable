@@ -18,7 +18,7 @@ import {
     removeTableRow,
     checkboxRemoveTableRowChanged,
     checkboxADDTableRowChanged
-} from "./table-operations.js"
+} from "./table-lighting/table-operations.js"
 
 import {
     fileNew,
@@ -391,7 +391,7 @@ export const menu_checkboxGreyBackgroundChanged = () => {
 // LISTENERS
 
 export const menu_addListeners = () => {
-    document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
+    // document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
     document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
     document.querySelector("#addTableRow").addEventListener("click", checkboxADDTableRowChanged)
     document.querySelector("#addGreyBackground").addEventListener("click", menu_checkboxGreyBackgroundChanged)
