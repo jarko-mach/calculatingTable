@@ -1,3 +1,5 @@
+"use strict";
+
 let dataReportOriginal = {
     id: 1,
     numberTSO: 111,

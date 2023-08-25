@@ -5,9 +5,11 @@ import {
     infoTablesNamesSave,
     saveTemporaryTableReportName,
     operationIsDone
-} from "../app.js";
+} from "../miscellaneous/misc.js";
 
-import { showStartingMenu } from "./starting-menu.js";
+import { createMainMenu } from "./main-menu.js";
+
+import { createNewStandardTable } from "../table-lighting/table-create.js";
 
 // FILE NEW 
 
@@ -23,7 +25,8 @@ export const startNewReport = () => {
         foundElement.innerHTML = ``
         infoTablesNamesSave(foundInputText)
         saveTemporaryTableReportName(foundInputText)
-        showStartingTable()
+        createMainTable()
+        createMainMenu()
         operationIsDone()
     }
 
@@ -60,13 +63,13 @@ export const startNewReport = () => {
     const newElement = document.createElement("div")
     newElement.classList.add("dialogBoxParent")
     newElement.innerHTML =
-        ` <div class="dialogBox">
-                <div class="dialogBoxHeader" > ${header} 
+        ` <div class="dialogBox wider300">
+                <div class="dialogBoxHeader wider300" > ${header} 
                 </div>
                 
-              <div class="dialogBoxChild">
+              <div class="dialogBoxChild dialogBoxChild_NewReport wider300">
                   <label for="fileName">${labelString}</label>
-                  <input type="text" id="fileName" class="inputError" placeholder="co najmniej 5 znaków...">
+                  <input type="text" id="fileName" class="inputError input_NewReport" placeholder="co najmniej 5 znaków...">
               
                   <button class="okSave" disabled>${commandType}</button>
                   <button class="noCancel">Anuluj</button>
@@ -161,7 +164,7 @@ const etap1_FileRead = () => {
 
 // STARTING DIALOG BOX
 
-const chooseOldNewReport = () => {
+const chooseOldOrNewReport = () => {
     let whatNext = ""
 
     const getOKButton = () => {
@@ -178,7 +181,7 @@ const chooseOldNewReport = () => {
 
     const getCancelButton = () => {
         if (!whatNext) {
-            const endingElement = document.querySelector(".badania")
+            const endingElement = document.querySelector(".entry")
             endingElement.innerHTML = `<p>Dziękuję za współpracę i do zobaczenia następnym razem</p>`
         }
         const foundElement = document.querySelector(".openDialogBox");
@@ -187,33 +190,33 @@ const chooseOldNewReport = () => {
 
     const foundElement = document.querySelector(".openDialogBox")
     const newElement = document.createElement("div")
-    newElement.classList.add("dialogBoxParent_Select")
+    newElement.classList.add("dialogBoxParent")
 
     newElement.innerHTML =
         ` 
-        <div class="dialogBox_Select">
-            <div class="dialogBoxHeader_Select"> Sprawozdanie
+        <div class="dialogBox">
+            <div class="dialogBoxHeader"> Sprawozdanie
             </div>
-            <div class="dialogBoxChild_Select">
-                <fieldset class="selectNarrow_Select">
+            <div class="dialogBoxChild">
+                <fieldset class="fieldsetWidth">
                     <legend>Wybierz:</legend>
-                    <div class="input_Select">
+                    <div class="inputDiv">
                         <input type="radio" id="insertNew" name="insertNewOrOld" value="new" checked>
                         <label for="insertNew">utwórz nowe sprawozdanie</label>
                     </div>
-                    <div class="input_Select">
+                    <div class="inputDiv">
                         <input type="radio" id="insertExisting" name="insertNewOrOld" value="existing">
                         <label for="insertExisting">pokaż listę zapisanych sprawozdań</label>
                     </div>
                 </fieldset>
-                <div class="btnLayout_Select">
+                <div class="btnLayout">
                     <button class="okSave">Dalej</button>
                     <button class="noCancel">Anuluj</button>
                 </div>
             </div>
-        </div>
-    
+        </div>  
       `
+
     foundElement.append(newElement)
 
     const foundButtonOK = document.querySelector(".openDialogBox .okSave")
@@ -223,7 +226,7 @@ const chooseOldNewReport = () => {
     foundButtonCancel.addEventListener("click", getCancelButton)
 }
 
-const showStartingTable = () => {
+const createMainTable = () => {
 
     const removeFieldToFill = (e) => {
         console.log("e", e)
@@ -231,20 +234,15 @@ const showStartingTable = () => {
     }
 
     const foundElement = document.querySelector(".entry")
-    console.log("foundElement", foundElement)
-
-    // const newDiv1 = document.createElement("div")
-    // newDiv1.classList.add("badania_E2")
-
-    // foundElement.append(newDiv1)
+    // console.log("foundElement", foundElement)
     foundElement.innerHTML =
-        `<div class="badania_E2">
+        `<div class="reportTitle">
             <p> SPRAWOZDANIE NUMER TSO /
             <input type="text" class="numberTSO fieldToFill"> / 
             <input type="text" class="yearTSO fieldToFill">
             </p>
         </div>
-        <div  class="badania_E2">
+        <div  class="reportTitle">
             <span>Badania oświetlenia elektrycznego</span>
         </div>
         <div class="customerGrid">
@@ -293,23 +291,76 @@ const showStartingTable = () => {
     document.addEventListener("change", removeFieldToFill)
 }
 
-const etap1_addTextPoints = () => {
+
+// ADD TABLE FOR POINT 5
+
+export const point5_selectTableType = () => {
+    let whatNext = ""
+
+    const getOKButton = () => {
+        const radioGroupStandardOrRescue = document.querySelectorAll("input[name=selectStandardOrRescue]")
+        for (const radio1 of radioGroupStandardOrRescue) {
+            if (radio1.checked) {
+                whatNext = radio1.value;
+                break;
+            }
+        }
+        getCancelButton();
+        if (whatNext === "standard") createNewStandardTable()
+    }
+
+    const getCancelButton = () => {
+        const foundElement = document.querySelector(".openDialogBox");
+        foundElement.innerHTML = ``;
+    }
+
     const foundElement = document.querySelector(".openDialogBox")
-    const newDiv1 = document.createElement("div")
-    newDiv1.innerHTML =
-        `<p class="table1Text"><br>1. PODSTAWA WYKONANIA BADAŃ<br></p>
-        <p class="table1Text"><br>2. CEL BADAŃ<br></p>
-        <p class="table1Text"><br>3. METODYKA BADAŃ<br></p>
-        <p class="table1Text"><br>4. MIEJSCE I OKOLICZNOŚCI BADAŃ<br></p>
-        <p class="table1Text"><br>5. ZESTAWIENIE BADAŃ<br></p>
-        `
-    foundElement.before(newDiv1)
+    const newElement = document.createElement("div")
+    newElement.classList.add("dialogBoxParent")
+
+    newElement.innerHTML =
+        ` 
+        <div class="dialogBox">
+            <div class="dialogBoxHeader wider400"> Wybierz rodzaj tabeli
+            </div>
+            <div class="dialogBoxChild wider400">
+                <fieldset class="fieldsetWidth wider200">
+                    <legend>Utwórz / wstaw:</legend>
+                    <div class="inputDiv">
+                        <input type="radio" id="insertStandard" name="selectStandardOrRescue" value="standard" checked>
+                        <label for="insertStandard">tabelę badania oświetlenia elektrycznego</label>
+                    </div>
+                    <div class="inputDiv">
+                        <input type="radio" id="insertRescue" name="selectStandardOrRescue" value="rescue">
+                        <label for="insertRescue">tabelę badania oświetlenia awaryjnego ewakuacyjnego</label>
+                    </div>
+                </fieldset>
+                <div class="btnLayout wider200">
+                    <button class="okSave">Dalej</button>
+                    <button class="noCancel">Anuluj</button>
+                </div>
+            </div>
+        </div>  
+      `
+
+    foundElement.append(newElement)
+
+    const foundButtonOK = document.querySelector(".openDialogBox .okSave")
+    foundButtonOK.addEventListener("click", getOKButton)
+
+    const foundButtonCancel = document.querySelector(".openDialogBox .noCancel")
+    foundButtonCancel.addEventListener("click", getCancelButton)
 }
 
+// const startNewTableStandard = () => {
+//     createNewStandardTable()
+// }
 
 //   START PROGRAM
 
-// chooseOldNewReport()
-showStartingTable()
-showStartingMenu()
+chooseOldOrNewReport()
+// createMainTable()
+// showMainMenu()
 
+
+// selectTable()

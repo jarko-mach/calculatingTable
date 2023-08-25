@@ -1,13 +1,16 @@
 "use strict";
 
+// import {
+// classTableColumns,
+// recalcAll,
+// readReport,
+// readDoc,
+// } from "./app.js"
+
 import {
-    classTableColumns,
-    recalcAll,
-    convertClassesIntoOneString,
-    readReport,
-    readDoc,
-    operationIsDone
-} from "./app.js"
+    operationIsDone,
+    convertClassesIntoOneString
+} from "../miscellaneous/misc.js";
 
 import {
     tableAddTextLine,
@@ -18,22 +21,22 @@ import {
     removeTableRow,
     checkboxRemoveTableRowChanged,
     checkboxADDTableRowChanged
-} from "./table-lighting/table-operations.js"
+} from "./table-operations.js"
 
-import {
-    fileNew,
-    fileSave,
-    fileRead
-} from "./file-new-save-read.js"
+// import {
+//     fileNew,
+//     fileSave,
+//     fileRead
+// } from "../file-new-save-read.js"
 
-import {
-    newTable
-} from "./export-word-docx.js"
+// import {
+//     newTable
+// } from "../export-word-docx.js"
 
 
-// START DEFINITION OF BUTTONS IN MENU
+// START DEFINITION OF BUTTONS IN TABLE MENU
 
-export let tableButtonsInfo = [
+export let tableMenu_ButtonsInfo = [
     {
         id: "buttonNew",
         class: "button",
@@ -91,8 +94,8 @@ export let tableButtonsInfo = [
         buttonText: "nagłówek",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { tableAddTextBoldLine(), menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        disabled: "",
+        functionPerformed: function () { tableAddTextBoldLine(), tableMenu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddPlace",
@@ -100,8 +103,8 @@ export let tableButtonsInfo = [
         buttonText: "stanowisko",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { tableAddTextLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        disabled: "",
+        functionPerformed: function () { tableAddTextLine(); tableMenu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAdd",
@@ -109,8 +112,8 @@ export let tableButtonsInfo = [
         buttonText: "pomiary",
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
         descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { tableAddDataLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        disabled: "",
+        functionPerformed: function () { tableAddDataLine(); tableMenu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddSpace",
@@ -118,8 +121,8 @@ export let tableButtonsInfo = [
         buttonText: "pusty wiersz",
         descriptionText: "<p>Dodaje do tabeli jeden pusty wiersz - można go używać do: <br> 1° oddzielania kilku grup linii tekstu od siebie <br> 2° oddzielenia linii tekstu od linii graficznej</p>",
         descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { tableAddEmptyLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        disabled: "",
+        functionPerformed: function () { tableAddEmptyLine(); tableMenu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
     {
         id: "buttonAddThinLine",
@@ -127,19 +130,19 @@ export let tableButtonsInfo = [
         buttonText: "linię",
         descriptionText: "<p>Dodaje cienką widoczną graficzną linię na końcu tabeli</p>",
         descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { tableAddThinLine(); menu_checkboxGreyBackgroundChanged(), operationIsDone() },
+        disabled: "",
+        functionPerformed: function () { tableAddThinLine(); tableMenu_checkboxGreyBackgroundChanged(), operationIsDone() },
     },
 ]
 
-// START DEFINITION OF CHECKBOXES IN MENU
+// START DEFINITION OF CHECKBOXES IN TABLE MENU
 
-let tableCheckBoxInfo = [
+let tableMenu_CheckBoxInfo = [
     {
         id: "removeTableRow",
         name: "removeTableRow",
         checked: "",
-        disabled: "disabled",
+        disabled: "",
         labelId: "labelCB1",
         labelFor: "removeTableRow",
         class: "labelCB",
@@ -152,7 +155,7 @@ let tableCheckBoxInfo = [
         id: "addTableRow",
         name: "addTableRow",
         checked: "",
-        disabled: "disabled",
+        disabled: "",
         labelId: "labelCB2",
         labelFor: "addTableRow",
         class: "labelCB",
@@ -165,7 +168,7 @@ let tableCheckBoxInfo = [
         id: "addGreyBackground",
         name: "addGreyBackground",
         checked: "",
-        disabled: "disabled",
+        disabled: "",
         labelId: "labelCB3",
         labelFor: "addGreyBackground",
         class: "labelCB",
@@ -189,18 +192,17 @@ let tableCheckBoxInfo = [
     },
 ]
 
+// BUTTONS IN TABLE MENU 
 
-
-// BUTTONS  
-
-function menu_addButtons() {
-    const elementDivWithButtons = document.querySelector(".menuButtons")
-    const elementDivWithButtonsInLine = document.querySelector(".menuButtonsInLine")
+function tableMenu_addButtons() {
+    const elementDivWithButtons = document.querySelector(".point5 .menuButtons")
+    const elementDivWithButtonsInLine = document.querySelector(".point5 .menuButtonsInLine")
     let textDivWithButtons = ``
     let textDivWithButtonsInLine = ``
+    // debugger
 
-    for (let i = 0; i < tableButtonsInfo.length; i++) {
-        let tempString = `<button id=${tableButtonsInfo[i].id} class=${tableButtonsInfo[i].class} ${tableButtonsInfo[i].disabled}> ${tableButtonsInfo[i].buttonText}</button>`
+    for (let i = 0; i < tableMenu_ButtonsInfo.length; i++) {
+        let tempString = `<button id=${tableMenu_ButtonsInfo[i].id} class=${tableMenu_ButtonsInfo[i].class} ${tableMenu_ButtonsInfo[i].disabled}> ${tableMenu_ButtonsInfo[i].buttonText}</button>`
         // left menu
         if (i <= 4) {
             if (i === 0) { textDivWithButtons += `<p class="textMenu">Tabela z danymi:</p>` }
@@ -220,53 +222,53 @@ function menu_addButtons() {
     elementDivWithButtonsInLine.innerHTML = textDivWithButtonsInLine
 }
 
-const menu_addButtonsDescriptions = () => {
-    const divElement = document.querySelector(".menuDescriptions");
-    tableButtonsInfo.forEach((element, index) => {
+const tableMenu_addButtonsDescriptions = () => {
+    const divElement = document.querySelector(".point5 .menuDescriptions");
+    tableMenu_ButtonsInfo.forEach((element, index) => {
         let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
-        divElement.innerHTML += `<p class="allDescription footerDescription${index + 1}">${localString}</p>`
+        divElement.innerHTML += `<p class="allDescription ">${localString}</p>`
         // console.log("index", index, localString)
     })
 }
 
-const menu_addButtonsListeners = () => {
-    tableButtonsInfo.forEach((element, index) => {
-        document.querySelector(`#${tableButtonsInfo[index].id}`).addEventListener("click", tableButtonsInfo[index].functionPerformed)
+const tableMenu_addButtonsListeners = () => {
+    tableMenu_ButtonsInfo.forEach((element, index) => {
+        document.querySelector(`#${tableMenu_ButtonsInfo[index].id}`).addEventListener("click", tableMenu_ButtonsInfo[index].functionPerformed)
     })
 }
 
-export const menu_buttons = () => {
-    menu_addButtons()
-    menu_addButtonsDescriptions()
-    menu_addButtonsListeners()
+export const tableMenu_createButtons = () => {
+    tableMenu_addButtons()
+    tableMenu_addButtonsDescriptions()
+    tableMenu_addButtonsListeners()
 }
 
 // CHECKBOXES
 
-const menu_addCheckboxes = () => {
-    const elementDivWithCheck = document.querySelector(".menuCheckboxes")
+const tableMenu_addCheckboxes = () => {
+    const elementDivWithCheck = document.querySelector(".point5 .menuCheckboxes")
+    console.log("element", elementDivWithCheck)
     let textDivWithCheck = ""
 
-    tableCheckBoxInfo.forEach((element, index) => {
+    tableMenu_CheckBoxInfo.forEach((element, index) => {
         textDivWithCheck += `<div class="checkboxDiv">
         <input type="checkbox" id="${element.id}" name="${element.name}" ${element.disabled} ${element.checked}>
         <label id="${element.labelId}" for="${element.labelFor}" class="${element.class}"> ${element.checkboxText}</label>
         </div>`
-        // console.log("element.checked", element.checked)
     })
 
     elementDivWithCheck.innerHTML = textDivWithCheck
 }
 
-const menu_addChecboxesDescriptions = () => {
+const tableMenu_addChecboxesDescriptions = () => {
     const divElement = document.querySelector(".menuCheckboxesDescriptions");
-    tableCheckBoxInfo.forEach((element, index) => {
+    tableMenu_CheckBoxInfo.forEach((element, index) => {
         let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
         divElement.innerHTML += `<p class="allDescription footerDescription${index + 100}">${localString}</p>`
     })
 }
 
-function menu_hideCheckboxesDescriptions() {
+function tableMenu_hideCheckboxesDescriptions() {
     const allCheckBoxes = document.querySelectorAll(".checkboxDiv")
     const allCheckBoxesDescription = document.querySelectorAll(".menuCheckboxesDescriptions p")
     allCheckBoxes.forEach((element, index) => {
@@ -276,12 +278,12 @@ function menu_hideCheckboxesDescriptions() {
     })
 }
 
-function menu_addCheckboxesListeners() {
+function tableMenu_addCheckboxesListeners() {
     const allCheckBoxes = document.querySelectorAll(".checkboxDiv")
     const allCheckBoxesDescription = document.querySelectorAll(".menuCheckboxesDescriptions p")
 
-    tableButtonsInfo.forEach((element, index) => {
-        document.querySelector(`#${tableButtonsInfo[index].id}`).addEventListener("click", tableButtonsInfo[index].functionPerformed)
+    tableMenu_ButtonsInfo.forEach((element, index) => {
+        document.querySelector(`#${tableMenu_ButtonsInfo[index].id}`).addEventListener("click", tableMenu_ButtonsInfo[index].functionPerformed)
     })
 
     allCheckBoxes.forEach((element, index) => {
@@ -296,10 +298,10 @@ function menu_addCheckboxesListeners() {
     })
 }
 
-export const menu_checkboxes = () => {
-    menu_addCheckboxes()
-    menu_addChecboxesDescriptions()
-    menu_addCheckboxesListeners()
+export const tableMenu_createCheckboxes = () => {
+    tableMenu_addCheckboxes()
+    tableMenu_addChecboxesDescriptions()
+    tableMenu_addCheckboxesListeners()
 }
 
 
@@ -307,9 +309,9 @@ export const menu_checkboxes = () => {
 
 // dodaje classę visible do opisu/pomocy buttonów 
 
-const showButtonHelp = elem => {
+const tableMenu_showButtonHelp = elem => {
     let found = elem.srcElement.id
-    let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+    let myIndexFound = tableMenu_ButtonsInfo.findIndex(element => element.id === found)
     // console.log("found", found, "myIndexFound", myIndexFound + 1)
     if (myIndexFound !== -1) {
         const pElement = document.querySelector(`.footerDescription${myIndexFound + 1}`);
@@ -320,9 +322,9 @@ const showButtonHelp = elem => {
 
 // usuwa classę visible z opisu/pomocy buttonów 
 
-const hideButtonHelp = elem => {
+const tableMenu_hideButtonHelp = elem => {
     let found = elem.srcElement.id
-    let myIndexFound = tableButtonsInfo.findIndex(element => element.id === found)
+    let myIndexFound = tableMenu_ButtonsInfo.findIndex(element => element.id === found)
     if (myIndexFound !== -1) {
         const pElement = document.querySelector(`.footerDescription${myIndexFound + 1}`);
         pElement.classList.remove("footerDescriptionVisible")
@@ -331,36 +333,36 @@ const hideButtonHelp = elem => {
 
 // checkbox 'opis przycisków': włącza i wyłącza wyświetlanie opisu/pomocy
 
-export const menu_checkboxShowHideAllDescriptions = () => {
-    let checkBoxState = document.querySelector("#showDescriptions")
-    const allButtons = document.querySelectorAll(".menuButtons .button, .menuButtonsInLine")
+export const tableMenu_checkboxShowHideAllDescriptions = () => {
+    let checkBoxState = document.querySelector(".point5 #showDescriptions")
+    const allButtons = document.querySelectorAll(".point5 .menuButtons .button, .point5 .menuButtonsInLine")
 
     if (checkBoxState.checked) {
         allButtons.forEach((element, index) => {
-            element.addEventListener("mouseover", showButtonHelp)
-            element.addEventListener("mouseout", hideButtonHelp)
+            element.addEventListener("mouseover", tableMenu_showButtonHelp)
+            element.addEventListener("mouseout", tableMenu_hideButtonHelp)
         })
-        menu_addCheckboxesListeners()
+        tableMenu_addCheckboxesListeners()
     } else {
         allButtons.forEach((element, index) => {
-            element.removeEventListener("mouseover", showButtonHelp)
-            element.removeEventListener("mouseout", hideButtonHelp)
+            element.removeEventListener("mouseover", tableMenu_showButtonHelp)
+            element.removeEventListener("mouseout", tableMenu_hideButtonHelp)
         })
-        menu_hideCheckboxesDescriptions()
+        tableMenu_hideCheckboxesDescriptions()
     }
 }
 
 
 // PRINTING
 
-export const prepareToPrint = () => {
-    document.querySelector("footer").classList.toggle("footerHide")
-}
+// export const prepareToPrint = () => {
+//     document.querySelector("footer").classList.toggle("footerHide")
+// }
 
 
 // SHOWING GREY BACKGROUND IN TABLE
 
-export const menu_checkboxGreyBackgroundChanged = () => {
+export const tableMenu_checkboxGreyBackgroundChanged = () => {
     let checkBoxState = document.querySelector("#addGreyBackground")
     // console.log("stan cheku", checkBoxState.checked)
 
@@ -390,7 +392,7 @@ export const menu_checkboxGreyBackgroundChanged = () => {
 
 // LISTENERS
 
-export const menu_addListeners = () => {
+export const tableMenu_addListeners = () => {
     // document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
     document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
     document.querySelector("#addTableRow").addEventListener("click", checkboxADDTableRowChanged)
@@ -399,15 +401,9 @@ export const menu_addListeners = () => {
 }
 
 
-// START DESCRIPTION
-
-const menu_showDescription = () => {
-    console.log("o co tu chodzi")
-}
-
 //  SETS THE CURRENT STATE OF THE BUTTONS
 
-export const setButtonsEnabledDisabled = (expr) => {
+export const ableMenu_setButtonsEnabledDisabled = (expr) => {
 
     const findButtonsIndex = (buttonName) => {
         let myIndexFound = tableButtonsInfo.findIndex(element => element.id === buttonName)
@@ -423,24 +419,24 @@ export const setButtonsEnabledDisabled = (expr) => {
     switch (expr) {
         case 'startApp':
             tableButtonsInfo[findButtonsIndex("buttonNew")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonSave")].disabled = "disabled"
+            tableButtonsInfo[findButtonsIndex("buttonSave")].disabled = ""
             tableButtonsInfo[findButtonsIndex("buttonRead")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonExport")].disabled = "disabled"
-            tableButtonsInfo[findButtonsIndex("buttonRecalc")].disabled = "disabled"
-            tableButtonsInfo[findButtonsIndex("buttonAddHeader")].disabled = "disabled"
-            tableButtonsInfo[findButtonsIndex("buttonAddPlace")].disabled = "disabled"
-            tableButtonsInfo[findButtonsIndex("buttonAdd")].disabled = "disabled"
-            tableButtonsInfo[findButtonsIndex("buttonAddSpace")].disabled = "disabled"
-            tableButtonsInfo[findButtonsIndex("buttonAddThinLine")].disabled = "disabled"
+            tableButtonsInfo[findButtonsIndex("buttonExport")].disabled = ""
+            tableButtonsInfo[findButtonsIndex("buttonRecalc")].disabled = ""
+            tableButtonsInfo[findButtonsIndex("buttonAddHeader")].disabled = ""
+            tableButtonsInfo[findButtonsIndex("buttonAddPlace")].disabled = ""
+            tableButtonsInfo[findButtonsIndex("buttonAdd")].disabled = ""
+            tableButtonsInfo[findButtonsIndex("buttonAddSpace")].disabled = ""
+            tableButtonsInfo[findButtonsIndex("buttonAddThinLine")].disabled = ""
 
-            tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].disabled = "disabled"
+            tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].disabled = ""
             tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].disabled = "disabled"
+            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].disabled = ""
             tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].disabled = "disabled"
+            tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].disabled = ""
             tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].checked = ""
             tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].checked = "checked"
+            tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].checked = ""
             break;
 
         case 'tableNew':
