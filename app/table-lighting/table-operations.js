@@ -31,6 +31,7 @@ export const tableAddNumbers = () => {
 }
 
 const addElementNow = (method, element, newElement) => {
+    document.querySelector(".table .menuButtonsInLine").scrollIntoView()
     let lastElement = ""
     if (method === "before") {
         // console.log("methoda before: > ", element)
@@ -46,7 +47,7 @@ const addElementNow = (method, element, newElement) => {
     }
     if (!method) {
         // console.log("methoda empty > ", element)
-        lastElement = document.querySelector("tbody")
+        lastElement = document.querySelector("#tabela1 tbody")
         lastElement.append(newElement)
         return
     }

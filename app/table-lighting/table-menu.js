@@ -1,80 +1,22 @@
 "use strict";
 
-// import {
-// classTableColumns,
-// recalcAll,
-// readReport,
-// readDoc,
-// } from "./app.js"
-
 import {
-    operationIsDone,
-    convertClassesIntoOneString
-} from "../miscellaneous/misc.js";
-
-import {
-    tableAddTextLine,
     tableAddTextBoldLine,
+    tableAddTextLine,
     tableAddDataLine,
     tableAddEmptyLine,
-    tableAddThinLine,
-    removeTableRow,
-    checkboxRemoveTableRowChanged,
-    checkboxADDTableRowChanged
-} from "./table-operations.js"
+    tableAddThinLine
+} from "./table-operations.js";
 
-// import {
-//     fileNew,
-//     fileSave,
-//     fileRead
-// } from "../file-new-save-read.js"
-
-// import {
-//     newTable
-// } from "../export-word-docx.js"
-
+import {
+    convertClassesIntoOneString,
+    classTableColumns,
+    operationIsDone
+} from "../miscellaneous/misc.js"
 
 // START DEFINITION OF BUTTONS IN TABLE MENU
 
 export let tableMenu_ButtonsInfo = [
-    {
-        id: "buttonNew",
-        class: "button",
-        buttonText: "Nowa",
-        descriptionText: `<p>Rozpoczyna nowe sprawozdanie / nową tabelę nr 1. Dla nowego sprawozdania wymagana jest nowa nazwa.<br>
-            Dalsze prace odbywać się będą pod ustaloną nazwą, aktywne będą pozostałe klawisze. <br>
-            Nazwa musi mieć co najmniej 5 znaków, nie może mieć kropek i przecinków, maksymalnie obok siebie może być tylko 1 spacja</p>`,
-        descriptionClass: "footerDescription1",
-        disabled: "",
-        functionPerformed: function () { fileNew() },
-    },
-    {
-        id: "buttonSave",
-        class: "button",
-        buttonText: "Zapisz",
-        descriptionText: "<p>Zapisuje zawartość widocznej tabelki lokalnie na dysku twardym</p>",
-        descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { fileSave() },
-    },
-    {
-        id: "buttonRead",
-        class: "button",
-        buttonText: "Wczytaj",
-        descriptionText: "<p>Może istnieć kilka sprawozdań, każde z inną nazwą. Tutaj można wybrać określone sprawozdanie z rozwijanej listy.</p>",
-        descriptionClass: "footerDescription1",
-        disabled: "",
-        functionPerformed: function () { fileRead() }
-    },
-    {
-        id: "buttonExport",
-        class: "button",
-        buttonText: "Eksportuj",
-        descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
-        descriptionClass: "footerDescription1",
-        disabled: "disabled",
-        functionPerformed: function () { newTable() }, //exportDocument(), operationIsDone() 
-    },
     {
         id: "buttonRecalc",
         class: "button",
@@ -204,15 +146,14 @@ function tableMenu_addButtons() {
     for (let i = 0; i < tableMenu_ButtonsInfo.length; i++) {
         let tempString = `<button id=${tableMenu_ButtonsInfo[i].id} class=${tableMenu_ButtonsInfo[i].class} ${tableMenu_ButtonsInfo[i].disabled}> ${tableMenu_ButtonsInfo[i].buttonText}</button>`
         // left menu
-        if (i <= 4) {
-            if (i === 0) { textDivWithButtons += `<p class="textMenu">Tabela z danymi:</p>` }
-            if (i === 4) { textDivWithButtons += `<p class="textMenu">Sprawdź zgodność z PN:</p>` }
+        if (i < 1) {
+            if (i === 0) { textDivWithButtons += `<p class="textMenu">Sprawdź zgodność z PN:</p>` }
             textDivWithButtons += tempString
             // console.log(i, tableButtonsInfo[i].id)
         }
         // under table
-        if (i > 4) {
-            if (i === 5) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
+        if (i >= 1) {
+            if (i === 1) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
             textDivWithButtonsInLine += tempString
         }
     }
@@ -305,66 +246,11 @@ export const tableMenu_createCheckboxes = () => {
 }
 
 
-//////  SHOW HIDE DESCRIPTIONS
-
-// dodaje classę visible do opisu/pomocy buttonów 
-
-const tableMenu_showButtonHelp = elem => {
-    let found = elem.srcElement.id
-    let myIndexFound = tableMenu_ButtonsInfo.findIndex(element => element.id === found)
-    // console.log("found", found, "myIndexFound", myIndexFound + 1)
-    if (myIndexFound !== -1) {
-        const pElement = document.querySelector(`.footerDescription${myIndexFound + 1}`);
-        // console.log(`.footerDescription${myIndexFound + 1}`, "pElement", pElement)
-        pElement.classList.add("footerDescriptionVisible")
-    }
-}
-
-// usuwa classę visible z opisu/pomocy buttonów 
-
-const tableMenu_hideButtonHelp = elem => {
-    let found = elem.srcElement.id
-    let myIndexFound = tableMenu_ButtonsInfo.findIndex(element => element.id === found)
-    if (myIndexFound !== -1) {
-        const pElement = document.querySelector(`.footerDescription${myIndexFound + 1}`);
-        pElement.classList.remove("footerDescriptionVisible")
-    }
-}
-
-// checkbox 'opis przycisków': włącza i wyłącza wyświetlanie opisu/pomocy
-
-export const tableMenu_checkboxShowHideAllDescriptions = () => {
-    let checkBoxState = document.querySelector(".point5 #showDescriptions")
-    const allButtons = document.querySelectorAll(".point5 .menuButtons .button, .point5 .menuButtonsInLine")
-
-    if (checkBoxState.checked) {
-        allButtons.forEach((element, index) => {
-            element.addEventListener("mouseover", tableMenu_showButtonHelp)
-            element.addEventListener("mouseout", tableMenu_hideButtonHelp)
-        })
-        tableMenu_addCheckboxesListeners()
-    } else {
-        allButtons.forEach((element, index) => {
-            element.removeEventListener("mouseover", tableMenu_showButtonHelp)
-            element.removeEventListener("mouseout", tableMenu_hideButtonHelp)
-        })
-        tableMenu_hideCheckboxesDescriptions()
-    }
-}
-
-
-// PRINTING
-
-// export const prepareToPrint = () => {
-//     document.querySelector("footer").classList.toggle("footerHide")
-// }
-
-
 // SHOWING GREY BACKGROUND IN TABLE
 
 export const tableMenu_checkboxGreyBackgroundChanged = () => {
     let checkBoxState = document.querySelector("#addGreyBackground")
-    // console.log("stan cheku", checkBoxState.checked)
+    console.log("stan cheku greyBackground:", checkBoxState.checked)
 
     const classesToFind = convertClassesIntoOneString(classTableColumns)
     // console.log("classy do znalezienia", classesToFind)
@@ -388,92 +274,4 @@ export const tableMenu_checkboxGreyBackgroundChanged = () => {
         })
     }
 
-}
-
-// LISTENERS
-
-export const tableMenu_addListeners = () => {
-    // document.querySelector(".table1Text").addEventListener("click", prepareToPrint)
-    document.querySelector("#removeTableRow").addEventListener("click", checkboxRemoveTableRowChanged)
-    document.querySelector("#addTableRow").addEventListener("click", checkboxADDTableRowChanged)
-    document.querySelector("#addGreyBackground").addEventListener("click", menu_checkboxGreyBackgroundChanged)
-    document.querySelector("#showDescriptions").addEventListener("click", menu_checkboxShowHideAllDescriptions)
-}
-
-
-//  SETS THE CURRENT STATE OF THE BUTTONS
-
-export const ableMenu_setButtonsEnabledDisabled = (expr) => {
-
-    const findButtonsIndex = (buttonName) => {
-        let myIndexFound = tableButtonsInfo.findIndex(element => element.id === buttonName)
-        return myIndexFound
-    }
-
-    const findCheckBoxIndex = (checkName) => {
-        let myIndexFound = tableCheckBoxInfo.findIndex(element => element.id === checkName)
-        // console.log("myIndexFound check", myIndexFound)
-        return myIndexFound
-    }
-
-    switch (expr) {
-        case 'startApp':
-            tableButtonsInfo[findButtonsIndex("buttonNew")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonSave")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonRead")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonExport")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonRecalc")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddHeader")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddPlace")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAdd")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddSpace")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddThinLine")].disabled = ""
-
-            tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].checked = ""
-            break;
-
-        case 'tableNew':
-
-        case 'tableSaved':
-
-        case 'tableReaded':
-            tableButtonsInfo[findButtonsIndex("buttonNew")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonSave")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonRead")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonExport")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonRecalc")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddHeader")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddPlace")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAdd")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddSpace")].disabled = ""
-            tableButtonsInfo[findButtonsIndex("buttonAddThinLine")].disabled = ""
-
-            tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("removeTableRow")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addTableRow")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("addGreyBackground")].checked = ""
-            tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].disabled = ""
-            tableCheckBoxInfo[findCheckBoxIndex("showDescriptions")].checked = ""
-            break;
-
-        case 'zapisano':
-            // console.log('............');
-            break;
-        default:
-        // console.log(`Sorry, we are out of ${expr}.`);
-    }
-    menu_buttons()
-    menu_checkboxes()
-    menu_checkboxShowHideAllDescriptions()
-    menu_addListeners()
-    // menu_showDescription()
 }

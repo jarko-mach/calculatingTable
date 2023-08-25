@@ -229,7 +229,7 @@ const chooseOldOrNewReport = () => {
 const createMainTable = () => {
 
     const removeFieldToFill = (e) => {
-        console.log("e", e)
+        console.log("fieldToFill: e", e)
         e.target.classList.remove("fieldToFill")
     }
 
@@ -288,7 +288,7 @@ const createMainTable = () => {
           </tbody>
         </table>
         `
-    document.addEventListener("change", removeFieldToFill)
+    foundElement.addEventListener("change", removeFieldToFill)
 }
 
 
@@ -306,7 +306,7 @@ export const point5_selectTableType = () => {
             }
         }
         getCancelButton();
-        if (whatNext === "standard") createNewStandardTable()
+        if (whatNext === "standard") createNewStandardTable(1)
     }
 
     const getCancelButton = () => {
@@ -362,5 +362,5 @@ chooseOldOrNewReport()
 // createMainTable()
 // showMainMenu()
 
-
+// createNewStandardTable()
 // selectTable()

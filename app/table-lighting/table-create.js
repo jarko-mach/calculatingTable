@@ -4,13 +4,13 @@ import { tableAddNumbers } from "./table-operations.js";
 
 import {
     tableMenu_createButtons,
-    tableMenu_createCheckboxes,
-    tableMenu_checkboxShowHideAllDescriptions
+    tableMenu_createCheckboxes
+    // tableMenu_checkboxShowHideAllDescriptions
 } from "./table-menu.js";
 
 // import { setButtonsEnabledDisabled } from "../menu-btn-check.js";
 
-export const createNewStandardTable = () => {
+export const createNewStandardTable = (numberOfCreatingTable) => {
     const foundElement = document.querySelector(".point5")
     // console.log("foundElement2", foundElement)
 
@@ -26,7 +26,7 @@ export const createNewStandardTable = () => {
         </div>
         </div>
         <div class="table">
-            <table>
+            <table id = "tabela${numberOfCreatingTable}">
                 <thead>
                     <tr class="nocolor">
                         <td rowspan="2">Lp.</td>
@@ -66,5 +66,5 @@ export const createNewStandardTable = () => {
     tableAddNumbers()
     tableMenu_createButtons()
     tableMenu_createCheckboxes()
-    tableMenu_checkboxShowHideAllDescriptions()
+    // tableMenu_checkboxShowHideAllDescriptions()
 }

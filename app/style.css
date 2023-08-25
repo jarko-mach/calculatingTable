@@ -106,7 +106,7 @@ body {
 /* END MAIN WINDOW */
 
 
-/* MAIN MENU */
+/* MENU - MAIN */
 
 .menuBackground {
     background-color: rgb(210, 241, 223);
@@ -151,10 +151,10 @@ body {
     position: relative;
 } */
 
-/* END MAIN MENU */
+/* END MENU - MAIN */
 
 
-/* TABLE MENU */
+/* MENU - TABLE */
 
 .tableAndMenu {
     display: flex;
@@ -162,9 +162,12 @@ body {
     gap: 30px;
 }
 
-.tableAndMenu .menu {
+.tableAndMenu .menuElements {
+    position: sticky;
+    top: 66px;
     background-color: rgb(210, 237, 241);
     width: 70px;
+    padding: 2px 0 5px 0;
 }
 
 .tableAndMenu button {
@@ -177,7 +180,7 @@ body {
 }
 
 .tableAndMenu .textMenu {
-    color: rgb(36, 141, 157);
+    color: rgb(11, 114, 130);
     margin: 5px 0 0 4px;
     line-height: 11px;
     cursor: default;
@@ -188,9 +191,36 @@ body {
     color: red;
 }
 
+/* CHECK BOX */
 
+.checkboxDiv {
+    display: flex;
+    align-items: center;
+}
 
-/* END TABLE MENU */
+.labelCB {
+    font-size: 0.9em;
+}
+
+input[type="checkbox"] {
+    width: 8px;
+    /* color: rgb(89, 89, 89); */
+}
+
+input[type="checkbox"],
+label:hover {
+    cursor: pointer;
+}
+
+.redLabel {
+    color: rgb(249, 0, 0);
+}
+
+.greenLabel {
+    color: rgb(32, 118, 5);
+}
+
+/* END - MENU TABLE */
 
 
 /* DIALOG BOX  */
@@ -307,10 +337,10 @@ legend {
 
 /* END DIALOG BOX */
 
-/* DIALOG BOX OLD REPORT SELECTED */
-/* END DIALOG BOX OLD REPORT SELECTED */
+/* DIALOG BOX - OLD REPORT SELECTED */
+/* END DIALOG BOX - OLD REPORT SELECTED */
 
-/* DIALOG BOX CREATE NEW REPORT */
+/* DIALOG BOX - CREATE NEW REPORT */
 
 .wider300 {
     width: 370px;
@@ -329,10 +359,10 @@ legend {
     margin: 0 20px 0 5px;
 }
 
-/* END DIALOG BOX CREATE NEW REPORT  */
+/* END DIALOG BOX - CREATE NEW REPORT  */
 
 
-/* DIALOG BOX SELECT TABLE */
+/* DIALOG BOX - SELECT TABLE */
 
 .wider200 {
     width: 320px;
@@ -342,12 +372,11 @@ legend {
     width: 370px;
 }
 
-/* END DIALOG BOX SELECT TABLE */
+/* END DIALOG BOX - SELECT TABLE */
 
 
 /* TABLE STANDARD */
 
-/* PARAMETERS OF TABLE  */
 /* THEAD */
 table {
     margin: 20px 0 20px 0;
@@ -477,35 +506,9 @@ input[type="text"]:disabled {
 
 /* UNDER TABLE */
 
-/* CHECK BOX */
-
-.checkboxDiv {
-    display: flex;
-    align-items: center;
+.menuButtonsInLine {
+    margin: 0 0 20px 0;
 }
-
-.labelCB {
-    font-size: 0.56em;
-}
-
-input[type="checkbox"] {
-    width: 8px;
-    color: rgb(89, 89, 89);
-}
-
-input[type="checkbox"],
-label:hover {
-    cursor: pointer;
-}
-
-.redLabel {
-    color: rgb(249, 0, 0);
-}
-
-.greenLabel {
-    color: rgb(32, 118, 5);
-}
-
 
 /* END TABLE STANDARD */
 
