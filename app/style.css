@@ -141,7 +141,7 @@ body {
     margin: 6px 0 6px 0;
 }
 
-/* .menuElements {
+.menuElements {
     position: relative;
     z-index: 11;
 }
@@ -149,78 +149,12 @@ body {
 .menuDescriptions {
     z-index: 1;
     position: relative;
-} */
+}
 
 /* END MENU - MAIN */
 
 
-/* MENU - TABLE */
 
-.tableAndMenu {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-}
-
-.tableAndMenu .menuElements {
-    position: sticky;
-    top: 66px;
-    background-color: rgb(210, 237, 241);
-    width: 70px;
-    padding: 2px 0 5px 0;
-}
-
-.tableAndMenu button {
-    margin: 2px 7px;
-    padding: 1px;
-    font-size: 0.9em;
-    width: 56px;
-    cursor: pointer;
-    font-size: 9px;
-}
-
-.tableAndMenu .textMenu {
-    color: rgb(11, 114, 130);
-    margin: 5px 0 0 4px;
-    line-height: 11px;
-    cursor: default;
-    font-size: 9px;
-}
-
-.tableAndMenu .menuDescriptions {
-    color: red;
-}
-
-/* CHECK BOX */
-
-.checkboxDiv {
-    display: flex;
-    align-items: center;
-}
-
-.labelCB {
-    font-size: 0.9em;
-}
-
-input[type="checkbox"] {
-    width: 8px;
-    /* color: rgb(89, 89, 89); */
-}
-
-input[type="checkbox"],
-label:hover {
-    cursor: pointer;
-}
-
-.redLabel {
-    color: rgb(249, 0, 0);
-}
-
-.greenLabel {
-    color: rgb(32, 118, 5);
-}
-
-/* END - MENU TABLE */
 
 
 /* DIALOG BOX  */

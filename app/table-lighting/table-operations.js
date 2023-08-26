@@ -14,8 +14,8 @@ export const addFirstThreeColumnsHeader = () => {
     // myElement.addEventListener("click", checkToUnblockSacheckToUnblockSaveButtonveButton)
 }
 
-export const tableAddNumbers = () => {
-    const lastElement = document.querySelectorAll(".showNumbers")
+export const tableAddNumbers = (tableName) => {
+    const lastElement = document.querySelectorAll(`#${tableName} .showNumbers`)
     lastElement[lastElement.length - 1].innerHTML =
         ` <tr>
         <td class="widthColumn1">1</td>
@@ -170,9 +170,9 @@ const discolorTableRow = (e) => {
 export const checkboxRemoveTableRowChanged = () => {
     let checkBoxState = document.querySelector("#removeTableRow");
     let checkBoxADDState = document.querySelector("#addTableRow");
-    
-    if (checkBoxADDState.checked === true) {checkBoxState.checked = false }
-    
+
+    if (checkBoxADDState.checked === true) { checkBoxState.checked = false }
+
     // console.log("checkbox", checkBoxState.checked, checkBoxADDState.checked)
     if (checkBoxState.checked == true) {
         document.querySelector("#labelCB1").classList.add("redLabel")
@@ -345,8 +345,8 @@ export const addTableRow = (e) => {
 export const checkboxADDTableRowChanged = () => {
     let checkBoxRemoveState = document.querySelector("#removeTableRow");
     let checkBoxADDState = document.querySelector("#addTableRow");
-    
-    if (checkBoxRemoveState.checked === true) {checkBoxADDState.checked = false }
+
+    if (checkBoxRemoveState.checked === true) { checkBoxADDState.checked = false }
     // console.log("checkbox", checkBoxState)
     if (checkBoxADDState.checked == true) {
         document.querySelector("#labelCB2").classList.add("greenLabel")

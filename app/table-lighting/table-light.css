@@ -1,0 +1,257 @@
+body {
+    font-family: 'Carlito', sans-serif;
+}
+
+/* TABLE LIGHTING */
+
+/* THEAD */
+
+table {
+    margin: 20px 0 20px 0;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+thead>tr>td {
+    border: 0.6px solid black;
+    padding: 2px 0px 2px 2px;
+}
+
+.showNumbers {
+    font-style: italic;
+}
+
+upperLine {
+    color: black;
+    border-top: 1px solid;
+}
+
+.widthColumn1 {
+    width: 6mm;
+}
+
+.widthColumn2 {
+    width: 65mm;
+}
+
+.widthColumn3 {
+    width: 45mm;
+}
+
+.widthColumn4 {
+    width: 14mm;
+}
+
+.widthColumn5 {
+    width: 12mm;
+}
+
+.widthColumn6 {
+    width: 11mm;
+}
+
+.widthColumn7 {
+    width: 11mm;
+}
+
+.widthColumn8 {
+    width: 12mm;
+}
+
+/* TBODY */
+
+tbody>tr>td {
+    border-left: 0.6px solid black;
+    border-right: 0.6px solid black;
+    padding: 0;
+}
+
+.numberLp,
+.place,
+.measurings,
+.wynik-1,
+.norma-1,
+.wynik-2,
+.norma-2,
+.compatibility,
+textarea {
+    text-align: center;
+    font-size: .9em;
+    font-family: 'Carlito', sans-serif;
+    box-sizing: border-box;
+    border: 0px;
+    padding: 0 3px 0 3px;
+    width: 95%;
+    resize: vertical;
+}
+
+.place {
+    text-align: left;
+}
+
+.measuringsError {
+    border: 3px solid red;
+}
+
+.measuringsToLow {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    width: 50%;
+}
+
+.tableTextBold {
+    font-weight: 800;
+}
+
+.isRedOutline {
+    border: 2px solid red;
+}
+
+.isGreenOutline {
+    border: 2px solid green;
+}
+
+.tdThinLine {
+    font-size: 0.0em;
+    border-top: 0.6px solid black;
+}
+
+.tdThinLineLarger {
+    font-size: 0.1em;
+    /* border: 0.6px solid black; */
+}
+
+input[type="text"]:disabled {
+    background: #ffffff;
+    color: black;
+}
+
+
+.addGreyBackground {
+    background-color: rgb(223, 223, 223);
+}
+
+/* TABLE LIGHTING - END */
+
+/* TABLE LIGHTING - MENU */
+
+.tableAndMenu {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.tableAndMenu .menuElements {
+    position: sticky;
+    top: 66px;
+    background-color: rgb(210, 237, 241);
+    width: 70px;
+    padding: 2px 0 5px 0;
+}
+
+.tableAndMenu button {
+    margin: 2px 7px;
+    padding: 1px;
+    font-size: 0.9em;
+    width: 56px;
+    cursor: pointer;
+    font-size: 9px;
+}
+
+.tableAndMenu .textMenu {
+    color: rgb(11, 114, 130);
+    margin: 5px 0 0 4px;
+    line-height: 11px;
+    cursor: default;
+    font-size: 9px;
+}
+
+/* .allDescription {
+    background-color: rgb(210, 225, 241);
+    position: fixed;
+    left: 20px;
+    width: 500px;
+    color: rgb(210, 241, 223);
+    font-size: 10px;
+    padding: 15px 5px 15px 10px;
+    transition: color 3s ease, transform 0.4s ease;
+} */
+
+
+/* .tableAndMenu .menuButtonsDescriptions {
+    color: red;
+} */
+
+
+
+
+/* SHOW BUTTONS AND CHECKBOXES HELP */
+
+/* .tableMenuDescriptionVisible {
+    visibility: visible;
+    transform: translateX(1520px);
+    color: black;
+} */
+
+
+
+/* CHECK BOX */
+
+/* .checkboxDiv {
+    display: flex;
+    align-items: center;
+}
+
+.labelCB {
+    font-size: 0.9em;
+}
+
+input[type="checkbox"] {
+    width: 8px;
+    /* color: rgb(89, 89, 89); */
+/* }
+
+input[type="checkbox"],
+label:hover {
+    cursor: pointer;
+}
+
+.redLabel {
+    color: rgb(249, 0, 0);
+}
+
+.greenLabel {
+    color: rgb(32, 118, 5);
+} */
+
+
+
+
+/* DISPLAY HELP FOR CHECKBOXES */
+
+/* .tableMenuDescription1,
+.tableMenuDescription100 {
+    top: 160px;
+    width: 100px;
+}
+
+.tableMenuDescription101 {
+    top: 180px;
+    width: 100px;
+}
+
+.tableMenuDescription102 {
+    top: 200px;
+    width: 100px;
+}
+
+.tableMenuDescription103 {
+    top: 230px;
+    width: 100px;
+}
+
+.tableMenuHide {
+    display: none;
+} */
+*/
+/* END - MENU TABLE */

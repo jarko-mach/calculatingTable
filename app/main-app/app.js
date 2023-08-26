@@ -362,5 +362,5 @@ chooseOldOrNewReport()
 // createMainTable()
 // showMainMenu()
 
-// createNewStandardTable()
+// createNewStandardTable(1)
 // selectTable()

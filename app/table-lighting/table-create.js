@@ -4,29 +4,30 @@ import { tableAddNumbers } from "./table-operations.js";
 
 import {
     tableMenu_createButtons,
-    tableMenu_createCheckboxes
-    // tableMenu_checkboxShowHideAllDescriptions
+    tableMenu_createCheckboxes,
+    tableMenu_checkboxShowHideAllDescriptions
 } from "./table-menu.js";
 
 // import { setButtonsEnabledDisabled } from "../menu-btn-check.js";
 
-export const createNewStandardTable = (numberOfCreatingTable) => {
-    const foundElement = document.querySelector(".point5")
-    // console.log("foundElement2", foundElement)
+export const createStandardTable = (tableName) => {
 
+    const foundElement = document.querySelector(".point5")
+    // console.log("found", foundElement)
     const newDiv = document.createElement("div")
+    newDiv.classList.add(tableName)
     newDiv.classList.add("tableAndMenu")
     newDiv.innerHTML = `
         <div class="menu">
-        <div class="menuElements">
-            <div class="menuButtons"></div>
-            <div class="menuDescriptions"></div>
-            <div class="menuCheckboxes"></div>
-            <div class="menuCheckboxesDescriptions"></div>
-        </div>
+            <div class="menuElements">
+                <div class="menuButtons"></div>
+                <div class="menuButtonsDescriptions"></div>
+                <div class="menuCheckboxes"></div>
+                <div class="menuCheckboxesDescriptions"></div>
+            </div>
         </div>
         <div class="table">
-            <table id = "tabela${numberOfCreatingTable}">
+            <table id = "${tableName}">
                 <thead>
                     <tr class="nocolor">
                         <td rowspan="2">Lp.</td>
@@ -53,18 +54,18 @@ export const createNewStandardTable = (numberOfCreatingTable) => {
                     </tr>
                     <tr class="showNumbers">
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                 </tbody>
-                </table>
-                <div class="menuButtonsInLine"></div>
-                </div>  
-                `
+            </table>
+            <div class="menuButtonsInLine">
+            </div>
+        </div>  `
 
     foundElement.appendChild(newDiv)
 
-    tableAddNumbers()
-    tableMenu_createButtons()
-    tableMenu_createCheckboxes()
-    // tableMenu_checkboxShowHideAllDescriptions()
+    tableAddNumbers(tableName)
+    tableMenu_createButtons(tableName)
+    // tableMenu_createCheckboxes(tableName)
+    // tableMenu_checkboxShowHideAllDescriptions(tableName)
 }
