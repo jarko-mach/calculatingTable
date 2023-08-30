@@ -222,8 +222,9 @@ input[type="checkbox"] {
 
 .tableMenuDescriptionVisible {
     visibility: visible;
-    transform: translateX(320px);
+    transform: translateX(400px);
     color: black;
+    line-height: 1.6em;
 }
 
 /* DISPLAY HELP */

@@ -9,7 +9,7 @@ import {
 
 import { createMainMenu } from "./main-menu.js";
 
-import { createNewStandardTable } from "../table-lighting/table-create.js";
+import { createStandardTable } from "../table-lighting/table-create.js";
 
 // FILE NEW 
 
@@ -306,7 +306,7 @@ export const point5_selectTableType = () => {
             }
         }
         getCancelButton();
-        if (whatNext === "standard") createNewStandardTable(1)
+        if (whatNext === "standard") createStandardTable("table1")
     }
 
     const getCancelButton = () => {
@@ -353,7 +353,7 @@ export const point5_selectTableType = () => {
 }
 
 // const startNewTableStandard = () => {
-//     createNewStandardTable()
+//     createStandardTable()
 // }
 
 //   START PROGRAM
@@ -362,5 +362,5 @@ chooseOldOrNewReport()
 // createMainTable()
 // showMainMenu()
 
-// createNewStandardTable(1)
+// createStandardTable(1)
 // selectTable()
