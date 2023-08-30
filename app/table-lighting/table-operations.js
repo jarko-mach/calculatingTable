@@ -1,5 +1,13 @@
 "use strict"
 
+import {
+    convertClassesIntoOneString,
+    classTableColumns,
+    classTableRows
+} from "../miscellaneous/misc.js"
+
+import { currentTablNam } from "../miscellaneous/misc.js"
+
 // import { checkToUnblockSaveButton } from "./menu-btn-dscr-check.js"
 
 export const addFirstThreeColumnsHeader = () => {
@@ -27,11 +35,11 @@ export const tableAddNumbers = (tableName) => {
         <td class="widthColumn7">7</td>
         <td class="widthColumn8">8</td>
         </tr>
-    `
+        `
 }
 
 const addElementNow = (method, element, newElement) => {
-    document.querySelector(".table .menuButtonsInLine").scrollIntoView()
+    // document.querySelector(`.${currentTablNam[0]} .table .menuButtonsInLine`).scrollIntoView()
     let lastElement = ""
     if (method === "before") {
         // console.log("methoda before: > ", element)
@@ -47,15 +55,16 @@ const addElementNow = (method, element, newElement) => {
     }
     if (!method) {
         // console.log("methoda empty > ", element)
-        lastElement = document.querySelector("#tabela1 tbody")
+        lastElement = document.querySelector(`.${currentTablNam[0]} tbody`)
         lastElement.append(newElement)
         return
     }
 }
 
+
 export const tableAddTextBoldLine = (method, element) => {
     let newElement = document.createElement("tr")
-    // console.log(lastElement, newElement)
+
     newElement.classList.add("rowTextBold")
     newElement.innerHTML =
         ` <td > <input type="text" class="numberLp  tableTextBold"></td>
@@ -138,18 +147,17 @@ export const tableAddThinLine = (method, element) => {
 // REMOVE TABLE ROW
 
 export const removeTableRow = (e) => {
-
     let element = e.target.closest("tr")
-    // console.log("element remove", element)
+    console.log("element remove", element)
     if (element.classList == "rowTextBold isRedOutline" ||
         element.classList == "rowText isRedOutline" ||
         element.classList == "rowDate isRedOutline" ||
         element.classList == "rowEmpty isRedOutline" ||
         element.classList == "rowThinLine isRedOutline") {
         element.remove()
-        let checkBoxState = document.querySelector("#removeTableRow")
+        let checkBoxState = document.querySelector(`.${currentTablNam[0]} #removeTableRow`)
         checkBoxState.checked = false
-        checkboxRemoveTableRowChanged()
+        checkbox_RemoveTableRow_Changed()
     }
 }
 
@@ -167,36 +175,55 @@ const discolorTableRow = (e) => {
     element.classList.remove("isRedOutline")
 }
 
-export const checkboxRemoveTableRowChanged = () => {
-    let checkBoxState = document.querySelector("#removeTableRow");
-    let checkBoxADDState = document.querySelector("#addTableRow");
+const convertRowClassesIntoOneStringWithTableName = (myTableName) => {
+    let readClasses = ""
+    classTableRows.forEach((value, index) => {
+        readClasses = (index <= classTableRows.length - 2) ? readClasses += `.${myTableName} .${value}, ` : readClasses += `.${myTableName} .${value}`
+    })
+    return readClasses
+}
 
-    if (checkBoxADDState.checked === true) { checkBoxState.checked = false }
+export const checkbox_RemoveTableRow_Changed = () => {
+    let readedClasses = convertRowClassesIntoOneStringWithTableName(currentTablNam[0])
+    const nodeList = document.querySelectorAll(readedClasses)
+    // console.log("1",readedClasses)
+    // console.log("2 trafione punkty do obliczeń:", nodeList.length)
 
-    // console.log("checkbox", checkBoxState.checked, checkBoxADDState.checked)
-    if (checkBoxState.checked == true) {
-        document.querySelector("#labelCB1").classList.add("redLabel")
-        document.querySelector("#labelCB1").textContent = "usuwasz!"
+    let checkBoxState = document.querySelector(`.${currentTablNam[0]} #removeTableRow`);
 
-        document.querySelectorAll(".tdThinLine").forEach((element, index) => {
-            element.classList.add("tdThinLineLarger")
-        })
-        document.querySelector("tbody").addEventListener("click", removeTableRow)
-        document.querySelector("tbody").addEventListener("mouseover", colorTableRow)
-        document.querySelector("tbody").addEventListener("mouseout", discolorTableRow)
-    } else {
-        document.querySelector("#labelCB1").classList.remove("redLabel")
-        document.querySelector("#labelCB1").textContent = "usuwanie"
-
-        document.querySelectorAll(".tdThinLine").forEach((element, index) => {
-            element.classList.remove("tdThinLineLarger")
-        })
-        document.querySelector("tbody").removeEventListener("click", removeTableRow)
-        document.querySelector("tbody").removeEventListener("mouseover", colorTableRow)
-        document.querySelector("tbody").removeEventListener("mouseout", discolorTableRow)
+    if (!nodeList.length) {
+        alert("Wygląda na to, że nie ma żadnych danych w tabeli");
+        checkBoxState.checked = false
     }
 
+    let checkBoxADDState = document.querySelector(`.${currentTablNam[0]} #addTableRow`);
+
+    if (checkBoxADDState.checked === true) { checkBoxADDState.checked = false }
+    // console.log("check", checkBoxState.checked, currentTablNam[0])
+
+    if (checkBoxState.checked == true) {
+        document.querySelector(`.${currentTablNam[0]} .labelCB1`).classList.add("redLabel")
+        document.querySelector(`.${currentTablNam[0]} .labelCB1`).textContent = "usuwasz!"
+
+        document.querySelectorAll(`.${currentTablNam[0]} .tdThinLine`).forEach((element, index) => {
+            element.classList.add("tdThinLineLarger")
+        })
+        document.querySelector(`.${currentTablNam[0]} tbody`).addEventListener("click", removeTableRow)
+        document.querySelector(`.${currentTablNam[0]} tbody`).addEventListener("mouseover", colorTableRow)
+        document.querySelector(`.${currentTablNam[0]} tbody`).addEventListener("mouseout", discolorTableRow)
+    } else {
+        document.querySelector(`.${currentTablNam[0]} .labelCB1`).classList.remove("redLabel")
+        document.querySelector(`.${currentTablNam[0]} .labelCB1`).textContent = "usuwanie"
+
+        document.querySelectorAll(`.${currentTablNam[0]} .tdThinLine`).forEach((element, index) => {
+            element.classList.remove("tdThinLineLarger")
+        })
+        document.querySelector(`.${currentTablNam[0]} tbody`).removeEventListener("click", removeTableRow)
+        document.querySelector(`.${currentTablNam[0]} tbody`).removeEventListener("mouseover", colorTableRow)
+        document.querySelector(`.${currentTablNam[0]} tbody`).removeEventListener("mouseout", discolorTableRow)
+    }
 }
+
 
 // ADD TABLE ROW
 
@@ -342,7 +369,7 @@ export const addTableRow = (e) => {
     // checkboxADDTableRowChanged()
 }
 
-export const checkboxADDTableRowChanged = () => {
+export const checkbox_ADDTableRow_Changed = () => {
     let checkBoxRemoveState = document.querySelector("#removeTableRow");
     let checkBoxADDState = document.querySelector("#addTableRow");
 
@@ -360,6 +387,176 @@ export const checkboxADDTableRowChanged = () => {
         document.querySelector("tbody").removeEventListener("click", addTableRow)
         document.querySelector("tbody").removeEventListener("mouseover", colorGreenTableRow)
         document.querySelector("tbody").removeEventListener("mouseout", discolorGreenTableRow)
+    }
+
+}
+
+
+// RECALCULATING
+
+export const tableRecalcAll = function (e) {
+    let eksploatacionCalculated
+    let eksploatacionNorm
+    let uniformityCalculated  //Rownomiernosc
+    let uniformityNorm
+
+    // console.log("zaczynam przeliczać...")
+
+    // wczytuję classy dla kolumn
+    let readedClasses = convertClassesIntoOneString(classTableColumns)
+    const nodeList = document.querySelectorAll(readedClasses)
+    // console.log("trafione punkty do obliczeń:", nodeList.length)
+    if (!nodeList.length) {
+        alert("Wygląda na to, że nie ma żadnych danych w tabeli");
+        return
+    } else {
+        // wczytuję classy dla wierszy tabeli
+        readedClasses = convertClassesIntoOneString(classTableRows)
+        const rowsNumber = document.querySelectorAll(readedClasses).length
+        // console.log("liczba wierszy:", rowsNumber)
+
+        const re1 = /(\d\s+\d)|[a-z]|([,;]\s+)$|[,]$/i   //* szukam błędów we wpisach pomiarów
+        const re2 = /[,;]/gi        //* przecinek lub średnik stanowi powód do splitowania dla kolumny measurings
+        const re3 = /[a-z]/i      // szukam liter w kolumnach [5] i [7]
+        let foundError = false
+
+        for (let row = 0; row < rowsNumber; row++) {
+
+            let addRowElements = row * 8
+            // console.log("Jeśli to kolejny rząd, to zwiększam i o:", addRowElements)
+
+            //  kolumna nr 3 – odczytuję pomiary -----------------------------------------------------------------
+            let measurementsRow = nodeList[2 + addRowElements].value
+            // console.log("wiersz", row, "pomiary w stringu:", measurementsRow)
+
+
+            foundError = re1.test(measurementsRow)
+            // console.log("czy znaleziono zabroniony znak?", foundError)
+
+            if (foundError) {
+                // console.log("bum")
+                nodeList[2 + addRowElements].classList.add("measuringsError")
+                nodeList[3 + addRowElements].value = ""
+                nodeList[3 + addRowElements].classList.remove("measuringsToLow")
+                nodeList[5 + addRowElements].value = ""
+                nodeList[5 + addRowElements].classList.remove("measuringsToLow")
+                nodeList[7 + addRowElements].value = "????"
+                foundError = false
+                continue
+            } else {
+                nodeList[2 + addRowElements].classList.remove("measuringsError")
+            }
+
+            const measurementsRowTable = measurementsRow.split(re2);
+            // console.log("efekt polecenia split", measurementsRowTable)
+
+            measurementsRowTable.forEach((elem, index) => { measurementsRowTable[index] = Number(measurementsRowTable[index]) })
+            // console.log("zamiana na Number", measurementsRowTable)
+
+            const computeEksploatacyjne = () => {
+                let sum = 0
+                measurementsRowTable.forEach((value, index) => { sum += value })
+
+                eksploatacionCalculated = Number(Math.round(sum / measurementsRowTable.length + 'e+0') + 'e-0')
+                return eksploatacionCalculated
+            }
+
+            // console.log(" obliczona suma wyników pomiarów", computeEksploatacyjne())
+
+            // brak danych liczbowych
+            // kolumna nr 8 - Tak/Nie
+            // nodeList[7 + addRowElements].value = "????"
+
+            if (!computeEksploatacyjne()) {
+                // console.log("WYPAD: brak danych")
+                continue
+            }
+
+            // kolumna nr 4  -----------------------------------------------------------------
+            nodeList[3 + addRowElements].value = computeEksploatacyjne()
+
+            // kolumna nr 5 - norma / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki ----------------
+            eksploatacionNorm = Number(nodeList[4 + addRowElements].value)
+
+            // console.log("eksploatacionNorm", eksploatacionNorm)
+
+            foundError = re3.test(eksploatacionNorm)
+            // console.log("foundError", foundError)
+
+            // brak danych liczbowych
+            // kolumna nr 8 - Tak/Nie
+            nodeList[7 + addRowElements].value = "????"
+
+            if (foundError || eksploatacionNorm === 0) {
+                nodeList[4 + addRowElements].classList.add("measuringsError")
+                // console.log("WYPAD: dziwne dane")
+                continue
+            } else {
+                nodeList[4 + addRowElements].classList.remove("measuringsError")
+            }
+            // console.log("wpisane", eksploatacionNorm, "number", Number(eksploatacionNorm))
+
+            // kolumna nr 6 - oblicz równomierność ------------------------------------------------
+            uniformityCalculated
+                = Number(Math.round(Math.min(...measurementsRowTable) / eksploatacionCalculated + 'e+2') + 'e-2')
+
+            nodeList[5 + addRowElements].value = String(uniformityCalculated).replace('.', ',')
+
+            // kolumna nr 7 – norma równomierność / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki ---------------
+            uniformityNorm = Number(String(nodeList[6 + addRowElements].value).replace(',', '.'))
+
+            // console.log("uniformityNorm", uniformityNorm)
+
+            foundError = re3.test(uniformityNorm)
+            // console.log("foundError", foundError)
+
+            // brak danych liczbowych
+            // kolumna nr 8 - Tak/Nie
+            nodeList[7 + addRowElements].value = "????"
+
+            if (foundError || uniformityNorm === 0) {
+                nodeList[6 + addRowElements].classList.add("measuringsError")
+                continue
+            } else {
+                nodeList[6 + addRowElements].classList.remove("measuringsError")
+            }
+
+            // kolumna nr 8 - Tak/Nie
+            nodeList[7 + addRowElements].value = "????"
+
+            // console.log("skoro tu jesteś, to są poprawne wyniki")
+
+            // console.log("co wyszło:", eksploatacionCalculated, eksploatacionNorm, uniformityCalculated, uniformityNorm)
+
+            let measurmentsEksploatacionOk = true
+            let measurmentsUniformityOk = true
+
+            if (eksploatacionNorm !== "") {
+                if (eksploatacionCalculated >= eksploatacionNorm) {
+                    nodeList[3 + addRowElements].classList.remove("measuringsToLow")
+                    measurmentsEksploatacionOk = true
+                } else {
+                    nodeList[3 + addRowElements].classList.add("measuringsToLow")
+                    measurmentsEksploatacionOk = false
+                }
+            }
+
+            if (uniformityNorm !== "") {
+                if (uniformityCalculated >= uniformityNorm) {
+                    nodeList[5 + addRowElements].classList.remove("measuringsToLow")
+                    measurmentsUniformityOk = true
+                } else {
+                    nodeList[5 + addRowElements].classList.add("measuringsToLow")
+                    measurmentsUniformityOk = false
+                }
+            }
+
+            if (measurmentsEksploatacionOk && measurmentsUniformityOk) {
+                nodeList[7 + addRowElements].value = "TAK"
+            } else {
+                nodeList[7 + addRowElements].value = "NIE"
+            }
+        }
     }
 
 }

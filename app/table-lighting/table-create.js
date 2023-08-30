@@ -1,17 +1,16 @@
 "use strict";
 
-import { tableAddNumbers } from "./table-operations.js";
+import { tableAddNumbers } from "./table-operations.js"
+
+// import { operationIsDone } from "../miscellaneous/misc.js";
 
 import {
     tableMenu_createButtons,
     tableMenu_createCheckboxes,
-    tableMenu_checkboxShowHideAllDescriptions
-} from "./table-menu.js";
-
-// import { setButtonsEnabledDisabled } from "../menu-btn-check.js";
+    tableMenu_ShowHideAllDescriptions
+} from "./table-menu.js"
 
 export const createStandardTable = (tableName) => {
-
     const foundElement = document.querySelector(".point5")
     // console.log("found", foundElement)
     const newDiv = document.createElement("div")
@@ -25,6 +24,12 @@ export const createStandardTable = (tableName) => {
                 <div class="menuCheckboxes"></div>
                 <div class="menuCheckboxesDescriptions"></div>
             </div>
+            <div class="info">Wersja 1.4 <i>JM</i></div>
+        <div class="confContainerParent">
+            <div class="confContainer">
+                <div class="confElement"> ZROBIONE </div>
+            </div>
+        </div>
         </div>
         <div class="table">
             <table id = "${tableName}">
@@ -66,6 +71,6 @@ export const createStandardTable = (tableName) => {
 
     tableAddNumbers(tableName)
     tableMenu_createButtons(tableName)
-    // tableMenu_createCheckboxes(tableName)
-    // tableMenu_checkboxShowHideAllDescriptions(tableName)
+    tableMenu_createCheckboxes(tableName)
+    tableMenu_ShowHideAllDescriptions(tableName)
 }

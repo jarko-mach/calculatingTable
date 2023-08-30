@@ -1,5 +1,6 @@
 body {
     font-family: 'Carlito', sans-serif;
+    font-size: 12pt;
 }
 
 /* TABLE LIGHTING */
@@ -77,7 +78,6 @@ tbody>tr>td {
 .compatibility,
 textarea {
     text-align: center;
-    font-size: .9em;
     font-family: 'Carlito', sans-serif;
     box-sizing: border-box;
     border: 0px;
@@ -116,6 +116,11 @@ textarea {
     border-top: 0.6px solid black;
 }
 
+.inputThinLine {
+    font-size: 0.0em;
+    line-height: .0px;
+}
+
 .tdThinLineLarger {
     font-size: 0.1em;
     /* border: 0.6px solid black; */
@@ -133,12 +138,22 @@ input[type="text"]:disabled {
 
 /* TABLE LIGHTING - END */
 
+
 /* TABLE LIGHTING - MENU */
 
 .tableAndMenu {
     display: flex;
     flex-direction: row;
     gap: 30px;
+}
+
+.menu,
+.menuButtonsInLine {
+    font-size: 0.65em;
+}
+
+button {
+    font-size: 0.80em;
 }
 
 .tableAndMenu .menuElements {
@@ -149,13 +164,15 @@ input[type="text"]:disabled {
     padding: 2px 0 5px 0;
 }
 
+.tableAndMenu .menuElements boldi {
+    font-weight: 800;
+}
+
 .tableAndMenu button {
-    margin: 2px 7px;
+    margin: 7px 7px;
     padding: 1px;
-    font-size: 0.9em;
     width: 56px;
     cursor: pointer;
-    font-size: 9px;
 }
 
 .tableAndMenu .textMenu {
@@ -163,56 +180,33 @@ input[type="text"]:disabled {
     margin: 5px 0 0 4px;
     line-height: 11px;
     cursor: default;
-    font-size: 9px;
 }
 
-/* .allDescription {
-    background-color: rgb(210, 225, 241);
+.allDescription {
+    background-color: whitesmoke;
     position: fixed;
-    left: 20px;
+    left: -230px;
     width: 500px;
-    color: rgb(210, 241, 223);
-    font-size: 10px;
+    color: whitesmoke;
     padding: 15px 5px 15px 10px;
     transition: color 3s ease, transform 0.4s ease;
-} */
-
-
-/* .tableAndMenu .menuButtonsDescriptions {
-    color: red;
-} */
-
-
-
-
-/* SHOW BUTTONS AND CHECKBOXES HELP */
-
-/* .tableMenuDescriptionVisible {
-    visibility: visible;
-    transform: translateX(1520px);
-    color: black;
-} */
+}
 
 
 
 /* CHECK BOX */
 
-/* .checkboxDiv {
+.checkboxDiv {
     display: flex;
     align-items: center;
 }
 
-.labelCB {
-    font-size: 0.9em;
+input[type="checkbox"] {
+    width: 8px;
+    color: rgb(89, 89, 89);
 }
 
 input[type="checkbox"] {
-    width: 8px;
-    /* color: rgb(89, 89, 89); */
-/* }
-
-input[type="checkbox"],
-label:hover {
     cursor: pointer;
 }
 
@@ -222,36 +216,117 @@ label:hover {
 
 .greenLabel {
     color: rgb(32, 118, 5);
-} */
+}
 
+/* SHOW BUTTONS AND CHECKBOXES HELP */
 
+.tableMenuDescriptionVisible {
+    visibility: visible;
+    transform: translateX(320px);
+    color: black;
+}
 
+/* DISPLAY HELP */
 
-/* DISPLAY HELP FOR CHECKBOXES */
+.tableMenuDescription1 {
+    width: 200px;
+    top: 60px;
+}
 
-/* .tableMenuDescription1,
+.tableMenuDescription2 {
+    top: 70px;
+    width: 200px;
+}
+
+.tableMenuDescription3 {
+    top: 80px;
+    width: 200px;
+}
+
+.tableMenuDescription4 {
+    top: 90px;
+    width: 200px;
+}
+
+.tableMenuDescription5 {
+    top: 100px;
+    width: 200px;
+}
+
+.tableMenuDescription6 {
+    top: 110px;
+    width: 200px;
+}
+
 .tableMenuDescription100 {
-    top: 160px;
+    top: 60px;
     width: 100px;
 }
 
 .tableMenuDescription101 {
-    top: 180px;
+    top: 80px;
     width: 100px;
 }
 
 .tableMenuDescription102 {
-    top: 200px;
+    top: 100px;
     width: 100px;
 }
 
 .tableMenuDescription103 {
-    top: 230px;
+    top: 130px;
     width: 100px;
 }
 
 .tableMenuHide {
     display: none;
-} */
-*/
+}
+
+/* MENU Z-Index */
+
+.menuCheckboxes,
+.menuButtons {
+    position: relative;
+    z-index: 22;
+}
+
+.menuCheckboxesDescriptions,
+.menuButtonsDescriptions {
+    z-index: 2;
+    position: relative;
+}
+
+
 /* END - MENU TABLE */
+
+/* MENU - CONFIRMATION OF EXECUTION */
+
+.confContainerParent {
+    position: fixed;
+    left: 10px;
+    bottom: 25px;
+    width: 70px;
+    height: 10px;
+    z-index: 0;
+}
+
+.confContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.confElement {
+    font-size: 16px;
+    opacity: 0;
+    transition: all 0.2s ease-in;
+}
+
+.confElementChange {
+    background-color: rgb(255, 201, 204);
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+/* END  MENU - CONFIRMATION OF EXECUTION */

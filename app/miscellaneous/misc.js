@@ -30,6 +30,9 @@ let dataTableOriginal = [
 let dataTableJsonS
 let dataTableLocal = []
 
+// w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bierząca nazwa tabeli nad któą pracujemy
+export const currentTablNam = []
+
 // classy dla różnych wierszy tabeli
 export const classTableRows = ["rowTextBold", "rowText", "rowThinLine", "rowDate", "rowEmpty"]
 
@@ -98,6 +101,7 @@ export const infoTablesNamesRead = () => {
 
 export const operationIsDone = () => {
     const element = document.querySelector(".confElement")
+    console.log(element)
     element.classList.add("confElementChange")
     setTimeout(() => {
         element.classList.remove("confElementChange")
