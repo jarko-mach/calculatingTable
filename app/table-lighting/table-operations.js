@@ -295,7 +295,7 @@ const displayDialogboxAddNewRow = (elementCoursorPosition) => {
         foundElement.innerHTML = ``;
         let checkBoxState = document.querySelector("#addTableRow");
         checkBoxState.checked = false;
-        checkboxADDTableRowChanged();
+        checkbox_ADDTableRow_Changed();
     }
 
     const foundElement = document.querySelector(".openDialogBox")
@@ -376,14 +376,14 @@ export const checkbox_ADDTableRow_Changed = () => {
     if (checkBoxRemoveState.checked === true) { checkBoxADDState.checked = false }
     // console.log("checkbox", checkBoxState)
     if (checkBoxADDState.checked == true) {
-        document.querySelector("#labelCB2").classList.add("greenLabel")
-        document.querySelector("#labelCB2").textContent = "wstawiasz"
+        document.querySelector(".labelCB2").classList.add("greenLabel")
+        document.querySelector(".labelCB2").textContent = "wstawiasz"
         document.querySelector("tbody").addEventListener("click", addTableRow)
         document.querySelector("tbody").addEventListener("mouseover", colorGreenTableRow)
         document.querySelector("tbody").addEventListener("mouseout", discolorGreenTableRow)
     } else {
-        document.querySelector("#labelCB2").classList.remove("greenLabel")
-        document.querySelector("#labelCB2").textContent = "wstawianie"
+        document.querySelector(".labelCB2").classList.remove("greenLabel")
+        document.querySelector(".labelCB2").textContent = "wstawianie"
         document.querySelector("tbody").removeEventListener("click", addTableRow)
         document.querySelector("tbody").removeEventListener("mouseover", colorGreenTableRow)
         document.querySelector("tbody").removeEventListener("mouseout", discolorGreenTableRow)
@@ -391,6 +391,20 @@ export const checkbox_ADDTableRow_Changed = () => {
 
 }
 
+// FILE SAVE
+
+export const fileSave = () => {
+    const lastName = readTemporaryTableReportName()
+    let localName
+    if (lastName.startsWith(`"`)) {
+      localName = lastName.substring(1, lastName.length - 1)
+      // console.log("zapisuję...", localName)
+    }
+    saveTable(localName)
+    saveReport(localName)
+    alert(`Sprawozdanie ${localName} zostało zapisane`);
+  }
+  
 
 // RECALCULATING
 
@@ -405,7 +419,7 @@ export const tableRecalcAll = function (e) {
     // wczytuję classy dla kolumn
     let readedClasses = convertClassesIntoOneString(classTableColumns)
     const nodeList = document.querySelectorAll(readedClasses)
-    // console.log("trafione punkty do obliczeń:", nodeList.length)
+    console.log("trafione punkty do obliczeń:", nodeList.length)
     if (!nodeList.length) {
         alert("Wygląda na to, że nie ma żadnych danych w tabeli");
         return

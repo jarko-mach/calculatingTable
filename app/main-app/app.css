@@ -7,37 +7,38 @@ body {
     box-sizing: border-box;
     padding: 1mm 14mm 2mm 24mm;
     margin: 0;
-    font-size: 14pt;
+    font-size: 10pt;
 }
+
+h1 {
+    font-size: 1.2em;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
 
 /* MAIN WINDOW */
 
 .entry {
-    font-size: 15pt;
     font-weight: 600;
     text-align: center;
     margin: 20px 0 30px 0;
 }
 
 .reportTitle {
-    font-size: 15px;
+    font-size: 1em;
     font-weight: 600;
     text-align: center;
     margin: 20px 0 30px 0;
-}
-
-.reportSubtitle {
-    font-size: 13px;
-    font-weight: 600;
-    /* text-align: center; */
-    /* margin: 20px 0 30px 0; */
 }
 
 .reportTitle input {
     text-align: center;
     width: 37px;
     margin: 5px;
-    font-size: 12px;
+    font-size: 0.85em;
 }
 
 .reportTitle p {
@@ -48,21 +49,27 @@ body {
     margin: 40px auto 50px auto;
 }
 
+.reportSubtitle {
+    font-weight: 600;
+}
+
 .customerGrid {
     display: grid;
+    align-items: center;
     grid-template-columns: 180px auto;
     margin: 0 0 6px 10px;
 }
 
 .customerLabel {
-    font-size: 13px;
+    /* font-size: 1em; */
     font-weight: 400;
     text-align: left;
     margin: 0;
 }
 
 .castomerInput {
-    font-size: 11pt;
+    max-width: 340px;
+    font-size: .9em;
     font-weight: 600;
     text-align: left;
     margin: 0;
@@ -117,7 +124,7 @@ body {
 }
 
 .menuElements {
-    font-size: 9px;
+    font-size: 0.7em;
 }
 
 .textMenu {
@@ -271,8 +278,6 @@ legend {
 
 /* END DIALOG BOX */
 
-/* DIALOG BOX - OLD REPORT SELECTED */
-/* END DIALOG BOX - OLD REPORT SELECTED */
 
 /* DIALOG BOX - CREATE NEW REPORT */
 
@@ -295,6 +300,24 @@ legend {
 
 /* END DIALOG BOX - CREATE NEW REPORT  */
 
+/* FIND OLD REPORT */
+
+.dialogBoxChild_OldReport {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px 0;
+    padding: 10px 0 10px 10px;
+    box-sizing: border-box;
+}
+
+.dialogBoxChild_OldReport #fileName,
+.dialogBoxChild_OldReport option {
+    /* color:rgb(0, 17, 255); */
+    font-size: 0.95em;
+    padding: 4px 7px;
+}
 
 /* DIALOG BOX - SELECT TABLE */
 
@@ -307,3 +330,35 @@ legend {
 }
 
 /* END DIALOG BOX - SELECT TABLE */
+
+/* MENU - CONFIRMATION OF EXECUTION */
+
+.confContainerParent {
+    position: fixed;
+    left: 10px;
+    bottom: 25px;
+    width: 70px;
+    height: 10px;
+    z-index: 0;
+}
+
+.confContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.confElement {
+    font-size: 16px;
+    opacity: 0;
+    transition: all 0.2s ease-in;
+}
+
+.confElementChange {
+    background-color: rgb(255, 201, 204);
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+/* END  MENU - CONFIRMATION OF EXECUTION */

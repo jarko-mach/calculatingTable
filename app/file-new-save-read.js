@@ -10,6 +10,8 @@ import {
   operationIsDone,
   readDoc,
   readReport,
+  saveTemporaryReportName,
+  readTemporaryReportName,
   saveTemporaryTableReportName,
   readTemporaryTableReportName
 } from "./app.js"
@@ -34,7 +36,7 @@ export const fileNew = () => {
     infoTablesNamesSave(foundInputText)
     saveReport(foundInputText)
     saveTable(foundInputText)
-    saveTemporaryTableReportName(foundInputText)
+    saveTemporaryReportName(foundInputText)
     setButtonsEnabledDisabled("tableNew")
     operationIsDone()
     // console.log(tableButtonsInfo)
@@ -135,7 +137,7 @@ export const fileRead = () => {
     // console.log("OK foundElement", foundElement)
 
     foundElement.innerHTML = ` `
-    debugger
+    // debugger
     readDoc(foundInputText)
     readReport(foundInputText)
     saveTemporaryTableReportName(foundInputText)

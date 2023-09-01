@@ -1,20 +1,16 @@
-body {
-    font-family: 'Carlito', sans-serif;
-    font-size: 12pt;
-}
-
 /* TABLE LIGHTING */
 
 /* THEAD */
 
-table {
-    margin: 20px 0 20px 0;
+.tableLight {
     border-collapse: collapse;
+    margin: 20px 0 20px 0;
+    font-family: 'Carlito', sans-serif;
+    font-size: .7em;
     text-align: center;
-    font-size: 0.7em;
 }
 
-thead>tr>td {
+.tableLight thead>tr>td {
     border: 0.6px solid black;
     padding: 2px 0px 2px 2px;
 }
@@ -28,57 +24,60 @@ upperLine {
     border-top: 1px solid;
 }
 
-.widthColumn1 {
+.tableLight .widthColumn1 {
     width: 6mm;
 }
 
-.widthColumn2 {
+.tableLight .widthColumn2 {
     width: 65mm;
 }
 
-.widthColumn3 {
+.tableLight .widthColumn3 {
     width: 45mm;
 }
 
-.widthColumn4 {
-    width: 14mm;
-}
-
-.widthColumn5 {
+.tableLight .widthColumn4 {
     width: 12mm;
 }
 
-.widthColumn6 {
-    width: 11mm;
+.tableLight .widthColumn5 {
+    width: 12mm;
 }
 
-.widthColumn7 {
-    width: 11mm;
+.tableLight .widthColumn6 {
+    width: 12mm;
 }
 
-.widthColumn8 {
+.tableLight .widthColumn7 {
+    width: 12mm;
+}
+
+.tableLight .widthColumn8 {
     width: 12mm;
 }
 
 /* TBODY */
 
-tbody>tr>td {
+.tableLight tbody>tr>td {
     border-left: 0.6px solid black;
     border-right: 0.6px solid black;
     padding: 0;
+        color:blue;
+
 }
 
-.numberLp,
-.place,
-.measurings,
-.wynik-1,
-.norma-1,
-.wynik-2,
-.norma-2,
-.compatibility,
-textarea {
+.tableLight .numberLp,
+.tableLight .place,
+.tableLight .measurings,
+.tableLight .wynik-1,
+.tableLight .norma-1,
+.tableLight .wynik-2,
+.tableLight .norma-2,
+.tableLight .compatibility,
+.tableLight textarea {
     text-align: center;
     font-family: 'Carlito', sans-serif;
+    font-size: 1.2em;
     box-sizing: border-box;
     border: 0px;
     padding: 0 3px 0 3px;
@@ -86,55 +85,78 @@ textarea {
     resize: vertical;
 }
 
-.place {
+.tableLight .place {
     text-align: left;
 }
 
-.measuringsError {
+.tableLight .measuringsError {
     border: 3px solid red;
 }
 
-.measuringsToLow {
+.tableLight .measuringsToLow {
     border-bottom: 2px solid rgb(0, 0, 0);
     width: 50%;
 }
 
-.tableTextBold {
+.tableLight .tableTextBold {
     font-weight: 800;
 }
 
-.isRedOutline {
+.tableLight .isRedOutline {
     border: 2px solid red;
 }
 
-.isGreenOutline {
+.tableLight .isGreenOutline {
     border: 2px solid green;
 }
 
-.tdThinLine {
+.tableLight .tdThinLine {
     font-size: 0.0em;
     border-top: 0.6px solid black;
 }
 
-.inputThinLine {
+.tableLight .inputThinLine {
     font-size: 0.0em;
     line-height: .0px;
 }
 
-.tdThinLineLarger {
+.tableLight .tdThinLineLarger {
     font-size: 0.1em;
     /* border: 0.6px solid black; */
 }
 
-input[type="text"]:disabled {
+.tableLight input[type="text"]:disabled {
     background: #ffffff;
     color: black;
 }
 
 
-.addGreyBackground {
+.tableLight .addGreyBackground {
     background-color: rgb(223, 223, 223);
 }
+
+/* TBODY BACKGROUND COLORS  */
+
+.rowTextBold,
+.rowTextBold textarea,
+.rowTextBold input[type="text"],
+.rowTextBold input[type="text"]:disabled {
+    background-color: rgb(249, 244, 250);
+}
+
+.rowText,
+.rowText textarea,
+.rowText input[type="text"] {
+    background-color: rgb(253, 252, 233);
+}
+
+.rowDate,
+.rowDate textarea,
+.rowDate input[type="text"] {
+    background-color: rgb(247, 255, 247);
+}
+
+/* TBODY BACKGROUND COLORS - END */
 
 /* TABLE LIGHTING - END */
 
@@ -147,13 +169,13 @@ input[type="text"]:disabled {
     gap: 30px;
 }
 
-.menu,
 .menuButtonsInLine {
-    font-size: 0.65em;
+    font-size: .7em;
+    /* color:red; */
 }
 
 button {
-    font-size: 0.80em;
+    font-size: 0.9em;
 }
 
 .tableAndMenu .menuElements {
@@ -299,35 +321,3 @@ input[type="checkbox"] {
 
 
 /* END - MENU TABLE */
-
-/* MENU - CONFIRMATION OF EXECUTION */
-
-.confContainerParent {
-    position: fixed;
-    left: 10px;
-    bottom: 25px;
-    width: 70px;
-    height: 10px;
-    z-index: 0;
-}
-
-.confContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.confElement {
-    font-size: 16px;
-    opacity: 0;
-    transition: all 0.2s ease-in;
-}
-
-.confElementChange {
-    background-color: rgb(255, 201, 204);
-    opacity: 1;
-    transform: translateY(10px);
-}
-
-/* END  MENU - CONFIRMATION OF EXECUTION */

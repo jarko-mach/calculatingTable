@@ -24,15 +24,14 @@ export const createStandardTable = (tableName) => {
                 <div class="menuCheckboxes"></div>
                 <div class="menuCheckboxesDescriptions"></div>
             </div>
-            <div class="info">Wersja 1.4 <i>JM</i></div>
         <div class="confContainerParent">
             <div class="confContainer">
                 <div class="confElement"> ZROBIONE </div>
             </div>
         </div>
         </div>
-        <div class="table">
-            <table id = "${tableName}">
+        <div >
+            <table class="tableLight" id = "${tableName}">
                 <thead>
                     <tr class="nocolor">
                         <td rowspan="2">Lp.</td>

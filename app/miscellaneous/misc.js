@@ -1,14 +1,17 @@
 "use strict";
 
-let dataReportOriginal = {
+export let dataReportOriginal = {
     id: 1,
     numberTSO: 111,
-    year: 2023,
-    page: 1,
-    pages: 11,
-    customer: "P.H.U",
-    placeOfMeasurings: "Hurtownie",
-    dateOfMeasurings: Date(),
+    yearTSO: 2023,
+    customerName: "P.H.U",
+    researchAddress: "Hurtownie",
+    factorsTested: "something",
+    complied: "Maja",
+    researchDate: Date(),
+    reportDate: Date(),
+    copyReportNumber: 1,
+    allPages: 11,
     tables: ["tabela1"],
 }
 
@@ -30,7 +33,7 @@ let dataTableOriginal = [
 let dataTableJsonS
 let dataTableLocal = []
 
-// w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bierząca nazwa tabeli nad któą pracujemy
+// w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bierząca nazwa tabeli nad którą pracujemy
 export const currentTablNam = []
 
 // classy dla różnych wierszy tabeli
@@ -48,14 +51,27 @@ export const convertClassesIntoOneString = (myTable) => {
     return readClasses
 }
 
-// aktualnie aktywne sprawozdanie
+// aktualnie aktywny Raport
 
-export const saveTemporaryTableReportName = (tabRepName) => {
+export const saveTemporaryReportName = (repName) => {
+    localStorage.setItem(`tempRepName`, JSON.stringify(repName))
+    // console.log("zapis do temp.", tabRepName)
+}
+
+export const readTemporaryReportName = () => {
+    let repName = localStorage.getItem(`tempRepName`)
+    // console.log("odczyt z temp.", tabRepName)
+    return repName
+}
+
+// aktualnie aktywne tabela
+
+const _saveTemporaryReportTableName = (tabRepName) => {
     localStorage.setItem(`tempTabName`, JSON.stringify(tabRepName))
     // console.log("zapis do temp.", tabRepName)
 }
 
-export const readTemporaryTableReportName = () => {
+const _readTemporaryReportTableName = () => {
     let tabRepName = localStorage.getItem(`tempTabName`)
     // console.log("odczyt z temp.", tabRepName)
     return tabRepName
@@ -63,14 +79,53 @@ export const readTemporaryTableReportName = () => {
 
 // zapamiętuje utworzone nazwy sprawozdań lokalnie
 
-let infoTableName = [{
+let info_ReportsNames = [{
+    creatingDate: "333",
+    reportName: "444",
+}]
+
+export const infoReportsNamesSave = (nameOfReport) => {
+    let oldNames = JSON.parse(localStorage.getItem("infoReportsNames"));
+    // console.log(oldNames)
+    const temporaryObject = JSON.parse(JSON.stringify(info_ReportsNames))
+    if (!oldNames) { oldNames = [] }
+    oldNames.push(...temporaryObject)
+    debugger
+    oldNames[oldNames.length - 1].creatingDate = new Date()
+    oldNames[oldNames.length - 1].reportName = nameOfReport
+    localStorage.setItem(`infoReportsNames`, JSON.stringify(oldNames))
+}
+
+export const infoReportsNamesRead = () => {
+    const names = JSON.parse(localStorage.getItem("infoReportsNames"));
+    // const names = localStorage.getItem("infoReportsNames")
+    // console.log(names.length)
+    
+    let localNames = []
+    if (names?.length) {
+        names.forEach((element, index) => { localNames.push(element.reportName) })
+    }
+    console.log("localNames", localNames)
+    if (names) {
+        console.log("jest kilka tablic", names[0].reportName)
+        return localNames
+    } else {
+        console.log("nie ma tablic")
+        return ""
+    }
+}
+
+// zapamiętuje utworzone tabele lokalnie
+
+let info_TablesNames = [{
     creatingDate: "333",
     tableName: "444",
     tableSuffix: "Table",
     reportSuffix: "Report",
 }]
 
-export const infoTablesNamesSave = (nameOfTable) => {
+
+const _infoTablesNamesSave = (nameOfTable) => {
     let oldNames = JSON.parse(localStorage.getItem("infoTablesNames"));
     const infoJsonString = JSON.parse(JSON.stringify(infoTableName))
     if (!oldNames) { oldNames = [] }
@@ -80,7 +135,7 @@ export const infoTablesNamesSave = (nameOfTable) => {
     localStorage.setItem(`infoTablesNames`, JSON.stringify(oldNames))
 }
 
-export const infoTablesNamesRead = () => {
+const _infoTablesNamesRead = () => {
     const names = JSON.parse(localStorage.getItem("infoTablesNames"));
     let localNames = []
     if (names?.length) {
@@ -101,7 +156,7 @@ export const infoTablesNamesRead = () => {
 
 export const operationIsDone = () => {
     const element = document.querySelector(".confElement")
-    console.log(element)
+    // console.log(element)
     element.classList.add("confElementChange")
     setTimeout(() => {
         element.classList.remove("confElementChange")
