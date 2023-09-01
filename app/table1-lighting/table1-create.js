@@ -1,6 +1,6 @@
 "use strict";
 
-import { tableAddNumbers } from "./table-operations.js"
+import { tableAddNumbers } from "./table1-operations.js"
 
 // import { operationIsDone } from "../miscellaneous/misc.js";
 
@@ -8,7 +8,7 @@ import {
     tableMenu_createButtons,
     tableMenu_createCheckboxes,
     tableMenu_ShowHideAllDescriptions
-} from "./table-menu.js"
+} from "./table1-menu.js"
 
 export const createStandardTable = (tableName) => {
     const foundElement = document.querySelector(".point5")

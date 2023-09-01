@@ -12,7 +12,8 @@ import {
 import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
 import { saveAll, readOnlySomeOfReport } from "./app.js";
-import { createStandardTable } from "../table-lighting/table-create.js";
+import { createStandardTable } from "../table1-lighting/table1-create.js";
+import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml, reset_pointsAddedIntoCurrentReport } from "./main_points15.js";
 
 
 ////// CREATE NEW REPORT -----------------------------------------------------------------------------
@@ -31,6 +32,8 @@ export const dialogBox_startNewReport = () => {
         saveTemporaryReportName(foundInputText)
         createMainTable()
         createMainMenu()
+        removeAllAddedPointsInHtml()
+        reset_pointsAddedIntoCurrentReport()
         saveAll()
         operationIsDone()
     }
@@ -112,9 +115,10 @@ export const dialogBox_startNewReport = () => {
 ////// READ EXISTING REPORT  ------------------------------------------------------------------------------
 
 export const dialogBox_readExistingReport = () => {
+    
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-        console.log("OK", chosenReportName)
+        // console.log("OK", chosenReportName)
         const foundElement = document.querySelector(".openDialogBox")
         // console.log("OK foundElement", foundElement)
 
@@ -122,25 +126,8 @@ export const dialogBox_readExistingReport = () => {
         createMainTable()
         createMainMenu()
         readOnlySomeOfReport(chosenReportName)
-        clearInfoInputIsEmpty()
-        operationIsDone()
-
-        return
-
-        infoTablesNamesSave(foundInputText)
-        saveTemporaryTableReportName(foundInputText)
-        saveAll()
-
-
-        readDoc(foundInputText)
-        readReport(foundInputText)
-        saveTemporaryTableReportName(foundInputText)
-        // infoTablesNamesSave(foundInputText)
-        // saveReport(foundInputText)
-        // saveTable(foundInputText)
-        setButtonsEnabledDisabled("tableReaded")
-        operationIsDone()
-        // console.log(tableButtonsInfo)
+        readAndDisplayAllAdedPoints()
+        // clearInfoInputIsEmpty()
     }
 
     const getCancelButton = () => {

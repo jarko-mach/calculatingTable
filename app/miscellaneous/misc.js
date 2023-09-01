@@ -12,6 +12,7 @@ export let dataReportOriginal = {
     reportDate: Date(),
     copyReportNumber: 1,
     allPages: 11,
+    addedPoints: [0,1,2,3,4,5],
     tables: ["tabela1"],
 }
 
@@ -33,7 +34,7 @@ let dataTableOriginal = [
 let dataTableJsonS
 let dataTableLocal = []
 
-// w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bierząca nazwa tabeli nad którą pracujemy
+// w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bieżąca nazwa tabeli nad którą pracujemy
 export const currentTablNam = []
 
 // classy dla różnych wierszy tabeli
@@ -90,7 +91,7 @@ export const infoReportsNamesSave = (nameOfReport) => {
     const temporaryObject = JSON.parse(JSON.stringify(info_ReportsNames))
     if (!oldNames) { oldNames = [] }
     oldNames.push(...temporaryObject)
-    debugger
+    
     oldNames[oldNames.length - 1].creatingDate = new Date()
     oldNames[oldNames.length - 1].reportName = nameOfReport
     localStorage.setItem(`infoReportsNames`, JSON.stringify(oldNames))
@@ -156,7 +157,8 @@ const _infoTablesNamesRead = () => {
 
 export const operationIsDone = () => {
     const element = document.querySelector(".confElement")
-    // console.log(element)
+    console.log("element", element)
+
     element.classList.add("confElementChange")
     setTimeout(() => {
         element.classList.remove("confElementChange")

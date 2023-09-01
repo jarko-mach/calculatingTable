@@ -2,9 +2,39 @@
 
 import { dialogBox_point5_selectTableType } from "./main-dialog-boxes.js"
 
-const addingPointsTable = [0, 0, 0, 0, 0, 0]
+export const pointsAddedIntoCurrentReport = [0, 0, 0, 0, 0, 0]
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
+
+export const reset_pointsAddedIntoCurrentReport = () => {
+    for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length - 1; locIndeks++) {
+        pointsAddedIntoCurrentReport[locIndeks] = 0
+    }
+    console.log("reset", pointsAddedIntoCurrentReport)
+}
+
+export const removeAllAddedPointsInHtml = () => {
+    for (let index = 1; index <= pointsAddedIntoCurrentReport.length - 1; index++) {
+        const foundElement = document.querySelector(`.point${index}`)
+        console.log("mam punkt", index)
+        if (foundElement) {
+            foundElement.remove()
+            console.log("usuwam punkt", index, foundElement)
+        }
+    }
+}
+
+export const readAndDisplayAllAdedPoints = () => {
+    removeAllAddedPointsInHtml()
+    for (let index = 1; index <= pointsAddedIntoCurrentReport.length; index++) {
+        console.log("2 - mam punkt", index)
+        if (pointsAddedIntoCurrentReport[index]) {
+            console.log("dodaję punkt", index)
+            pointsAddedIntoCurrentReport[index] = 0
+            createDivPoints(index)
+        }
+    }
+}
 
 const findPreviousDiv = (number) => {
     for (let index = number - 1; index > 0; index--) {
@@ -17,8 +47,8 @@ const findPreviousDiv = (number) => {
 }
 
 const createDivPoints = (number) => {
-    if (addingPointsTable[number] === 0) {
-        addingPointsTable[number] = 1
+    if (pointsAddedIntoCurrentReport[number] === 0) {
+        pointsAddedIntoCurrentReport[number] = 1
         const foundElement = document.querySelector(findPreviousDiv(number))
         const newDiv = document.createElement("div")
         newDiv.classList.add(`point${number}`)

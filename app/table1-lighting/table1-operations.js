@@ -342,7 +342,7 @@ const displayDialogboxAddNewRow = (elementCoursorPosition) => {
                         <label for="insertThinLine">linię</label>
                     </div>
                 </fieldset>
-                <div class="btnLayout">
+                <div class="btnLayout_Add">
                     <button class="okSave">Wybierz</button>
                     <button class="noCancel">Anuluj</button>
                 </div>
@@ -361,6 +361,7 @@ const displayDialogboxAddNewRow = (elementCoursorPosition) => {
 
 export const addTableRow = (e) => {
     let element = e.target.closest("tr")
+    console.log("mamy click dla ", element)
     discolorGreenTableRow(e)
     let checkBoxState = document.querySelector("#addTableRow")
     checkBoxState.checked = false
@@ -374,19 +375,19 @@ export const checkbox_ADDTableRow_Changed = () => {
     let checkBoxADDState = document.querySelector("#addTableRow");
 
     if (checkBoxRemoveState.checked === true) { checkBoxADDState.checked = false }
-    // console.log("checkbox", checkBoxState)
+    console.log("checkbox", checkBoxRemoveState)
     if (checkBoxADDState.checked == true) {
         document.querySelector(".labelCB2").classList.add("greenLabel")
         document.querySelector(".labelCB2").textContent = "wstawiasz"
-        document.querySelector("tbody").addEventListener("click", addTableRow)
-        document.querySelector("tbody").addEventListener("mouseover", colorGreenTableRow)
-        document.querySelector("tbody").addEventListener("mouseout", discolorGreenTableRow)
+        document.querySelector(".tableLight tbody").addEventListener("click", addTableRow)
+        document.querySelector(".tableLight tbody").addEventListener("mouseover", colorGreenTableRow)
+        document.querySelector(".tableLight tbody").addEventListener("mouseout", discolorGreenTableRow)
     } else {
         document.querySelector(".labelCB2").classList.remove("greenLabel")
         document.querySelector(".labelCB2").textContent = "wstawianie"
-        document.querySelector("tbody").removeEventListener("click", addTableRow)
-        document.querySelector("tbody").removeEventListener("mouseover", colorGreenTableRow)
-        document.querySelector("tbody").removeEventListener("mouseout", discolorGreenTableRow)
+        document.querySelector(".tableLight tbody").removeEventListener("click", addTableRow)
+        document.querySelector(".tableLight tbody").removeEventListener("mouseover", colorGreenTableRow)
+        document.querySelector(".tableLight tbody").removeEventListener("mouseout", discolorGreenTableRow)
     }
 
 }
