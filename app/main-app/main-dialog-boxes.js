@@ -13,7 +13,7 @@ import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
 import { saveAll, readOnlySomeOfReport } from "./app.js";
 import { createStandardTable } from "../table1-lighting/table1-create.js";
-import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml, reset_pointsAddedIntoCurrentReport } from "./main_points15.js";
+import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "./main_points15.js";
 
 
 ////// CREATE NEW REPORT -----------------------------------------------------------------------------
@@ -118,16 +118,17 @@ export const dialogBox_readExistingReport = () => {
     
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-        // console.log("OK", chosenReportName)
+                // console.log("OK", chosenReportName)
         const foundElement = document.querySelector(".openDialogBox")
-        // console.log("OK foundElement", foundElement)
+                // console.log("OK foundElement", foundElement)
 
         foundElement.innerHTML = ` `
+        // debugger
         createMainTable()
         createMainMenu()
         readOnlySomeOfReport(chosenReportName)
         readAndDisplayAllAdedPoints()
-        // clearInfoInputIsEmpty()
+                // clearInfoInputIsEmpty()
     }
 
     const getCancelButton = () => {

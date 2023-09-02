@@ -115,6 +115,10 @@ h2 {
 
 /* MENU - MAIN */
 
+.mainMenu {
+    background-color: red;
+}
+
 .menuBackground {
     background-color: rgb(210, 241, 223);
     position: fixed;

@@ -17,6 +17,7 @@ import { pointsAddedIntoCurrentReport } from "./main_points15.js";
 ////// READ FULL REPORT
 
 export const readOnlySomeOfReport = (reportName) => {
+    
     saveTemporaryReportName(reportName)
     let dataReport = JSON.parse(localStorage.getItem(`"${reportName}"Report`));
     // console.log("1 name", reportName, "dane", dataReport)
@@ -39,7 +40,7 @@ export const readOnlySomeOfReport = (reportName) => {
             // let tempTable = []
             // console.log(pointsAddedToCurrentReport)
 
-            for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length - 1; locIndeks++) {
+            for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length; locIndeks++) {
                 pointsAddedIntoCurrentReport[locIndeks] = dataReport[`${element}`][locIndeks]
             }
             // pointsAddedIntoCurrentReport[0] = 11

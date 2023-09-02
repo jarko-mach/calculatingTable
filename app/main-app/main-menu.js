@@ -95,18 +95,20 @@ let mainMenu_tableButtonsInfo = [
 
 export function createMainMenu() {
     const foundElement = document.querySelector(".openDialogBox")
+    let foundMainMenu = document.querySelector(".mainMenu")
+    console.log("found mainMenu", foundMainMenu)
     // debugger
-    let foundNewFooter = document.querySelector("footer")
-    if (!foundNewFooter) { foundNewFooter = document.createElement("footer") }
-    foundNewFooter.classList.add("menuBackground")
-    foundNewFooter.innerHTML =
+    if (!foundMainMenu) { foundMainMenu = document.createElement("div") }
+    foundMainMenu.classList.add("mainMenu")
+    foundMainMenu.classList.add("menuBackground")
+    foundMainMenu.innerHTML =
         `<div class="menuElements"></div>
          <div class="mainMenuDescriptions"></div>
          <div class="info">Wersja 2.01 <i>JM</i></div>
              `
-    foundElement.before(foundNewFooter)
+    foundElement.before(foundMainMenu)
 
-    const elementDivWithButtons = document.querySelector(".menuElements")
+    const elementDivWithButtons = document.querySelector(".mainMenu .menuElements")
     let textDivWithButtons = `<p class="textMenu">SPRAWOZDANIE:</p>`
 
     for (let i = 0; i < mainMenu_tableButtonsInfo.length; i++) {
