@@ -5,6 +5,7 @@ import {
     infoReportsNamesSave,
     saveTemporaryReportName,
     readTemporaryReportName,
+    readTemporaryTableName,
     dataReportOriginal,
     operationIsDone
 } from "../miscellaneous/misc.js";
@@ -17,7 +18,7 @@ import { pointsAddedIntoCurrentReport } from "./main_points15.js";
 ////// READ FULL REPORT
 
 export const readOnlySomeOfReport = (reportName) => {
-    
+
     saveTemporaryReportName(reportName)
     let dataReport = JSON.parse(localStorage.getItem(`"${reportName}"Report`));
     // console.log("1 name", reportName, "dane", dataReport)
@@ -69,18 +70,18 @@ export const readAll = () => {
 ////// SAVE FULL REPORT
 
 const saveOnlySomeOfReport = () => {
-    
-    const nameOfReport = readTemporaryReportName()
+
     let foundClasses = ""
-    
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
 
     const nodeList = document.querySelectorAll(myClasses)
-    
+
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
     // console.log("1", dataReport)
-    
+
+    const nameOfReport = readTemporaryReportName()
+
     let nodeListCounter = 0
     for (let element in dataReport) {
         if (element === "id") {
@@ -91,7 +92,15 @@ const saveOnlySomeOfReport = () => {
             dataReport[`${element}`] = pointsAddedIntoCurrentReport
             continue
         }
-        if (element === "tables") continue
+        if (element === "tables") {
+            let actualTableName = readTemporaryTableName().slice(1, -1)
+            dataReport[`${element}`].push(actualTableName)
+
+            continue
+        }
+
+
+
         // console.log("element", element, "nodeList[currentLiczn].value", nodeList[currentLiczn].value)
         dataReport[`${element}`] = nodeList[nodeListCounter].value
         // console.log("2", dataReport.element)

@@ -1,5 +1,6 @@
 "use strict"
 
+import { readTemporaryReportName } from "../miscellaneous/misc.js"
 
 export const createMainTable = () => {
 
@@ -17,6 +18,7 @@ export const createMainTable = () => {
             <input type="text" id="yearTSO" class="fieldToFill">
             </h1>
         </div>
+        <h6><h7><i>Lokalna nazwa: </i></h7> ${readTemporaryReportName().slice(1,-1)}</h6>
         <div class="reportTitle">
             <h2>Badania oświetlenia elektrycznego</h2>
         </div>

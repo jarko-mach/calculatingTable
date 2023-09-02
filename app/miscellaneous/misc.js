@@ -13,7 +13,7 @@ export let dataReportOriginal = {
     copyReportNumber: 1,
     allPages: 11,
     addedPoints: [0,1,2,3,4,5],
-    tables: ["tabela1"],
+    tables: [],
 }
 
 let dataTableOriginal = [
@@ -56,23 +56,23 @@ export const convertClassesIntoOneString = (myTable) => {
 
 export const saveTemporaryReportName = (repName) => {
     localStorage.setItem(`tempRepName`, JSON.stringify(repName))
-    // console.log("zapis do temp.", tabRepName)
+    console.log("zapis do temp. reportu", repName)
 }
 
 export const readTemporaryReportName = () => {
     let repName = localStorage.getItem(`tempRepName`)
-    // console.log("odczyt z temp.", tabRepName)
+    console.log("odczyt z temp.", repName)
     return repName
 }
 
 // aktualnie aktywne tabela
 
-const _saveTemporaryReportTableName = (tabRepName) => {
+export const saveTemporaryTableName = (tabRepName) => {
     localStorage.setItem(`tempTabName`, JSON.stringify(tabRepName))
     // console.log("zapis do temp.", tabRepName)
 }
 
-const _readTemporaryReportTableName = () => {
+export const readTemporaryTableName = () => {
     let tabRepName = localStorage.getItem(`tempTabName`)
     // console.log("odczyt z temp.", tabRepName)
     return tabRepName

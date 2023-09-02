@@ -18,6 +18,11 @@ h2 {
     font-size: 1.2em;
 }
 
+h6 {
+    font-size: 0.7em;
+    color:rgb(154, 171, 171);
+}
+
 
 /* MAIN WINDOW */
 
@@ -106,7 +111,7 @@ h2 {
 }
 
 .fieldToFill {
-    background-color: rgb(254, 243, 243);
+    background-color: rgb(243, 251, 254);
     border: 0.6px solid black;
 }
 
@@ -364,7 +369,7 @@ legend {
 }
 
 .confElementChange {
-    background-color: rgb(255, 201, 204);
+    background-color: rgb(201, 241, 255);
     opacity: 1;
     transform: translateY(10px);
 }

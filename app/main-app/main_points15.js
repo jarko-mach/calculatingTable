@@ -6,12 +6,12 @@ export const pointsAddedIntoCurrentReport = [0, 0, 0, 0, 0, 0]
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
 
-// export const reset_pointsAddedIntoCurrentReport = () => {
-//     for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length - 1; locIndeks++) {
-//         pointsAddedIntoCurrentReport[locIndeks] = 0
-//     }
-//     console.log("reset", pointsAddedIntoCurrentReport)
-// }
+export const reset_pointsAddedIntoCurrentReport = () => {
+    for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length; locIndeks++) {
+        pointsAddedIntoCurrentReport[locIndeks] = 0
+    }
+    console.log("reset", pointsAddedIntoCurrentReport)
+}
 
 export const removeAllAddedPointsInHtml = () => {
     for (let index = 1; index <= pointsAddedIntoCurrentReport.length; index++) {
@@ -27,7 +27,7 @@ export const removeAllAddedPointsInHtml = () => {
 export const readAndDisplayAllAdedPoints = () => {
     
     removeAllAddedPointsInHtml()
-    debugger
+    // debugger
     for (let index = 1; index <= pointsAddedIntoCurrentReport.length; index++) {
         console.log(pointsAddedIntoCurrentReport[index])
         console.log("2 - mam punkt", index)

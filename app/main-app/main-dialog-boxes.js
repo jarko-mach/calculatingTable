@@ -13,7 +13,7 @@ import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
 import { saveAll, readOnlySomeOfReport } from "./app.js";
 import { createStandardTable } from "../table1-lighting/table1-create.js";
-import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "./main_points15.js";
+import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml, reset_pointsAddedIntoCurrentReport } from "./main_points15.js";
 
 
 ////// CREATE NEW REPORT -----------------------------------------------------------------------------
@@ -32,10 +32,10 @@ export const dialogBox_startNewReport = () => {
         saveTemporaryReportName(foundInputText)
         createMainTable()
         createMainMenu()
+        // debugger
         removeAllAddedPointsInHtml()
         reset_pointsAddedIntoCurrentReport()
         saveAll()
-        operationIsDone()
     }
 
     const getCancelButton = () => {
@@ -115,20 +115,20 @@ export const dialogBox_startNewReport = () => {
 ////// READ EXISTING REPORT  ------------------------------------------------------------------------------
 
 export const dialogBox_readExistingReport = () => {
-    
+
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-                // console.log("OK", chosenReportName)
+        // console.log("OK", chosenReportName)
         const foundElement = document.querySelector(".openDialogBox")
-                // console.log("OK foundElement", foundElement)
+        // console.log("OK foundElement", foundElement)
 
         foundElement.innerHTML = ` `
-        // debugger
+        saveTemporaryReportName(chosenReportName)
         createMainTable()
         createMainMenu()
         readOnlySomeOfReport(chosenReportName)
         readAndDisplayAllAdedPoints()
-                // clearInfoInputIsEmpty()
+        // clearInfoInputIsEmpty()
     }
 
     const getCancelButton = () => {
@@ -136,9 +136,14 @@ export const dialogBox_readExistingReport = () => {
         // console.log("CANCEL foundElement", foundElement)
         foundElement.innerHTML = `<div class="openDialogBox"></div>`
     }
+
     const wasNames = infoReportsNamesRead()
-    
-    if (!wasNames) { alert("Brak zapisanych sprawozdań"); return }
+
+    if (!wasNames) {
+        alert("Brak zapisanych sprawozdań")
+        dialogBox_startNewReport()
+        return
+    }
     // console.log("wasNames", wasNames)
 
     const foundElement = document.querySelector(".openDialogBox")
@@ -188,6 +193,7 @@ export const dialogBox_chooseOldOrNewReport = () => {
             }
         }
         getCancelButton();
+
         if (whatNext === "new") dialogBox_startNewReport()
         if (whatNext === "existing") dialogBox_readExistingReport()
     }
@@ -255,7 +261,8 @@ export const dialogBox_point5_selectTableType = () => {
             }
         }
         getCancelButton();
-        if (whatNext === "standard") createStandardTable("table1")
+        if (whatNext === "standard") createStandardTable()
+        if (whatNext === "rescue") alert("Na razie nie ma tej tabeli w opcjach programu...")
     }
 
     const getCancelButton = () => {

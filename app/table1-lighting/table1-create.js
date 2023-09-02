@@ -2,7 +2,7 @@
 
 import { tableAddNumbers } from "./table1-operations.js"
 
-// import { operationIsDone } from "../miscellaneous/misc.js";
+import { saveTemporaryTableName } from "../miscellaneous/misc.js";
 
 import {
     tableMenu_createButtons,
@@ -10,7 +10,10 @@ import {
     tableMenu_ShowHideAllDescriptions
 } from "./table1-menu.js"
 
-export const createStandardTable = (tableName) => {
+export const createStandardTable = () => {
+    let tableName = `table${Date.now()}`
+    saveTemporaryTableName(tableName)
+    
     const foundElement = document.querySelector(".point5")
     // console.log("found", foundElement)
     const newDiv = document.createElement("div")
