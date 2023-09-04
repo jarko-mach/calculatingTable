@@ -96,7 +96,7 @@ let mainMenu_tableButtonsInfo = [
 export function createMainMenu() {
     const foundElement = document.querySelector(".openDialogBox")
     let foundMainMenu = document.querySelector(".mainMenu")
-    console.log("found mainMenu", foundMainMenu)
+    // console.log("found mainMenu", foundMainMenu)
     // debugger
     if (!foundMainMenu) { foundMainMenu = document.createElement("div") }
     foundMainMenu.classList.add("mainMenu")

@@ -5,23 +5,23 @@ import {
     infoReportsNamesSave,
     saveTemporaryReportName,
     readTemporaryReportName,
-    readTemporaryTableName,
-    dataReportOriginal,
-    operationIsDone
+    // readTemporaryTableName,
+    // saveTemporaryTableName,
+    dataReportOriginal
 } from "../miscellaneous/misc.js";
 
 import { dialogBox_chooseOldOrNewReport, dialogBox_readExistingReport } from "./main-dialog-boxes.js";
-
-import { pointsAddedIntoCurrentReport } from "./main_points15.js";
+import { tempInformations } from "../miscellaneous/misc.js"; 
+import { saveTable } from "../table5a-lighting/table5a-operations.js";
 
 
 ////// READ FULL REPORT
 
-export const readOnlySomeOfReport = (reportName) => {
+export const localMemory_readReport = (reportName) => {
 
-    saveTemporaryReportName(reportName)
-    let dataReport = JSON.parse(localStorage.getItem(`"${reportName}"Report`));
-    // console.log("1 name", reportName, "dane", dataReport)
+    // saveTemporaryReportName(reportName)
+    let dataReport = JSON.parse(localStorage.getItem(`${reportName}Report`));
+    console.log("1 name", reportName, "dane", dataReport)
 
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
@@ -32,32 +32,38 @@ export const readOnlySomeOfReport = (reportName) => {
     let nodeListCounter = 0
     for (let element in dataReport) {
         // console.log("odczytuję element", element)
-        if (element === "id" || element === "tables") {
-            // console.log("----znaleziono tables or id");
+        if (element === "id") {
+            // console.log("----znaleziono id");
             continue
         }
-        if (element === "addedPoints") {
-            // console.log("----znaleziono addedPoints", dataReport[`${element}`])
-            // let tempTable = []
-            // console.log(pointsAddedToCurrentReport)
-
-            for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length; locIndeks++) {
-                pointsAddedIntoCurrentReport[locIndeks] = dataReport[`${element}`][locIndeks]
+        if (element === "point1") {
+            tempInformations[1].created = dataReport[`${element}`].created
+            continue
+        }
+        if (element === "point2") {
+            tempInformations[2].created = dataReport[`${element}`].created
+            continue
+        }
+        if (element === "point3") {
+            tempInformations[3].created = dataReport[`${element}`].created
+            continue
+        }
+        if (element === "point4") {
+            tempInformations[4].created = dataReport[`${element}`].created
+            continue
+        }
+        if (element === "point5") {
+            tempInformations[5].created = dataReport[`${element}`].created
+            if (tempInformations[5].created) {
+                tempInformations[5].tableName = dataReport[`${element}`].tableName
             }
-            // pointsAddedIntoCurrentReport[0] = 11
-            // tempTable = [...dataReport[`${element}`]]
-            // pointsAddedIntoCurrentReport.forEach((eleme, inde) => {
-            //     eleme = dataReport[`${element}`][inde]
-            //     console.log(inde, eleme, dataReport[`${element}`][inde])
-            // })
-            // console.log("pointsAddedIntoCurrentReport", pointsAddedIntoCurrentReport)
             continue
         }
-        // console.log("element", element, "nodeList[currentLiczn].value", nodeList[currentLiczn].value)
         nodeList[nodeListCounter].value = dataReport[`${element}`]
         // console.log("2", dataReport.element)
         nodeListCounter++
     }
+    console.log("koniec wczytywania, wyszła tabela:",tempInformations)
 }
 
 export const readAll = () => {
@@ -84,29 +90,44 @@ const saveOnlySomeOfReport = () => {
 
     let nodeListCounter = 0
     for (let element in dataReport) {
+
         if (element === "id") {
             dataReport[`${element}`] = Date.now()
             continue
         }
-        if (element === "addedPoints") {
-            dataReport[`${element}`] = pointsAddedIntoCurrentReport
+
+        if (element === "point1") {
+            dataReport[`${element}`].created = tempInformations[1].created
             continue
         }
-        if (element === "tables") {
-            let actualTableName = readTemporaryTableName().slice(1, -1)
-            dataReport[`${element}`].push(actualTableName)
-
+        if (element === "point2") {
+            dataReport[`${element}`].created = tempInformations[2].created
+            continue
+        }
+        if (element === "point3") {
+            dataReport[`${element}`].created = tempInformations[3].created
+            continue
+        }
+        if (element === "point4") {
+            dataReport[`${element}`].created = tempInformations[4].created
+            continue
+        }
+        if (element === "point5") {
+            // debugger
+            dataReport[`${element}`].created = tempInformations[5].created
+            if (tempInformations[5].created) {
+                let localTabNam = tempInformations[5].tableName
+                dataReport[`${element}`].tableName = localTabNam
+                saveTable(localTabNam)
+            }
             continue
         }
 
-
-
-        // console.log("element", element, "nodeList[currentLiczn].value", nodeList[currentLiczn].value)
         dataReport[`${element}`] = nodeList[nodeListCounter].value
-        // console.log("2", dataReport.element)
+        console.log("save raport - element", dataReport[`${element}`])
         nodeListCounter++
     }
-    // console.log("2", dataReport)
+    console.log("2 saveOnlySomeOfReport - zapisuję dane:", dataReport)
 
     // element 8 - tables
     // dataReport.tables = nodeList[7].value
@@ -115,14 +136,9 @@ const saveOnlySomeOfReport = () => {
     localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
 
-const saveNextElements = () => {
-    // const foundElement = document.querySelector(`.point${index}`)
-    console.log("save - tabela punktów", pointsAddedIntoCurrentReport)
-}
-
 export const saveAll = () => {
     saveOnlySomeOfReport()
-    saveNextElements()
+    // saveTable()
 }
 
 // SAVE FULL REPORT - END

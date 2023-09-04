@@ -9,7 +9,7 @@ import {
     tableRecalcAll,
     checkbox_RemoveTableRow_Changed,
     checkbox_ADDTableRow_Changed
-} from "./table1-operations.js";
+} from "./table5a-operations.js";
 
 
 import { currentTablNam } from "../miscellaneous/misc.js"

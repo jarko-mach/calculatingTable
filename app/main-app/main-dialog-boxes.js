@@ -5,15 +5,15 @@ import {
     infoReportsNamesSave,
     saveTemporaryReportName,
     readTemporaryReportName,
-    dataReportOriginal,
-    operationIsDone
+    dataReportOriginal
 } from "../miscellaneous/misc.js";
 
 import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
-import { saveAll, readOnlySomeOfReport } from "./app.js";
-import { createStandardTable } from "../table1-lighting/table1-create.js";
-import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml, reset_pointsAddedIntoCurrentReport } from "./main_points15.js";
+import { saveAll, localMemory_readReport } from "./app.js";
+import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js";
+import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "./main_points15.js";
+import { reset_tempInformations } from "../miscellaneous/misc.js";
 
 
 ////// CREATE NEW REPORT -----------------------------------------------------------------------------
@@ -34,7 +34,7 @@ export const dialogBox_startNewReport = () => {
         createMainMenu()
         // debugger
         removeAllAddedPointsInHtml()
-        reset_pointsAddedIntoCurrentReport()
+        reset_tempInformations()
         saveAll()
     }
 
@@ -118,7 +118,7 @@ export const dialogBox_readExistingReport = () => {
 
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-        // console.log("OK", chosenReportName)
+        console.log("Odczytuję raport:", chosenReportName)
         const foundElement = document.querySelector(".openDialogBox")
         // console.log("OK foundElement", foundElement)
 
@@ -126,8 +126,9 @@ export const dialogBox_readExistingReport = () => {
         saveTemporaryReportName(chosenReportName)
         createMainTable()
         createMainMenu()
-        readOnlySomeOfReport(chosenReportName)
-        readAndDisplayAllAdedPoints()
+        // debugger
+        localMemory_readReport(chosenReportName)
+        readAndDisplayAllAdedPoints(chosenReportName)
         // clearInfoInputIsEmpty()
     }
 
@@ -261,7 +262,7 @@ export const dialogBox_point5_selectTableType = () => {
             }
         }
         getCancelButton();
-        if (whatNext === "standard") createStandardTable()
+        if (whatNext === "standard") createStandardTable_5a("new")
         if (whatNext === "rescue") alert("Na razie nie ma tej tabeli w opcjach programu...")
     }
 

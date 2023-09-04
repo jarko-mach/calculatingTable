@@ -1,21 +1,23 @@
 "use strict";
 
-import { tableAddNumbers } from "./table1-operations.js"
+import { tableAddNumbers } from "./table5a-operations.js"
+import { tempInformations } from "../miscellaneous/misc.js";
 
-import { saveTemporaryTableName } from "../miscellaneous/misc.js";
+// import { saveTemporaryTableName } from "../miscellaneous/misc.js";
 
 import {
     tableMenu_createButtons,
     tableMenu_createCheckboxes,
     tableMenu_ShowHideAllDescriptions
-} from "./table1-menu.js"
+} from "./table5a-menu.js"
 
-export const createStandardTable = () => {
-    let tableName = `table${Date.now()}`
-    saveTemporaryTableName(tableName)
-    
+export const createStandardTable_5a = () => {
+    // debugger
+    let tableName = tempInformations[5].tableName
+    if (!tableName) tableName = `table${Date.now()}`
+    tempInformations[5].tableName = tableName
+    console.log("procedura createStandardTable", tempInformations)
     const foundElement = document.querySelector(".point5")
-    // console.log("found", foundElement)
     const newDiv = document.createElement("div")
     newDiv.classList.add(tableName)
     newDiv.classList.add("tableAndMenu")

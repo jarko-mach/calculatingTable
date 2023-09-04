@@ -12,11 +12,15 @@ export let dataReportOriginal = {
     reportDate: Date(),
     copyReportNumber: 1,
     allPages: 11,
-    addedPoints: [0,1,2,3,4,5],
-    tables: [],
+    point1: { created: false, tableName: "" },
+    point2: { created: false, tableName: "" },
+    point3: { created: false, tableName: "" },
+    point4: { created: false, tableName: "" },
+    point5: { created: false, tableName: "" },
+
 }
 
-let dataTableOriginal = [
+export let dataTableOriginal = [
     {
         typeOfRow: "",
         info: {
@@ -32,7 +36,7 @@ let dataTableOriginal = [
     }
 ]
 let dataTableJsonS
-let dataTableLocal = []
+export let dataTableLocal = []
 
 // w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bieżąca nazwa tabeli nad którą pracujemy
 export const currentTablNam = []
@@ -52,30 +56,34 @@ export const convertClassesIntoOneString = (myTable) => {
     return readClasses
 }
 
-// aktualnie aktywny Raport
+// informacje przechowywane lokalnie przed zapisem do Raportu
+
+export const tempInformations = [
+    { reportName: "" },
+    { created: false, tableName: "" },
+    { created: false, tableName: "" },
+    { created: false, tableName: "" },
+    { created: false, tableName: "" },
+    { created: false, tableName: "" }
+]
+
+export const reset_tempInformations = () => {
+    for (let locIndeks = 1; locIndeks < tempInformations.length; locIndeks++) {
+        tempInformations[locIndeks].created = false
+        tempInformations[locIndeks].tableName = ""
+    }
+    console.log("reset", tempInformations)
+}
 
 export const saveTemporaryReportName = (repName) => {
-    localStorage.setItem(`tempRepName`, JSON.stringify(repName))
-    console.log("zapis do temp. reportu", repName)
+    tempInformations[0].reportName = repName
+    // console.log("zapis do temp. reportu", repName)
 }
 
 export const readTemporaryReportName = () => {
-    let repName = localStorage.getItem(`tempRepName`)
-    console.log("odczyt z temp.", repName)
+    const repName = tempInformations[0].reportName
+    // console.log("odczyt z temp.", repName)
     return repName
-}
-
-// aktualnie aktywne tabela
-
-export const saveTemporaryTableName = (tabRepName) => {
-    localStorage.setItem(`tempTabName`, JSON.stringify(tabRepName))
-    // console.log("zapis do temp.", tabRepName)
-}
-
-export const readTemporaryTableName = () => {
-    let tabRepName = localStorage.getItem(`tempTabName`)
-    // console.log("odczyt z temp.", tabRepName)
-    return tabRepName
 }
 
 // zapamiętuje utworzone nazwy sprawozdań lokalnie
@@ -91,7 +99,7 @@ export const infoReportsNamesSave = (nameOfReport) => {
     const temporaryObject = JSON.parse(JSON.stringify(info_ReportsNames))
     if (!oldNames) { oldNames = [] }
     oldNames.push(...temporaryObject)
-    
+
     oldNames[oldNames.length - 1].creatingDate = new Date()
     oldNames[oldNames.length - 1].reportName = nameOfReport
     localStorage.setItem(`infoReportsNames`, JSON.stringify(oldNames))
@@ -101,50 +109,14 @@ export const infoReportsNamesRead = () => {
     const names = JSON.parse(localStorage.getItem("infoReportsNames"));
     // const names = localStorage.getItem("infoReportsNames")
     // console.log(names.length)
-    
+
     let localNames = []
     if (names?.length) {
         names.forEach((element, index) => { localNames.push(element.reportName) })
     }
-    console.log("localNames", localNames)
-    if (names) {
-        console.log("jest kilka tablic", names[0].reportName)
-        return localNames
-    } else {
-        console.log("nie ma tablic")
-        return ""
-    }
-}
-
-// zapamiętuje utworzone tabele lokalnie
-
-let info_TablesNames = [{
-    creatingDate: "333",
-    tableName: "444",
-    tableSuffix: "Table",
-    reportSuffix: "Report",
-}]
-
-
-const _infoTablesNamesSave = (nameOfTable) => {
-    let oldNames = JSON.parse(localStorage.getItem("infoTablesNames"));
-    const infoJsonString = JSON.parse(JSON.stringify(infoTableName))
-    if (!oldNames) { oldNames = [] }
-    oldNames.push(...infoJsonString)
-    oldNames[oldNames.length - 1].creatingDate = new Date()
-    oldNames[oldNames.length - 1].tableName = nameOfTable
-    localStorage.setItem(`infoTablesNames`, JSON.stringify(oldNames))
-}
-
-const _infoTablesNamesRead = () => {
-    const names = JSON.parse(localStorage.getItem("infoTablesNames"));
-    let localNames = []
-    if (names?.length) {
-        names.forEach((element, index) => { localNames.push(element.tableName) })
-    }
     // console.log("localNames", localNames)
     if (names) {
-        // console.log("jest kilka tablic", names[0].tableName)
+        // console.log("jest kilka tablic", names[0].reportName)
         return localNames
     } else {
         // console.log("nie ma tablic")

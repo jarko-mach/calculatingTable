@@ -1,40 +1,40 @@
 "use strict"
 
 import { dialogBox_point5_selectTableType } from "./main-dialog-boxes.js"
-
-export const pointsAddedIntoCurrentReport = [0, 0, 0, 0, 0, 0]
+import { readTable_5a } from "../table5a-lighting/table5a-operations.js"
+import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js"
+import { tempInformations } from "../miscellaneous/misc.js"
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
 
-export const reset_pointsAddedIntoCurrentReport = () => {
-    for (let locIndeks = 0; locIndeks < pointsAddedIntoCurrentReport.length; locIndeks++) {
-        pointsAddedIntoCurrentReport[locIndeks] = 0
-    }
-    console.log("reset", pointsAddedIntoCurrentReport)
-}
-
 export const removeAllAddedPointsInHtml = () => {
-    for (let index = 1; index <= pointsAddedIntoCurrentReport.length; index++) {
+    for (let index = 1; index < tempInformations.length; index++) {
         const foundElement = document.querySelector(`.point${index}`)
-        console.log("mam punkt", index)
+        // console.log("mam punkt", index)
         if (foundElement) {
             foundElement.remove()
-            console.log("usuwam punkt", index, foundElement)
+            console.log("usuwam wcześniejszy HTML punkt", index, foundElement)
         }
     }
 }
 
-export const readAndDisplayAllAdedPoints = () => {
-    
+export const readAndDisplayAllAdedPoints = (reportName) => {
+
     removeAllAddedPointsInHtml()
-    // debugger
-    for (let index = 1; index <= pointsAddedIntoCurrentReport.length; index++) {
-        console.log(pointsAddedIntoCurrentReport[index])
-        console.log("2 - mam punkt", index)
-        if (pointsAddedIntoCurrentReport[index]) {
-            console.log("dodaję punkt", index)
-            pointsAddedIntoCurrentReport[index] = 0
+    for (let index = 1; index < tempInformations.length; index++) {
+        // console.log("2 - mam punkt", index)
+        if (tempInformations[index].created) {
+            // console.log("dodaję punkt", index)
+            tempInformations[index].created = false
             createDivPoints(index)
+            // ------------------------
+            if (index === 5) {
+                createStandardTable_5a(tempInformations[index].tableName )
+                // debugger
+
+                readTable_5a()
+                // ------------------------
+            }
         }
     }
 }
@@ -50,8 +50,8 @@ const findPreviousDiv = (number) => {
 }
 
 const createDivPoints = (number) => {
-    if (pointsAddedIntoCurrentReport[number] === 0) {
-        pointsAddedIntoCurrentReport[number] = 1
+    if (tempInformations[number].created === false) {
+        tempInformations[number].created = true
         const foundElement = document.querySelector(findPreviousDiv(number))
         const newDiv = document.createElement("div")
         newDiv.classList.add(`point${number}`)
