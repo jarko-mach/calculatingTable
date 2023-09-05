@@ -179,7 +179,7 @@ function tableMenu_addButtons(tableName) {
         }
         // under table
         if (i >= 2) {
-            if (i === 1) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
+            if (i === 2) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
             textDivWithButtonsInLine += tempString
         }
     }
