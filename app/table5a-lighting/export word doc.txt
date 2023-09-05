@@ -1,3 +1,17 @@
+ {
+        id: "buttonExport",
+        class: "button",
+        buttonText: "Eksportuj",
+        descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
+        descriptionClass: "footerDescription1",
+        disabled: "disabled",
+        functionPerformed: function () { newTable() }, //exportDocument(), operationIsDone() 
+    },
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
 "use strict";
 
 import {

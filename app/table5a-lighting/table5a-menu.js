@@ -12,14 +12,14 @@ import {
 } from "./table5a-operations.js";
 
 
-import { currentTablNam } from "../miscellaneous/misc.js"
-
 import {
+    currentTablNam,
     convertClassesIntoOneString,
     classTableColumns,
     operationIsDone
 } from "../miscellaneous/misc.js"
 
+import { exportnewTable_Word } from "./export-word-docx.js";
 
 
 // START DEFINITION OF BUTTONS IN TABLE MENU
@@ -38,6 +38,16 @@ export let tableMenu_ButtonsInfo = [
         disabled: "",
         functionPerformed: function () { tableRecalcAll(), operationIsDone() },
     },
+    {
+        id: "buttonExport",
+        class: "button",
+        buttonText: "Eksportuj",
+        descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
+        descriptionClass: "tableMenuDescription1",
+        disabled: "",
+        functionPerformed: function () { exportnewTable_Word() }, //exportDocument(), operationIsDone() 
+    },
+
     {
         id: "buttonAddHeader",
         class: "button",
@@ -162,13 +172,13 @@ function tableMenu_addButtons(tableName) {
                                        ${tableMenu_ButtonsInfo[i].buttonText}
                           </button>`
         // left menu
-        if (i < 1) {
+        if (i < 2) {
             if (i === 0) { textDivWithButtons += `<p class="textMenu">Sprawdź zgodność z PN:</p>` }
             textDivWithButtons += tempString
             // console.log(i, tableButtonsInfo[i].id)
         }
         // under table
-        if (i >= 1) {
+        if (i >= 2) {
             if (i === 1) { textDivWithButtonsInLine += `<p class="textMenu">Dodaj na końcu tabeli:</p>` }
             textDivWithButtonsInLine += tempString
         }
