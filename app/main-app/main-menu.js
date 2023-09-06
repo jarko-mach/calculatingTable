@@ -1,7 +1,7 @@
 "use strict";
 
 import { addPoint_1, addPoint_2, addPoint_3, addPoint_4, addPoint_5 } from "./main_points15.js"
-import { saveAll, readAll } from "./app.js";
+import { saveReportAndTable, readAll } from "./app.js";
 import { dialogBox_startNewReport } from "./main-dialog-boxes.js";
 import { operationIsDone } from "../miscellaneous/misc.js";
 
@@ -22,7 +22,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>Zapisuje sprawozdanie lokalnie na dysku twardym</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { saveAll(), operationIsDone() },
+        functionPerformed: function () { saveReportAndTable(), operationIsDone() },
     },
     {
         id: "buttonRead",

@@ -74,9 +74,10 @@ export const readAll = () => {
 ////// READ FULL REPORT - END
 
 
-////// SAVE FULL REPORT
+////// SAVE REPORT AND TABLE
 
-const saveOnlySomeOfReport = () => {
+// BYŁO saveOnlySomeOfReport
+export const saveReportAndTable = () => {
 
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
@@ -114,7 +115,6 @@ const saveOnlySomeOfReport = () => {
             continue
         }
         if (element === "point5") {
-            // debugger
             dataReport[`${element}`].created = tempInformations[5].created
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
@@ -128,21 +128,11 @@ const saveOnlySomeOfReport = () => {
         console.log("save raport - element", dataReport[`${element}`])
         nodeListCounter++
     }
-    console.log("2 saveOnlySomeOfReport - zapisuję dane:", dataReport)
-
-    // element 8 - tables
-    // dataReport.tables = nodeList[7].value
-    // console.log("tabela:", dataReport)
-    // console.log("JSON", JSON.stringify(dataReport))
+    // console.log("2 saveOnlySomeOfReport - zapisuję dane:", dataReport)
     localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
 
-export const saveAll = () => {
-    saveOnlySomeOfReport()
-    // saveTable()
-}
-
-// SAVE FULL REPORT - END
+// SAVE REPORT AND TABLE - END
 
 
 //   START PROGRAM

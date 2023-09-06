@@ -24,22 +24,22 @@ export const createMainTable = () => {
         </div>
         <div class="customerGrid">
             <p class="customerLabel">Nazwa i adres Klienta:</p>
-            <textarea id="customerName" class="castomerInput fieldToFill" rows="1"></textarea>
+            <textarea id="customerName" class="customerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <div class="customerGrid">
             <p class="customerLabel">Miejsce wykonania badań:</p>
-            <textarea id="researchAddress" class="castomerInput fieldToFill" rows="1"></textarea>
+            <textarea id="researchAddress" class="customerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <div class="customerGrid">
             <p class="customerLabel">Badane czynniki:</p>
-            <textarea id="factorsTested" class="castomerInput fieldToFill" rows="1"></textarea>
+            <textarea id="factorsTested" class="customerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <div class="customerGrid">
             <p class="customerLabel">Sporządził/a i autoryzował/a:</p>
-            <textarea id="complied" class="castomerInput fieldToFill" rows="1"></textarea>
+            <textarea id="complied" class="customerInput fieldToFill" rows="1"></textarea>
         </div>
 
         <table class="tableSummary">
@@ -47,19 +47,19 @@ export const createMainTable = () => {
             <tr>
                 <td>
                     <p class="customerLabel">Data wykonania badań:</p>
-                    <input id="researchDate" class="castomerInput fieldToFill" type="text">
+                    <input id="researchDate" class="customerInput fieldToFill" type="text">
                 </td>
                 <td>
                     <p class="customerLabel">Data sporządzenia sprawozdania:</p>
-                    <input id="reportDate" class="castomerInput fieldToFill" type="text">
+                    <input id="reportDate" class="customerInput fieldToFill" type="text">
                 </td>
                 <td>
                     <p class="customerLabel">Egzemplarz sprawozdania:</p>
-                    <input id="copyReportNumber" class="castomerInput fieldToFill" type="text">
+                    <input id="copyReportNumber" class="customerInput fieldToFill" type="text">
                 </td>
                 <td>
                     <p class="customerLabel">Łączna liczba stron sprawozdania:</p>
-                    <input id="allPages" class="castomerInput fieldToFill" type="text">
+                    <input id="allPages" class="customerInput fieldToFill" type="text">
                 </td>
             </tr>
           </tbody>

@@ -1,6 +1,6 @@
 "use strict";
 
-import { saveAll } from "../main-app/app.js";
+import { saveReportAndTable } from "../main-app/app.js";
 
 export let dataReportOriginal = {
     id: 1,
@@ -139,7 +139,7 @@ export const operationIsDone = () => {
         // console.log("element", element, element.classList)
     }, 700)
     // console.log(e.pageY, e.pageX)
-    saveAll()
+    saveReportAndTable()
 }
 
 export const readPositionOfMouse = (e) => {

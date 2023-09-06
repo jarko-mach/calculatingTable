@@ -10,7 +10,7 @@ import {
 
 import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
-import { saveAll, localMemory_readReport } from "./app.js";
+import { saveReportAndTable, localMemory_readReport } from "./app.js";
 import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js";
 import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "./main_points15.js";
 import { reset_tempInformations } from "../miscellaneous/misc.js";
@@ -35,7 +35,7 @@ export const dialogBox_startNewReport = () => {
         // debugger
         removeAllAddedPointsInHtml()
         reset_tempInformations()
-        saveAll()
+        saveReportAndTable()
     }
 
     const getCancelButton = () => {

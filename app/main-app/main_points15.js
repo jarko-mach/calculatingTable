@@ -1,6 +1,6 @@
 "use strict"
 
-import { saveAll, readAll } from "./app.js";
+import { saveReportAndTable } from "./app.js";
 import { dialogBox_point5_selectTableType } from "./main-dialog-boxes.js"
 import { readTable_5a } from "../table5a-lighting/table5a-operations.js"
 import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js"
@@ -30,7 +30,7 @@ export const readAndDisplayAllAdedPoints = (reportName) => {
             createDivPoints(index)
             // ------------------------
             if (index === 5) {
-                createStandardTable_5a(tempInformations[index].tableName )
+                createStandardTable_5a(tempInformations[index].tableName)
                 // debugger
 
                 readTable_5a()
@@ -91,23 +91,23 @@ const createDivPoints = (number) => {
 
 export const addPoint_1 = () => {
     createDivPoints(1)
-    saveAll()
+    saveReportAndTable()
 }
 
 export const addPoint_2 = () => {
     createDivPoints(2)
-    saveAll()
+    saveReportAndTable()
 }
 export const addPoint_3 = () => {
     createDivPoints(3)
-    saveAll()
+    saveReportAndTable()
 }
 export const addPoint_4 = () => {
     createDivPoints(4)
-    saveAll()
+    saveReportAndTable()
 }
 
 export const addPoint_5 = () => {
     createDivPoints(5)
-    dialogBox_point5_selectTableType()
+    if (tempInformations[5].created === false) dialogBox_point5_selectTableType()
 }
