@@ -122,23 +122,23 @@ let tableMenu_CheckBoxInfo = [
         labelFor: "addTableRow",
         class: "labelCB",
         checkboxText: "wstawianie",
-        descriptionText: "<p>Po kliknięciu myszką w istniejącą wiersz tabeli otwiera się okno dialogowe, które pozwala wybrać gdzie i jaki wiersz zostanie dodany do tabeli.</p>",
+        descriptionText: "<p>Uaktywnij opcję 'wstawianie', a następnie poruszając kursorem nad tabelą wybierz wiersz/rząd. Po kliknięciu myszką w istniejącą wiersz tabeli otwiera się okno dialogowe, które pozwala wybrać gdzie i jaki wiersz zostanie dodany do tabeli.</p>",
         descriptionClass: "tableMenuDescription101",
         functionPerformed: function () { checkbox_ADDTableRow_Changed() },
     },
-    {
-        id: "addGreyBackground",
-        name: "addGreyBackground",
-        checked: "",
-        disabled: "",
-        labelId: "labelCB3",
-        labelFor: "addGreyBackground",
-        class: "labelCB",
-        checkboxText: "wyszarzenie",
-        descriptionText: "<p>Jeżeli poza nagłówkiem tabeli istnieją dopisane wiersze (dane), to dodaje szare tło tylko do tych pól, które można edytować</p>",
-        descriptionClass: "tableMenuDescription102",
-        functionPerformed: function () { tableMenu_checkboxGreyBackgroundChanged() },
-    },
+    // {
+    //     id: "addGreyBackground",
+    //     name: "addGreyBackground",
+    //     checked: "",
+    //     disabled: "",
+    //     labelId: "labelCB3",
+    //     labelFor: "addGreyBackground",
+    //     class: "labelCB",
+    //     checkboxText: "wyszarzenie",
+    //     descriptionText: "<p>OPCJA DO ZMIANY - Jeżeli poza nagłówkiem tabeli istnieją dopisane wiersze (dane), to dodaje szare tło tylko do tych pól, które można edytować</p>",
+    //     descriptionClass: "tableMenuDescription102",
+    //     functionPerformed: function () { tableMenu_checkboxGreyBackgroundChanged() },
+    // },
     {
         id: "showDescriptions",
         name: "showDescriptions",
@@ -174,6 +174,7 @@ function tableMenu_addButtons(tableName) {
         // left menu
         if (i < 2) {
             if (i === 0) { textDivWithButtons += `<p class="textMenu">Sprawdź zgodność z PN:</p>` }
+            if (i === 1) { textDivWithButtons += `<p class="textMenu">Po wypełnieniu tabeli:</p>` }
             textDivWithButtons += tempString
             // console.log(i, tableButtonsInfo[i].id)
         }

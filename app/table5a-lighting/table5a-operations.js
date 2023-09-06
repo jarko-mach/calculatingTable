@@ -103,7 +103,7 @@ export const tableAddDataLine = (method, element) => {
     let newElement = document.createElement("tr")
     newElement.classList.add("rowDate")
     newElement.innerHTML =
-        ` <td > <input type="text" class="numberLp" hidden></td>
+        ` <td > <input type="text" class="numberLp" ></td>
           <td > <textarea class="place" rows="1"></textarea> </td>
           <td > <textarea class="measurings" rows="1"></textarea> </td>
           <td > <input type="text" class="wynik-1" disabled></td>

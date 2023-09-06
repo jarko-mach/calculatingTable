@@ -6,6 +6,15 @@ import { dialogBox_startNewReport } from "./main-dialog-boxes.js";
 import { operationIsDone } from "../miscellaneous/misc.js";
 
 let mainMenu_tableButtonsInfo = [
+
+    {
+        id: "buttonNew",
+        class: "buttons",
+        buttonText: "Nowe",
+        descriptionText: `<p>Rozpoczyna nowe sprawozdanie`,
+        disabled: "",
+        functionPerformed: function () { dialogBox_startNewReport() },
+    },
     {
         id: "buttonSave",
         class: "buttons",
@@ -14,23 +23,6 @@ let mainMenu_tableButtonsInfo = [
         descriptionClass: "footerDescription1",
         disabled: "",
         functionPerformed: function () { saveAll(), operationIsDone() },
-    },
-    {
-        id: "buttonExport",
-        class: "buttons",
-        buttonText: "Eksportuj",
-        descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
-        descriptionClass: "footerDescription1",
-        disabled: "",
-        functionPerformed: function () { alert("tu chyba na razie nic nie będzie") }
-    },
-    {
-        id: "buttonNew",
-        class: "buttons",
-        buttonText: "Nowe",
-        descriptionText: `<p>Rozpoczyna nowe sprawozdanie`,
-        disabled: "",
-        functionPerformed: function () { dialogBox_startNewReport() },
     },
     {
         id: "buttonRead",
@@ -49,7 +41,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_1() }
+        functionPerformed: function () { addPoint_1()}
     },
     {
         id: "buttonPoint2",
@@ -69,7 +61,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_3() }
+        functionPerformed: function () { addPoint_3()}
     },
     {
         id: "buttonPoint4",
@@ -79,7 +71,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_4() }
+        functionPerformed: function () { addPoint_4()}
     },
     {
         id: "buttonPoint5",
@@ -91,6 +83,16 @@ let mainMenu_tableButtonsInfo = [
         disabled: "",
         functionPerformed: function () { addPoint_5() }
     },
+
+    // {
+    //     id: "buttonExport",
+    //     class: "buttons",
+    //     buttonText: "Eksportuj",
+    //     descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
+    //     descriptionClass: "footerDescription1",
+    //     disabled: "",
+    //     functionPerformed: function () { alert("tu chyba na razie nic nie będzie") }
+    // },
 ]
 
 export function createMainMenu() {
@@ -109,7 +111,7 @@ export function createMainMenu() {
     foundElement.before(foundMainMenu)
 
     const elementDivWithButtons = document.querySelector(".mainMenu .menuElements")
-    let textDivWithButtons = `<p class="textMenu">SPRAWOZDANIE:</p>`
+    let textDivWithButtons = `<p class="textMenu">SPRAWOZDANIE:</p><p class="textMenu">Utwórz</p>`
 
     for (let i = 0; i < mainMenu_tableButtonsInfo.length; i++) {
         let tempString = `<button id=${mainMenu_tableButtonsInfo[i].id} 
@@ -117,9 +119,8 @@ export function createMainMenu() {
                             ${mainMenu_tableButtonsInfo[i].buttonText}
                            </button>`
         textDivWithButtons += tempString
-        if (i === 1) { textDivWithButtons += `<p class="textMenu">Utwórz:</p>` }
-        if (i === 2) { textDivWithButtons += `<p class="textMenu">Zapisane lokalnie na dysku:</p>` }
-        if (i === 3) { textDivWithButtons += `<p class="textMenu">DODAJ:</p>` }
+        if (i === 1) { textDivWithButtons += `<p class="textMenu">Zapisane lokalnie na dysku:</p>` }
+        if (i === 2) { textDivWithButtons += `<p class="textMenu">DODAJ:</p>` }
     }
     elementDivWithButtons.innerHTML = textDivWithButtons
 

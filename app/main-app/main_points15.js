@@ -1,5 +1,6 @@
 "use strict"
 
+import { saveAll, readAll } from "./app.js";
 import { dialogBox_point5_selectTableType } from "./main-dialog-boxes.js"
 import { readTable_5a } from "../table5a-lighting/table5a-operations.js"
 import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js"
@@ -90,16 +91,20 @@ const createDivPoints = (number) => {
 
 export const addPoint_1 = () => {
     createDivPoints(1)
+    saveAll()
 }
 
 export const addPoint_2 = () => {
     createDivPoints(2)
+    saveAll()
 }
 export const addPoint_3 = () => {
     createDivPoints(3)
+    saveAll()
 }
 export const addPoint_4 = () => {
     createDivPoints(4)
+    saveAll()
 }
 
 export const addPoint_5 = () => {

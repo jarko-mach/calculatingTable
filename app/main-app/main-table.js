@@ -13,7 +13,7 @@ export const createMainTable = () => {
     // console.log("foundElement", foundElement)
     foundElement.innerHTML =
         `<div class="reportTitle">
-            <h1> SPRAWOZDANIE NUMER TSO /
+            <h1> SPRAWOZDANIE NR TSO /
             <input type="text" id="numberTSO" class="fieldToFill"> / 
             <input type="text" id="yearTSO" class="fieldToFill">
             </h1>

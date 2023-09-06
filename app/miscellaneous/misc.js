@@ -1,5 +1,7 @@
 "use strict";
 
+import { saveAll } from "../main-app/app.js";
+
 export let dataReportOriginal = {
     id: 1,
     numberTSO: 111,
@@ -135,8 +137,9 @@ export const operationIsDone = () => {
     setTimeout(() => {
         element.classList.remove("confElementChange")
         // console.log("element", element, element.classList)
-    }, 400)
+    }, 700)
     // console.log(e.pageY, e.pageX)
+    saveAll()
 }
 
 export const readPositionOfMouse = (e) => {
