@@ -548,11 +548,11 @@ export const readTable_5a = () => {
 
         // element 2 - miejsce pomiarów
         nodeList[2 + addRowElements].value = dataTable[row].info.place
-        nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 45)
+        if (dataTable[row].info.place.length > 45) nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 45)
 
         // element 3 - pomiary
         nodeList[3 + addRowElements].value = dataTable[row].info.measurings
-        nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
+        if (dataTable[row].info.measurings.length > 35) nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
 
         // element 4 - eksploatacyjne wynik
 

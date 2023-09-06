@@ -11,7 +11,7 @@ import {
 } from "../miscellaneous/misc.js";
 
 import { dialogBox_chooseOldOrNewReport, dialogBox_readExistingReport } from "./main-dialog-boxes.js";
-import { tempInformations } from "../miscellaneous/misc.js"; 
+import { tempInformations } from "../miscellaneous/misc.js";
 import { saveTable } from "../table5a-lighting/table5a-operations.js";
 
 
@@ -60,10 +60,11 @@ export const localMemory_readReport = (reportName) => {
             continue
         }
         nodeList[nodeListCounter].value = dataReport[`${element}`]
-        // console.log("2", dataReport.element)
+        if (nodeList[nodeListCounter].value.length > 45) nodeList[nodeListCounter].rows = Math.ceil(nodeList[nodeListCounter].value.length / 45)
+        console.log("dodaje kolejne wiersze gdy tekst jest długi", dataReport.element)
         nodeListCounter++
     }
-    console.log("koniec wczytywania, wyszła tabela:",tempInformations)
+    console.log("koniec wczytywania, wyszła tabela:", tempInformations)
 }
 
 export const readAll = () => {
