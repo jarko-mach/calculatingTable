@@ -171,7 +171,8 @@ upperLine {
 
 .menuButtonsInLine {
     font-size: .7em;
-    /* color:red; */
+    /* background-color: aqua; */
+    margin-bottom: 140px;
 }
 
 button {

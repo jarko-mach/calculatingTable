@@ -131,7 +131,7 @@ export const infoReportsNamesRead = () => {
 
 export const operationIsDone = () => {
     const element = document.querySelector(".confElement")
-    console.log("element", element)
+    // console.log("element", element)
 
     element.classList.add("confElementChange")
     setTimeout(() => {

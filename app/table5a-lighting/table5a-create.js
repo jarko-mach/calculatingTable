@@ -16,7 +16,9 @@ export const createStandardTable_5a = () => {
     let tableName = tempInformations[5].tableName
     if (!tableName) tableName = `table${Date.now()}`
     tempInformations[5].tableName = tableName
+    
     console.log("procedura createStandardTable", tempInformations)
+    
     const foundElement = document.querySelector(".point5")
     const newDiv = document.createElement("div")
     newDiv.classList.add(tableName)

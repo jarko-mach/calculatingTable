@@ -1,5 +1,6 @@
 "use strict"
 
+import { saveReportAndTable } from "../main-app/app.js"
 import {
     classTableColumns,
     classTableRows,
@@ -40,7 +41,7 @@ export const tableAddNumbers = (tableName) => {
 }
 
 const addElementNow = (method, element, newElement) => {
-    // document.querySelector(`.${currentTablNam[0]} .table .menuButtonsInLine`).scrollIntoView()
+    document.querySelector(`.${tempInformations[5].tableName} .menuButtonsInLine`).scrollIntoView()
     let lastElement = ""
     // debugger
     if (method === "before") {
@@ -160,6 +161,7 @@ export const removeTableRow = (e) => {
         let checkBoxState = document.querySelector(`.${currentTablNam[0]} #removeTableRow`)
         checkBoxState.checked = false
         checkbox_RemoveTableRow_Changed()
+        saveReportAndTable()
     }
 }
 
@@ -423,28 +425,29 @@ let correctMeasurments = (dataString) => {
 
 export const saveTable = (nameOfTable) => {
 
-    function localStorageTest() {
-        const test = "test" + new Date().valueOf();
-        try {
-            localStorage.setItem(test, test);
-            localStorage.removeItem(test);
-            return true;
-        } catch (e) {
-            return false;
-        }
-    }
+    // function localStorageTest() {
+    //     const test = "test" + new Date().valueOf();
+    //     try {
+    //         localStorage.setItem(test, test);
+    //         localStorage.removeItem(test);
+    //         return true;
+    //     } catch (e) {
+    //         return false;
+    //     }
+    // }
 
-    if (!localStorageTest()) {
-        alert("Błąd zapisu na dysku twardym. Program nie będzie działał poprawnie")
+    // if (!localStorageTest()) {
+    //     alert("Błąd zapisu na dysku twardym. Program nie będzie działał poprawnie")
 
-    }
+    // }
 
     // odczytuję liczbę wierszy zapisanej tabeli
     let readedClassesFromTable = convertClassesIntoOneString(classTableRows)
     const rowsNumber = document.querySelectorAll(readedClassesFromTable).length
-    // console.log("powinien być strong", readedClassesFromTable, "liczba wierszy zapisu", rowsNumber)
+    console.log("liczba wierszy zapisu", rowsNumber)
 
     // zwiększam tabelę z danymi o liczbę wierszy
+    console.log("warunek while", dataTableLocal.length, rowsNumber)
     while (dataTableLocal.length < rowsNumber) {
         let dataTableJsonS = JSON.parse(JSON.stringify(dataTableOriginal))
         dataTableLocal.push(...dataTableJsonS)
@@ -453,7 +456,7 @@ export const saveTable = (nameOfTable) => {
     // odczytuję liczbę wszystkich elementów tabeli wraz z typem wiersza
     readedClassesFromTable = convertClassesIntoOneString(classTableAll)
     let nodeList = document.querySelectorAll(readedClassesFromTable)
-    // console.log("liczba elementów:", nodeList.length)
+    console.log("liczba elementów:", nodeList.length)
     // console.log("rodzaj elementów:", nodeList)
 
     for (let row = 0; row < rowsNumber; row++) {
@@ -498,8 +501,8 @@ export const saveTable = (nameOfTable) => {
             dataTableLocal[row].info.compatibility = nodeList[8 + addRowElements].value
         }
     }
-    // console.log("tabela:", dataTableLocal)
-    // console.log("JSON", JSON.stringify(dataTableLocal))
+    console.log("tabela:", dataTableLocal)
+    console.log("JSON", JSON.stringify(dataTableLocal))
     localStorage.setItem(`${nameOfTable}`, JSON.stringify(dataTableLocal))
 }
 

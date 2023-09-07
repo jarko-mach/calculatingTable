@@ -86,7 +86,8 @@ export const saveReportAndTable = () => {
     const nodeList = document.querySelectorAll(myClasses)
 
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
-    // console.log("1", dataReport)
+
+    console.log("saveReportAndTable - ...", dataReport)
 
     const nameOfReport = readTemporaryReportName()
 
@@ -115,7 +116,9 @@ export const saveReportAndTable = () => {
             continue
         }
         if (element === "point5") {
+            console.log("zapisuję raport punkt 5")
             dataReport[`${element}`].created = tempInformations[5].created
+            console.log("i dalej...", dataReport[`${element}`].created)
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
                 dataReport[`${element}`].tableName = localTabNam
@@ -125,7 +128,9 @@ export const saveReportAndTable = () => {
         }
 
         dataReport[`${element}`] = nodeList[nodeListCounter].value
-        console.log("save raport - element", dataReport[`${element}`])
+
+        // console.log("save raport - element", dataReport[`${element}`])
+
         nodeListCounter++
     }
     // console.log("2 saveOnlySomeOfReport - zapisuję dane:", dataReport)

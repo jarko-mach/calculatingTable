@@ -82,8 +82,8 @@ const createDivPoints = (number) => {
             `
                 <p class="reportSubtitle">
                     <a id="point${number}"> <br> ${mainText} <br> </a>
-                    <p style="color:darkgray;font-size:12px;">${loremIpsum}</p>
                 </p>`
+        // <p style="color:darkgray;font-size:12px;">${loremIpsum}</p>
         foundElement.after(newDiv)
     }
     document.getElementById(`point${number}`).scrollIntoView()
