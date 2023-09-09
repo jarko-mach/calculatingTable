@@ -252,6 +252,7 @@ export const dialogBox_chooseOldOrNewReport = () => {
 
 export const dialogBox_point5_selectTableType = () => {
     let whatNext = ""
+    debugger
 
     const getOKButton = () => {
         const radioGroupStandardOrRescue = document.querySelectorAll("input[name=selectStandardOrRescue]")

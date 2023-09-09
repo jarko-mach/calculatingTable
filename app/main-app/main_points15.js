@@ -108,6 +108,7 @@ export const addPoint_4 = () => {
 }
 
 export const addPoint_5 = () => {
+    debugger
     createDivPoints(5)
-    if (tempInformations[5].created === false) dialogBox_point5_selectTableType()
+    dialogBox_point5_selectTableType()
 }
