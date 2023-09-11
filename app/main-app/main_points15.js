@@ -24,17 +24,15 @@ export const readAndDisplayAllAdedPoints = (reportName) => {
     removeAllAddedPointsInHtml()
     for (let index = 1; index < tempInformations.length; index++) {
         // console.log("2 - mam punkt", index)
+
         if (tempInformations[index].created) {
             // console.log("dodaję punkt", index)
+            
             tempInformations[index].created = false
             createDivPoints(index)
-            // ------------------------
             if (index === 5) {
                 createStandardTable_5a(tempInformations[index].tableName)
-                // debugger
-
                 readTable_5a()
-                // ------------------------
             }
         }
     }
@@ -108,7 +106,7 @@ export const addPoint_4 = () => {
 }
 
 export const addPoint_5 = () => {
-    debugger
+    // debugger
     createDivPoints(5)
     dialogBox_point5_selectTableType()
 }

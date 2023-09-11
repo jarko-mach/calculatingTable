@@ -9,7 +9,7 @@ import {
     tempInformations,
     currentTablNam,
     dataTableLocal,
-    dataTableOriginal
+    dataTableOriginal, dataForm1
 } from "../miscellaneous/misc.js"
 
 export const addFirstThreeColumnsHeader = () => {
@@ -98,6 +98,18 @@ export const tableAddTextLine = (method, element) => {
     addElementNow(method, element, newElement)
 }
 
+const insertData1 = (elem) => {
+    console.log(!elem.srcElement)
+    if (!elem.srcElement.value) { elem.srcElement.value = "1500" }
+    elem.srcElement.select()
+}
+
+const insertData2 = (elem) => {
+    console.log(!elem.srcElement)
+    if (!elem.srcElement.value) { elem.srcElement.value = "0,40" }
+    elem.srcElement.select()
+}
+
 export const tableAddDataLine = (method, element) => {
     let newElement = document.createElement("tr")
     newElement.classList.add("rowDate")
@@ -112,6 +124,11 @@ export const tableAddDataLine = (method, element) => {
           <td > <input type="text" class="compatibility " disabled></td>
     `
     addElementNow(method, element, newElement)
+    const nodeList_Norma1 = document.querySelectorAll(".rowDate .norma-1")
+    nodeList_Norma1[nodeList_Norma1.length - 1].addEventListener("focus", insertData1)
+
+    const nodeList_Norma2 = document.querySelectorAll(".rowDate .norma-2")
+    nodeList_Norma2[nodeList_Norma2.length - 1].addEventListener("focus", insertData2)
 }
 
 export const tableAddEmptyLine = (method, element) => {
@@ -553,6 +570,8 @@ export const readTable_5a = () => {
 
         // element 3 - pomiary
         nodeList[3 + addRowElements].value = dataTable[row].info.measurings
+
+        // console.log("pomiary odczytuję ", nodeList[3 + addRowElements].rowsNumber)
         if (dataTable[row].info.measurings.length > 35) nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
 
         // element 4 - eksploatacyjne wynik
@@ -592,8 +611,12 @@ export const tableRecalcAll = function (e) {
     let eksploatacionNorm
     let uniformityCalculated  //Rownomiernosc
     let uniformityNorm
+    let textColumn1 = ""
+    let foundText_ObszarZadania_OneLineBefore = false
+    let measurments_OneLineBefore_IsOk = true
+    let foundText_ObszarZadania_CurrentLine = false
 
-    // console.log("zaczynam przeliczać...")
+    console.log("zaczynam przeliczać...")
 
     // wczytuję classy dla kolumn
     let readedClasses = convertClassesIntoOneString(classTableColumns)
@@ -654,14 +677,14 @@ export const tableRecalcAll = function (e) {
                 return eksploatacionCalculated
             }
 
-            // console.log(" obliczona suma wyników pomiarów", computeEksploatacyjne())
-
             // brak danych liczbowych
             // kolumna nr 8 - Tak/Nie
             // nodeList[7 + addRowElements].value = "????"
 
             if (!computeEksploatacyjne()) {
                 // console.log("WYPAD: brak danych")
+                foundText_ObszarZadania_OneLineBefore = false
+                measurments_OneLineBefore_IsOk = true
                 continue
             }
 
@@ -743,12 +766,37 @@ export const tableRecalcAll = function (e) {
                     measurmentsUniformityOk = false
                 }
             }
+            debugger
+            textColumn1 = nodeList[1 + addRowElements].value
+            foundText_ObszarZadania_CurrentLine = (textColumn1.search("obszar zadania") !== -1) ? true : false
 
             if (measurmentsEksploatacionOk && measurmentsUniformityOk) {
-                nodeList[7 + addRowElements].value = "TAK"
+                if ((foundText_ObszarZadania_CurrentLine)) {
+                    nodeList[7 + addRowElements].value = " "  // t
+                } else {
+                    if (measurments_OneLineBefore_IsOk === true) {
+                        nodeList[7 + addRowElements].value = "TAK"
+                    } else {
+                        if (foundText_ObszarZadania_OneLineBefore === false) {
+
+                            nodeList[7 + addRowElements].value = "TAK"
+                        } else {
+                            nodeList[7 + addRowElements].value = "NIE /"
+                        }
+                    }
+                }
+                measurments_OneLineBefore_IsOk = true
             } else {
-                nodeList[7 + addRowElements].value = "NIE"
+                if ((foundText_ObszarZadania_CurrentLine)) {
+                    nodeList[7 + addRowElements].value = " "   // n
+                    foundText_ObszarZadania_OneLineBefore = false
+                } else {
+                    foundText_ObszarZadania_OneLineBefore = true
+                    nodeList[7 + addRowElements].value = "NIE";
+                }
+                measurments_OneLineBefore_IsOk = false
             }
+            foundText_ObszarZadania_OneLineBefore = foundText_ObszarZadania_CurrentLine
         }
     }
 
