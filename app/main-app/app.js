@@ -87,7 +87,7 @@ export const saveReportAndTable = () => {
 
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
 
-    console.log("saveReportAndTable - ...", dataReport)
+    // console.log("saveReportAndTable - ...", dataReport)
 
     const nameOfReport = readTemporaryReportName()
 
@@ -116,9 +116,9 @@ export const saveReportAndTable = () => {
             continue
         }
         if (element === "point5") {
-            console.log("zapisuję raport punkt 5")
+            // console.log("zapisuję raport punkt 5")
             dataReport[`${element}`].created = tempInformations[5].created
-            console.log("i dalej...", dataReport[`${element}`].created)
+            // console.log("i dalej...", dataReport[`${element}`].created)
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
                 dataReport[`${element}`].tableName = localTabNam

@@ -208,7 +208,7 @@ button {
 .allDescription {
     background-color: whitesmoke;
     position: fixed;
-    left: -230px;
+    left: -330px;
     width: 500px;
     color: whitesmoke;
     padding: 15px 5px 15px 10px;
@@ -245,7 +245,7 @@ input[type="checkbox"] {
 
 .tableMenuDescriptionVisible {
     visibility: visible;
-    transform: translateX(400px);
+    transform: translateX(500px);
     color: black;
     line-height: 1.6em;
 }
@@ -253,53 +253,58 @@ input[type="checkbox"] {
 /* DISPLAY HELP */
 
 .tableMenuDescription1 {
-    width: 200px;
+    width: 300px;
     top: 60px;
 }
 
 .tableMenuDescription2 {
     top: 70px;
-    width: 200px;
+    width: 300px;
 }
 
 .tableMenuDescription3 {
     top: 80px;
-    width: 200px;
+    width: 300px;
 }
 
 .tableMenuDescription4 {
     top: 90px;
-    width: 200px;
+    width: 300px;
 }
 
 .tableMenuDescription5 {
     top: 100px;
-    width: 200px;
+    width: 300px;
 }
 
 .tableMenuDescription6 {
     top: 110px;
-    width: 200px;
+    width: 300px;
+}
+
+.tableMenuDescription7 {
+    top: 120px;
+    width: 300px;
 }
 
 .tableMenuDescription100 {
     top: 60px;
-    width: 100px;
+    width: 300px;
 }
 
 .tableMenuDescription101 {
     top: 80px;
-    width: 100px;
+    width: 300px;
 }
 
 .tableMenuDescription102 {
     top: 100px;
-    width: 100px;
+    width: 300px;
 }
 
 .tableMenuDescription103 {
     top: 130px;
-    width: 100px;
+    width: 300px;
 }
 
 .tableMenuHide {

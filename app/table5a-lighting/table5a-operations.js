@@ -461,10 +461,10 @@ export const saveTable = (nameOfTable) => {
     // odczytuję liczbę wierszy zapisanej tabeli
     let readedClassesFromTable = convertClassesIntoOneString(classTableRows)
     const rowsNumber = document.querySelectorAll(readedClassesFromTable).length
-    console.log("liczba wierszy zapisu", rowsNumber)
+    // console.log("liczba wierszy zapisu", rowsNumber)
 
     // zwiększam tabelę z danymi o liczbę wierszy
-    console.log("warunek while", dataTableLocal.length, rowsNumber)
+    // console.log("warunek while", dataTableLocal.length, rowsNumber)
     while (dataTableLocal.length < rowsNumber) {
         let dataTableJsonS = JSON.parse(JSON.stringify(dataTableOriginal))
         dataTableLocal.push(...dataTableJsonS)
@@ -473,7 +473,7 @@ export const saveTable = (nameOfTable) => {
     // odczytuję liczbę wszystkich elementów tabeli wraz z typem wiersza
     readedClassesFromTable = convertClassesIntoOneString(classTableAll)
     let nodeList = document.querySelectorAll(readedClassesFromTable)
-    console.log("liczba elementów:", nodeList.length)
+    // console.log("liczba elementów:", nodeList.length)
     // console.log("rodzaj elementów:", nodeList)
 
     for (let row = 0; row < rowsNumber; row++) {
@@ -518,8 +518,8 @@ export const saveTable = (nameOfTable) => {
             dataTableLocal[row].info.compatibility = nodeList[8 + addRowElements].value
         }
     }
-    console.log("tabela:", dataTableLocal)
-    console.log("JSON", JSON.stringify(dataTableLocal))
+    // console.log("tabela:", dataTableLocal)
+    // console.log("JSON", JSON.stringify(dataTableLocal))
     localStorage.setItem(`${nameOfTable}`, JSON.stringify(dataTableLocal))
 }
 

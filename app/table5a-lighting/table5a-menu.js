@@ -215,7 +215,7 @@ const tableMenu_addButtonsDescriptions = (tableName) => {
         let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
         divElement.innerHTML += `<p class="allDescription tableMenuDescription${index + 1}">
                                  <boldi>${element.buttonText}<br></boldi> ${localString}</p>`
-        // console.log("index", index, localString)
+        console.log("index", index, localString)
     })
 }
 
@@ -274,7 +274,7 @@ const show_ButtonsDescriptions = elem => {
     let myIndexFound = tableMenu_ButtonsInfo.findIndex(element => element.id === found)
     if (myIndexFound !== -1) {
         const pElement = document.querySelector(`.${elem.srcElement.dataset.tablename} .menuButtonsDescriptions .tableMenuDescription${myIndexFound + 1}`)
-        // console.log(`.tableMenuDescription${myIndexFound + 1}`, "pElement", pElement)
+        console.log(`.tableMenuDescription${myIndexFound + 1}`, "pElement", pElement)
         pElement.classList.add("tableMenuDescriptionVisible")
     }
 }
