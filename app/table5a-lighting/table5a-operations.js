@@ -100,13 +100,13 @@ export const tableAddTextLine = (method, element) => {
 
 const insertData1 = (elem) => {
     console.log(!elem.srcElement)
-    if (!elem.srcElement.value) { elem.srcElement.value = "1500" }
+    if (!elem.srcElement.value) { elem.srcElement.value = "500" }
     elem.srcElement.select()
 }
 
 const insertData2 = (elem) => {
     console.log(!elem.srcElement)
-    if (!elem.srcElement.value) { elem.srcElement.value = "0,40" }
+    if (!elem.srcElement.value) { elem.srcElement.value = "0,60" }
     elem.srcElement.select()
 }
 
@@ -566,13 +566,14 @@ export const readTable_5a = () => {
 
         // element 2 - miejsce pomiarów
         nodeList[2 + addRowElements].value = dataTable[row].info.place
-        if (dataTable[row].info.place.length > 45) nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 45)
+        if (dataTable[row].info.place.length > 35) nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 35)
+        console.log("długi tekst", dataTable[row].info.place, dataTable[row].info.place.length)
 
         // element 3 - pomiary
         nodeList[3 + addRowElements].value = dataTable[row].info.measurings
 
         // console.log("pomiary odczytuję ", nodeList[3 + addRowElements].rowsNumber)
-        if (dataTable[row].info.measurings.length > 35) nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 35)
+        if (dataTable[row].info.measurings.length > 25) nodeList[3 + addRowElements].rows = Math.ceil(dataTable[row].info.measurings.length / 25)
 
         // element 4 - eksploatacyjne wynik
 

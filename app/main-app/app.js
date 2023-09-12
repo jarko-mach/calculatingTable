@@ -61,7 +61,7 @@ export const localMemory_readReport = (reportName) => {
         }
         nodeList[nodeListCounter].value = dataReport[`${element}`]
         if (nodeList[nodeListCounter].value.length > 45) nodeList[nodeListCounter].rows = Math.ceil(nodeList[nodeListCounter].value.length / 45)
-        console.log("dodaje kolejne wiersze gdy tekst jest długi", dataReport.element)
+        // console.log("22 dodaje kolejne wiersze gdy tekst jest długi", dataReport[`${element}`])
         nodeListCounter++
     }
     console.log("koniec wczytywania, wyszła tabela:", tempInformations)
