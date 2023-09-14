@@ -12,7 +12,7 @@ import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
 import { saveReportAndTable, localMemory_readReport } from "./app.js";
 import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js";
-import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "./main_points15.js";
+import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "../subpoints-1-5/main_points15.js";
 import { reset_tempInformations } from "../miscellaneous/misc.js";
 
 
@@ -118,7 +118,7 @@ export const dialogBox_readExistingReport = () => {
 
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-        console.log("Odczytuję raport:", chosenReportName)
+        // console.log("Odczytuję raport:", chosenReportName)
         const foundElement = document.querySelector(".openDialogBox")
         // console.log("OK foundElement", foundElement)
 

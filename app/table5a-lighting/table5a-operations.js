@@ -99,13 +99,13 @@ export const tableAddTextLine = (method, element) => {
 }
 
 const insertData1 = (elem) => {
-    console.log(!elem.srcElement)
+    // console.log(!elem.srcElement)
     if (!elem.srcElement.value) { elem.srcElement.value = "500" }
     elem.srcElement.select()
 }
 
 const insertData2 = (elem) => {
-    console.log(!elem.srcElement)
+    // console.log(!elem.srcElement)
     if (!elem.srcElement.value) { elem.srcElement.value = "0,60" }
     elem.srcElement.select()
 }
@@ -168,7 +168,7 @@ export const tableAddThinLine = (method, element) => {
 
 export const removeTableRow = (e) => {
     let element = e.target.closest("tr")
-    console.log("element remove", element)
+    // console.log("element remove", element)
     if (element.classList == "rowTextBold isRedOutline" ||
         element.classList == "rowText isRedOutline" ||
         element.classList == "rowDate isRedOutline" ||
@@ -382,7 +382,7 @@ const displayDialogboxAddNewRow = (elementCoursorPosition) => {
 
 export const addTableRow = (e) => {
     let element = e.target.closest("tr")
-    console.log("mamy click dla ", element)
+    // console.log("mamy click dla ", element)
     discolorGreenTableRow(e)
     let checkBoxState = document.querySelector("#addTableRow")
     checkBoxState.checked = false
@@ -396,7 +396,7 @@ export const checkbox_ADDTableRow_Changed = () => {
     let checkBoxADDState = document.querySelector("#addTableRow");
 
     if (checkBoxRemoveState.checked === true) { checkBoxADDState.checked = false }
-    console.log("checkbox", checkBoxRemoveState)
+    // console.log("checkbox", checkBoxRemoveState)
     if (checkBoxADDState.checked == true) {
         document.querySelector(".labelCB2").classList.add("greenLabel")
         document.querySelector(".labelCB2").textContent = "wstawiasz"
@@ -532,14 +532,14 @@ const removeAllNewRows = () => {
     elements.forEach((elem) => { elem.remove() })
 }
 
-export const readTable_5a = () => {
+export const readDataForTable_5a = () => {
     const nameOfTable = tempInformations[5].tableName
-    console.log("odczytuję tablicę:", nameOfTable)
+    // console.log("odczytuję tablicę:", nameOfTable)
     removeAllNewRows()
     // debugger
     let dataTable = JSON.parse(localStorage.getItem(nameOfTable))
-    console.log("wczytujemy:", dataTable)
-    console.log("długość wczytywanej tablicy", dataTable.length)
+    // console.log("wczytujemy:", dataTable)
+    // console.log("długość wczytywanej tablicy", dataTable.length)
 
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
@@ -567,7 +567,7 @@ export const readTable_5a = () => {
         // element 2 - miejsce pomiarów
         nodeList[2 + addRowElements].value = dataTable[row].info.place
         if (dataTable[row].info.place.length > 35) nodeList[2 + addRowElements].rows = Math.ceil(dataTable[row].info.place.length / 35)
-        console.log("długi tekst", dataTable[row].info.place, dataTable[row].info.place.length)
+        // console.log("długi tekst", dataTable[row].info.place, dataTable[row].info.place.length)
 
         // element 3 - pomiary
         nodeList[3 + addRowElements].value = dataTable[row].info.measurings
@@ -617,12 +617,12 @@ export const tableRecalcAll = function (e) {
     let measurments_OneLineBefore_IsOk = true
     let foundText_ObszarZadania_CurrentLine = false
 
-    console.log("zaczynam przeliczać...")
+    // console.log("zaczynam przeliczać...")
 
     // wczytuję classy dla kolumn
     let readedClasses = convertClassesIntoOneString(classTableColumns)
     const nodeList = document.querySelectorAll(readedClasses)
-    console.log("trafione punkty do obliczeń:", nodeList.length)
+    // console.log("trafione punkty do obliczeń:", nodeList.length)
     if (!nodeList.length) {
         alert("Wygląda na to, że nie ma żadnych danych w tabeli");
         return

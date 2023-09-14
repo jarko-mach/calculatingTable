@@ -33,8 +33,8 @@ export const exportnewTable_Word = () => {
 
     let dataReport = JSON.parse(localStorage.getItem(`${localReportName}Report`))
     let dataTable = JSON.parse(localStorage.getItem(localTableName))
-    console.log("dataReport", dataReport)
-    console.log("dataTable", dataTable)
+    // console.log("dataReport", dataReport)
+    // console.log("dataTable", dataTable)
 
     debugger
     const tableTS3Columns = new docx.Table({

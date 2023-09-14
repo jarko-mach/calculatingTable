@@ -14,11 +14,20 @@ export let dataReportOriginal = {
     reportDate: Date(),
     copyReportNumber: 1,
     allPages: 11,
-    point1: { created: false, tableName: "" },
+    point1: {
+        created: false,
+        tableName: "",
+        text1_1: "",
+        text1_2: "",
+        text1_3: ""
+    },
     point2: { created: false, tableName: "" },
     point3: { created: false, tableName: "" },
     point4: { created: false, tableName: "" },
-    point5: { created: false, tableName: "" },
+    point5: {
+        created: false,
+        tableName: ""
+    },
 
 }
 
@@ -74,7 +83,7 @@ export const reset_tempInformations = () => {
         tempInformations[locIndeks].created = false
         tempInformations[locIndeks].tableName = ""
     }
-    console.log("reset", tempInformations)
+    // console.log("reset", tempInformations)
 }
 
 export const saveTemporaryReportName = (repName) => {
@@ -129,7 +138,7 @@ export const infoReportsNamesRead = () => {
 
 // OPERATION IS DONE
 
-export const operationIsDone = () => {
+export const operationIsDone_andSaveAll = () => {
     const element = document.querySelector(".confElement")
     // console.log("element", element)
 
@@ -160,4 +169,4 @@ const myTestingSort = () => {
 
 // TYPICAL DATA FOR NORMS
 
-export const dataForm1 = [1500,750,500,300,200]
+export const dataForm1 = [1500, 750, 500, 300, 200]

@@ -1,10 +1,11 @@
 "use strict"
 
-import { saveReportAndTable } from "./app.js";
-import { dialogBox_point5_selectTableType } from "./main-dialog-boxes.js"
-import { readTable_5a } from "../table5a-lighting/table5a-operations.js"
+import { saveReportAndTable } from "../main-app/app.js";
+import { dialogBox_point5_selectTableType } from "../main-app/main-dialog-boxes.js"
+import { readDataForTable_5a } from "../table5a-lighting/table5a-operations.js"
 import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js"
 import { tempInformations } from "../miscellaneous/misc.js"
+import { addPoint1_subpoints123 } from "./point-1/point1-create.js";
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
 
@@ -14,26 +15,19 @@ export const removeAllAddedPointsInHtml = () => {
         // console.log("mam punkt", index)
         if (foundElement) {
             foundElement.remove()
-            console.log("usuwam wcześniejszy HTML punkt", index, foundElement)
+            // console.log("usuwam wcześniejszy HTML punkt", index, foundElement)
         }
     }
 }
 
 export const readAndDisplayAllAdedPoints = (reportName) => {
-
     removeAllAddedPointsInHtml()
     for (let index = 1; index < tempInformations.length; index++) {
         // console.log("2 - mam punkt", index)
-
         if (tempInformations[index].created) {
             // console.log("dodaję punkt", index)
-            
             tempInformations[index].created = false
             createDivPoints(index)
-            if (index === 5) {
-                createStandardTable_5a(tempInformations[index].tableName)
-                readTable_5a()
-            }
         }
     }
 }
@@ -49,6 +43,9 @@ const findPreviousDiv = (number) => {
 }
 
 const createDivPoints = (number) => {
+
+    console.log("createDivPoints = (number) => ",number)
+
     if (tempInformations[number].created === false) {
         tempInformations[number].created = true
         const foundElement = document.querySelector(findPreviousDiv(number))
@@ -77,12 +74,35 @@ const createDivPoints = (number) => {
         }
 
         newDiv.innerHTML =
-            `
-                <p class="reportSubtitle">
+            ` <p class="reportSubtitle">
                     <a id="point${number}"> <br> ${mainText} <br> </a>
                 </p>`
-        // <p style="color:darkgray;font-size:12px;">${loremIpsum}</p>
+                if(number!==1 && number !==5) {
+                    newDiv.innerHTML +=`<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
+                }
+                
         foundElement.after(newDiv)
+
+        switch (number) {
+            case 1:
+                addPoint1_subpoints123()
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+                createStandardTable_5a(tempInformations[number].tableName)
+                readDataForTable_5a()
+                break;
+            default:
+                console.log(`Sorry, we are out of ${number}.`);
+        }
     }
     document.getElementById(`point${number}`).scrollIntoView()
 }

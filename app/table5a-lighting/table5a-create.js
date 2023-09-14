@@ -12,13 +12,19 @@ import {
 } from "./table5a-menu.js"
 
 export const createStandardTable_5a = () => {
-    // debugger
+    
+    // sprawdza czy jest już tableLight
+    if (document.querySelector(".point5 .tableLight")) {
+        alert("Tabela light juz istnieje")
+        return
+    }
+
     let tableName = tempInformations[5].tableName
     if (!tableName) tableName = `table${Date.now()}`
     tempInformations[5].tableName = tableName
-    
-    console.log("procedura createStandardTable", tempInformations)
-    
+
+    // console.log("procedura createStandardTable", tempInformations)
+
     const foundElement = document.querySelector(".point5")
     const newDiv = document.createElement("div")
     newDiv.classList.add(tableName)

@@ -21,14 +21,17 @@ export const localMemory_readReport = (reportName) => {
 
     // saveTemporaryReportName(reportName)
     let dataReport = JSON.parse(localStorage.getItem(`${reportName}Report`));
-    console.log("1 name", reportName, "dane", dataReport)
+    // console.log("1 name", reportName, "dane", dataReport)
 
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
+    console.log("foundClasses", foundClasses)
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-
+    console.log("myClasses", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
 
+    console.log("readed nodeList", nodeList)
+    // debugger
     let nodeListCounter = 0
     for (let element in dataReport) {
         // console.log("odczytuję element", element)
@@ -38,6 +41,11 @@ export const localMemory_readReport = (reportName) => {
         }
         if (element === "point1") {
             tempInformations[1].created = dataReport[`${element}`].created
+
+            // dataReport[`${element}`].text1_1 = document.querySelector("#point11Text").textContent
+            // dataReport[`${element}`].text1_2 = document.querySelector("#point12Text").textContent
+            // dataReport[`${element}`].text1_3 = document.querySelector("#point13Text")?.textContent
+
             continue
         }
         if (element === "point2") {
@@ -60,11 +68,12 @@ export const localMemory_readReport = (reportName) => {
             continue
         }
         nodeList[nodeListCounter].value = dataReport[`${element}`]
+        if (dataReport[`${element}`]) { nodeList[nodeListCounter].classList.remove("fieldToFill") }
         if (nodeList[nodeListCounter].value.length > 45) nodeList[nodeListCounter].rows = Math.ceil(nodeList[nodeListCounter].value.length / 45)
         // console.log("22 dodaje kolejne wiersze gdy tekst jest długi", dataReport[`${element}`])
         nodeListCounter++
     }
-    console.log("koniec wczytywania, wyszła tabela:", tempInformations)
+    // console.log("koniec wczytywania, wyszła tabela:", tempInformations)
 }
 
 export const readAll = () => {
@@ -76,13 +85,12 @@ export const readAll = () => {
 
 ////// SAVE REPORT AND TABLE
 
-// BYŁO saveOnlySomeOfReport
 export const saveReportAndTable = () => {
 
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-
+    console.log("zapisuję raport i tablicę, klasy:", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
 
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
@@ -101,6 +109,12 @@ export const saveReportAndTable = () => {
 
         if (element === "point1") {
             dataReport[`${element}`].created = tempInformations[1].created
+            if (tempInformations[1].created) {
+                dataReport[`${element}`].text1_1 = document.querySelector("#point11Text").value
+                dataReport[`${element}`].text1_2 = document.querySelector("#point12Text").value
+                dataReport[`${element}`].text1_3 = document.querySelector("#point13Text")?.value
+
+            }
             continue
         }
         if (element === "point2") {

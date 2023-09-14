@@ -16,7 +16,7 @@ import {
     currentTablNam,
     convertClassesIntoOneString,
     classTableColumns,
-    operationIsDone
+    operationIsDone_andSaveAll
 } from "../miscellaneous/misc.js"
 
 import { exportnewTable_Word } from "./export-word-docx.js";
@@ -36,7 +36,7 @@ export let tableMenu_ButtonsInfo = [
     Brak wprowadzonych danych lub błędnie wprowadzone dane w kolumnach [5] i [7] spowodują niemożność obliczenia stanu w kolumnie [8]</p>`,
         descriptionClass: "tableMenuDescription1",
         disabled: "",
-        functionPerformed: function () { tableRecalcAll(), operationIsDone() },
+        functionPerformed: function () { tableRecalcAll(), operationIsDone_andSaveAll() },
     },
     {
         id: "buttonExport",
@@ -45,7 +45,7 @@ export let tableMenu_ButtonsInfo = [
         descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
         descriptionClass: "tableMenuDescription1",
         disabled: "",
-        functionPerformed: function () { exportnewTable_Word() }, //exportDocument(), operationIsDone() 
+        functionPerformed: function () { exportnewTable_Word() }, //exportDocument(), operationIsDone_andSaveAll() 
     },
 
     {
@@ -55,7 +55,7 @@ export let tableMenu_ButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem, którego tekst zostanie pogrubiony/wytłuszczony - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "tableMenuDescription2",
         disabled: "",
-        functionPerformed: function () { tableAddTextBoldLine(), operationIsDone() },
+        functionPerformed: function () { tableAddTextBoldLine(), operationIsDone_andSaveAll() },
         // tableMenu_checkboxGreyBackgroundChanged(),
     },
     {
@@ -65,7 +65,7 @@ export let tableMenu_ButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do wpisania miejsca pomiarów - nie dodaje pól obliczeniowych</p>",
         descriptionClass: "tableMenuDescription3",
         disabled: "",
-        functionPerformed: function () { tableAddTextLine(), operationIsDone() },
+        functionPerformed: function () { tableAddTextLine(), operationIsDone_andSaveAll() },
         // tableMenu_checkboxGreyBackgroundChanged(), 
     },
     {
@@ -75,7 +75,7 @@ export let tableMenu_ButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden wiersz z polem do opisu obszaru, polem do wprowadzenia pomiarów oraz norm. Klawiszem 'Przelicz' dokonujemy obliczeń oraz sprawdzamy zgodność pomiarów z PN </p>",
         descriptionClass: "tableMenuDescription4",
         disabled: "",
-        functionPerformed: function () { tableAddDataLine(), operationIsDone() },
+        functionPerformed: function () { tableAddDataLine(), operationIsDone_andSaveAll() },
     },
     {
         id: "buttonAddSpace",
@@ -84,7 +84,7 @@ export let tableMenu_ButtonsInfo = [
         descriptionText: "<p>Dodaje do tabeli jeden pusty wiersz - można go używać do: <br> 1° oddzielania kilku grup linii tekstu od siebie <br> 2° oddzielenia linii tekstu od linii graficznej</p>",
         descriptionClass: "tableMenuDescription5",
         disabled: "",
-        functionPerformed: function () { tableAddEmptyLine(), operationIsDone() },
+        functionPerformed: function () { tableAddEmptyLine(), operationIsDone_andSaveAll() },
     },
     {
         id: "buttonAddThinLine",
@@ -93,7 +93,7 @@ export let tableMenu_ButtonsInfo = [
         descriptionText: "<p>Dodaje cienką widoczną graficzną linię na końcu tabeli</p>",
         descriptionClass: "tableMenuDescription6",
         disabled: "",
-        functionPerformed: function () { tableAddThinLine(), operationIsDone() },
+        functionPerformed: function () { tableAddThinLine(), operationIsDone_andSaveAll() },
     },
 ]
 
@@ -192,13 +192,13 @@ function tableMenu_addButtons(tableName) {
 
 const buttons_findTableName = (evt) => {
     currentTablNam[0] = evt.currentTarget.dataset.tablename
-    console.log("kliknięte btn..", evt.currentTarget.dataset.tablename)
+    // console.log("kliknięte btn..", evt.currentTarget.dataset.tablename)
 }
 
 const checkboxes_findTableName = (evt) => {
     let element = evt.target
     currentTablNam[0] = element.dataset.tablename
-    console.log("kliknięte check..??..", element)
+    // console.log("kliknięte check..??..", element)
 }
 
 const tableMenu_addButtonsListeners = (tableName) => {
@@ -215,7 +215,7 @@ const tableMenu_addButtonsDescriptions = (tableName) => {
         let localString = element.descriptionText.slice(3, element.descriptionText.length - 4)
         divElement.innerHTML += `<p class="allDescription tableMenuDescription${index + 1}">
                                  <boldi>${element.buttonText}<br></boldi> ${localString}</p>`
-        console.log("index", index, localString)
+        // console.log("index", index, localString)
     })
 }
 
@@ -274,7 +274,7 @@ const show_ButtonsDescriptions = elem => {
     let myIndexFound = tableMenu_ButtonsInfo.findIndex(element => element.id === found)
     if (myIndexFound !== -1) {
         const pElement = document.querySelector(`.${elem.srcElement.dataset.tablename} .menuButtonsDescriptions .tableMenuDescription${myIndexFound + 1}`)
-        console.log(`.tableMenuDescription${myIndexFound + 1}`, "pElement", pElement)
+        // console.log(`.tableMenuDescription${myIndexFound + 1}`, "pElement", pElement)
         pElement.classList.add("tableMenuDescriptionVisible")
     }
 }
@@ -361,7 +361,7 @@ const tableMenu_addRemove_CheckboxesDescriptionsListeners = (tableName) => {
             myElement.removeEventListener("mouseover", show_CheckboxesDescriptions)
             myElement.removeEventListener("mouseout", hide_CheckboxesDescriptions)
             if (tableMenu_CheckBoxInfo[index].id === "showDescriptions") {
-                console.log("została desc")
+                // console.log("została desc")
                 const pElement = document.querySelector(`.${tableName} .tableMenuDescription${index + 100}`)
                 pElement.classList.remove("tableMenuDescriptionVisible")
             }
@@ -378,7 +378,7 @@ export const tableMenu_ShowHideAllDescriptions = (tableName) => {
 
 export const tableMenu_checkboxGreyBackgroundChanged = () => {
     let checkBoxState = document.querySelector("#addGreyBackground")
-    console.log("stan cheku greyBackground:", checkBoxState.checked)
+    // console.log("stan cheku greyBackground:", checkBoxState.checked)
 
     const classesToFind = convertClassesIntoOneString(classTableColumns)
     // console.log("classy do znalezienia", classesToFind)

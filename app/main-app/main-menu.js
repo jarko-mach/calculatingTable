@@ -1,9 +1,9 @@
 "use strict";
 
-import { addPoint_1, addPoint_2, addPoint_3, addPoint_4, addPoint_5 } from "./main_points15.js"
+import { addPoint_1, addPoint_2, addPoint_3, addPoint_4, addPoint_5 } from "../subpoints-1-5/main_points15.js"
 import { saveReportAndTable, readAll } from "./app.js";
 import { dialogBox_startNewReport } from "./main-dialog-boxes.js";
-import { operationIsDone } from "../miscellaneous/misc.js";
+import { operationIsDone_andSaveAll } from "../miscellaneous/misc.js";
 
 let mainMenu_tableButtonsInfo = [
 
@@ -22,7 +22,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>Zapisuje sprawozdanie lokalnie na dysku twardym</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { saveReportAndTable(), operationIsDone() },
+        functionPerformed: function () { operationIsDone_andSaveAll() },
     },
     {
         id: "buttonRead",
@@ -41,7 +41,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_1()}
+        functionPerformed: function () { addPoint_1() }
     },
     {
         id: "buttonPoint2",
@@ -61,7 +61,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_3()}
+        functionPerformed: function () { addPoint_3() }
     },
     {
         id: "buttonPoint4",
@@ -71,7 +71,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_4()}
+        functionPerformed: function () { addPoint_4() }
     },
     {
         id: "buttonPoint5",
