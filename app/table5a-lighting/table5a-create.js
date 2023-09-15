@@ -13,10 +13,11 @@ import {
 
 export const createStandardTable_5a = () => {
     
+    console.log("createStandardTable_5a")
     // sprawdza czy jest już tableLight
     if (document.querySelector(".point5 .tableLight")) {
         alert("Tabela light juz istnieje")
-        return
+        // return
     }
 
     let tableName = tempInformations[5].tableName
@@ -85,4 +86,13 @@ export const createStandardTable_5a = () => {
     tableMenu_createButtons(tableName)
     tableMenu_createCheckboxes(tableName)
     tableMenu_ShowHideAllDescriptions(tableName)
+    document.getElementById(`point5`).scrollIntoView()
+}
+
+export const remove_Point5_html = () => {
+    const foundElement = document.querySelector(".point5")
+    if (foundElement) {
+        foundElement.remove()
+        tempInformations[5].created = false
+    }
 }

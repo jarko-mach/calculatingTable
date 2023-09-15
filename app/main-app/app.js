@@ -118,7 +118,10 @@ export const saveReportAndTable = () => {
             continue
         }
         if (element === "point2") {
-            dataReport[`${element}`].created = tempInformations[2].created
+            if (tempInformations[2].created) {
+                dataReport[`${element}`].created = tempInformations[2].created
+                dataReport[`${element}`].text2 = document.querySelector("#point2Text").value
+            }
             continue
         }
         if (element === "point3") {
@@ -130,12 +133,13 @@ export const saveReportAndTable = () => {
             continue
         }
         if (element === "point5") {
-            // console.log("zapisuję raport punkt 5")
+            console.log("zapisuję raport punkt 5")
             dataReport[`${element}`].created = tempInformations[5].created
-            // console.log("i dalej...", dataReport[`${element}`].created)
+            console.log("i dalej...", dataReport[`${element}`].created)
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
                 dataReport[`${element}`].tableName = localTabNam
+                console.log("nazwa taleli: ", localTabNam)
                 saveTable(localTabNam)
             }
             continue

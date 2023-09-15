@@ -10,7 +10,7 @@ export const addPoint1_subpoints123 = () => {
     const dataReport = JSON.parse(localStorage.getItem(`${readTemporaryReportName()}Report`));
     console.log("dataReport", dataReport)
 
-    if (dataReport.point1.created) {
+    if (dataReport.point1?.created) {
         stringText1_123[0] = dataReport.point1.text1_1
         stringText1_123[1] = dataReport.point1.text1_2
         stringText1_123[2] = dataReport.point1?.text1_3
@@ -26,7 +26,7 @@ export const addPoint1_subpoints123 = () => {
     newDiv1.innerHTML = ""
     let numbering = 1
     let fieldCounting = 0
-    debugger
+    // debugger
 
     point1_tableData.forEach((element, index) => {
         if (element.name.indexOf(foundTitle) !== -1) {

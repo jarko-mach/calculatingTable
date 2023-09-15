@@ -536,9 +536,9 @@ export const readDataForTable_5a = () => {
     const nameOfTable = tempInformations[5].tableName
     // console.log("odczytuję tablicę:", nameOfTable)
     removeAllNewRows()
-    // debugger
     let dataTable = JSON.parse(localStorage.getItem(nameOfTable))
-    // console.log("wczytujemy:", dataTable)
+    console.log("wczytujemy:", dataTable)
+    if (!dataTable) {return}
     // console.log("długość wczytywanej tablicy", dataTable.length)
 
     for (let i = 0; i < dataTable.length; i++) {

@@ -1,6 +1,6 @@
 "use strict";
 
-import { addPoint_1, addPoint_2, addPoint_3, addPoint_4, addPoint_5 } from "../subpoints-1-5/main_points15.js"
+import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../subpoints-1-5/main_points15.js"
 import { saveReportAndTable, readAll } from "./app.js";
 import { dialogBox_startNewReport } from "./main-dialog-boxes.js";
 import { operationIsDone_andSaveAll } from "../miscellaneous/misc.js";
@@ -41,7 +41,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_1() }
+        functionPerformed: function () { addNewPoint_1() }
     },
     {
         id: "buttonPoint2",
@@ -51,7 +51,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_2() }
+        functionPerformed: function () { addNewPoint_2() }
     },
     {
         id: "buttonPoint3",
@@ -61,7 +61,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_3() }
+        functionPerformed: function () { addNewPoint_3() }
     },
     {
         id: "buttonPoint4",
@@ -71,7 +71,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_4() }
+        functionPerformed: function () { addNewPoint_4() }
     },
     {
         id: "buttonPoint5",
@@ -81,7 +81,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { addPoint_5() }
+        functionPerformed: function () { addNewPoint_5() }
     },
 
     // {

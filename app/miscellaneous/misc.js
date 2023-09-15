@@ -16,12 +16,13 @@ export let dataReportOriginal = {
     allPages: 11,
     point1: {
         created: false,
-        tableName: "",
         text1_1: "",
         text1_2: "",
         text1_3: ""
     },
-    point2: { created: false, tableName: "" },
+    point2: { 
+        created: false, 
+        text2: "" },
     point3: { created: false, tableName: "" },
     point4: { created: false, tableName: "" },
     point5: {

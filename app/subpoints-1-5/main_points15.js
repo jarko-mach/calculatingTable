@@ -1,11 +1,12 @@
 "use strict"
 
 import { saveReportAndTable } from "../main-app/app.js";
-import { dialogBox_point5_selectTableType } from "../main-app/main-dialog-boxes.js"
+import { dialogBox_createPoint5_selectTableType } from "../main-app/main-dialog-boxes.js"
 import { readDataForTable_5a } from "../table5a-lighting/table5a-operations.js"
 import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js"
 import { tempInformations } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js";
+import { addPoint2 } from "./point-2/point2-create.js";
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
 
@@ -27,7 +28,7 @@ export const readAndDisplayAllAdedPoints = (reportName) => {
         if (tempInformations[index].created) {
             // console.log("dodaję punkt", index)
             tempInformations[index].created = false
-            createDivPoints(index)
+            createNewDivPoints(index)
         }
     }
 }
@@ -42,9 +43,9 @@ const findPreviousDiv = (number) => {
     return ".entry"
 }
 
-const createDivPoints = (number) => {
+const createNewDivPoints = (number) => {
 
-    console.log("createDivPoints = (number) => ",number)
+    console.log("create NEW DivPoints = (number) => ", number)
 
     if (tempInformations[number].created === false) {
         tempInformations[number].created = true
@@ -77,18 +78,18 @@ const createDivPoints = (number) => {
             ` <p class="reportSubtitle">
                     <a id="point${number}"> <br> ${mainText} <br> </a>
                 </p>`
-                if(number!==1 && number !==5) {
-                    newDiv.innerHTML +=`<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
-                }
-                
-        foundElement.after(newDiv)
+        if (number !== 1 && number !== 2 && number !== 5) {
+            newDiv.innerHTML += `<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
+        }
 
+        foundElement.after(newDiv)
+        // debugger
         switch (number) {
             case 1:
                 addPoint1_subpoints123()
                 break;
             case 2:
-
+                addPoint2()
                 break;
             case 3:
 
@@ -97,8 +98,9 @@ const createDivPoints = (number) => {
 
                 break;
             case 5:
-                createStandardTable_5a(tempInformations[number].tableName)
-                readDataForTable_5a()
+                dialogBox_createPoint5_selectTableType()
+                // createStandardTable_5a(tempInformations[number].tableName)
+                // readDataForTable_5a()
                 break;
             default:
                 console.log(`Sorry, we are out of ${number}.`);
@@ -107,26 +109,25 @@ const createDivPoints = (number) => {
     document.getElementById(`point${number}`).scrollIntoView()
 }
 
-export const addPoint_1 = () => {
-    createDivPoints(1)
+export const addNewPoint_1 = () => {
+    createNewDivPoints(1)
     saveReportAndTable()
 }
 
-export const addPoint_2 = () => {
-    createDivPoints(2)
+export const addNewPoint_2 = () => {
+    createNewDivPoints(2)
     saveReportAndTable()
 }
-export const addPoint_3 = () => {
-    createDivPoints(3)
+export const addNewPoint_3 = () => {
+    createNewDivPoints(3)
     saveReportAndTable()
 }
-export const addPoint_4 = () => {
-    createDivPoints(4)
+export const addNewPoint_4 = () => {
+    createNewDivPoints(4)
     saveReportAndTable()
 }
 
-export const addPoint_5 = () => {
-    // debugger
-    createDivPoints(5)
-    dialogBox_point5_selectTableType()
+export const addNewPoint_5 = () => {
+    createNewDivPoints(5)
+    // saveReportAndTable()
 }
