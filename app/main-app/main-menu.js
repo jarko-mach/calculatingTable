@@ -1,6 +1,6 @@
 "use strict";
 
-import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../subpoints-1-5/main_points15.js"
+import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../subpoints-1-5/points-1-5.js"
 import { saveReportAndTable, readAll } from "./app.js";
 import { dialogBox_startNewReport } from "./main-dialog-boxes.js";
 import { operationIsDone_andSaveAll } from "../miscellaneous/misc.js";

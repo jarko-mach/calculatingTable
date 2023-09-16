@@ -12,7 +12,7 @@ import { createMainTable, clearInfoInputIsEmpty } from "./main-table.js";
 import { createMainMenu } from "./main-menu.js";
 import { saveReportAndTable, localMemory_readReport } from "./app.js";
 import { createStandardTable_5a, remove_Point5_html } from "../table5a-lighting/table5a-create.js";
-import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "../subpoints-1-5/main_points15.js";
+import { readAndDisplayAllAdedPoints, removeAllAddedPointsInHtml } from "../subpoints-1-5/points-1-5.js";
 import { reset_tempInformations } from "../miscellaneous/misc.js";
 
 
@@ -112,72 +112,7 @@ export const dialogBox_startNewReport = () => {
     })
 }
 
-////// READ EXISTING REPORT  ------------------------------------------------------------------------------
 
-export const dialogBox_readExistingReport = () => {
-
-    const getOKButton = () => {
-        const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-        // console.log("Odczytuję raport:", chosenReportName)
-        const foundElement = document.querySelector(".openDialogBox")
-        // console.log("OK foundElement", foundElement)
-
-        foundElement.innerHTML = ` `
-        saveTemporaryReportName(chosenReportName)
-        createMainTable()
-        createMainMenu()
-        // debugger
-        localMemory_readReport(chosenReportName)
-        readAndDisplayAllAdedPoints(chosenReportName)
-        // clearInfoInputIsEmpty()
-    }
-
-    const getCancelButton = () => {
-        const foundElement = document.querySelector(".openDialogBox")
-        // console.log("CANCEL foundElement", foundElement)
-        foundElement.innerHTML = `<div class="openDialogBox"></div>`
-    }
-
-    const wasNames = infoReportsNamesRead()
-
-    if (!wasNames) {
-        alert("Brak zapisanych sprawozdań")
-        dialogBox_startNewReport()
-        return
-    }
-    // console.log("wasNames", wasNames)
-
-    const foundElement = document.querySelector(".openDialogBox")
-    const newElement = document.createElement("div")
-    newElement.classList.add("dialogBoxParent")
-
-    let selectText = `<select id="fileName">`
-    wasNames.forEach((element, index) => { selectText += `<option value="${element}">${element}</option>` })
-    selectText += `</select>`
-
-
-    newElement.innerHTML =
-        ` <div class="dialogBox">
-            <div class="dialogBoxHeader wider200" > Przegląd istniejących sprawozdań
-            </div>
-            <div class="dialogBoxChild_OldReport wider200">
-                <label for="fileName">Wybierz nazwę</label>
-                ${selectText}
-                <div>
-                    <button class="okSave">Wczytaj</button>
-                    <button class="noCancel">Anuluj</button>
-                </div>        
-            </div>
-        </div>
-      `
-    foundElement.append(newElement)
-
-    const foundButtonOK = document.querySelector(".openDialogBox .okSave")
-    foundButtonOK.addEventListener("click", getOKButton)
-
-    const foundButtonCancel = document.querySelector(".openDialogBox .noCancel")
-    foundButtonCancel.addEventListener("click", getCancelButton)
-}
 
 
 ////// START - CHOOSE REPORT - dialogBox_startNewReport()  or  dialogBox_readExistingReport()
@@ -255,7 +190,7 @@ export const dialogBox_createPoint5_selectTableType = () => {
     console.log("createPoint5...")
 
     const getOKButton = () => {
-        // console.log("kliknięto OK")
+        console.log("kliknięto OK")
         const radioGroupStandardOrRescue = document.querySelectorAll("input[name=selectStandardOrRescue]")
         for (const radio1 of radioGroupStandardOrRescue) {
             if (radio1.checked) {
@@ -272,7 +207,7 @@ export const dialogBox_createPoint5_selectTableType = () => {
     }
 
     const getCancelButton = () => {
-        // console.log("kliknięto cancel")
+        console.log("kliknięto cancel")
         const foundElement = document.querySelector(".openDialogBox");
         foundElement.innerHTML = ``;
         remove_Point5_html()
