@@ -1,4 +1,4 @@
-"use strict";
+"use strict"
 
 import { tableAddNumbers } from "./table5a-operations.js"
 import { tempInformations } from "../miscellaneous/misc.js";
@@ -9,7 +9,7 @@ import {
     tableMenu_createButtons,
     tableMenu_createCheckboxes,
     tableMenu_ShowHideAllDescriptions
-} from "./table5a-menu.js"
+} from "./table5a-menuCreate.js"
 
 export const createStandardTable_5a = () => {
     
@@ -89,10 +89,3 @@ export const createStandardTable_5a = () => {
     document.getElementById(`point5`).scrollIntoView()
 }
 
-export const remove_Point5_html = () => {
-    const foundElement = document.querySelector(".point5")
-    if (foundElement) {
-        foundElement.remove()
-        tempInformations[5].created = false
-    }
-}

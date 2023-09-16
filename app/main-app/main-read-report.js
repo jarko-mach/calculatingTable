@@ -1,4 +1,6 @@
+import { createMainTable } from "./main-table.js"
 
+import { infoReportsNamesRead, saveTemporaryReportName } from "../miscellaneous/misc.js"
 
 export const localMemory_readReport = (reportName) => {
 

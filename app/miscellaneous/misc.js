@@ -1,6 +1,6 @@
 "use strict";
 
-import { saveReportAndTable } from "../main-app/app.js";
+import { saveReportAndTable } from "../main-app/main-save-report.js"
 
 export let dataReportOriginal = {
     id: 1,
@@ -20,9 +20,10 @@ export let dataReportOriginal = {
         text1_2: "",
         text1_3: ""
     },
-    point2: { 
-        created: false, 
-        text2: "" },
+    point2: {
+        created: false,
+        text2: ""
+    },
     point3: { created: false, tableName: "" },
     point4: { created: false, tableName: "" },
     point5: {
