@@ -1,6 +1,8 @@
 "use strict"
 
 import { dialogBox_readExistingReport } from "./main-read-report.js"
+import { dialogBox_startNewReport } from "./main-new-report.js"
+import { remove_Point5_html } from "../subpoints-1-5/point-5/point-5-remove.js"
 
 ////// START - CHOOSE REPORT - dialogBox_startNewReport()  or  dialogBox_readExistingReport()
 

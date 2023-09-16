@@ -1,5 +1,9 @@
 
 
+import { infoReportsNamesRead, infoReportsNamesSave, saveTemporaryReportName } from "../miscellaneous/misc.js";
+import { createMainTable } from "./main-table.js"
+import { createMainMenu } from "./main-menu.js";
+
 
 export const dialogBox_startNewReport = () => {
     const header = "Utwórz nowe sprawozdanie";

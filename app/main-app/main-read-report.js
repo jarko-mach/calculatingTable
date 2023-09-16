@@ -1,6 +1,10 @@
-import { createMainTable } from "./main-table.js"
 
-import { infoReportsNamesRead, saveTemporaryReportName } from "../miscellaneous/misc.js"
+
+import { createMainTable } from "./main-table.js"
+import { createMainMenu } from "./main-menu.js"
+import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../miscellaneous/misc.js"
+import { readAndDisplayAllAdedPoints } from "../subpoints-1-5/points-1-5-create.js"
+
 
 export const localMemory_readReport = (reportName) => {
 

@@ -1,25 +1,12 @@
 "use strict"
 
-import { saveReportAndTable } from "../main-app/app.js";
-import { dialogBox_createPoint5_selectTableType } from "../main-app/main-dialog-boxes.js"
-import { readDataForTable_5a } from "../table5a-lighting/table5a-operations.js"
-import { createStandardTable_5a } from "../table5a-lighting/table5a-create.js"
 import { tempInformations } from "../miscellaneous/misc.js"
-import { addPoint1_subpoints123 } from "./point-1/point1-create.js";
-import { addPoint2 } from "./point-2/point2-create.js";
+import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
+import { addPoint2 } from "./point-2/point2-create.js"
+import { dialogBox_createPoint5_selectTableType } from "../main-app/main-dialog-boxes.js"
+
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
-
-export const removeAllAddedPointsInHtml = () => {
-    for (let index = 1; index < tempInformations.length; index++) {
-        const foundElement = document.querySelector(`.point${index}`)
-        // console.log("mam punkt", index)
-        if (foundElement) {
-            foundElement.remove()
-            // console.log("usuwam wcześniejszy HTML punkt", index, foundElement)
-        }
-    }
-}
 
 export const readAndDisplayAllAdedPoints = (reportName) => {
     removeAllAddedPointsInHtml()
