@@ -1,6 +1,6 @@
 "use strict";
 
-import { dialogBox_chooseOldOrNewReport } from "./main-dialog-boxes.js";
+import { dialogBox_chooseOldOrNewReport } from "./reports/dialogBox-new-or-old-report.js";
 
 //   START PROGRAM
 
