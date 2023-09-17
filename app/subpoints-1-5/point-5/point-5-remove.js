@@ -1,3 +1,6 @@
+"use scrict"
+
+import { tempInformations } from "../../miscellaneous/misc.js"
 
 
 export const remove_Point5_html = () => {

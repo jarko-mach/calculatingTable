@@ -1,8 +1,10 @@
 
 
-import { infoReportsNamesRead, infoReportsNamesSave, saveTemporaryReportName } from "../miscellaneous/misc.js";
-import { createMainTable } from "./main-table.js"
+import { infoReportsNamesRead, infoReportsNamesSave, saveTemporaryReportName, reset_tempInformations } from "../miscellaneous/misc.js";
+import { createMainTable } from "./create-main-table.js"
 import { createMainMenu } from "./main-menu.js";
+import { removeAllAddedPointsInHtml } from "../subpoints-1-5/points-1-5-remove.js"
+import { saveReportAndTable } from "./save-report-and-table.js"
 
 
 export const dialogBox_startNewReport = () => {

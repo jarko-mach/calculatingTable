@@ -20,9 +20,10 @@ import {
     TableBorders,
     Border,
     UnderlineType
-} from "../../docx/build/index.js"
+} from "../../../../docx/build/index.js"
+// "../../docx/build/index.js"
 
-import { tempInformations, readTemporaryReportName } from "../miscellaneous/misc.js"
+import { tempInformations, readTemporaryReportName } from "../../../miscellaneous/misc.js"
 
 // START
 

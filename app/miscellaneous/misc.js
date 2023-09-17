@@ -1,6 +1,6 @@
 "use strict";
 
-import { saveReportAndTable } from "../main-app/main-save-report.js"
+import { saveReportAndTable } from "../main-app/save-report-and-table.js"
 
 export let dataReportOriginal = {
     id: 1,

@@ -6,20 +6,23 @@ import {
     tableAddDataLine,
     tableAddEmptyLine,
     tableAddThinLine,
-    tableRecalcAll,
     checkbox_RemoveTableRow_Changed,
     checkbox_ADDTableRow_Changed
 } from "./table5a-operations.js";
 
+import { tableRecalcAll } from "./table5a-recalculate.js"
 
 import {
     currentTablNam,
     convertClassesIntoOneString,
     classTableColumns,
     operationIsDone_andSaveAll
-} from "../miscellaneous/misc.js"
+} from "../../../miscellaneous/misc.js"
 
-import { exportnewTable_Word } from "./export-word-docx.js";
+import { exportnewTable_Word } from "./export-word-docx.js"
+
+import { tableMenu_ButtonsInfo, tableMenu_CheckBoxInfo } from "./table5a-data.js"
+
 
 
 

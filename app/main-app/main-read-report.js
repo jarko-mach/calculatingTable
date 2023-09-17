@@ -1,6 +1,6 @@
 
 
-import { createMainTable } from "./main-table.js"
+import { createMainTable } from "./create-main-table.js"
 import { createMainMenu } from "./main-menu.js"
 import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../miscellaneous/misc.js"
 import { readAndDisplayAllAdedPoints } from "../subpoints-1-5/points-1-5-create.js"
@@ -8,9 +8,9 @@ import { readAndDisplayAllAdedPoints } from "../subpoints-1-5/points-1-5-create.
 
 export const localMemory_readReport = (reportName) => {
 
-    // saveTemporaryReportName(reportName)
+    saveTemporaryReportName(reportName)
     let dataReport = JSON.parse(localStorage.getItem(`${reportName}Report`));
-    // console.log("1 name", reportName, "dane", dataReport)
+    console.log("1 name", reportName, "dane", dataReport)
 
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
@@ -59,7 +59,7 @@ export const localMemory_readReport = (reportName) => {
 
 
 
-export const dialogBox_readExistingReport = () => {
+export const dialogBox_chooseExistingReport = () => {
 
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
@@ -124,7 +124,3 @@ export const dialogBox_readExistingReport = () => {
     foundButtonCancel.addEventListener("click", getCancelButton)
 }
 
-
-export const readAll = () => {
-    dialogBox_readExistingReport()
-}

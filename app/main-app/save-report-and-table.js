@@ -1,5 +1,6 @@
 
-
+import { dataReportOriginal, readTemporaryReportName, tempInformations } from "../miscellaneous/misc.js"
+import { saveTable } from "../subpoints-1-5/point-5/table5a-lighting/table5a-operations.js"
 
 
 export const saveReportAndTable = () => {

@@ -1,7 +1,7 @@
 "use strict"
 
 import { tableAddNumbers } from "./table5a-operations.js"
-import { tempInformations } from "../miscellaneous/misc.js";
+import { tempInformations } from "../../../miscellaneous/misc.js";
 
 // import { saveTemporaryTableName } from "../miscellaneous/misc.js";
 

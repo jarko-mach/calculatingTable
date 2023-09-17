@@ -1,6 +1,10 @@
 "use strict"
 
-// START DEFINITION OF BUTTONS IN TABLE MENU
+import { tableAddDataLine, tableAddEmptyLine, tableAddTextLine, tableAddThinLine, tableAddTextBoldLine } from "./table5a-operations.js"
+import { checkbox_RemoveTableRow_Changed, checkbox_ADDTableRow_Changed } from "./table5a-operations.js"
+import { tableRecalcAll } from "./table5a-recalculate.js"
+import { operationIsDone_andSaveAll } from "../../../miscellaneous/misc.js"
+import { tableMenu_ShowHideAllDescriptions } from "./table5a-createMenu.js"
 
 export let tableMenu_ButtonsInfo = [
     {
@@ -77,7 +81,7 @@ export let tableMenu_ButtonsInfo = [
 
 // START DEFINITION OF CHECKBOXES IN TABLE MENU
 
-let tableMenu_CheckBoxInfo = [
+export let tableMenu_CheckBoxInfo = [
     {
         id: "removeTableRow",
         name: "removeTableRow",

@@ -1,6 +1,6 @@
 "use strict"
 
-import { saveReportAndTable } from "../main-app/app.js"
+import { saveReportAndTable } from "../../../main-app/save-report-and-table.js"
 import {
     classTableColumns,
     classTableRows,
@@ -10,7 +10,7 @@ import {
     currentTablNam,
     dataTableLocal,
     dataTableOriginal, dataForm1
-} from "../miscellaneous/misc.js"
+} from "../../../miscellaneous/misc.js"
 
 export const addFirstThreeColumnsHeader = () => {
     const myElement = document.querySelector(".threeColumns")

@@ -1,5 +1,11 @@
 "use strict";
 
+import { operationIsDone_andSaveAll } from "../miscellaneous/misc.js";
+import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../subpoints-1-5/points-1-5-create.js";
+import {dialogBox_chooseExistingReport} from "./main-read-report.js"
+import { dialogBox_startNewReport } from "./main-new-report.js";
+
+
 
 let mainMenu_tableButtonsInfo = [
 
@@ -27,7 +33,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>Może istnieć kilka sprawozdań, każde z inną nazwą. Tutaj można wybrać określone sprawozdanie z rozwijanej listy.</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { readAll() }
+        functionPerformed: function () { dialogBox_chooseExistingReport() }
     },
     {
         id: "buttonPoint1",

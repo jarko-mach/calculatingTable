@@ -4,6 +4,8 @@ import { tempInformations } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
 import { dialogBox_createPoint5_selectTableType } from "../main-app/main-dialog-boxes.js"
+import { saveReportAndTable } from "../main-app/save-report-and-table.js"
+import { removeAllAddedPointsInHtml } from "./points-1-5-remove.js"
 
 
 const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
