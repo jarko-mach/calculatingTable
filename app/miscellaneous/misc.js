@@ -2,6 +2,8 @@
 
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
+export const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
+
 export let dataReportOriginal = {
     id: 1,
     numberTSO: 111,

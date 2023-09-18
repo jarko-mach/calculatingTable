@@ -1,5 +1,8 @@
 "use strict"
 
+import { tempInformations, convertClassesIntoOneString, classTableRows, classTableAll } from "../../../miscellaneous/misc.js"
+import { tableAddDataLine, tableAddEmptyLine, tableAddTextLine, tableAddThinLine, tableAddTextBoldLine } from "./table5a-operations.js"
+
 // READING DATA OF TABLE
 
 const removeAllNewRows = () => {
@@ -15,7 +18,7 @@ export const readDataForTable_5a = () => {
     removeAllNewRows()
     let dataTable = JSON.parse(localStorage.getItem(nameOfTable))
     console.log("wczytujemy:", dataTable)
-    if (!dataTable) {return}
+    if (!dataTable) { return }
     // console.log("długość wczytywanej tablicy", dataTable.length)
 
     for (let i = 0; i < dataTable.length; i++) {

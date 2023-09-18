@@ -1,10 +1,10 @@
-
+"use scrict"
 
 import { createMainTable } from "../menu/main-table.js"
 import { createMainMenu } from "../menu/main-menu.js"
 import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../../miscellaneous/misc.js"
-import { readAndDisplayAllAdedPoints } from "../../points-1-5/points-1-5-create.js"
-
+import { readAndDisplayAllAdedPoints } from "../../points-1-5/points-1-5-read-from-report.js"
+import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
 
 export const localMemory_readReport = (reportName) => {
 
@@ -56,8 +56,6 @@ export const localMemory_readReport = (reportName) => {
     }
     console.log("koniec wczytywania, wyszła tabela:", tempInformations)
 }
-
-
 
 export const dialogBox_chooseExistingReport = () => {
 

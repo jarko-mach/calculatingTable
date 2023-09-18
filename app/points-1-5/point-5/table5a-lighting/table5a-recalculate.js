@@ -1,5 +1,13 @@
 "use strict";
 
+
+import {
+    tempInformations,
+    convertClassesIntoOneString,
+    classTableRows,
+    classTableColumns
+} from "../../../miscellaneous/misc.js"
+
 // RECALCULATING
 
 export const tableRecalcAll = function (e) {
@@ -162,7 +170,7 @@ export const tableRecalcAll = function (e) {
                     measurmentsUniformityOk = false
                 }
             }
-            debugger
+            // debugger
             textColumn1 = nodeList[1 + addRowElements].value
             foundText_ObszarZadania_CurrentLine = (textColumn1.search("obszar zadania") !== -1) ? true : false
 
