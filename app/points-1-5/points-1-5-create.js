@@ -3,6 +3,7 @@
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
+import { addPoint3 } from "./point-3/point3-create.js"
 import { dialogBox_createPoint5_selectTableType } from "./point-5/dialogBox-table5a-or-5b.js"
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
@@ -66,7 +67,7 @@ const createNewDivPoints = (number) => {
                 addPoint2()
                 break;
             case 3:
-
+                addPoint3()
                 break;
             case 4:
 

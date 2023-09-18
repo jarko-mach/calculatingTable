@@ -14,3 +14,29 @@
     border: 1px solid rgb(109, 185, 119);
     width: 580px;
 }
+
+.reportSubtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    max-width: 80%;
+}
+
+.reportSubtitle button {
+    color: cadetblue;
+    font-size: 0.65em;
+    border: solid 1px cadetblue;
+}
+
+.point3 .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 30px;
+    margin-left: 15px;
+    font-size: 0.9em;
+}
+
+.point3 .container div {
+    margin: 10px 0;
+}

@@ -2,10 +2,12 @@
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
 import { removeAllAddedPointsInHtml } from "./points-1-5-remove.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
+import { addPoint3 } from "./point-3/point3-create.js"
 import { findPreviousDiv } from "./points-1-5-create.js"
 import { createStandardTable_5a } from "./point-5/table5a-lighting/table5a-createTable.js"
 import { readDataForTable_5a } from "./point-5/table5a-lighting/table5a-read-from-storage.js"
 import { addPoint2 } from "./point-2/point2-create.js"
+import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
 export const readDivPoints = (number) => {
 
@@ -39,13 +41,29 @@ export const readDivPoints = (number) => {
 
     newDiv.innerHTML =
         ` <p class="reportSubtitle">
-        <a id="point${number}"> <br> ${mainText} <br> </a>
+        <a id="point${number}"> <br> ${mainText} <br> </a><button id="Button${number}">Delete</button>
         </p>`
-    if (number !== 1 && number !== 2 && number !== 5) {
+    if (number === 4) {
         newDiv.innerHTML += `<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
     }
 
+    const removePoint = (e) => {
+        const myElem = e.target
+        // console.log("myElem", myElem.id)
+        const myPointNr = myElem.id[6]
+        // console.log("mam punkt", myPointNr)
+        const foundElement = document.querySelector(`.point${myPointNr}`)
+        if (foundElement) {
+            foundElement.remove()
+            tempInformations[Number(myPointNr)].created = false
+            // debugger
+            saveReportAndTable()
+        }
+    }
+
     foundElement.after(newDiv)
+    const findButton = document.querySelector(`#Button${number}`)
+    findButton.addEventListener('click', removePoint)
 
     // debugger
     switch (number) {
@@ -56,7 +74,7 @@ export const readDivPoints = (number) => {
             addPoint2()
             break;
         case 3:
-
+            addPoint3()
             break;
         case 4:
 
