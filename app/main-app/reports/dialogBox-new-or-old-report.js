@@ -1,9 +1,9 @@
 "use strict"
 
-import { dialogBox_chooseExistingReport } from "../main-read-report.js" 
-import { dialogBox_startNewReport } from "./main-new-report.js"
-import { remove_Point5_html } from "../../subpoints-1-5/point-5/point-5-remove.js"
-import { createStandardTable_5a } from "../../subpoints-1-5/point-5/table5a-lighting/table5a-createTable.js"
+import { dialogBox_chooseExistingReport } from "./dialogBox-old-read-reports.js"
+import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
+// import { remove_Point5_html } from "../../points-1-5/point-5/point-5-remove.js"
+// import { createStandardTable_5a } from "../../points-1-5/point-5/table5a-lighting/table5a-createTable.js"
 
 ////// START - CHOOSE REPORT - dialogBox_startNewReport()  or  dialogBox_readExistingReport()
 
@@ -21,7 +21,7 @@ export const dialogBox_chooseOldOrNewReport = () => {
         getCancelButton();
 
         if (whatNext === "new") dialogBox_startNewReport()
-        if (whatNext === "existing") dialogBox_readExistingReport()
+        if (whatNext === "existing") dialogBox_chooseExistingReport()
     }
 
     const getCancelButton = () => {

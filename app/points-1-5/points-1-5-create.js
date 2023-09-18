@@ -3,8 +3,8 @@
 import { tempInformations } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
-import { dialogBox_createPoint5_selectTableType } from "../main-app/main-dialog-boxes.js"
-import { saveReportAndTable } from "../main-app/save-report-and-table.js"
+import { dialogBox_createPoint5_selectTableType } from "./point-5/dialogBox-table5a-or-5b.js"
+import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 import { removeAllAddedPointsInHtml } from "./points-1-5-remove.js"
 
 

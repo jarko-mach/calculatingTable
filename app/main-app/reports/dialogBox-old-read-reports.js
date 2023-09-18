@@ -2,8 +2,8 @@
 
 import { createMainTable } from "../menu/main-table.js"
 import { createMainMenu } from "../menu/main-menu.js"
-import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../miscellaneous/misc.js"
-import { readAndDisplayAllAdedPoints } from "../../subpoints-1-5/points-1-5-create.js"
+import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../../miscellaneous/misc.js"
+import { readAndDisplayAllAdedPoints } from "../../points-1-5/points-1-5-create.js"
 
 
 export const localMemory_readReport = (reportName) => {
@@ -23,7 +23,7 @@ export const localMemory_readReport = (reportName) => {
     // debugger
     let nodeListCounter = 0
     for (let element in dataReport) {
-        // console.log("odczytuję element", element)
+        console.log("odczytuję element", element)
         if (element === "id") { continue }
         if (element === "point1") {
             tempInformations[1].created = dataReport[`${element}`].created

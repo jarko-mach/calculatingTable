@@ -1,6 +1,6 @@
 "use strict"
 
-import { readTemporaryReportName } from "../miscellaneous/misc.js"
+import { readTemporaryReportName } from "../../miscellaneous/misc.js"
 
 export const createMainTable = () => {
 

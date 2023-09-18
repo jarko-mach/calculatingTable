@@ -21,7 +21,7 @@ import {
 
 import { exportnewTable_Word } from "./export-word-docx.js"
 
-import { tableMenu_ButtonsInfo, tableMenu_CheckBoxInfo } from "./table5a-data.js"
+import { tableMenu_ButtonsInfo, tableMenu_CheckBoxInfo } from "./table5a-menu-data.js"
 
 
 

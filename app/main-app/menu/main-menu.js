@@ -1,7 +1,7 @@
 "use strict";
 
-import { operationIsDone_andSaveAll } from "../miscellaneous/misc.js";
-import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../../subpoints-1-5/points-1-5-create.js";
+import { operationIsDone_andSaveAll } from "../../miscellaneous/misc.js";
+import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../../points-1-5/points-1-5-create.js";
 import { dialogBox_chooseExistingReport } from "../reports/dialogBox-old-read-reports.js"
 import { dialogBox_startNewReport } from "../reports/dialogBox-new-name-report.js";
 
