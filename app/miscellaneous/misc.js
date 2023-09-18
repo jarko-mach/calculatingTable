@@ -132,7 +132,7 @@ export const infoReportsNamesRead = () => {
     // console.log("localNames", localNames)
     if (names) {
         // console.log("jest kilka tablic", names[0].reportName)
-        return localNames
+        return localNames.reverse()
     } else {
         // console.log("nie ma tablic")
         return ""

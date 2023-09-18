@@ -97,7 +97,7 @@ export const dialogBox_chooseExistingReport = () => {
     let selectText = `<select id="fileName">`
     wasNames.forEach((element, index) => { selectText += `<option value="${element}">${element}</option>` })
     selectText += `</select>`
-
+    console.log("selectText", selectText)
 
     newElement.innerHTML =
         ` <div class="dialogBox">
