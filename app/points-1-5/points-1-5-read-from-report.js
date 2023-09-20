@@ -2,7 +2,6 @@
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
 import { removeAllAddedPointsInHtml } from "./points-1-5-remove.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
-import { addPoint3intoDialogBox } from "./point-3/point3-create.jssas"
 import { findPreviousDiv } from "./points-1-5-create.js"
 import { createStandardTable_5a } from "./point-5/table5a-lighting/table5a-createTable.js"
 import { readDataForTable_5a } from "./point-5/table5a-lighting/table5a-read-from-storage.js"

@@ -3,8 +3,7 @@
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
-import { addPoint3intoDialogBox } from "./point-3/point3-create.jssas"
-import { dialogBox_chooseMethods } from "./point-3/point3-dialogBox.js"
+import { addPoint3 } from "./point-3/point3-create.js"
 import { dialogBox_createPoint5_selectTableType } from "./point-5/dialogBox-table5a-or-5b.js"
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
@@ -54,8 +53,12 @@ const createNewDivPoints = (number) => {
             ` <p class="reportSubtitle">
                     <a id="point${number}"> <br> ${mainText} <br> </a>
                 </p>`
+        if (number === 3) {
+            newDiv.innerHTML += `<p class="inform"><b>&nbsp3.1.&nbsp</b>Wybieramy myszką grupę z okna, kliknięciem zaznaczamy swój wybór (pojawi się kolor czerwony).</p>`
+            newDiv.innerHTML += `<p class="inform"><b>&nbsp3.2.&nbsp</b>Wybieramy myszką podgrupę z kolejnego okna, kliknięciem dodajemy wybrany element do raportu.</p>`
+        }
         if (number === 4) {
-            newDiv.innerHTML += `<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
+            newDiv.innerHTML += `<p style="color:darkolivegreen;font-size:12px;">${loremIpsum}</p>`
         }
 
         foundElement.after(newDiv)
@@ -69,7 +72,7 @@ const createNewDivPoints = (number) => {
                 break;
             case 3:
                 // addPoint3()
-                dialogBox_chooseMethods()
+                addPoint3()
                 break;
             case 4:
 

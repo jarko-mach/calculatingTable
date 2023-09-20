@@ -4,7 +4,7 @@ import { readTemporaryReportName } from "../../miscellaneous/misc.js";
 import { point03_TableData } from "./point3-data.js";
 
 
-const showData_DialogBox = () => {
+export const addPoint3 = () => {
 
     const contentOfCenterWindow = (selectedNumber) => {
         let localShortName = ""
@@ -29,8 +29,8 @@ const showData_DialogBox = () => {
             newDiv3c.innerHTML = contentOfRightWindow(Number(locString))
         }
 
-        const name_Bold = (evt) => {
-            evt.currentTarget.classList.add("bolded")
+        const name_Bold = (evt) => { 
+            evt.currentTarget.classList.add("bolded") 
             const locString = evt.currentTarget.dataset.index
             newDiv3c.innerHTML = contentOfRightWindow(Number(locString))
         }
@@ -40,8 +40,8 @@ const showData_DialogBox = () => {
             if (locElement) { locElement.classList.remove("bolded") }
         }
 
-        const name_Color = (e) => {
-            e.currentTarget.classList.add("addedColor")
+        const name_Color = (e) => { 
+            e.currentTarget.classList.add("addedColor") 
         }
 
         const name_UnColor = (e) => {
@@ -53,7 +53,7 @@ const showData_DialogBox = () => {
         newDiv3c.innerHTML = ""
         newDiv3b.innerHTML = contentOfCenterWindow(Number(locString))
 
-        const listElements = document.querySelectorAll(".dialogBoxPoint3 .contentCenter")
+        const listElements = document.querySelectorAll(".point3 .contentCenter")
         listElements.forEach((eleme, index) => {
             // eleme.addEventListener("click", name_UnColor)
             // eleme.addEventListener("click", name_Color)
@@ -73,19 +73,19 @@ const showData_DialogBox = () => {
         if (locElement) { locElement.classList.remove("bolded") }
     }
 
-    const mainName_Color = (e) => {
-        e.target.classList.add("addedColor")
+    const mainName_Color = (e) => { 
+        e.target.classList.add("addedColor") 
     }
 
     const mainName_UnColor = (e) => {
-        const locElement = document.querySelector(".dialogBoxPoint3 .addedColor")
+        const locElement = document.querySelector(".point3 .addedColor")
         if (locElement) { locElement.classList.remove("addedColor") }
     }
 
     const dataReport = JSON.parse(localStorage.getItem(`${readTemporaryReportName()}Report`));
     // console.log("pkt3 dataReport", dataReport)
-
-    const foundPoint3 = document.querySelector(".dialogBoxMain")
+    // dialogBox_chooseMethods()
+    const foundPoint3 = document.querySelector(".point3")
     const newContainer = document.createElement("div")
     newContainer.classList.add("container")
     foundPoint3.appendChild(newContainer)
@@ -98,7 +98,7 @@ const showData_DialogBox = () => {
     newDiv3a.innerHTML += `</div">`
     newContainer.appendChild(newDiv3a)
 
-    const listElements = document.querySelectorAll(".dialogBoxPoint3 .contentLeft")
+    const listElements = document.querySelectorAll(".point3 .contentLeft")
     listElements.forEach((eleme, index) => {
         // console.log(index, "eleme", eleme)
         eleme.addEventListener("click", selectMainName)
@@ -115,45 +115,6 @@ const showData_DialogBox = () => {
     const newDiv3c = document.createElement("div")
     newContainer.appendChild(newDiv3c)
     newDiv3c.classList.add("boxRight")
+
 }
 
-
-export const dialogBox_chooseMethods = () => {
-
-    const getOKButton = () => {
-        const foundElement = document.querySelector(".openDialogBox")
-        foundElement.innerHTML = `<div class="openDialogBox"></div>`
-    }
-
-    const getCancelButton = () => {
-        const foundElement = document.querySelector(".openDialogBox")
-        foundElement.innerHTML = `<div class="openDialogBox"></div>`
-    }
-
-    const foundElement = document.querySelector(".openDialogBox")
-    const newElement = document.createElement("div")
-    newElement.classList.add("dialogBoxParent")
-
-    newElement.innerHTML =
-        ` <div class="dialogBox">
-            <div class="dialogBoxHeader wider900" > Metodyka badań
-            </div>
-            <div class="dialogBoxPoint3 wider900">
-                <div class="dialogBoxMain">
-                    <p>Wybierz grupę:</p>
-                </div>
-                <div>
-                    <button class="okSave">Wczytaj</button>
-                    <button class="noCancel">Anuluj</button>
-                </div>        
-            </div>
-        </div>
-      `
-    foundElement.append(newElement)
-    showData_DialogBox()
-    const foundButtonOK = document.querySelector(".openDialogBox .okSave")
-    foundButtonOK.addEventListener("click", getOKButton)
-
-    const foundButtonCancel = document.querySelector(".openDialogBox .noCancel")
-    foundButtonCancel.addEventListener("click", getCancelButton)
-}

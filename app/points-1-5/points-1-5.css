@@ -29,61 +29,70 @@
     border: solid 1px cadetblue;
 }
 
-.dialogBoxPoint3 .container {
+.point3 .container {
     display: flex;
+    flex-direction: row;
     justify-content: left;
     align-items: start;
     gap: 10px;
-    margin-left: 15px;
-    font-size: 1em;
+    margin: 15px;
+    font-size: 0.7em;
 }
 
-.dialogBoxPoint3 .container div {
-    margin: 7px 0; 
+.point3 .container div {
+    margin: 7px 0;
 }
 
-.dialogBoxPoint3 .boxLeft,
-.dialogBoxPoint3 .boxCenter,
-.dialogBoxPoint3 .boxRight {
+.point3 .boxLeft,
+.point3 .boxCenter,
+.point3 .boxRight {
     margin: 7px 0;
     padding: 0 6px;
-    background-color: rgb(244, 244, 244); 
+    background-color: rgb(244, 244, 244);
 }
 
-.dialogBoxPoint3 .boxLeft {
-    flex-grow: 0.1;
-    /* flex-basis: 0; */
+.point3 .boxLeft {
+    flex-grow: 0.5;
+    flex-basis: 0;
+    /* width: min-content; */
 }
 
-.dialogBoxPoint3 .boxCenter {
-    flex-grow: 1.28;
-    /* flex-basis: 0; */
+.point3 .boxCenter {
+    flex-grow: 0.6;
+    flex-basis: 0;
+    /* width:auto; */
 }
 
-.dialogBoxPoint3 .boxRight {
-    flex-grow: 0.1;
-    /* flex-basis: 0; */
-    line-height: 25px;
+.point3 .boxRight {
+    flex-grow: 0.8;
+    flex-basis: 0;
+    /* width: fit-content; */
+    line-height: 1.5em;
 }
 
-.dialogBoxPoint3 .bolded {
+.point3 .bolded {
     font-weight: 600;
 }
 
-.dialogBoxPoint3 .addedColor {
+.point3 .addedColor {
     color: red;
     font-weight: 600;
 }
 
-.dialogBoxPoint3 .shortNameColor {
+.point3 .shortNameColor {
     font-style: oblique;
     font-weight: 600;
 }
 
-.dialogBoxPoint3 .finger {
+.point3 .finger {
     cursor: pointer;
 }
 
 .wider900 {
-    width: 500px;
+    width: 700px;
+}
+
+.point3 .inform {
+    color: darkolivegreen;
+    font-size: 0.72em;
 }
