@@ -17,7 +17,7 @@ export const readDataForTable_5a = () => {
     // console.log("odczytuję tablicę:", nameOfTable)
     removeAllNewRows()
     let dataTable = JSON.parse(localStorage.getItem(nameOfTable))
-    console.log("wczytujemy:", dataTable)
+    // console.log("wczytujemy:", dataTable)
     if (!dataTable) { return }
     // console.log("długość wczytywanej tablicy", dataTable.length)
 

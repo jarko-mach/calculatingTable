@@ -8,17 +8,17 @@ export const addPoint1_subpoints123 = () => {
     let stringText1_123 = ["", "", "", ""]
 
     const dataReport = JSON.parse(localStorage.getItem(`${readTemporaryReportName()}Report`));
-    console.log("dataReport", dataReport)
+    // console.log("dataReport", dataReport)
 
     if (dataReport.point1?.created) {
         stringText1_123[0] = dataReport.point1.text1_1
         stringText1_123[1] = dataReport.point1.text1_2
         stringText1_123[2] = dataReport.point1?.text1_3
-        console.log("foundText1_1", stringText1_123)
+        // console.log("foundText1_1", stringText1_123)
         // let myTestLine = foundCustomerName
     } else {
         foundCustomerName = document.querySelector(".entry .customerGrid #customerName").value
-        console.log("foundCustomerName", foundCustomerName)
+        // console.log("foundCustomerName", foundCustomerName)
     }
     const foundPoint1 = document.querySelector(".point1")
     const newDiv1 = document.createElement("div")
@@ -31,7 +31,7 @@ export const addPoint1_subpoints123 = () => {
     point1_tableData.forEach((element, index) => {
         if (element.name.indexOf(foundTitle) !== -1) {
             for (let elem in element) {
-                console.log("mam", index, elem)
+                // console.log("mam", index, elem)
                 if (elem === 'name') { continue }
                 if (elem === `point1`) {
                     newDiv1.innerHTML += (!dataReport.point1.created) ?

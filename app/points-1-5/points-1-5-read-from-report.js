@@ -2,7 +2,7 @@
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
 import { removeAllAddedPointsInHtml } from "./points-1-5-remove.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
-import { addPoint3 } from "./point-3/point3-create.js"
+import { addPoint3intoDialogBox } from "./point-3/point3-create.jssas"
 import { findPreviousDiv } from "./points-1-5-create.js"
 import { createStandardTable_5a } from "./point-5/table5a-lighting/table5a-createTable.js"
 import { readDataForTable_5a } from "./point-5/table5a-lighting/table5a-read-from-storage.js"
@@ -11,7 +11,7 @@ import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js
 
 export const readDivPoints = (number) => {
 
-    console.log("READ DivPoints = (number) => ", number)
+    // console.log("READ DivPoints = (number) => ", number)
 
     const foundElement = document.querySelector(findPreviousDiv(number))
     // const foundElement = document.querySelector(".entry")
@@ -74,7 +74,7 @@ export const readDivPoints = (number) => {
             addPoint2()
             break;
         case 3:
-            addPoint3()
+            // addPoint3()
             break;
         case 4:
 

@@ -3,7 +3,8 @@
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
-import { addPoint3 } from "./point-3/point3-create.js"
+import { addPoint3intoDialogBox } from "./point-3/point3-create.jssas"
+import { dialogBox_chooseMethods } from "./point-3/point3-dialogBox.js"
 import { dialogBox_createPoint5_selectTableType } from "./point-5/dialogBox-table5a-or-5b.js"
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
@@ -20,7 +21,7 @@ export const findPreviousDiv = (number) => {
 
 const createNewDivPoints = (number) => {
 
-    console.log("create NEW DivPoints = (number) => ", number)
+    // console.log("create NEW DivPoints = (number) => ", number)
 
     if (tempInformations[number].created === false) {
         tempInformations[number].created = true
@@ -53,7 +54,7 @@ const createNewDivPoints = (number) => {
             ` <p class="reportSubtitle">
                     <a id="point${number}"> <br> ${mainText} <br> </a>
                 </p>`
-        if (number !== 1 && number !== 2 && number !== 5) {
+        if (number === 4) {
             newDiv.innerHTML += `<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
         }
 
@@ -67,7 +68,8 @@ const createNewDivPoints = (number) => {
                 addPoint2()
                 break;
             case 3:
-                addPoint3()
+                // addPoint3()
+                dialogBox_chooseMethods()
                 break;
             case 4:
 

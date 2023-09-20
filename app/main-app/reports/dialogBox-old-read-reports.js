@@ -10,20 +10,20 @@ export const localMemory_readReport = (reportName) => {
 
     saveTemporaryReportName(reportName)
     let dataReport = JSON.parse(localStorage.getItem(`${reportName}Report`));
-    console.log("1 name", reportName, "dane", dataReport)
+    // console.log("1 name", reportName, "dane", dataReport)
 
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
-    console.log("foundClasses", foundClasses)
+    // console.log("foundClasses", foundClasses)
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-    console.log("myClasses", myClasses)
+    // console.log("myClasses", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
 
-    console.log("readed nodeList", nodeList)
+    // console.log("readed nodeList", nodeList)
     // debugger
     let nodeListCounter = 0
     for (let element in dataReport) {
-        console.log("odczytuję element", element)
+        // console.log("odczytuję element", element)
         if (element === "id") { continue }
         if (element === "point1") {
             tempInformations[1].created = dataReport[`${element}`].created
@@ -54,14 +54,14 @@ export const localMemory_readReport = (reportName) => {
         // console.log("22 dodaje kolejne wiersze gdy tekst jest długi", dataReport[`${element}`])
         nodeListCounter++
     }
-    console.log("koniec wczytywania, wyszła tabela:", tempInformations)
+    // console.log("koniec wczytywania, wyszła tabela:", tempInformations)
 }
 
 export const dialogBox_chooseExistingReport = () => {
 
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
-        console.log("Odczytuję raport:", chosenReportName)
+        // console.log("Odczytuję raport:", chosenReportName)
         const foundElement = document.querySelector(".openDialogBox")
         // console.log("OK foundElement", foundElement)
 
@@ -97,7 +97,7 @@ export const dialogBox_chooseExistingReport = () => {
     let selectText = `<select id="fileName">`
     wasNames.forEach((element, index) => { selectText += `<option value="${element}">${element}</option>` })
     selectText += `</select>`
-    console.log("selectText", selectText)
+    // console.log("selectText", selectText)
 
     newElement.innerHTML =
         ` <div class="dialogBox">

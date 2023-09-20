@@ -13,7 +13,7 @@ import {
 
 export const createStandardTable_5a = () => {
     
-    console.log("createStandardTable_5a")
+    // console.log("createStandardTable_5a")
     // sprawdza czy jest już tableLight
     if (document.querySelector(".point5 .tableLight")) {
         alert("Tabela light juz istnieje")

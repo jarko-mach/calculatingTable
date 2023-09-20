@@ -7,10 +7,10 @@ import { remove_Point5_html } from "../../points-1-5/point-5/point-5-remove.js"
 
 export const dialogBox_createPoint5_selectTableType = () => {
     let whatNext = ""
-    console.log("createPoint5...")
+    // console.log("createPoint5...")
 
     const getOKButton = () => {
-        console.log("kliknięto OK")
+        // console.log("kliknięto OK")
         const radioGroupStandardOrRescue = document.querySelectorAll("input[name=selectStandardOrRescue]")
         for (const radio1 of radioGroupStandardOrRescue) {
             if (radio1.checked) {
@@ -27,7 +27,7 @@ export const dialogBox_createPoint5_selectTableType = () => {
     }
 
     const getCancelButton = () => {
-        console.log("kliknięto cancel")
+        // console.log("kliknięto cancel")
         const foundElement = document.querySelector(".openDialogBox");
         foundElement.innerHTML = ``;
         remove_Point5_html()

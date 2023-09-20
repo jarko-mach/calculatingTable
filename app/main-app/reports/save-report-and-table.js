@@ -8,7 +8,7 @@ export const saveReportAndTable = () => {
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-    console.log("zapisuję raport i tablicę, klasy:", myClasses)
+    // console.log("zapisuję raport i tablicę, klasy:", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
 
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
@@ -51,13 +51,13 @@ export const saveReportAndTable = () => {
             continue
         }
         if (element === "point5") {
-            console.log("zapisuję raport punkt 5")
+            // console.log("zapisuję raport punkt 5")
             dataReport[`${element}`].created = tempInformations[5].created
-            console.log("i dalej...", dataReport[`${element}`].created)
+            // console.log("i dalej...", dataReport[`${element}`].created)
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
                 dataReport[`${element}`].tableName = localTabNam
-                console.log("nazwa taleli: ", localTabNam)
+                // console.log("nazwa taleli: ", localTabNam)
                 saveTable(localTabNam)
             }
             continue
