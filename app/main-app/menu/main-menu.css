@@ -1,0 +1,50 @@
+/* MENU - MAIN */
+
+.mainMenu {
+    background-color: red;
+}
+
+.menuBackground {
+    background-color: rgb(210, 241, 223);
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    width: 70px;
+}
+
+.menuElements {
+    font-size: 0.7em;
+}
+
+.textMenu {
+    color: rgb(11, 139, 75);
+    margin: 5px 0 0 4px;
+    line-height: 11px;
+    cursor: default;
+}
+
+.menuElements .buttons {
+    margin: 2px 4px;
+    padding: 2px;
+    font-size: 0.9em;
+    width: 62px;
+    cursor: pointer;
+}
+
+.info {
+    text-align: center;
+    font-size: 0.4em;
+    margin: 6px 0 6px 0;
+}
+
+.menuElements {
+    position: relative;
+    z-index: 11;
+}
+
+.menuDescriptions {
+    z-index: 1;
+    position: relative;
+}
+
+/* END MENU - MAIN */

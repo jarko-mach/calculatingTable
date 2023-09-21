@@ -1,0 +1,14 @@
+.reportSubtitle {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    align-items: end;
+    max-width: 80%;
+}
+
+.reportSubtitle button {
+    /* color: cadetblue; */
+    font-size: 0.65em;
+    /* border: solid 1px cadetblue; */
+}
+

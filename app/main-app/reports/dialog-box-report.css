@@ -1,0 +1,166 @@
+/* DIALOG BOX  */
+
+.dialogBoxParent {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    font-size: 0.65em;
+}
+
+.dialogBox {
+    background-color: rgb(210, 241, 223);
+    box-shadow: 10px 10px 5px rgb(218, 218, 218);
+}
+
+.dialogBoxHeader {
+    width: 235px;
+    height: 20px;
+    box-sizing: border-box;
+    background-color: rgb(171, 216, 214);
+    padding: 3px 0 0 10px;
+}
+
+.dialogBoxChild {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 235px;
+    height: 108px;
+}
+
+.dialogBoxChild button {
+    margin: 0 2px;
+    padding: 2px 6px;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+.dialogBoxChild input {
+    margin: 10px 20px 10px 7px;
+    font-size: 0.85em;
+    padding: 2px;
+    background-color: rgb(237, 252, 243);
+}
+
+.dialogBoxChild input:focus {
+    border: none;
+}
+
+.inputError {
+    outline: 2px solid red;
+}
+
+.dialogBoxChild select {
+    margin: 10px 20px 10px 7px;
+    font-size: 1em;
+    padding: 2px 7px;
+    background-color: rgb(237, 252, 243);
+}
+
+.dialogBoxComment {
+    width: 350px;
+    font-size: 0.8em;
+    font-style: italic;
+    color: darkolivegreen;
+    margin: 0px auto 0 14px;
+}
+
+legend {
+    color: rgb(46, 113, 110);
+}
+
+.fieldsetWidth {
+    width: 190px;
+    margin: 6px auto;
+    border: 1px solid rgb(136, 191, 188);
+}
+
+.inputDiv {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0 0 3px 0;
+}
+
+.dialogBoxChild input {
+    margin: 2px 4px 0 2px;
+    width: 8px;
+    background-color: rgb(237, 252, 243);
+}
+
+.dialogBoxChild button {
+    margin: 0 2px;
+    padding: 2px 6px;
+    font-size: 0.8em;
+}
+
+.btnLayout {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    padding: 6px 0px 0 0;
+}
+
+/* END DIALOG BOX */
+
+
+/* DIALOG BOX - CREATE NEW REPORT */
+
+.wider300 {
+    width: 370px;
+}
+
+.dialogBoxChild_NewReport {
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 1px;
+    padding: 20px 0 10px 0;
+}
+
+.dialogBoxChild .input_NewReport {
+    width: 100px;
+    margin: 0 20px 0 5px;
+}
+
+/* END DIALOG BOX - CREATE NEW REPORT  */
+
+/* FIND OLD REPORT */
+
+.dialogBoxChild_OldReport {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px 0;
+    padding: 10px 0 10px 10px;
+    box-sizing: border-box;
+}
+
+.dialogBoxChild_OldReport #fileName,
+.dialogBoxChild_OldReport option {
+    /* color:rgb(0, 17, 255); */
+    font-size: 0.95em;
+    padding: 4px 7px;
+}
+
+/* DIALOG BOX - SELECT TABLE */
+
+.wider200 {
+    width: 320px;
+}
+
+.wider400 {
+    width: 370px;
+}
+
+/* END DIALOG BOX - SELECT TABLE */

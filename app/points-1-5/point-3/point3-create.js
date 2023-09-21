@@ -41,7 +41,33 @@ export const addPoint3 = () => {
         }
 
         const addToReport = (e) => {
-            console.log("add to report", e.currentTarget.dataset.index)
+
+            const checkExistingAddedItems = (leftColumnNumber, centerColumnNumber) => {
+                let identicalElementFound = false
+                const addedItems = document.querySelectorAll(".addedItemsContainer .addedItem")
+                addedItems.forEach((element, index) => {
+                    if ((Number(element.dataset.indexLeft) === leftColumnNumber) && (Number(element.dataset.indexCenter) === centerColumnNumber)) {
+                        // console.log("trafiono", element.dataset.indexLeft, element.dataset.indexCenter)
+                        identicalElementFound = true
+                    }
+                })
+                return identicalElementFound
+            }
+
+            // if (window.confirm("Dopisać też opis do raportu?")) {
+            //     console.log("dopisać")
+            // } else {console.log("raczej nie")}
+
+
+            const localLeftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
+            const localCenterWindowNumber = Number(e.currentTarget.dataset.index)
+            // console.log("sprawdzam, czy mamy już", localLeftWindowNumber, localCenterWindowNumber)
+            if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
+                const locElement = document.querySelector(".addedItemsContainer")
+                const locWasHtml = locElement.innerHTML
+                const locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
+                locElement.innerHTML = `${locWasHtml}${locIsHtml}`
+            }
         }
 
         const name_UnColor = (e) => {
@@ -90,6 +116,11 @@ export const addPoint3 = () => {
     const newContainer = document.createElement("div")
     newContainer.classList.add("container")
     foundPoint3.appendChild(newContainer)
+
+    const newAddedContainer = document.createElement("div")
+    newAddedContainer.classList.add("addedItemsContainer")
+    foundPoint3.appendChild(newAddedContainer)
+    newAddedContainer.classList.add("partOfReport")
 
     const newDiv3a = document.createElement("div")
     newDiv3a.classList.add("boxLeft")
