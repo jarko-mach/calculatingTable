@@ -54,18 +54,23 @@ export const addPoint3 = () => {
                 return identicalElementFound
             }
 
-            // if (window.confirm("Dopisać też opis do raportu?")) {
-            //     console.log("dopisać")
-            // } else {console.log("raczej nie")}
-
-
             const localLeftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             const localCenterWindowNumber = Number(e.currentTarget.dataset.index)
             // console.log("sprawdzam, czy mamy już", localLeftWindowNumber, localCenterWindowNumber)
             if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
                 const locElement = document.querySelector(".addedItemsContainer")
                 const locWasHtml = locElement.innerHTML
-                const locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
+                let locIsHtml = ""
+
+                if (window.confirm("Dołączyć również opis do raportu?")) {
+                    console.log("dopisać")
+                    locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
+                } else {
+                    console.log("raczej nie")
+                    locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span></p>`
+                }
+
+                // const locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
                 locElement.innerHTML = `${locWasHtml}${locIsHtml}`
             }
         }
