@@ -1,20 +1,3 @@
-.point1_1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.point1_1 textarea {
-    font-family: 'Carlito', sans-serif;
-    margin: 10px 10px;
-    font-size: .9em;
-    font-weight: 400;
-    text-align: left;
-    padding: 4px;
-    border: 1px solid rgb(109, 185, 119);
-    width: 580px;
-}
-
 .reportSubtitle {
     display: flex;
     flex-wrap: wrap;
@@ -54,7 +37,8 @@
 .point3 .boxLeft {
     flex-grow: 0.5;
     flex-basis: 0;
-    /* width: min-content; */
+    position: sticky;
+    top: 60px;
 }
 
 .point3 .boxCenter {
@@ -68,6 +52,8 @@
     flex-basis: 0;
     /* width: fit-content; */
     line-height: 1.5em;
+    position: sticky;
+    top: 60px;
 }
 
 .point3 .bolded {
@@ -95,4 +81,15 @@
 .point3 .inform {
     color: darkolivegreen;
     font-size: 0.72em;
+}
+
+.contentCenter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7px;
+}
+
+.contentCenter input {
+    margin: 0;
 }

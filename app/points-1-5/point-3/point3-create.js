@@ -11,7 +11,7 @@ export const addPoint3 = () => {
         let localCode = ""
         point03_TableData[selectedNumber].elements.forEach((elem, index) => {
             localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
-            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox"> ${localShortName} ${elem.name} </div>`
+            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox">${localShortName}${elem.name}</div>`
         })
         return localCode
     }
@@ -29,8 +29,8 @@ export const addPoint3 = () => {
             newDiv3c.innerHTML = contentOfRightWindow(Number(locString))
         }
 
-        const name_Bold = (evt) => { 
-            evt.currentTarget.classList.add("bolded") 
+        const name_Bold = (evt) => {
+            evt.currentTarget.classList.add("bolded")
             const locString = evt.currentTarget.dataset.index
             newDiv3c.innerHTML = contentOfRightWindow(Number(locString))
         }
@@ -40,8 +40,8 @@ export const addPoint3 = () => {
             if (locElement) { locElement.classList.remove("bolded") }
         }
 
-        const name_Color = (e) => { 
-            e.currentTarget.classList.add("addedColor") 
+        const addToReport = (e) => {
+            console.log("add to report", e.currentTarget.dataset.index)
         }
 
         const name_UnColor = (e) => {
@@ -56,16 +56,17 @@ export const addPoint3 = () => {
         const listElements = document.querySelectorAll(".point3 .contentCenter")
         listElements.forEach((eleme, index) => {
             // eleme.addEventListener("click", name_UnColor)
-            // eleme.addEventListener("click", name_Color)
+            eleme.addEventListener("click", addToReport)
             eleme.addEventListener("click", selectName)
             eleme.addEventListener("mouseout", name_UnBold)
             eleme.addEventListener("mouseover", name_Bold)
         })
+        document.getElementById(`point3`).scrollIntoView()
     }
 
     const mainName_Bold = (evt) => {
         evt.target.classList.add("bolded")
-        console.log("BOLD evt.target", evt.target)
+        // console.log("BOLD evt.target", evt.target)
     }
 
     const mainName_UnBold = (e) => {
@@ -73,8 +74,8 @@ export const addPoint3 = () => {
         if (locElement) { locElement.classList.remove("bolded") }
     }
 
-    const mainName_Color = (e) => { 
-        e.target.classList.add("addedColor") 
+    const mainName_Color = (e) => {
+        e.target.classList.add("addedColor")
     }
 
     const mainName_UnColor = (e) => {
@@ -100,7 +101,6 @@ export const addPoint3 = () => {
 
     const listElements = document.querySelectorAll(".point3 .contentLeft")
     listElements.forEach((eleme, index) => {
-        // console.log(index, "eleme", eleme)
         eleme.addEventListener("click", selectMainName)
         eleme.addEventListener("click", mainName_UnColor)
         eleme.addEventListener("click", mainName_Color)
