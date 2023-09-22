@@ -11,7 +11,7 @@ export const addPoint3 = () => {
         let localCode = ""
         point03_TableData[selectedNumber].elements.forEach((elem, index) => {
             localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
-            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox">${localShortName}${elem.name}</div>`
+            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox"><p>${localShortName}${elem.name}</p></div>`
         })
         return localCode
     }
@@ -25,8 +25,18 @@ export const addPoint3 = () => {
         }
 
         const selectName = (evt) => {
-            const locString = evt.currentTarget.dataset.index
-            newDiv3c.innerHTML = contentOfRightWindow(Number(locString))
+
+            const locIndex = Number(evt.currentTarget.dataset.index)
+            newDiv3c.innerHTML = contentOfRightWindow(locIndex)
+
+            const checkBoxState = document.querySelector(`#element${locIndex} input`)
+            const locClickedElement = evt.target.previousElementSibling
+            if (locClickedElement) {
+                checkBoxState.checked = !checkBoxState.checked
+            }
+            
+            
+            console.log("wybrano", evt.currentTarget, evt.target, locClickedElement)
         }
 
         const name_Bold = (evt) => {
@@ -61,16 +71,7 @@ export const addPoint3 = () => {
                 const locElement = document.querySelector(".addedItemsContainer")
                 const locWasHtml = locElement.innerHTML
                 let locIsHtml = ""
-
-                if (window.confirm("Dołączyć również opis do raportu?")) {
-                    console.log("dopisać")
-                    locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
-                } else {
-                    console.log("raczej nie")
-                    locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span></p>`
-                }
-
-                // const locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
+                locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
                 locElement.innerHTML = `${locWasHtml}${locIsHtml}`
             }
         }
