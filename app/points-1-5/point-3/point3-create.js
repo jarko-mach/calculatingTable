@@ -143,6 +143,11 @@ export const addPoint3 = () => {
     newContainer.classList.add("container")
     foundPoint3.appendChild(newContainer)
 
+    const textElement = document.createElement("p")
+    textElement.classList.add("inform")
+    textElement.innerHTML += `<b>&nbsp3.3.&nbsp</b>Dodajemy i usuwamy elementy z raportu korzystając z możliwości zaznaczania i odznaczania w środkowym oknie. W przypadku dolnego okna po zaznaczeniu pozycji uaktywnią się dwa przyciski poniżej.`
+    foundPoint3.appendChild(textElement)
+
     const newAddedContainer = document.createElement("div")
     newAddedContainer.classList.add("addedItemsContainer")
     foundPoint3.appendChild(newAddedContainer)
@@ -166,38 +171,35 @@ export const addPoint3 = () => {
     }
 
     const button_removePoint = () => {
-        
-        // console.log("usuwam cay podpunkt")
 
-        const actual_LeftWindow_Number = Number(document.querySelector(".point3 .addedColor").dataset.index)
-        // console.log("left actual:", actual_LeftWindow_Number)
-        
+        const selected_leftWindow_Index = Number(document.querySelector(".point3 .addedColor").dataset.index)
+        // console.log("left selected:", selected_leftWindow_Index)
+
         const addedInputs = document.querySelectorAll(".addedItemsContainer .addedItem input:checked")
         addedInputs.forEach(elmnt => {
             elmnt.parentElement.remove()
 
-            const readed_LeftWindow_Number = Number(elmnt.parentElement.dataset.indexLeft)
-            // console.log("readed number", readed_LeftWindow_Number)
+            const readed_LeftWindow_Index = Number(elmnt.parentElement.dataset.indexLeft)
+            const readed_CenterWindow_Index = Number(elmnt.parentElement.dataset.indexCenter)
+            // console.log("selected index: left", selected_leftWindow_Index)
+            // console.log("readed index: left", readed_LeftWindow_Index,"center", readed_CenterWindow_Index)
 
-            if (actual_LeftWindow_Number === readed_LeftWindow_Number) {
-            console.log("cza usunąć checked z checkboxa")        
+            if (selected_leftWindow_Index === readed_LeftWindow_Index) {
+                // console.log("cza usunąć checked z checkboxa")
+
+                const centerWindow_selectedCheckBoxes = document.querySelectorAll(".point3 .boxCenter input")
+                centerWindow_selectedCheckBoxes.forEach((element, index) => {
+                    // console.log(index, element)
+                    if (index === readed_CenterWindow_Index) {
+                        element.checked = false
+                        console.log("trafiony index", index)
+                    }
+                })
             }
-            
+
         })
-        // const actual_CenterWindow_Number = Number(elmnt.parentElement.dataset.indexCenter)
-        // const leftWindow_Index = Number(document.querySelector(".boxLeft .addedColor"))
-        // const leftWindow_ActualSelected = Number(document.querySelector(".boxLeft .addedColor"))
-
-        // const locAddedElements = document.querySelectorAll(".addedItemsContainer .addedItem")
-        // console.log(checkBox_CenterWindow_Number)
-
-        // const centerWindow_checkBoxes = document.querySelectorAll(".point3 .boxCenter input")
-        // centerWindow_checkBoxes.forEach((element, index) => {
-        // console.log(index, element)
-        // if (index === checkBox_CenterWindow_Number) {
-        // element.checked = false
-        // })
-        // }
+        buttonElement1.disabled = true
+        buttonElement2.disabled = true
     }
 
     const buttonElement1 = document.createElement("button")
@@ -236,5 +238,14 @@ export const addPoint3 = () => {
     const newDiv3c = document.createElement("div")
     newContainer.appendChild(newDiv3c)
     newDiv3c.classList.add("boxRight")
+
+    // const button_addToReport = () => {
+    //     alert("Dodajemy wybrane elementy do raportu")
+    // }
+
+    // const buttonElement3 = document.createElement("button")
+    // buttonElement3.textContent = "Dodaj widoczne elementy do raportu"
+    // foundPoint3.appendChild(buttonElement3)
+    // buttonElement3.addEventListener("click", button_addToReport)
 
 }
