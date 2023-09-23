@@ -85,7 +85,7 @@ export const addPoint3 = () => {
             }
 
             const addedItems_inputBox_Clicked = (event) => {
-                console.log("kliknięto :)", event.target.checked)
+                // console.log("kliknięto :)", event.target.checked)
 
                 const locCheckedElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
                 let isAnythingChecked = false
@@ -153,11 +153,51 @@ export const addPoint3 = () => {
     foundPoint3.appendChild(newDivButtons)
 
     const button_removeDescription = () => {
-        console.log("usuwam opis")
+        // console.log("usuwam opis")
+        const locAddedElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
+        locAddedElements.forEach(elmnt => {
+            if (elmnt.checked === true) {
+                elmnt.nextSibling.nextSibling?.remove()
+                elmnt.checked = false
+            }
+        })
+        buttonElement1.disabled = true
+        buttonElement2.disabled = true
     }
 
     const button_removePoint = () => {
-        console.log("usuwam całość")
+        
+        // console.log("usuwam cay podpunkt")
+
+        const actual_LeftWindow_Number = Number(document.querySelector(".point3 .addedColor").dataset.index)
+        // console.log("left actual:", actual_LeftWindow_Number)
+        
+        const addedInputs = document.querySelectorAll(".addedItemsContainer .addedItem input:checked")
+        addedInputs.forEach(elmnt => {
+            elmnt.parentElement.remove()
+
+            const readed_LeftWindow_Number = Number(elmnt.parentElement.dataset.indexLeft)
+            // console.log("readed number", readed_LeftWindow_Number)
+
+            if (actual_LeftWindow_Number === readed_LeftWindow_Number) {
+            console.log("cza usunąć checked z checkboxa")        
+            }
+            
+        })
+        // const actual_CenterWindow_Number = Number(elmnt.parentElement.dataset.indexCenter)
+        // const leftWindow_Index = Number(document.querySelector(".boxLeft .addedColor"))
+        // const leftWindow_ActualSelected = Number(document.querySelector(".boxLeft .addedColor"))
+
+        // const locAddedElements = document.querySelectorAll(".addedItemsContainer .addedItem")
+        // console.log(checkBox_CenterWindow_Number)
+
+        // const centerWindow_checkBoxes = document.querySelectorAll(".point3 .boxCenter input")
+        // centerWindow_checkBoxes.forEach((element, index) => {
+        // console.log(index, element)
+        // if (index === checkBox_CenterWindow_Number) {
+        // element.checked = false
+        // })
+        // }
     }
 
     const buttonElement1 = document.createElement("button")
@@ -198,4 +238,3 @@ export const addPoint3 = () => {
     newDiv3c.classList.add("boxRight")
 
 }
-

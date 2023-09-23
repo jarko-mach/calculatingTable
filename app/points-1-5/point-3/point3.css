@@ -81,6 +81,8 @@
     padding: 0;
 }
 
+/* .point3 .contentCenter input:checked {} */
+
 .point3 .contentCenter span {
     margin: 0 10px 0 0;
 }
