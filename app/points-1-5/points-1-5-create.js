@@ -55,7 +55,7 @@ const createNewDivPoints = (number) => {
                 </p>`
         if (number === 3) {
             newDiv.innerHTML += `<p class="inform"><b>&nbsp3.1.&nbsp</b>Wybieramy myszką grupę z okna, kliknięciem zaznaczamy swój wybór (pojawi się kolor czerwony).</p>`
-            newDiv.innerHTML += `<p class="inform"><b>&nbsp3.2.&nbsp</b>Wybieramy myszką podgrupę z kolejnego okna, kliknięciem dodajemy wybrany element do raportu.</p>`
+            newDiv.innerHTML += `<p class="inform"><b>&nbsp3.2.&nbsp</b>Wybieramy myszką podgrupę z kolejnego okna, kliknięciem dodajemy lub usuwamy wybrany element do/z raportu.</p>`
         }
         if (number === 4) {
             newDiv.innerHTML += `<p style="color:darkolivegreen;font-size:12px;">${loremIpsum}</p>`

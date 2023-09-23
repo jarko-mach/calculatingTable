@@ -10,6 +10,7 @@
 
 .point3 .container div {
     margin: 7px 0;
+    line-height: 1.8em;
 }
 
 .point3 .boxLeft,
@@ -30,13 +31,11 @@
 .point3 .boxCenter {
     flex-grow: 0.6;
     flex-basis: 0;
-    /* width:auto; */
 }
 
 .point3 .boxRight {
     flex-grow: 0.8;
     flex-basis: 0;
-    /* width: fit-content; */
     line-height: 1.5em;
     position: sticky;
     top: 60px;
@@ -76,14 +75,20 @@
     gap: 7px;
 }
 
-.point3 .contentCenter input {
+.point3 .contentCenter input,
+.point3 .contentCenter p {
     margin: 0;
+    padding: 0;
 }
 
+.point3 .contentCenter span {
+    margin: 0 10px 0 0;
+}
+
+
 .point3 .addedItem {
-    /* display: flex; */
-    align-items: center;
-    margin: 5px 0;
+    margin: 7px 0;
+    line-height: 1.6em;
 }
 
 .point3 .addedItem input {
@@ -93,4 +98,13 @@
 .point3 .addedItem span {
     font-weight: 600;
     margin: 0 10px 0 0;
+}
+
+.point3 button {
+    font-size: 0.76em;
+    margin: 0 10px;
+}
+
+.point3 descr {
+    /* color: yellowgreen; */
 }

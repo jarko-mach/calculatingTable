@@ -24,19 +24,30 @@ export const addPoint3 = () => {
             return localCode
         }
 
-        const selectName = (evt) => {
+        const selectName_changeInputSelected_addRemoveFromReport = (evt) => {
 
             const locIndex = Number(evt.currentTarget.dataset.index)
             newDiv3c.innerHTML = contentOfRightWindow(locIndex)
 
             const checkBoxState = document.querySelector(`#element${locIndex} input`)
-            const locClickedElement = evt.target.previousElementSibling
-            if (locClickedElement) {
+            const locClickedElement = evt.target.tagName
+            if (locClickedElement !== 'INPUT') {
                 checkBoxState.checked = !checkBoxState.checked
             }
-            
-            
-            console.log("wybrano", evt.currentTarget, evt.target, locClickedElement)
+
+            const localLeftWindowIndex = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
+            if (!checkBoxState.checked) {
+                const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
+                console.log(localLeftWindowIndex, locIndex)
+                locElements.forEach((element, index) => {
+                    if (localLeftWindowIndex === Number(element.dataset.indexLeft) && locIndex === Number(element.dataset.indexCenter)) {
+                        element.remove()
+                    }
+                })
+                if (!document.querySelector(".addedItemsContainer .addedItem")) {
+                    console.log("brak wpisów ")
+                }
+            }
         }
 
         const name_Bold = (evt) => {
@@ -51,13 +62,11 @@ export const addPoint3 = () => {
         }
 
         const addToReport = (e) => {
-
             const checkExistingAddedItems = (leftColumnNumber, centerColumnNumber) => {
                 let identicalElementFound = false
                 const addedItems = document.querySelectorAll(".addedItemsContainer .addedItem")
                 addedItems.forEach((element, index) => {
                     if ((Number(element.dataset.indexLeft) === leftColumnNumber) && (Number(element.dataset.indexCenter) === centerColumnNumber)) {
-                        // console.log("trafiono", element.dataset.indexLeft, element.dataset.indexCenter)
                         identicalElementFound = true
                     }
                 })
@@ -66,19 +75,36 @@ export const addPoint3 = () => {
 
             const localLeftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             const localCenterWindowNumber = Number(e.currentTarget.dataset.index)
-            // console.log("sprawdzam, czy mamy już", localLeftWindowNumber, localCenterWindowNumber)
+
             if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
                 const locElement = document.querySelector(".addedItemsContainer")
                 const locWasHtml = locElement.innerHTML
                 let locIsHtml = ""
-                locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</p>`
+                locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></p>`
                 locElement.innerHTML = `${locWasHtml}${locIsHtml}`
             }
-        }
 
-        const name_UnColor = (e) => {
-            const locElement = document.querySelector(".boxCenter .addedColor")
-            if (locElement) { locElement.classList.remove("addedColor") }
+            const addedItems_inputBox_Clicked = (event) => {
+                console.log("kliknięto :)", event.target.checked)
+
+                const locCheckedElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
+                let isAnythingChecked = false
+                locCheckedElements.forEach(elmnt => {
+                    if (elmnt.checked === true) isAnythingChecked = true
+                })
+
+                const foundButtons = document.querySelectorAll(".point3 button")
+                if (event.target.checked) {
+                    foundButtons.forEach(element => element.disabled = false)
+                } else {
+                    if (isAnythingChecked === false) foundButtons.forEach(element => element.disabled = true)
+                }
+            }
+
+            const locAllElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
+            locAllElements.forEach((element, index) => {
+                element.addEventListener("click", addedItems_inputBox_Clicked)
+            })
         }
 
         const locString = e.target.dataset.index
@@ -87,28 +113,22 @@ export const addPoint3 = () => {
 
         const listElements = document.querySelectorAll(".point3 .contentCenter")
         listElements.forEach((eleme, index) => {
-            // eleme.addEventListener("click", name_UnColor)
             eleme.addEventListener("click", addToReport)
-            eleme.addEventListener("click", selectName)
+            eleme.addEventListener("click", selectName_changeInputSelected_addRemoveFromReport)
             eleme.addEventListener("mouseout", name_UnBold)
             eleme.addEventListener("mouseover", name_Bold)
         })
         document.getElementById(`point3`).scrollIntoView()
     }
 
-    const mainName_Bold = (evt) => {
-        evt.target.classList.add("bolded")
-        // console.log("BOLD evt.target", evt.target)
-    }
+    const mainName_Bold = (evt) => { evt.target.classList.add("bolded") }
 
     const mainName_UnBold = (e) => {
         const locElement = document.querySelector(".boxLeft .bolded")
         if (locElement) { locElement.classList.remove("bolded") }
     }
 
-    const mainName_Color = (e) => {
-        e.target.classList.add("addedColor")
-    }
+    const mainName_Color = (e) => { e.target.classList.add("addedColor") }
 
     const mainName_UnColor = (e) => {
         const locElement = document.querySelector(".point3 .addedColor")
@@ -127,6 +147,30 @@ export const addPoint3 = () => {
     newAddedContainer.classList.add("addedItemsContainer")
     foundPoint3.appendChild(newAddedContainer)
     newAddedContainer.classList.add("partOfReport")
+
+    const newDivButtons = document.createElement("div")
+    newDivButtons.classList.add("buttons")
+    foundPoint3.appendChild(newDivButtons)
+
+    const button_removeDescription = () => {
+        console.log("usuwam opis")
+    }
+
+    const button_removePoint = () => {
+        console.log("usuwam całość")
+    }
+
+    const buttonElement1 = document.createElement("button")
+    buttonElement1.textContent = "Zaznaczone elementy - usuń tylko opis"
+    buttonElement1.disabled = true
+    newDivButtons.appendChild(buttonElement1)
+    buttonElement1.addEventListener("click", button_removeDescription)
+
+    const buttonElement2 = document.createElement("button")
+    buttonElement2.textContent = "Zaznaczone elementy - usuń cały punkt"
+    buttonElement2.disabled = true
+    newDivButtons.appendChild(buttonElement2)
+    buttonElement2.addEventListener("click", button_removePoint)
 
     const newDiv3a = document.createElement("div")
     newDiv3a.classList.add("boxLeft")
