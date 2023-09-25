@@ -1,18 +1,19 @@
 
+// {
+//     mainName: "TESTOWE",
+//     elements: [
+//         {
+//             name: "Testowe Pyły niesklasyfikowane",
+//             description: `metoda grawimetryczna 11`
+//         },
+//         {
+//             name: "Testowe Pyły drewna",
+//             description: "metoda grawimetryczna 22",
+//         }
+//     ],
+// },
+
 export const point03_TableData = [
-    // {
-    //     mainName: "TESTOWE",
-    //     elements: [
-    //         {
-    //             name: "Testowe Pyły niesklasyfikowane",
-    //             description: `metoda grawimetryczna 11`
-    //         },
-    //         {
-    //             name: "Testowe Pyły drewna",
-    //             description: "metoda grawimetryczna 22",
-    //         }
-    //     ],
-    // },
     {
         mainName: "PYŁY",
         elements: [

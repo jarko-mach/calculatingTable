@@ -3,15 +3,28 @@
 import { readTemporaryReportName } from "../../miscellaneous/misc.js";
 import { point03_TableData } from "./point3-data.js";
 
-
 export const addPoint3 = () => {
 
     const contentOfCenterWindow = (selectedNumber) => {
+
+        const checkElementAddedToReport = (leftNumber, centerNumber) => {
+            let elementChecked = false
+            const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem")
+            addedElements.forEach((elemen, inde) => {
+                if (Number(elemen.dataset.indexLeft) === leftNumber && Number(elemen.dataset.indexCenter) === centerNumber) {
+                    elementChecked = true
+                }
+            })
+            return elementChecked
+        }
+
         let localShortName = ""
         let localCode = ""
+        let elementChecked = false
         point03_TableData[selectedNumber].elements.forEach((elem, index) => {
+            elementChecked = checkElementAddedToReport(selectedNumber, index) ? "checked" : ""
             localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
-            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox"><p>${localShortName}${elem.name}</p></div>`
+            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox" ${elementChecked}><p>${localShortName}${elem.name}</p></div>`
         })
         return localCode
     }
@@ -34,7 +47,6 @@ export const addPoint3 = () => {
             if (locClickedElement !== 'INPUT') {
                 checkBoxState.checked = !checkBoxState.checked
             }
-
             const localLeftWindowIndex = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             if (!checkBoxState.checked) {
                 const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
@@ -238,6 +250,7 @@ export const addPoint3 = () => {
     const newDiv3c = document.createElement("div")
     newContainer.appendChild(newDiv3c)
     newDiv3c.classList.add("boxRight")
+
 
     // const button_addToReport = () => {
     //     alert("Dodajemy wybrane elementy do raportu")
