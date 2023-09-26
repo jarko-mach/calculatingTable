@@ -13,7 +13,7 @@ export let tableMenu_ButtonsInfo = [
         class: "button",
         buttonText: "Przelicz",
         descriptionText: `<p>Odczytuje zmierzone wartości natężenia oświetlenia z kolumny [3]. 
-    Do odseparowania liczb można używać <b>przecinka</b> lub <b>średnika</b>. 
+    Do odseparowania liczb można używać <b>TYLKO średnika</b>. 
     Do wskazywania części dziesiętnych można używać <b>kropki</b> lub <b>przecinka</b>. 
     Po sprawdzeniu, że dane zostały wpisane poprawnie, następują obliczenia i zostają dopisane wyniki w kolumnach [4] i [6]. <br>
     Brak wprowadzonych danych lub błędnie wprowadzone dane w kolumnach [5] i [7] spowodują niemożność obliczenia stanu w kolumnie [8]</p>`,

@@ -65,7 +65,7 @@ const showData_DialogBox = () => {
 
     const mainName_Bold = (evt) => {
         evt.target.classList.add("bolded")
-        console.log("BOLD evt.target", evt.target)
+        // console.log("BOLD evt.target", evt.target)
     }
 
     const mainName_UnBold = (e) => {

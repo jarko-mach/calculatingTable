@@ -1,33 +1,9 @@
 "use strict"
 
-import {
-    tableAddTextBoldLine,
-    tableAddTextLine,
-    tableAddDataLine,
-    tableAddEmptyLine,
-    tableAddThinLine,
-    checkbox_RemoveTableRow_Changed,
-    checkbox_ADDTableRow_Changed
-} from "./table5a-operations.js";
-
-import { tableRecalcAll } from "./table5a-recalculate.js"
-
-import {
-    currentTablNam,
-    convertClassesIntoOneString,
-    classTableColumns,
-    operationIsDone_andSaveAll
-} from "../../../miscellaneous/misc.js"
-
-import { exportnewTable_Word } from "./export-word-docx.js"
-
+import { currentTablNam } from "../../../miscellaneous/misc.js"
 import { tableMenu_ButtonsInfo, tableMenu_CheckBoxInfo } from "./table5a-menu-data.js"
 
-
-
-
 // IN TABLE MENU ----------- ADD BUTTONS AND CHECKBOXES
-
 // BUTTONS 
 
 function tableMenu_addButtons(tableName) {
@@ -245,33 +221,3 @@ export const tableMenu_ShowHideAllDescriptions = (tableName) => {
     tableMenu_addRemove_ButtonsDescriptionsListeners(tableName)
     tableMenu_addRemove_CheckboxesDescriptionsListeners(tableName)
 }
-
-// SHOWING GREY BACKGROUND IN TABLE
-
-// export const tableMenu_checkboxGreyBackgroundChanged = () => {
-//     let checkBoxState = document.querySelector("#addGreyBackground")
-//     // console.log("stan cheku greyBackground:", checkBoxState.checked)
-
-//     const classesToFind = convertClassesIntoOneString(classTableColumns)
-//     // console.log("classy do znalezienia", classesToFind)
-
-//     const element = document.querySelectorAll(classesToFind)
-//     // console.log("lista elementów", element)
-
-//     if (checkBoxState.checked) {
-//         element.forEach((element, index) => {
-//             if (!element.disabled) {
-//                 element.classList.add("addGreyBackground")
-//                 // console.log(index)
-//             }
-//         })
-//     } else {
-//         element.forEach((element, index) => {
-//             if (!element.disabled) {
-//                 element.classList.remove("addGreyBackground")
-//                 // console.log(index)
-//             }
-//         })
-//     }
-
-// }

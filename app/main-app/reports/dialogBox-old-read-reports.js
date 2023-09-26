@@ -9,21 +9,15 @@ import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
 export const localMemory_readReport = (reportName) => {
 
     saveTemporaryReportName(reportName)
-    let dataReport = JSON.parse(localStorage.getItem(`${reportName}Report`));
-    // console.log("1 name", reportName, "dane", dataReport)
 
+    let dataReport = JSON.parse(localStorage.getItem(`${reportName}Report`));
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
-    // console.log("foundClasses", foundClasses)
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-    // console.log("myClasses", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
 
-    // console.log("readed nodeList", nodeList)
-    // debugger
     let nodeListCounter = 0
     for (let element in dataReport) {
-        // console.log("odczytuję element", element)
         if (element === "id") { continue }
         if (element === "point1") {
             tempInformations[1].created = dataReport[`${element}`].created
@@ -50,7 +44,7 @@ export const localMemory_readReport = (reportName) => {
         }
         nodeList[nodeListCounter].value = dataReport[`${element}`]
         if (dataReport[`${element}`]) { nodeList[nodeListCounter].classList.remove("fieldToFill") }
-        if (nodeList[nodeListCounter].value.length > 45) nodeList[nodeListCounter].rows = Math.ceil(nodeList[nodeListCounter].value.length / 45)
+        if (nodeList[nodeListCounter].value.length > 35) nodeList[nodeListCounter].rows = Math.ceil(nodeList[nodeListCounter].value.length / 35)
         // console.log("22 dodaje kolejne wiersze gdy tekst jest długi", dataReport[`${element}`])
         nodeListCounter++
     }

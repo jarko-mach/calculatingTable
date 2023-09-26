@@ -417,26 +417,35 @@ export const checkbox_ADDTableRow_Changed = () => {
 
 let correctMeasurments = (dataString) => {
     // console.log("zaczynam korektę zapisu", dataString, "ilosc znakow:", Boolean(dataString.length))
-
+    let locDataString_1 = ""
+    let locDataString_2 = ""
+    let locDataString_out = ""
+    let myTable = []
     if (dataString.length > 0) {
-        // dopisuję spację za średnikiem
-        let re = ";";
-        dataString = dataString.replaceAll(re, "; ");
+        // zamieniam przecinki na kropki
+        // let re = ",";
+        locDataString_1 = dataString.replaceAll(",", ".")
         // zamieniam dwie i więcej spacji na jedną spację
-        re = /\s+/g;
-        dataString = dataString.replaceAll(re, " ");
-        // tworzę tablicę szukając przecinka lub średnika
-        re = /[;,]/;
-        let myTable = dataString.split(re);
+        let re1 = /\s+/g;
+        let re2 = ""
+        locDataString_2 = locDataString_1.replaceAll(re1, re2);
+        // tworzę tablicę szukając TYLKO średnika
+
+        myTable = locDataString_2.split(";");
         // console.log("a co tu mamy:", myTable)
+        // debugger
         myTable.forEach((elem, index) => {
             // console.log("index", index, "zawartosc", myTable[index])
             if (Number(myTable[index])) {
                 myTable[index] = Number(myTable[index])
             } else alert("Znaleziono błąd w zapisie wyników")
         })
-        // console.log("a co to wyszło:", myTable)
-        return myTable.join("; ")
+        
+        // myTable.join("; ")
+        locDataString_out = myTable.join("; ").replaceAll(".", ",")
+        // console.log("a co to wyszło:", myTable, locDataString_out)
+
+        return locDataString_out
     } else return ""
 }
 

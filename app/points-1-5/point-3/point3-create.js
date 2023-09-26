@@ -50,7 +50,7 @@ export const addPoint3 = () => {
             const localLeftWindowIndex = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             if (!checkBoxState.checked) {
                 const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
-                console.log(localLeftWindowIndex, locIndex)
+                // console.log(localLeftWindowIndex, locIndex)
                 locElements.forEach((element, index) => {
                     if (localLeftWindowIndex === Number(element.dataset.indexLeft) && locIndex === Number(element.dataset.indexCenter)) {
                         element.remove()
@@ -204,7 +204,7 @@ export const addPoint3 = () => {
                     // console.log(index, element)
                     if (index === readed_CenterWindow_Index) {
                         element.checked = false
-                        console.log("trafiony index", index)
+                        // console.log("trafiony index", index)
                     }
                 })
             }

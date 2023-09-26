@@ -20,7 +20,7 @@ export const readDataForTable_5a = () => {
     // console.log("wczytujemy:", dataTable)
     if (!dataTable) { return }
     // console.log("długość wczytywanej tablicy", dataTable.length)
-
+    // debugger
     for (let i = 0; i < dataTable.length; i++) {
         if (dataTable[i].typeOfRow === "rowTextBold") { tableAddTextBoldLine() }
         if (dataTable[i].typeOfRow === "rowText") { tableAddTextLine() }

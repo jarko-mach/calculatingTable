@@ -2,17 +2,9 @@
 
 import { tableAddNumbers } from "./table5a-operations.js"
 import { tempInformations } from "../../../miscellaneous/misc.js";
-
-// import { saveTemporaryTableName } from "../miscellaneous/misc.js";
-
-import {
-    tableMenu_createButtons,
-    tableMenu_createCheckboxes,
-    tableMenu_ShowHideAllDescriptions
-} from "./table5a-createMenu.js"
+import { tableMenu_createButtons, tableMenu_createCheckboxes, tableMenu_ShowHideAllDescriptions } from "./table5a-createMenu.js"
 
 export const createStandardTable_5a = () => {
-    
     // console.log("createStandardTable_5a")
     // sprawdza czy jest już tableLight
     if (document.querySelector(".point5 .tableLight")) {

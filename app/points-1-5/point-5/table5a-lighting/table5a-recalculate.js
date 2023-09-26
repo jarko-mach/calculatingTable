@@ -19,13 +19,14 @@ export const tableRecalcAll = function (e) {
     let foundText_ObszarZadania_OneLineBefore = false
     let measurments_OneLineBefore_IsOk = true
     let foundText_ObszarZadania_CurrentLine = false
+    let addingZeroAtTheEnd = false
 
     // console.log("zaczynam przeliczać...")
-
     // wczytuję classy dla kolumn
     let readedClasses = convertClassesIntoOneString(classTableColumns)
     const nodeList = document.querySelectorAll(readedClasses)
     // console.log("trafione punkty do obliczeń:", nodeList.length)
+
     if (!nodeList.length) {
         alert("Wygląda na to, że nie ma żadnych danych w tabeli");
         return
@@ -35,22 +36,30 @@ export const tableRecalcAll = function (e) {
         const rowsNumber = document.querySelectorAll(readedClasses).length
         // console.log("liczba wierszy:", rowsNumber)
 
-        const re1 = /(\d\s+\d)|[a-z]|([,;]\s+)$|[,]$/i   //* szukam błędów we wpisach pomiarów
-        const re2 = /[,;]/gi        //* przecinek lub średnik stanowi powód do splitowania dla kolumny measurings
-        const re3 = /[a-z]/i      // szukam liter w kolumnach [5] i [7]
+
+        const semicolonSeparatesNumbers = (dataString) => {
+            let locString = dataString
+            if (dataString.indexOf(";") === -1) {
+                locString = dataString.replaceAll(",", ";")
+            }
+            return locString
+        }
+
+        const re3_1 = /(\d\s+\d)|[a-z]|([,;]\s+)$|[,]$/i   //* szukam błędów we wpisach pomiarów
+        const re3_2 = /[;]/gi        //* TYLKO średnik stanowi powód do splitowania dla kolumny measurings
+        const re_5_7 = /[a-z]/i      // szukam liter w kolumnach [5] i [7]
         let foundError = false
 
         for (let row = 0; row < rowsNumber; row++) {
-
             let addRowElements = row * 8
             // console.log("Jeśli to kolejny rząd, to zwiększam i o:", addRowElements)
 
             //  kolumna nr 3 – odczytuję pomiary -----------------------------------------------------------------
-            let measurementsRow = nodeList[2 + addRowElements].value
+            // liczba z częścią dziesiętna nie może być zapisana z przecinkiem - musi być kropka
+            nodeList[2 + addRowElements].value = semicolonSeparatesNumbers(nodeList[2 + addRowElements].value)
+            let measurementsRow = (nodeList[2 + addRowElements].value).replaceAll(",", ".")
             // console.log("wiersz", row, "pomiary w stringu:", measurementsRow)
-
-
-            foundError = re1.test(measurementsRow)
+            foundError = re3_1.test(measurementsRow)
             // console.log("czy znaleziono zabroniony znak?", foundError)
 
             if (foundError) {
@@ -67,7 +76,7 @@ export const tableRecalcAll = function (e) {
                 nodeList[2 + addRowElements].classList.remove("measuringsError")
             }
 
-            const measurementsRowTable = measurementsRow.split(re2);
+            const measurementsRowTable = measurementsRow.split(re3_2);
             // console.log("efekt polecenia split", measurementsRowTable)
 
             measurementsRowTable.forEach((elem, index) => { measurementsRowTable[index] = Number(measurementsRowTable[index]) })
@@ -76,8 +85,14 @@ export const tableRecalcAll = function (e) {
             const computeEksploatacyjne = () => {
                 let sum = 0
                 measurementsRowTable.forEach((value, index) => { sum += value })
-
-                eksploatacionCalculated = Number(Math.round(sum / measurementsRowTable.length + 'e+0') + 'e-0')
+                addingZeroAtTheEnd = false
+                if (sum / measurementsRowTable.length < 200) {
+                    eksploatacionCalculated = Number(Math.round(sum / measurementsRowTable.length + 'e+1') + 'e-1')
+                    // console.log("sum / measurementsRowTable.length", Math.round(sum / measurementsRowTable.length * 10) / 10)
+                    addingZeroAtTheEnd = true
+                } else {
+                    eksploatacionCalculated = Number(Math.round(sum / measurementsRowTable.length + 'e+0') + 'e-0')
+                }
                 return eksploatacionCalculated
             }
 
@@ -85,7 +100,8 @@ export const tableRecalcAll = function (e) {
             // kolumna nr 8 - Tak/Nie
             // nodeList[7 + addRowElements].value = "????"
 
-            if (!computeEksploatacyjne()) {
+            let locCompute = computeEksploatacyjne()
+            if (!locCompute) {
                 // console.log("WYPAD: brak danych")
                 foundText_ObszarZadania_OneLineBefore = false
                 measurments_OneLineBefore_IsOk = true
@@ -93,14 +109,18 @@ export const tableRecalcAll = function (e) {
             }
 
             // kolumna nr 4  -----------------------------------------------------------------
-            nodeList[3 + addRowElements].value = computeEksploatacyjne()
+            nodeList[3 + addRowElements].value = String(locCompute).replace('.', ',')
+            // trzeba dopisać 0 po przecinku, jeżeli go nie ma
+            if (addingZeroAtTheEnd) {
+                if (nodeList[3 + addRowElements].value.indexOf(",") === -1) (nodeList[3 + addRowElements].value = nodeList[3 + addRowElements].value + ',0')
+            }
 
             // kolumna nr 5 - norma / sprawdzić czy jest wpisane cokolwiek a jeśli tak, to czy nie są to bzdurki ----------------
             eksploatacionNorm = Number(nodeList[4 + addRowElements].value)
 
             // console.log("eksploatacionNorm", eksploatacionNorm)
 
-            foundError = re3.test(eksploatacionNorm)
+            foundError = re_5_7.test(eksploatacionNorm)
             // console.log("foundError", foundError)
 
             // brak danych liczbowych
@@ -127,7 +147,7 @@ export const tableRecalcAll = function (e) {
 
             // console.log("uniformityNorm", uniformityNorm)
 
-            foundError = re3.test(uniformityNorm)
+            foundError = re_5_7.test(uniformityNorm)
             // console.log("foundError", foundError)
 
             // brak danych liczbowych
