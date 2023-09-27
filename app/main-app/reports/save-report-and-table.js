@@ -48,9 +48,9 @@ export const saveReportAndTable = () => {
                 dataReport[`${element}`].created = tempInformations[3].created
                 const locElementts = document.querySelectorAll(".point3 .addedElement")
                 locElementts.forEach((elem, indx) => {
-                    console.log("items", indx, elem.firstElementChild.nextElementSibling.textContent)
+                    // console.log("items", indx, elem.firstElementChild.nextElementSibling.textContent)
                     // debugger
-                    dataReport.point3.elements.push({name:elem.firstElementChild.value, description:elem.firstElementChild.nextElementSibling.value})
+                    dataReport.point3.elements.push({name:elem.firstElementChild.value, description:elem.firstElementChild.nextElementSibling?.value})
                 })
             }
             continue

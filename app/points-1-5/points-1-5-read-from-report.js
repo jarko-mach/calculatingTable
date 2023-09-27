@@ -52,13 +52,16 @@ export const readDivPoints = (number) => {
         // console.log("myElem", myElem.id)
         const myPointNr = myElem.id[6]
         // console.log("mam punkt", myPointNr)
-        const foundElement = document.querySelector(`.point${myPointNr}`)
-        if (foundElement) {
-            foundElement.remove()
-            tempInformations[Number(myPointNr)].created = false
-            // debugger
-            saveReportAndTable()
-        }
+        if (confirm("Nastąpi nieodwracalne usunięcie danego punktu. Kontynuować?")) {
+            console.log("TAK")
+            const foundElement = document.querySelector(`.point${myPointNr}`)
+            if (foundElement) {
+                foundElement.remove()
+                tempInformations[Number(myPointNr)].created = false
+                // debugger
+                saveReportAndTable()
+            }
+        } else { console.log("NIE") }
     }
 
     foundElement.after(newDiv)
