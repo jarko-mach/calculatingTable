@@ -125,7 +125,7 @@ export let tableMenu_CheckBoxInfo = [
     {
         id: "showDescriptions",
         name: "showDescriptions",
-        checked: "",
+        checked: "checked",
         disabled: "",
         labelId: "labelCB4",
         labelFor: "showDescriptions",

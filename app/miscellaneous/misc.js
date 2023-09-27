@@ -26,7 +26,15 @@ export let dataReportOriginal = {
         created: false,
         text2: ""
     },
-    point3: { created: false, tableName: "" },
+    point3: {
+        created: false,
+        elements: [
+            {
+                name: "",
+                description: "",
+            },
+        ]
+    },
     point4: { created: false, tableName: "" },
     point5: {
         created: false,

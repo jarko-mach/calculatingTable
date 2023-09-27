@@ -4,4 +4,6 @@
     align-items: center;
 }
 
-
+.tableData {
+    border: 1.6px solid rgb(214, 225, 221,0.5);
+}

@@ -22,6 +22,7 @@ export const addPoint1_subpoints123 = () => {
     }
     const foundPoint1 = document.querySelector(".point1")
     const newDiv1 = document.createElement("div")
+    newDiv1.classList.add("partOfReport")
 
     newDiv1.innerHTML = ""
     let numbering = 1
@@ -35,13 +36,13 @@ export const addPoint1_subpoints123 = () => {
                 if (elem === 'name') { continue }
                 if (elem === `point1`) {
                     newDiv1.innerHTML += (!dataReport.point1.created) ?
-                        `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport">Umowa nr ..... z firmą ${foundCustomerName} z dnia ..... .</textarea></div>`
-                        : `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport">${stringText1_123[fieldCounting++]}</textarea></div>`
+                        `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport tableData">Umowa nr ..... z firmą ${foundCustomerName} z dnia ..... .</textarea></div>`
+                        : `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport tableData">${stringText1_123[fieldCounting++]}</textarea></div>`
                     continue
                 }
                 newDiv1.innerHTML += (!dataReport.point1.created) ?
-                    `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport" disabled>${point1_tableData[index][elem]}</textarea></div>`
-                    : `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport" disabled>${stringText1_123[fieldCounting++]}</textarea></div>`
+                    `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport tableData" disabled>${point1_tableData[index][elem]}</textarea></div>`
+                    : `<div class="point1_1"><b>1.${numbering}.</b><textarea id="point1${numbering++}Text" rows="2" class="partOfReport tableData" disabled>${stringText1_123[fieldCounting++]}</textarea></div>`
             }
             return
         }

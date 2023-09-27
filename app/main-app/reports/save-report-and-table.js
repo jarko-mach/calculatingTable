@@ -4,16 +4,17 @@ import { saveTable } from "../../points-1-5/point-5/table5a-lighting/table5a-ope
 
 
 export const saveReportAndTable = () => {
-
+    
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
     // console.log("zapisuję raport i tablicę, klasy:", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
-
+    
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
+    dataReport.point3.elements.shift()
 
-    // console.log("saveReportAndTable - ...", dataReport)
+    console.log("saveReportAndTable - ...", dataReport)
 
     const nameOfReport = readTemporaryReportName()
 
@@ -42,8 +43,16 @@ export const saveReportAndTable = () => {
             }
             continue
         }
-        if (element === "point3") {
-            dataReport[`${element}`].created = tempInformations[3].created
+        if (element === "point3") { //-------------------------------------------------------------------
+            if (tempInformations[3].created) {
+                dataReport[`${element}`].created = tempInformations[3].created
+                const locElementts = document.querySelectorAll(".point3 .addedElement")
+                locElementts.forEach((elem, indx) => {
+                    console.log("items", indx, elem.firstElementChild.nextElementSibling.textContent)
+                    // debugger
+                    dataReport.point3.elements.push({name:elem.firstElementChild.value, description:elem.firstElementChild.nextElementSibling.value})
+                })
+            }
             continue
         }
         if (element === "point4") {

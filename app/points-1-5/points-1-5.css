@@ -6,7 +6,7 @@
     max-width: 80%;
 }
 
-.reportSubtitle button {
+.reportSubtitle .butonDel {
     /* color: cadetblue; */
     font-size: 0.65em;
     /* border: solid 1px cadetblue; */
