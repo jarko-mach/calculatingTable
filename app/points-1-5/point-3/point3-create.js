@@ -271,7 +271,7 @@ export const addPoint3 = () => {
         // debugger
         const locElementts = document.querySelectorAll(".addedItemsContainer .addedItem")
         locElementts.forEach((elem, indx) => {
-            dataReport.point3.elements.push({ name: elem.firstElementChild.nextElementSibling.textContent, description: elem.firstElementChild.nextElementSibling.nextElementSibling.textContent })
+            dataReport.point3.elements.push({ name: elem.firstElementChild.nextElementSibling?.textContent, description: elem.firstElementChild.nextElementSibling.nextElementSibling?.textContent })
             console.log("items", indx, elem, dataReport, readTemporaryReportName())
         })
         localStorage.setItem(`${readTemporaryReportName()}Report`, JSON.stringify(dataReport))
