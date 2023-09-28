@@ -37,7 +37,7 @@ export const exportnewTable_Word = () => {
     // console.log("dataReport", dataReport)
     // console.log("dataTable", dataTable)
 
-    debugger
+    // debugger
     const tableTS3Columns = new docx.Table({
         alignment: AlignmentType.CENTER,
         verticalAlign: docx.VerticalAlign.CENTER,
@@ -86,7 +86,7 @@ export const exportnewTable_Word = () => {
                     },
                     children: [new docx.Paragraph({
                         style: "headerTxt",
-                        text: `Sprawozdanie numer TSO/${dataReport.numberTSO}/${dataReport.yearTSO}`,
+                        text: `Sprawozdanie NR TSO/${dataReport.numberTSO}/${dataReport.yearTSO}`,
                     })
                     ],
                 }),
@@ -559,7 +559,7 @@ export const exportnewTable_Word = () => {
         let foundIndex = localString2.indexOf("false")
         // jeżeli do wyniku dopisano false, to ten wynik powinien byc podkreslony, jest błędny i nie spełnia normy PN
         if (foundIndex !== -1) {
-            localString1 = `  ${localString2.slice(0, foundIndex)}  `
+            localString1 = `${localString2.slice(0, foundIndex)}`
         } else { localString1 = localString2 }
         return localString1
     }
@@ -659,7 +659,7 @@ export const exportnewTable_Word = () => {
                     paragraph: {
                         alignment: docx.AlignmentType.CENTER,
                         indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
-                        spacing: { line: 200, before: 50, after: 20 },
+                        spacing: { line: 250, before: 50, after: 20 },
                     },
                 },
             ],

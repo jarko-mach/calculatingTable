@@ -11,6 +11,7 @@ export const read_point3 = () => {
     const foundPoint3 = document.querySelector(".point3")
     const newDiv3 = document.createElement("div")
     newDiv3.classList.add("partOfReport")
+    newDiv3.classList.add("points_1_2_3_4_5_MarginBottom")
     foundPoint3.appendChild(newDiv3)
 
     newDiv3.innerHTML = ""

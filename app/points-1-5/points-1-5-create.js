@@ -59,6 +59,7 @@ const createNewDivPoints = (number) => {
         }
         if (number === 4) {
             newDiv.innerHTML += `<p style="color:darkolivegreen;font-size:12px;">${loremIpsum}</p>`
+            newDiv.classList.add("points_1_2_3_4_5_MarginBottom")
         }
 
         foundElement.after(newDiv)

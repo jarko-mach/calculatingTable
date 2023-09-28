@@ -15,6 +15,7 @@ export const addPoint2 = () => {
 
     const foundPoint2 = document.querySelector(".point2")
     const newDiv1 = document.createElement("div")
+    newDiv1.classList.add("points_1_2_3_4_5_MarginBottom")
     newDiv1.innerHTML = (!dataReport.point2.created) ?
         `<div class="point1_1"><textarea id="point2Text" rows="2" class="partOfReport">${definitionPurposeOfResearch} ${foundResearchAddress}</textarea></div>`
         : `<div class="point1_1"><textarea id="point2Text" rows="2" class="partOfReport">${dataReport.point2.text2}</textarea></div>`

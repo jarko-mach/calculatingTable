@@ -115,12 +115,12 @@
     font-family: 'Carlito', sans-serif;
     background-color: rgba(255, 0, 0, 0.0);
     border: 0;
-    margin: 7px 0 3px 0 ;
+    margin: 7px 0 3px 0;
 }
 
 .point3input2 {
     width: 550px;
     font-size: .9em;
     font-family: 'Carlito', sans-serif;
-    border: 1.6px solid rgb(214, 225, 221,0.5);
+    border: 1.6px solid rgb(214, 225, 221, 0.5);
 }

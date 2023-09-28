@@ -23,6 +23,7 @@ export const addPoint1_subpoints123 = () => {
     const foundPoint1 = document.querySelector(".point1")
     const newDiv1 = document.createElement("div")
     newDiv1.classList.add("partOfReport")
+    newDiv1.classList.add("points_1_2_3_4_5_MarginBottom")
 
     newDiv1.innerHTML = ""
     let numbering = 1
