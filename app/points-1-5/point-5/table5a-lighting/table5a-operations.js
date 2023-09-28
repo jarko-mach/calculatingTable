@@ -438,9 +438,9 @@ let correctMeasurments = (dataString) => {
             // console.log("index", index, "zawartosc", myTable[index])
             if (Number(myTable[index])) {
                 myTable[index] = Number(myTable[index])
-            } else alert("Znaleziono błąd w zapisie wyników")
+            } else alert(`Znaleziono błąd w zapisie wyników – ${myTable[index]}`)
         })
-        
+
         // myTable.join("; ")
         locDataString_out = myTable.join("; ").replaceAll(".", ",")
         // console.log("a co to wyszło:", myTable, locDataString_out)
@@ -504,6 +504,11 @@ export const saveTable = (nameOfTable) => {
 
             // element 4 - pomiary
             dataTableLocal[row].info.measurings = correctMeasurments(nodeList[3 + addRowElements].value)
+
+            if (dataTableLocal[row].info.measurings.length > 25) {
+                nodeList[3 + addRowElements].rows = Math.ceil(dataTableLocal[row].info.measurings.length / 25)
+            }
+            nodeList[3 + addRowElements].value = dataTableLocal[row].info.measurings 
 
             // element 5 - eksploatacyjne wynik
             let wynik1Class = ""
