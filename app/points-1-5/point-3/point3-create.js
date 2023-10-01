@@ -23,6 +23,16 @@ export const addPoint3 = () => {
         let localShortName = ""
         let localCode = ""
         let elementChecked = false
+
+        function mySort(a, b) {
+            const myA = a.name
+            // console.log("myA", myA)
+            const myB = b.name
+            return myA.localeCompare(myB)
+        }
+        // console.log(point03_TableData[selectedNumber].elements)
+        // debugger
+        point03_TableData[selectedNumber].elements.sort(mySort)
         point03_TableData[selectedNumber].elements.forEach((elem, index) => {
             elementChecked = checkElementAddedToReport(selectedNumber, index) ? "checked" : ""
             localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
