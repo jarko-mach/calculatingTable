@@ -72,7 +72,6 @@ const createNewDivPoints = (number) => {
                 addPoint2()
                 break;
             case 3:
-                // addPoint3()
                 addPoint3()
                 break;
             case 4:
@@ -80,8 +79,6 @@ const createNewDivPoints = (number) => {
                 break;
             case 5:
                 dialogBox_createPoint5_selectTableType()
-                // createStandardTable_5a(tempInformations[number].tableName)
-                // readDataForTable_5a()
                 break;
             default:
                 console.log(`Sorry, we are out of ${number}.`);
