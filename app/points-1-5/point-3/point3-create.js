@@ -53,7 +53,7 @@ export const addPoint3 = () => {
 
             const locIndex = Number(evt.currentTarget.dataset.index)
             newDiv3c.innerHTML = contentOfRightWindow(locIndex)
-            console.log("kliknięto :)")
+            // console.log("kliknięto :)")
             const checkBoxState = document.querySelector(`#element${locIndex} input`)
             const locClickedElement = evt.target.tagName
             if (locClickedElement !== 'INPUT') {
@@ -69,7 +69,7 @@ export const addPoint3 = () => {
                     }
                 })
                 if (!document.querySelector(".addedItemsContainer .addedItem")) {
-                    console.log("brak wpisów ")
+                    // console.log("brak wpisów ")
                     buttonElement4.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
                 }
             }
@@ -163,7 +163,7 @@ export const addPoint3 = () => {
     }
 
     const dataReport = JSON.parse(localStorage.getItem(`${readTemporaryReportName()}Report`));
-    console.log("pkt3 dataReport", dataReport)
+    // console.log("pkt3 dataReport", dataReport)
 
     const foundPoint3 = document.querySelector(".point3")
     const newContainer = document.createElement("div")
@@ -282,7 +282,7 @@ export const addPoint3 = () => {
         const locElementts = document.querySelectorAll(".addedItemsContainer .addedItem")
         locElementts.forEach((elem, indx) => {
             dataReport.point3.elements.push({ name: elem.firstElementChild.nextElementSibling?.textContent, description: elem.firstElementChild.nextElementSibling.nextElementSibling?.textContent })
-            console.log("items", indx, elem, dataReport, readTemporaryReportName())
+            // console.log("items", indx, elem, dataReport, readTemporaryReportName())
         })
         localStorage.setItem(`${readTemporaryReportName()}Report`, JSON.stringify(dataReport))
         readAndDisplayAllAdedPoints()

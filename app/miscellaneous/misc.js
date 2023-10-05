@@ -175,7 +175,7 @@ export const readPositionOfMouse = (e) => {
 const myTestingSort = () => {
     const tab = [23, 27, 111, 4, 2]
     function compareNumbers(a, b) { return b - a }
-    console.log(tab.sort(compareNumbers))
+    // console.log(tab.sort(compareNumbers))
 }
 
 

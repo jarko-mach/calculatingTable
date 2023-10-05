@@ -14,7 +14,7 @@ export const saveReportAndTable = () => {
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
     dataReport.point3.elements.shift()
 
-    console.log("saveReportAndTable - ...", dataReport)
+    // console.log("saveReportAndTable - ...", dataReport)
 
     const nameOfReport = readTemporaryReportName()
 
