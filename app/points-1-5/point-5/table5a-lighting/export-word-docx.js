@@ -19,7 +19,7 @@ import {
     BorderStyle,
     TableBorders,
     Border,
-    UnderlineType
+    UnderlineType, TextRun
 } from "../../../../docx/build/index.js"
 // "../../docx/build/index.js"
 
@@ -45,10 +45,10 @@ export const exportnewTable_Word = () => {
             children: [
                 new docx.TableCell({
                     borders: {
-                        top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        top: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        bottom: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        left: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        right: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
                     },
                     verticalAlign: docx.VerticalAlign.CENTER,
                     width: {
@@ -74,10 +74,10 @@ export const exportnewTable_Word = () => {
 
                 new docx.TableCell({
                     borders: {
-                        top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        top: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        bottom: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        left: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        right: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
                     },
                     verticalAlign: docx.VerticalAlign.CENTER,
                     width: {
@@ -92,10 +92,10 @@ export const exportnewTable_Word = () => {
                 }),
                 new docx.TableCell({
                     borders: {
-                        top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                        right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                        top: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        bottom: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        left: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
+                        right: { style: BorderStyle.THICK, size: .7 * 8, color: "000000" },
                     },
                     verticalAlign: docx.VerticalAlign.CENTER,
                     width: {
@@ -233,10 +233,10 @@ export const exportnewTable_Word = () => {
         children: [
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(6),
@@ -250,10 +250,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(65),
@@ -266,10 +266,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(45),
@@ -282,10 +282,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(14),
@@ -298,10 +298,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -315,10 +315,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(11),
@@ -331,10 +331,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(11),
@@ -347,10 +347,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -368,10 +368,10 @@ export const exportnewTable_Word = () => {
         children: [
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(6),
@@ -387,10 +387,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(65),
@@ -405,10 +405,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(45),
@@ -416,17 +416,30 @@ export const exportnewTable_Word = () => {
                 },
                 rowSpan: 2,
                 verticalAlign: docx.VerticalAlign.CENTER,
-                children: [new docx.Paragraph({
-                    style: "headerTxt",
-                    text: `Zmierzone natężenie oświetlenia elektrycznego E[lx]`,
-                })],
+                children: [
+                    new docx.Paragraph({
+                        style: "headerTxt",
+                        children: [
+                            new docx.TextRun({
+                                text: "Zmierzone natężenie oświetlenia elektrycznego ",
+                            }),
+                            new docx.TextRun({
+                                text: "E",
+                                italics: true,
+                            }),
+                            new docx.TextRun({
+                                text: " [lx]",
+                            })
+                        ]
+                    }),
+                ],
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(24),
@@ -436,15 +449,32 @@ export const exportnewTable_Word = () => {
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
                     style: "headerTxt",
-                    text: "Eksploatacyjne natężenie oświetlenia elektrycznego Em[lx]",
+                    children: [
+                        new docx.TextRun({
+                            text: "Eksploatacyjne natężenie oświetlenia elektrycznego ",
+                        }),
+                        new docx.TextRun({
+                            text: "Ē",
+                            italics: true,
+                        }),
+                        new docx.TextRun({
+                            text: "m",
+                            italics: true,
+                            subScript: true,
+                        }),
+                        new docx.TextRun({
+                            text: " [lx]",
+                        })
+                    ],
+                    
                 })],
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(24),
@@ -454,16 +484,29 @@ export const exportnewTable_Word = () => {
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
                     style: "headerTxt",
-                    text: "Równomierność oświetlenia elektrycznego Uo",
+                    children: [
+                        new docx.TextRun({
+                            text: "Równomierność oświetlenia elektrycznego ",
+                        }),
+                        new docx.TextRun({
+                            text: "U",
+                            italics: true,
+                        }),
+                        new docx.TextRun({
+                            text: "o",
+                            italics: true,
+                            subScript: true,
+                        })
+                    ],
                 })
                 ],
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -483,10 +526,10 @@ export const exportnewTable_Word = () => {
         children: [
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -501,10 +544,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -518,10 +561,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -535,10 +578,10 @@ export const exportnewTable_Word = () => {
             }),
             new docx.TableCell({
                 borders: {
-                    top: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    bottom: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                    right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                    top: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    bottom: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                    right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                 },
                 width: {
                     size: convertMillimetersToTwip(12),
@@ -577,7 +620,7 @@ export const exportnewTable_Word = () => {
         if (arg !== "rowThinLine") {
             return { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" }
         } else {
-            return { style: BorderStyle.THICK, size: 1 * 8, color: "000000" }
+            return { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" }
         }
     }
 
@@ -601,8 +644,8 @@ export const exportnewTable_Word = () => {
                     id: "headerTxt",
                     name: "Nagłówek tabeli",
                     run: {
-                        // italics: true,
-                        size: "9pt",
+                        bold: true,
+                        size: "8pt",
                         font: "Calibri",
                     },
                     paragraph: {
@@ -659,7 +702,7 @@ export const exportnewTable_Word = () => {
                     paragraph: {
                         alignment: docx.AlignmentType.CENTER,
                         indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
-                        spacing: { line: 250, before: 50, after: 20 },
+                        spacing: { line: 200, before: 20, after: 20 },
                     },
                 },
             ],
@@ -679,6 +722,13 @@ export const exportnewTable_Word = () => {
                         underline: {
                             type: UnderlineType.THICK,
                         },
+                    },
+                },
+                {
+                    id: "italic",
+                    name: "kursywa",
+                    run: {
+                        italics: true,
                     },
                 }
             ],
@@ -723,12 +773,12 @@ export const exportnewTable_Word = () => {
                                 return new docx.TableRow({
                                     children: [
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.TOP,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(6),
@@ -747,12 +797,12 @@ export const exportnewTable_Word = () => {
                                             ],
                                         }),
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.TOP,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(65),
@@ -774,8 +824,8 @@ export const exportnewTable_Word = () => {
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(45),
@@ -787,12 +837,12 @@ export const exportnewTable_Word = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(14),
@@ -809,12 +859,12 @@ export const exportnewTable_Word = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(12),
@@ -827,12 +877,12 @@ export const exportnewTable_Word = () => {
                                             ],
                                         }),
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(11),
@@ -850,12 +900,12 @@ export const exportnewTable_Word = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(11),
@@ -867,12 +917,12 @@ export const exportnewTable_Word = () => {
                                             })],
                                         }),
                                         new docx.TableCell({
-                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
                                             borders: {
                                                 top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
                                                 bottom: addBottomBorder(element.typeOfRow),
-                                                left: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
-                                                right: { style: BorderStyle.THICK, size: 1 * 8, color: "000000" },
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
                                             },
                                             width: {
                                                 size: convertMillimetersToTwip(12),

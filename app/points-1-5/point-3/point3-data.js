@@ -20,8 +20,8 @@ export const point03_TableData = [
             {
                 name: "Pyły niesklasyfikowane ze względu na toksyczność – frakcja wdychalna",
                 description: `metoda grawimetryczna wg PN-Z-04507:2022-05; PN-Z-04507:2022-05/Ap1:2022-08.
- Zakres metody: (0,12&nbsp–&nbsp17,0)&nbspmg/m3. 
- Granica wykrywalności: 0,09&nbspmg/m3.`
+ Zakres metody: (0,12& – 17,0) mg/m3. 
+ Granica wykrywalności: 0,09 mg/m3.`
             },
             {
                 name: "Pyły drewna – frakcja wdychalna",
