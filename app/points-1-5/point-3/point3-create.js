@@ -53,12 +53,13 @@ export const addPoint3 = () => {
 
             const locIndex = Number(evt.currentTarget.dataset.index)
             newDiv3c.innerHTML = contentOfRightWindow(locIndex)
-            // console.log("kliknięto :)")
+            // console.log("kliknięto :)P")
             const checkBoxState = document.querySelector(`#element${locIndex} input`)
             const locClickedElement = evt.target.tagName
             if (locClickedElement !== 'INPUT') {
                 checkBoxState.checked = !checkBoxState.checked
             }
+
             const localLeftWindowIndex = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             if (!checkBoxState.checked) {
                 const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
@@ -70,9 +71,10 @@ export const addPoint3 = () => {
                 })
                 if (!document.querySelector(".addedItemsContainer .addedItem")) {
                     // console.log("brak wpisów ")
-                    buttonElement4.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+                    buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
                 }
             }
+            buttonRemove.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem input:checked").length) ? false : true
         }
 
         const name_Bold = (evt) => {
@@ -108,7 +110,7 @@ export const addPoint3 = () => {
                 let locIsHtml = ""
                 locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></p>`
                 locElement.innerHTML = `${locWasHtml}${locIsHtml}`
-                buttonElement4.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+                buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
             }
 
             const addedItems_inputBox_Clicked = (event) => {
@@ -120,7 +122,7 @@ export const addPoint3 = () => {
                     if (elmnt.checked === true) isAnythingChecked = true
                 })
 
-                const foundButtons = document.querySelectorAll(".point3 button")
+                const foundButtons = document.querySelectorAll(".point3 .buttonDelete button")
                 if (event.target.checked) {
                     foundButtons.forEach(element => element.disabled = false)
                 } else {
@@ -172,7 +174,7 @@ export const addPoint3 = () => {
 
     const textElement = document.createElement("p")
     textElement.classList.add("inform")
-    textElement.innerHTML += `<b>&nbsp3.3.&nbsp</b>Dodajemy i usuwamy elementy z raportu korzystając z możliwości zaznaczania i odznaczania w środkowym oknie. W przypadku dolnego okna po zaznaczeniu pozycji uaktywnią się dwa przyciski poniżej.`
+    textElement.innerHTML += `<b>&nbsp3.3.&nbsp</b>Dodajemy i usuwamy elementy z raportu korzystając z możliwości zaznaczania i odznaczania w środkowym oknie. W przypadku dolnego okna po zaznaczeniu pozycji uaktywni się przycisk poniżej.`
     foundPoint3.appendChild(textElement)
 
     const newAddedContainer = document.createElement("div")
@@ -181,26 +183,13 @@ export const addPoint3 = () => {
     newAddedContainer.classList.add("partOfReport")
 
     const newDivButtons = document.createElement("div")
-    newDivButtons.classList.add("twoButtons")
+    newDivButtons.classList.add("buttonDelete")
     foundPoint3.appendChild(newDivButtons)
 
     const textElement2 = document.createElement("p")
     textElement2.classList.add("inform")
     textElement2.innerHTML += `<b>&nbsp3.4.&nbsp</b>Po ustaleniu wszystkich elementów klawiszem "Dodaj do raportu" dopisujemy wybrane do raportu.`
     foundPoint3.appendChild(textElement2)
-
-    const button_removeDescription = () => {
-        // console.log("usuwam opis")
-        const locAddedElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
-        locAddedElements.forEach(elmnt => {
-            if (elmnt.checked === true) {
-                elmnt.nextSibling.nextSibling?.remove()
-                elmnt.checked = false
-            }
-        })
-        buttonElement1.disabled = true
-        buttonElement2.disabled = true
-    }
 
     const button_removePoint = () => {
 
@@ -230,24 +219,16 @@ export const addPoint3 = () => {
             }
 
         })
-        buttonElement1.disabled = true
-        buttonElement2.disabled = true
-        buttonElement4.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+        buttonRemove.disabled = true
+        buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
     }
 
-    const buttonElement1 = document.createElement("button")
-    buttonElement1.textContent = "Zaznaczone elementy - usuń tylko opis"
-    buttonElement1.disabled = true
-    buttonElement1.classList.add("buttonPt3")
-    newDivButtons.appendChild(buttonElement1)
-    buttonElement1.addEventListener("click", button_removeDescription)
-
-    const buttonElement2 = document.createElement("button")
-    buttonElement2.textContent = "Zaznaczone elementy - usuń cały punkt"
-    buttonElement2.disabled = true
-    buttonElement2.classList.add("buttonPt3")
-    newDivButtons.appendChild(buttonElement2)
-    buttonElement2.addEventListener("click", button_removePoint)
+    const buttonRemove = document.createElement("button")
+    buttonRemove.textContent = "Zaznaczone elementy - usuń"
+    buttonRemove.disabled = true
+    buttonRemove.classList.add("buttonPt3")
+    newDivButtons.appendChild(buttonRemove)
+    buttonRemove.addEventListener("click", button_removePoint)
 
     const newDiv3a = document.createElement("div")
     newDiv3a.classList.add("boxLeft")
@@ -289,13 +270,13 @@ export const addPoint3 = () => {
     }
 
     const newDiv4 = document.createElement("div")
-    const buttonElement4 = document.createElement("button")
-    buttonElement4.textContent = "Dodaj widoczne elementy do raportu"
-    buttonElement4.classList.add("buttonPt3")
+    const buttonAddToReport = document.createElement("button")
+    buttonAddToReport.textContent = "Dodaj widoczne elementy do raportu"
+    buttonAddToReport.classList.add("buttonPt3")
     foundPoint3.appendChild(newDiv4)
     newDiv4.classList.add("buttonAddToReport")
-    newDiv4.appendChild(buttonElement4)
-    buttonElement4.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
-    buttonElement4.addEventListener("click", button_addToReport)
+    newDiv4.appendChild(buttonAddToReport)
+    buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+    buttonAddToReport.addEventListener("click", button_addToReport)
 
 }

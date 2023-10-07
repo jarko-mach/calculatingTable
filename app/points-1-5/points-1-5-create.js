@@ -63,7 +63,7 @@ const createNewDivPoints = (number) => {
         }
 
         foundElement.after(newDiv)
-        debugger
+        // debugger
         switch (number) {
             case 1:
                 addPoint1_subpoints123()
