@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "docx": "^8.2.2",
-    "file-saver": "^2.0.5"
+    "file-saver": "^2.0.5",
+    "lodash": "^4.17.21"
   },
   "name": "tabelka-pomiarow-swiatla",
   "version": "1.2.0",
