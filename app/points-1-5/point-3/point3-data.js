@@ -20,7 +20,7 @@ const methodBenzen = "dla benzenu: (0,01 - 50) mg/m3"
 export const point03_TableData = [
     {
         mainName: "PYŁY",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Pyły niesklasyfikowane ze względu na toksyczność – frakcja wdychalna",
@@ -136,7 +136,7 @@ export const point03_TableData = [
     },
     {
         mainName: "ZWIĄZKI ORGANICZNE wg TSO/PB-08",
-        displayingMethod: "inOneLine",
+        displayMethod: "inOneLine",
         elements: [
             {
                 name: "pentan",
@@ -364,7 +364,7 @@ export const point03_TableData = [
     },
     {
         mainName: "ZWIĄZKI ORGANICZNE",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Związki organiczne",
@@ -414,7 +414,7 @@ export const point03_TableData = [
     },
     {
         mainName: "METALE",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Chrom metaliczny i jego związki (chrom (II), chrom (III), chrom (VI)) – w przeliczeniu na Cr",
@@ -500,7 +500,7 @@ export const point03_TableData = [
     },
     {
         mainName: "SPEKTROFOTOMETRIA",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Amoniak",
@@ -527,7 +527,7 @@ export const point03_TableData = [
     },
     {
         mainName: "GAZY",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Tlenek węgla, ditlenek azotu i tlenek azotu",
@@ -544,7 +544,7 @@ export const point03_TableData = [
     },
     {
         mainName: "PODZLECANE",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Akrylaldehyd",
@@ -648,7 +648,7 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – HAŁAS",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Hałas",
@@ -674,7 +674,7 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – DRGANIA",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Drgania działające na organizm człowieka przez kończyny górne",
@@ -700,7 +700,7 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – OŚWIETLENIE",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Oświetlenie elektryczne",
@@ -721,7 +721,7 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – MIKROKLIMAT",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Mikroklimat",
@@ -757,7 +757,7 @@ temperatura poczernionej kuli (10 – 60)°C`,
     },
     {
         mainName: "Czynniki fizyczne – WILGOTNOŚĆ WZGLĘDNA POWIETRZA I TEMPERATURA",
-        displayingMethod: "multiLine",
+        displayMethod: "multiLine",
         elements: [
             {
                 name: "Wilgotność względna powietrza i temperatura",

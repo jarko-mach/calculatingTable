@@ -124,3 +124,10 @@
     font-family: 'Carlito', sans-serif;
     border: 1.6px solid rgb(214, 225, 221, 0.5);
 }
+
+.point3 .factor {
+    font-weight: 600;
+    font-style:oblique;
+    line-height: 1.2em;
+    font-size: .8em;
+}

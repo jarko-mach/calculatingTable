@@ -21,7 +21,7 @@ export const addPoint3 = () => {
         }
 
         let localShortName = ""
-        let localCode = ""
+        let localCode = (point03_TableData[selectedNumber].displayMethod === "multiLine") ? `<p class="factor">${"Każdy wybrany czynnik zostanie umieszczony w osobnym akapicie"}</p>` : `<p class="factor">${"Wybrane czynniki zostaną umieszczone obok siebie."}</p>`
         let elementChecked = false
 
         function mySort(a, b) {
@@ -49,34 +49,6 @@ export const addPoint3 = () => {
             return localCode
         }
 
-        const selectName_changeInputSelected_addRemoveFromReport = (evt) => {
-
-            const locIndex = Number(evt.currentTarget.dataset.index)
-            newDiv3c.innerHTML = contentOfRightWindow(locIndex)
-            // console.log("kliknięto :)P")
-            const checkBoxState = document.querySelector(`#element${locIndex} input`)
-            const locClickedElement = evt.target.tagName
-            if (locClickedElement !== 'INPUT') {
-                checkBoxState.checked = !checkBoxState.checked
-            }
-
-            const localLeftWindowIndex = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
-            if (!checkBoxState.checked) {
-                const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
-                // console.log(localLeftWindowIndex, locIndex)
-                locElements.forEach((element, index) => {
-                    if (localLeftWindowIndex === Number(element.dataset.indexLeft) && locIndex === Number(element.dataset.indexCenter)) {
-                        element.remove()
-                    }
-                })
-                if (!document.querySelector(".addedItemsContainer .addedItem")) {
-                    // console.log("brak wpisów ")
-                    buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
-                }
-            }
-            buttonRemove.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem input:checked").length) ? false : true
-        }
-
         const name_Bold = (evt) => {
             evt.currentTarget.classList.add("bolded")
             const locString = evt.currentTarget.dataset.index
@@ -88,7 +60,7 @@ export const addPoint3 = () => {
             if (locElement) { locElement.classList.remove("bolded") }
         }
 
-        const addToPoint_3_3 = (e) => {
+        const addToPoint_removeFromPoint_3_3 = (e) => {
 
             const checkExistingAddedItems = (leftColumnNumber, centerColumnNumber) => {
                 let identicalElementFound = false
@@ -100,17 +72,48 @@ export const addPoint3 = () => {
                 })
                 return identicalElementFound
             }
-
             const localLeftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             const localCenterWindowNumber = Number(e.currentTarget.dataset.index)
 
-            if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
-                const locElement = document.querySelector(".addedItemsContainer")
-                const locWasHtml = locElement.innerHTML
-                let locIsHtml = ""
-                locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></p>`
-                locElement.innerHTML = `${locWasHtml}${locIsHtml}`
-                buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+            const checkBoxState = document.querySelector(`#element${localCenterWindowNumber} input`)
+            const locClickedElement = e.target.tagName
+            if (locClickedElement !== 'INPUT') {
+                checkBoxState.checked = !checkBoxState.checked
+            }
+            switch (point03_TableData[localLeftWindowNumber].displayMethod) {
+                case "multiLine":
+                    if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
+                        const locElement = document.querySelector(".addedItemsContainer")
+                        const locWasHtml = locElement.innerHTML
+                        let locIsHtml = ""
+                        locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></p>`
+                        locElement.innerHTML = `${locWasHtml}${locIsHtml}`
+                        buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+                    } else {
+                        const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
+                        // console.log(localLeftWindowIndex, locIndex)
+                        locElements.forEach((element, index) => {
+                            if (localLeftWindowNumber === Number(element.dataset.indexLeft) && localCenterWindowNumber === Number(element.dataset.indexCenter)) {
+                                element.remove()
+                            }
+                        })
+                        if (!document.querySelector(".addedItemsContainer .addedItem")) {
+                            // console.log("brak wpisów ")
+                            buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+                        }
+                    }
+                    break;
+                case "inOneLine":
+                    console.log("one line")
+                    if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
+                        
+                    }
+                    else {
+
+                    }
+                    break;
+                default:
+                    console.log(`Sorry, we are out of `);
             }
 
             const addedItems_inputBox_Clicked = (event) => {
@@ -134,16 +137,17 @@ export const addPoint3 = () => {
             locAllElements.forEach((element, index) => {
                 element.addEventListener("click", addedItems_inputBox_Clicked)
             })
+
+            buttonRemove.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem input:checked").length) ? false : true
         }
 
-        const locString = e.target.dataset.index
+        const indexNumber = e.target.dataset.index
         newDiv3c.innerHTML = ""
-        newDiv3b.innerHTML = contentOfCenterWindow(Number(locString))
+        newDiv3b.innerHTML = contentOfCenterWindow(Number(indexNumber))
 
         const listElements = document.querySelectorAll(".point3 .contentCenter")
         listElements.forEach((eleme, index) => {
-            eleme.addEventListener("click", addToPoint_3_3)
-            eleme.addEventListener("click", selectName_changeInputSelected_addRemoveFromReport)
+            eleme.addEventListener("click", addToPoint_removeFromPoint_3_3)
             eleme.addEventListener("mouseout", name_UnBold)
             eleme.addEventListener("mouseover", name_Bold)
         })
