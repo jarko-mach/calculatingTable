@@ -1,7 +1,7 @@
 
-const description_TSO_PB_08 = "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57."
-const methodScope_TSO_PB_08 = "Zakres metody: (0,28 - 4000) mg/m3."
-const methodBenzen = "dla benzenu: (0,01 - 50) mg/m3"
+
+const methodScopeOneLine_TSO_PB_08 = "Zakres metody: (0,28 - 4000) mg/m3."
+const methodBenzenOneLine = "dla benzenu: (0,01 - 50) mg/m3"
 
 // {
 //     mainName: "TESTOWE",
@@ -20,12 +20,11 @@ const methodBenzen = "dla benzenu: (0,01 - 50) mg/m3"
 export const point03_TableData = [
     {
         mainName: "PYŁY",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Pyły niesklasyfikowane ze względu na toksyczność – frakcja wdychalna",
                 description: `metoda grawimetryczna wg PN-Z-04507:2022-05; PN-Z-04507:2022-05/Ap1:2022-08.
- Zakres metody: (0,12& – 17,0) mg/m3. 
+ Zakres metody: (0,12 – 17,0) mg/m3. 
  Granica wykrywalności: 0,09 mg/m3.`
             },
             {
@@ -135,240 +134,25 @@ export const point03_TableData = [
         ]
     },
     {
-        mainName: "ZWIĄZKI ORGANICZNE wg TSO/PB-08",
-        displayMethod: "inOneLine",
-        elements: [
-            {
-                name: "pentan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "benzen",
-                description: description_TSO_PB_08,
-                methodScope: methodBenzen,
-            },
-            {
-                name: "heksan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "heptan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "oktan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "nonan ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "dekan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "undekan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "aceton",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan etylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan n-butylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "butan-1-ol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "2-metylopropan-1-ol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "cyhloheksanon",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "toluen",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "etylobenzen",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "styren",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "tetrachloroeten",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "trichloroeten ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan winylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "butan-2-on ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "4-metylopentan-2-onu ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "eter dietylowy ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan metylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "tetrachlorek węgla",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "etanol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "propan-2-ol ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "1-metoksypropan-2-ol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "2-metoksyetanol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "2-etoksyetanol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan 2-metoksy-1-metyloetylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan 2-metoksyetylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan 2-etoksyetylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "2-butoksyetanolu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan 2-butoksyetylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan izopropylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "dichlorometan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan propylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "metakrylan metylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "chloroform",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "propan-1-ol",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "dodekan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "tridekan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "propylobenzen",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "chlorobenzen ",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "metakrylan butylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "acetonitryl",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "metylocykloheksan",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "octan izobutylu",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "benzyna ekstrakcyjna (jako suma ……)",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "benzyna do lakierów (jako suma ….)",
-                description: description_TSO_PB_08,
-            },
-            {
-                name: "nafta (jako suma ….)",
-                description: description_TSO_PB_08,
-            },
-
-        ]
-    },
-    {
         mainName: "ZWIĄZKI ORGANICZNE",
-        displayMethod: "multiLine",
         elements: [
             {
-                name: "Związki organiczne",
+                name: " Związki organiczne wg TSO/PB-08",
+                description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57.",
+                displayInOneLine: true,
+                elementsOneLine: ["pentan", "benzen", "heksan", "heptan", "oktan", "nonan ", "dekan", "undekan", "aceton", "octan etylu", "octan n-butylu", "butan-1-ol", "2-metylopropan-1-ol", "cyhloheksanon", "toluen", "etylobenzen", "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-", "styren", "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ", "tetrachloroeten", "trichloroeten ", "octan winylu", "butan-2-on ", "4-metylopentan-2-onu ", "eter dietylowy ", "octan metylu", "tetrachlorek węgla", "etanol", "propan-2-ol ", "1-metoksypropan-2-ol", "2-metoksyetanol", "2-etoksyetanol", "octan 2-metoksy-1-metyloetylu", "octan 2-metoksyetylu", "octan 2-etoksyetylu", "2-butoksyetanolu", "octan 2-butoksyetylu", "octan izopropylu", "dichlorometan", "octan propylu", "metakrylan metylu", "chloroform", "propan-1-ol", "dodekan", "tridekan", "propylobenzen", "chlorobenzen ", "metakrylan butylu", "acetonitryl", "metylocykloheksan", "octan izobutylu", "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)", "benzyna ekstrakcyjna (jako suma ……)", "benzyna do lakierów (jako suma ….)", "nafta (jako suma ….)"
+                ]
+            },
+            {
+                name: "Zw organiczne",
                 description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Zakres metody: (0,28 - 4000) mg/m3.  Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. Ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, Trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, Heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57.",
+            }, 
+            {
+                name: " drugie Związki organiczne wg TSO/PB-08",
+                description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57.",
+                displayInOneLine: true,
+                elementsOneLine: ["_dwa_pentan", "_dwa_benzen", "_dwa_heksan", "_dwa_heptan", "oktan_dwa_", "_dwa_nonan ", "dekan", "undekan", "aceton", "octan etylu", "octan n-butylu", "butan-1-ol", "2-metylopropan-1-ol", "cyhloheksanon", "toluen", "etylobenzen", "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-", "styren", "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ", "tetrachloroeten", "trichloroeten ", "octan winylu", "butan-2-on ", "4-metylopentan-2-onu ", "eter dietylowy ", "octan metylu", "tetrachlorek węgla", "etanol", "propan-2-ol ", "1-metoksypropan-2-ol", "2-metoksyetanol", "2-etoksyetanol", "octan 2-metoksy-1-metyloetylu", "octan 2-metoksyetylu", "octan 2-etoksyetylu", "2-butoksyetanolu", "octan 2-butoksyetylu", "octan izopropylu", "dichlorometan", "octan propylu", "metakrylan metylu", "chloroform", "propan-1-ol", "dodekan", "tridekan", "propylobenzen", "chlorobenzen ", "metakrylan butylu", "acetonitryl", "metylocykloheksan", "octan izobutylu", "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)", "benzyna ekstrakcyjna (jako suma ……)", "benzyna do lakierów (jako suma ….)", "nafta (jako suma ….)"
+                ]
             },
             {
                 name: "Benzen",
@@ -414,7 +198,6 @@ export const point03_TableData = [
     },
     {
         mainName: "METALE",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Chrom metaliczny i jego związki (chrom (II), chrom (III), chrom (VI)) – w przeliczeniu na Cr",
@@ -500,7 +283,6 @@ export const point03_TableData = [
     },
     {
         mainName: "SPEKTROFOTOMETRIA",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Amoniak",
@@ -527,7 +309,6 @@ export const point03_TableData = [
     },
     {
         mainName: "GAZY",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Tlenek węgla, ditlenek azotu i tlenek azotu",
@@ -544,7 +325,6 @@ export const point03_TableData = [
     },
     {
         mainName: "PODZLECANE",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Akrylaldehyd",
@@ -648,7 +428,6 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – HAŁAS",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Hałas",
@@ -674,7 +453,6 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – DRGANIA",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Drgania działające na organizm człowieka przez kończyny górne",
@@ -700,7 +478,6 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – OŚWIETLENIE",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Oświetlenie elektryczne",
@@ -721,7 +498,6 @@ export const point03_TableData = [
     },
     {
         mainName: "Czynniki fizyczne – MIKROKLIMAT",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Mikroklimat",
@@ -757,7 +533,6 @@ temperatura poczernionej kuli (10 – 60)°C`,
     },
     {
         mainName: "Czynniki fizyczne – WILGOTNOŚĆ WZGLĘDNA POWIETRZA I TEMPERATURA",
-        displayMethod: "multiLine",
         elements: [
             {
                 name: "Wilgotność względna powietrza i temperatura",

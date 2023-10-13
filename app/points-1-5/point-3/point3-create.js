@@ -12,8 +12,8 @@ export const addPoint3 = () => {
         const checkElementAddedToReport = (leftNumber, centerNumber) => {
             let elementChecked = false
             const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem")
-            addedElements.forEach((elemen, inde) => {
-                if (Number(elemen.dataset.indexLeft) === leftNumber && Number(elemen.dataset.indexCenter) === centerNumber) {
+            addedElements.forEach((element, index) => {
+                if (Number(element.dataset.indexLeft) === leftNumber && Number(element.dataset.indexCenter) === centerNumber) {
                     elementChecked = true
                 }
             })
@@ -21,23 +21,36 @@ export const addPoint3 = () => {
         }
 
         let localShortName = ""
-        let localCode = (point03_TableData[selectedNumber].displayMethod === "multiLine") ? `<p class="factor">${"Każdy wybrany czynnik zostanie umieszczony w osobnym akapicie"}</p>` : `<p class="factor">${"Wybrane czynniki zostaną umieszczone obok siebie."}</p>`
+        let localCode = ""
         let elementChecked = false
 
         function mySort(a, b) {
             const myA = a.name
-            // console.log("myA", myA)
             const myB = b.name
             return myA.localeCompare(myB)
         }
         // console.log(point03_TableData[selectedNumber].elements)
-        // debugger
+
         point03_TableData[selectedNumber].elements.sort(mySort)
+        // debugger
+        let leftNumb = document.querySelector(".boxLeft .bolded").dataset.index
+        // console.log("leftNumb", leftNumb)
+        // .dataset.index
+
         point03_TableData[selectedNumber].elements.forEach((elem, index) => {
-            elementChecked = checkElementAddedToReport(selectedNumber, index) ? "checked" : ""
-            localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
-            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox" ${elementChecked}><p>${localShortName}${elem.name}</p></div>`
+            if (!point03_TableData[leftNumb].elements[index].displayInOneLine) {
+                // console.log("multi")
+                elementChecked = checkElementAddedToReport(selectedNumber, index) ? "checked" : ""
+                localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
+                localCode += `<div class="centerItem finger" id="element${index}" data-index=${index}><input type="checkbox" ${elementChecked}><p>${localShortName}${elem.name}</p></div>`
+            } else {
+                elementChecked = checkElementAddedToReport(selectedNumber, index) ? "checked" : ""
+                let buttonDisabled = (Boolean(elementChecked)) ? "" : `disabled="true"`
+                // console.log("akapit", buttonDisabled)
+                localCode += `<div class="centerItem finger" id="element${index}" data-index=${index}><input type="checkbox" ${elementChecked}><p>${localShortName}${elem.name}</p><div><button id="button${index}" ${buttonDisabled}">Edytuj</button></div></div>`
+            }
         })
+
         return localCode
     }
 
@@ -51,8 +64,8 @@ export const addPoint3 = () => {
 
         const name_Bold = (evt) => {
             evt.currentTarget.classList.add("bolded")
-            const locString = evt.currentTarget.dataset.index
-            newDiv3c.innerHTML = contentOfRightWindow(Number(locString))
+            const centerNumber = Number(evt.currentTarget.dataset.index)
+            newDiv3c.innerHTML = contentOfRightWindow(centerNumber)
         }
 
         const name_UnBold = (evt) => {
@@ -61,6 +74,8 @@ export const addPoint3 = () => {
         }
 
         const addToPoint_removeFromPoint_3_3 = (e) => {
+
+            // console.log("./././.")
 
             const checkExistingAddedItems = (leftColumnNumber, centerColumnNumber) => {
                 let identicalElementFound = false
@@ -80,44 +95,41 @@ export const addPoint3 = () => {
             if (locClickedElement !== 'INPUT') {
                 checkBoxState.checked = !checkBoxState.checked
             }
-            switch (point03_TableData[localLeftWindowNumber].displayMethod) {
-                case "multiLine":
-                    if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
-                        const locElement = document.querySelector(".addedItemsContainer")
-                        const locWasHtml = locElement.innerHTML
-                        let locIsHtml = ""
-                        locIsHtml = `<p class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></p>`
-                        locElement.innerHTML = `${locWasHtml}${locIsHtml}`
-                        buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
-                    } else {
-                        const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
-                        // console.log(localLeftWindowIndex, locIndex)
-                        locElements.forEach((element, index) => {
-                            if (localLeftWindowNumber === Number(element.dataset.indexLeft) && localCenterWindowNumber === Number(element.dataset.indexCenter)) {
-                                element.remove()
-                            }
-                        })
-                        if (!document.querySelector(".addedItemsContainer .addedItem")) {
-                            // console.log("brak wpisów ")
-                            buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
-                        }
-                    }
-                    break;
-                case "inOneLine":
-                    console.log("one line")
-                    if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
-                        
-                    }
-                    else {
 
+            if (point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber]?.displayInOneLine) {
+                let localButton = document.querySelector(`#button${localCenterWindowNumber}`)
+                if (checkBoxState.checked === true) {
+                    localButton.disabled = false
+                } else {
+                    localButton.disabled = true
+                    newDiv3b_extra.classList.remove("boxCenter_extra")
+                    newDiv3b_extra.innerHTML = ""
+                }
+            }
+            // debugger
+            if (!checkExistingAddedItems(localLeftWindowNumber, localCenterWindowNumber)) {
+                let locElement = document.querySelector(".addedItemsContainer")
+                let locWasHtml = locElement.innerHTML
+                let locIsHtml = ""
+                locIsHtml = `<div class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></div>`
+                locElement.innerHTML = `${locWasHtml}${locIsHtml}`
+                buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+            } else {
+                const locElements = document.querySelectorAll(".addedItemsContainer .addedItem")
+                // console.log(localLeftWindowIndex, locIndex)
+                locElements.forEach((element, index) => {
+                    if (localLeftWindowNumber === Number(element.dataset.indexLeft) && localCenterWindowNumber === Number(element.dataset.indexCenter)) {
+                        element.remove()
                     }
-                    break;
-                default:
-                    console.log(`Sorry, we are out of `);
+                })
+                if (!document.querySelector(".addedItemsContainer .addedItem")) {
+                    // console.log("brak wpisów ")
+                    buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
+                }
             }
 
             const addedItems_inputBox_Clicked = (event) => {
-                // console.log("kliknięto :)", event.target.checked)
+                console.log("kliknięto :)", event.target.checked)
 
                 const locCheckedElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
                 let isAnythingChecked = false
@@ -132,7 +144,7 @@ export const addPoint3 = () => {
                     if (isAnythingChecked === false) foundButtons.forEach(element => element.disabled = true)
                 }
             }
-
+            // debugger
             const locAllElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
             locAllElements.forEach((element, index) => {
                 element.addEventListener("click", addedItems_inputBox_Clicked)
@@ -145,14 +157,101 @@ export const addPoint3 = () => {
         newDiv3c.innerHTML = ""
         newDiv3b.innerHTML = contentOfCenterWindow(Number(indexNumber))
 
-        const listElements = document.querySelectorAll(".point3 .contentCenter")
+        const listElements = document.querySelectorAll(".point3 .centerItem")
         listElements.forEach((eleme, index) => {
             eleme.addEventListener("click", addToPoint_removeFromPoint_3_3)
             eleme.addEventListener("mouseout", name_UnBold)
             eleme.addEventListener("mouseover", name_Bold)
         })
-        document.getElementById(`point3`).scrollIntoView()
+
+
+        const show_hideColumnExtra = (e) => {
+
+            e.stopPropagation()
+            // console.log("in one line")
+            
+            const leftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
+            const centerWindowNumber = Number(e.currentTarget.closest(".centerItem").dataset.index)
+
+            const checkElementsExtraAddedToReport = (leftNumber, centerNumber, extraNumber) => {
+                let elementChecked = false
+                const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem")
+                addedElements.forEach((element, index) => {
+                    if (Number(element.dataset.indexLeft) === leftNumber && Number(element.dataset.indexCenter) === centerNumber) {
+                        elementChecked = true
+                    }
+                })
+                return elementChecked
+            }
+
+            if (newDiv3b_extra.innerHTML === "") {
+                console.log("pokazuję")
+                newDiv3b_extra.classList.add("boxCenter_extra")
+                point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.sort()
+
+                let addedElementsIndex = document.querySelectorAll('.point3 .addedItemsContainer span .line')
+                if (addedElementsIndex.length > 0) {
+                    console.log("addedElementIndex", addedElementsIndex[0].dataset.indexExtra)
+                }
+
+                point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.forEach((element, index) => {
+                    newDiv3b_extra.innerHTML += `<div class="centerItem_extra finger" id="name_extra${index}" data-index="${index}"><input type="checkbox"><p>${element}</p></div>`
+                })
+
+                const clickedCenter_extra = (evt) => {
+                    const checkBoxState = document.querySelector(`#name_extra${Number(evt.currentTarget.dataset.index)} input`)
+                    // console.log("1", evt.currentTarget, "2", checkBoxState.checked)
+                    const locClickedElement = evt.target.tagName
+                    // console.log(locClickedElement)
+                    if (locClickedElement !== 'INPUT') { checkBoxState.checked = !checkBoxState.checked }
+                }
+
+                const table2b = document.querySelectorAll('.point3 .centerItem_extra')
+                table2b.forEach((element, index) => {
+                    element.addEventListener('click', clickedCenter_extra)
+                })
+                e.srcElement.textContent = "Dopisz"
+            } else {
+                console.log("ukrywam")
+                let htmlExchange = ""
+                let addComa = ", "
+                const checkedElements = document.querySelectorAll(`.centerItem_extra input:checked`)
+                if (checkedElements.length > 0) {
+                    checkedElements.forEach((element, index) => {
+                        // console.log(element.parentElement.dataset.index, element.nextElementSibling.textContent, checkBoxState.checked)
+                        if (checkedElements.length - 1 === index) { addComa = "" }
+                        htmlExchange += `<p class="line" data-index-extra="${element.parentElement.dataset.index}">${element.nextElementSibling.textContent}${addComa}</p>`
+                    }
+                    )
+                }
+                let wasElements = document.querySelectorAll(".point3 .addedItemsContainer .addedItem")
+                // console.log("wasElement", wasElements)
+                wasElements.forEach((element, index) => {
+                    console.log("mam", index, element)
+                    if (Number(element.dataset.indexLeft) === leftWindowNumber && Number(element.dataset.indexCenter) === centerWindowNumber) {
+                        // console.log("=", element.firstElementChild.nextSibling.innerHTML)
+                        element.firstElementChild.nextSibling.innerHTML = htmlExchange
+
+                    }
+                })
+
+                newDiv3b_extra.innerHTML = "";
+                newDiv3b_extra.classList.remove("boxCenter_extra")
+                e.srcElement.textContent = "Edytuj"
+            }
+        }
+
+        listElements.forEach((eleme, index) => {
+            if (eleme.innerHTML.indexOf("button") !== -1) {
+                let localButton = document.querySelector(`#button${index}`)
+                localButton.addEventListener("click", show_hideColumnExtra)
+            }
+        })
     }
+
+
+    document.getElementById(`point3`).scrollIntoView()
+
 
     const mainName_Bold = (evt) => { evt.target.classList.add("bolded") }
 
@@ -255,10 +354,14 @@ export const addPoint3 = () => {
     newContainer.appendChild(newDiv3b)
     newDiv3b.classList.add("boxCenter")
 
+    const newDiv3b_extra = document.createElement("div")
+    newContainer.appendChild(newDiv3b_extra)
+    // newDiv3b_extra.classList.add("boxCenter_extra")
+    // newDiv3b_extra.classList.add("noDisplay")
+
     const newDiv3c = document.createElement("div")
     newContainer.appendChild(newDiv3c)
     newDiv3c.classList.add("boxRight")
-
 
     const button_addToReport = () => {
         // alert("Dodajemy wybrane elementy do raportu")

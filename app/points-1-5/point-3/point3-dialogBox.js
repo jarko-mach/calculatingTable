@@ -11,7 +11,7 @@ const showData_DialogBox = () => {
         let localCode = ""
         point03_TableData[selectedNumber].elements.forEach((elem, index) => {
             localShortName = (elem.shortName) ? `<span class="shortNameColor">${elem.shortName}</span>` : ""
-            localCode += `<div class="contentCenter finger" id="element${index}" data-index=${index}><input type="checkbox"> ${localShortName} ${elem.name} </div>`
+            localCode += `<div class="centerItem finger" id="element${index}" data-index=${index}><input type="checkbox"> ${localShortName} ${elem.name} </div>`
         })
         return localCode
     }
@@ -53,7 +53,7 @@ const showData_DialogBox = () => {
         newDiv3c.innerHTML = ""
         newDiv3b.innerHTML = contentOfCenterWindow(Number(locString))
 
-        const listElements = document.querySelectorAll(".dialogBoxPoint3 .contentCenter")
+        const listElements = document.querySelectorAll(".dialogBoxPoint3 .centerItem")
         listElements.forEach((eleme, index) => {
             // eleme.addEventListener("click", name_UnColor)
             // eleme.addEventListener("click", name_Color)

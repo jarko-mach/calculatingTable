@@ -9,14 +9,15 @@
 }
 
 .point3 .container div {
-    margin: 7px 0;
-    line-height: 1.8em;
+    margin: 5px 0;
+    line-height: 1.3em;
 }
 
 .point3 .boxLeft,
 .point3 .boxCenter,
+.point3 .boxCenter_extra,
 .point3 .boxRight {
-    margin: 7px 0;
+    margin: 0px 0;
     padding: 0 6px;
     background-color: rgb(244, 244, 244);
 }
@@ -25,12 +26,21 @@
     flex-grow: 0.5;
     flex-basis: 0;
     position: sticky;
-    top: 60px;
+    top: 40px;
 }
 
 .point3 .boxCenter {
     flex-grow: 0.6;
     flex-basis: 0;
+    position: sticky;
+    top: 40px;
+}
+
+.point3 .boxCenter_extra {
+    flex-grow: 0.6;
+    flex-basis: 0;
+    position: sticky;
+    top: 40px;
 }
 
 .point3 .boxRight {
@@ -38,7 +48,7 @@
     flex-basis: 0;
     line-height: 1.5em;
     position: sticky;
-    top: 60px;
+    top: 40px;
 }
 
 .point3 .bolded {
@@ -68,29 +78,33 @@
     font-size: 0.72em;
 }
 
-.point3 .contentCenter {
+.point3 .centerItem,
+.point3 .centerItem_extra {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 7px;
 }
 
-.point3 .contentCenter input,
-.point3 .contentCenter p {
+.point3 .centerItem input,
+.point3 .centerItem_extra input,
+.point3 .centerItem p,
+.point3 .centerItem_extra p {
     margin: 0;
     padding: 0;
 }
 
-/* .point3 .contentCenter input:checked {} */
+/* .point3 .centerItem input:checked {} */
 
-.point3 .contentCenter span {
+.point3 .centerItem span,
+.point3 .centerItem_extra span {
     margin: 0 10px 0 0;
 }
 
 
 .point3 .addedItem {
-    margin: 7px 0;
-    line-height: 1.6em;
+    margin: 5px 0;
+    line-height: 1.2em;
 }
 
 .point3 .addedItem input {
@@ -127,7 +141,24 @@
 
 .point3 .factor {
     font-weight: 600;
-    font-style:oblique;
+    font-style: oblique;
     line-height: 1.2em;
     font-size: .8em;
+}
+
+.point3 .boxCenter_extra {
+    background-color: rgb(242, 252, 228);
+}
+
+.point3 .boxCenter_extra .noDisplay {
+    display: none;
+}
+
+.point3 .edit {
+    display: flex;
+    justify-content: end;
+}
+
+.point3 .line {
+    display: inline;
 }

@@ -46,12 +46,12 @@ export const dialogBox_chooseOldOrNewReport = () => {
                 <fieldset class="fieldsetWidth">
                     <legend>Wybierz:</legend>
                     <div class="inputDiv">
-                        <input type="radio" id="insertNew" name="insertNewOrOld" value="new" checked>
-                        <label for="insertNew">utwórz nowe sprawozdanie</label>
+                        <input type="radio" id="insertExisting" name="insertNewOrOld" value="existing" checked>
+                        <label for="insertExisting">pokaż listę zapisanych sprawozdań</label>
                     </div>
                     <div class="inputDiv">
-                        <input type="radio" id="insertExisting" name="insertNewOrOld" value="existing">
-                        <label for="insertExisting">pokaż listę zapisanych sprawozdań</label>
+                        <input type="radio" id="insertNew" name="insertNewOrOld" value="new">
+                        <label for="insertNew">utwórz nowe sprawozdanie</label>
                     </div>
                 </fieldset>
                 <div class="btnLayout">
