@@ -129,7 +129,7 @@ export const addPoint3 = () => {
             }
 
             const addedItems_inputBox_Clicked = (event) => {
-                console.log("kliknięto :)", event.target.checked)
+                // console.log("kliknięto :)", event.target.checked)
 
                 const locCheckedElements = document.querySelectorAll(".addedItemsContainer .addedItem input")
                 let isAnythingChecked = false
@@ -156,6 +156,8 @@ export const addPoint3 = () => {
         const indexNumber = e.target.dataset.index
         newDiv3c.innerHTML = ""
         newDiv3b.innerHTML = contentOfCenterWindow(Number(indexNumber))
+        newDiv3b_extra.innerHTML = ""
+        newDiv3b_extra.classList.remove("boxCenter_extra")
 
         const listElements = document.querySelectorAll(".point3 .centerItem")
         listElements.forEach((eleme, index) => {
@@ -168,34 +170,31 @@ export const addPoint3 = () => {
         const show_hideColumnExtra = (e) => {
 
             e.stopPropagation()
-            // console.log("in one line")
-            
+
             const leftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             const centerWindowNumber = Number(e.currentTarget.closest(".centerItem").dataset.index)
 
-            const checkElementsExtraAddedToReport = (leftNumber, centerNumber, extraNumber) => {
-                let elementChecked = false
-                const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem")
-                addedElements.forEach((element, index) => {
-                    if (Number(element.dataset.indexLeft) === leftNumber && Number(element.dataset.indexCenter) === centerNumber) {
-                        elementChecked = true
-                    }
-                })
-                return elementChecked
-            }
-
-            if (newDiv3b_extra.innerHTML === "") {
-                console.log("pokazuję")
+            if (e.srcElement.textContent === "Edytuj") {
                 newDiv3b_extra.classList.add("boxCenter_extra")
+
                 point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.sort()
 
-                let addedElementsIndex = document.querySelectorAll('.point3 .addedItemsContainer span .line')
-                if (addedElementsIndex.length > 0) {
-                    console.log("addedElementIndex", addedElementsIndex[0].dataset.indexExtra)
-                }
+                const tableSpanLine = []
+                tableSpanLine.length = point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.length
+                tableSpanLine.fill(false)
+
+                const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem span .line")
+                addedElements.forEach((element, index) => {
+
+                    if (Number(element.closest(".addedItem").dataset.indexLeft) === leftWindowNumber && Number(element.closest(".addedItem").dataset.indexCenter) === centerWindowNumber) {
+                        tableSpanLine[Number(element.dataset.indexExtra)] = true
+                    }
+                })
+                // console.log("addedElements", addedElements, tableSpanLine)
 
                 point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.forEach((element, index) => {
-                    newDiv3b_extra.innerHTML += `<div class="centerItem_extra finger" id="name_extra${index}" data-index="${index}"><input type="checkbox"><p>${element}</p></div>`
+                    let inputChecked = tableSpanLine[index] ? " checked " : ""
+                    newDiv3b_extra.innerHTML += `<div class="centerItem_extra finger" id="name_extra${index}" data-index="${index}"><input type="checkbox"${inputChecked}><p>${element}</p></div>`
                 })
 
                 const clickedCenter_extra = (evt) => {
@@ -212,7 +211,7 @@ export const addPoint3 = () => {
                 })
                 e.srcElement.textContent = "Dopisz"
             } else {
-                console.log("ukrywam")
+                // console.log("ukrywam")
                 let htmlExchange = ""
                 let addComa = ", "
                 const checkedElements = document.querySelectorAll(`.centerItem_extra input:checked`)
@@ -227,7 +226,7 @@ export const addPoint3 = () => {
                 let wasElements = document.querySelectorAll(".point3 .addedItemsContainer .addedItem")
                 // console.log("wasElement", wasElements)
                 wasElements.forEach((element, index) => {
-                    console.log("mam", index, element)
+                    // console.log("mam", index, element)
                     if (Number(element.dataset.indexLeft) === leftWindowNumber && Number(element.dataset.indexCenter) === centerWindowNumber) {
                         // console.log("=", element.firstElementChild.nextSibling.innerHTML)
                         element.firstElementChild.nextSibling.innerHTML = htmlExchange

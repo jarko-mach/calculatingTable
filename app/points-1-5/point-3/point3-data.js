@@ -1,7 +1,7 @@
 
 
-const methodScopeOneLine_TSO_PB_08 = "Zakres metody: (0,28 - 4000) mg/m3."
-const methodBenzenOneLine = "dla benzenu: (0,01 - 50) mg/m3"
+// const methodScopeOneLine_TSO_PB_08 = "Zakres metody: (0,28 - 4000) mg/m3."
+const methodBenzenOneLine = "Zakres metody dla benzenu: (0,01 - 50) mg/m3"
 
 // {
 //     mainName: "TESTOWE",
@@ -138,7 +138,7 @@ export const point03_TableData = [
         elements: [
             {
                 name: " Związki organiczne wg TSO/PB-08",
-                description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57.",
+                description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57. Zakres metody: (0,28 - 4000) mg/m3.",
                 displayInOneLine: true,
                 elementsOneLine: ["pentan", "benzen", "heksan", "heptan", "oktan", "nonan ", "dekan", "undekan", "aceton", "octan etylu", "octan n-butylu", "butan-1-ol", "2-metylopropan-1-ol", "cyhloheksanon", "toluen", "etylobenzen", "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-", "styren", "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ", "tetrachloroeten", "trichloroeten ", "octan winylu", "butan-2-on ", "4-metylopentan-2-onu ", "eter dietylowy ", "octan metylu", "tetrachlorek węgla", "etanol", "propan-2-ol ", "1-metoksypropan-2-ol", "2-metoksyetanol", "2-etoksyetanol", "octan 2-metoksy-1-metyloetylu", "octan 2-metoksyetylu", "octan 2-etoksyetylu", "2-butoksyetanolu", "octan 2-butoksyetylu", "octan izopropylu", "dichlorometan", "octan propylu", "metakrylan metylu", "chloroform", "propan-1-ol", "dodekan", "tridekan", "propylobenzen", "chlorobenzen ", "metakrylan butylu", "acetonitryl", "metylocykloheksan", "octan izobutylu", "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)", "benzyna ekstrakcyjna (jako suma ……)", "benzyna do lakierów (jako suma ….)", "nafta (jako suma ….)"
                 ]
@@ -146,13 +146,6 @@ export const point03_TableData = [
             {
                 name: "Zw organiczne",
                 description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Zakres metody: (0,28 - 4000) mg/m3.  Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. Ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, Trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, Heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57.",
-            }, 
-            {
-                name: " drugie Związki organiczne wg TSO/PB-08",
-                description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57.",
-                displayInOneLine: true,
-                elementsOneLine: ["_dwa_pentan", "_dwa_benzen", "_dwa_heksan", "_dwa_heptan", "oktan_dwa_", "_dwa_nonan ", "dekan", "undekan", "aceton", "octan etylu", "octan n-butylu", "butan-1-ol", "2-metylopropan-1-ol", "cyhloheksanon", "toluen", "etylobenzen", "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-", "styren", "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ", "tetrachloroeten", "trichloroeten ", "octan winylu", "butan-2-on ", "4-metylopentan-2-onu ", "eter dietylowy ", "octan metylu", "tetrachlorek węgla", "etanol", "propan-2-ol ", "1-metoksypropan-2-ol", "2-metoksyetanol", "2-etoksyetanol", "octan 2-metoksy-1-metyloetylu", "octan 2-metoksyetylu", "octan 2-etoksyetylu", "2-butoksyetanolu", "octan 2-butoksyetylu", "octan izopropylu", "dichlorometan", "octan propylu", "metakrylan metylu", "chloroform", "propan-1-ol", "dodekan", "tridekan", "propylobenzen", "chlorobenzen ", "metakrylan butylu", "acetonitryl", "metylocykloheksan", "octan izobutylu", "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)", "benzyna ekstrakcyjna (jako suma ……)", "benzyna do lakierów (jako suma ….)", "nafta (jako suma ….)"
-                ]
             },
             {
                 name: "Benzen",
@@ -202,14 +195,6 @@ export const point03_TableData = [
             {
                 name: "Chrom metaliczny i jego związki (chrom (II), chrom (III), chrom (VI)) – w przeliczeniu na Cr",
                 description: "metoda płomieniowej absorpcyjnej spektrometrii atomowej (FAAS) wg PN-Z-04434:2011.  Zakres metody: (0,003 – 1) mg/m3.",
-            },
-            {
-                name: "Chrom metaliczny, związki chromu: chrom (II) – w przeliczeniu na Cr (II), chrom (III) – w przeliczeniu na Cr (III)",
-                description: "(z obliczeń) wg procedury badawczej TSO/PB-02 wydanie 1 z dnia 17.03.2022 r.",
-            },
-            {
-                name: "Związki chromu (VI) – w przeliczeniu na chrom (VI)",
-                description: "metoda spektrofotometryczna wg PN-87/Z-04126/03, norma wycofana bez zastąpienia. Zakres metody: (0,0005 – 0,03) mg/m3."
             },
             {
                 name: "Cyna i jej związki nieorganiczne, z wyjątkiem stannanu – w przeliczeniu na Sn – frakcja wdychalna",
@@ -303,6 +288,14 @@ export const point03_TableData = [
             {
                 name: "Kwas fosforowy (V), dekatlenek tetrafosforu",
                 description: "metoda spektrofotometryczna wg PN-Z-04073-1:2014-08. Zakres metody: (0,014 – 3,5) mg/m3."
+            },
+            {
+                name: "Chrom metaliczny, związki chromu: chrom (II) – w przeliczeniu na Cr (II), chrom (III) – w przeliczeniu na Cr (III)",
+                description: "(z obliczeń) wg procedury badawczej TSO/PB-02 wydanie 1 z dnia 17.03.2022 r.",
+            },
+            {
+                name: "Związki chromu (VI) – w przeliczeniu na chrom (VI)",
+                description: "metoda spektrofotometryczna wg PN-87/Z-04126/03, norma wycofana bez zastąpienia. Zakres metody: (0,0005 – 0,03) mg/m3."
             }
 
         ],
@@ -311,16 +304,17 @@ export const point03_TableData = [
         mainName: "GAZY",
         elements: [
             {
-                name: "Tlenek węgla, ditlenek azotu i tlenek azotu",
-                shortName: "TSO/PG-10/W",
+                name: "TSO/PG-10/W",
                 description: "metoda elektrochemiczna wg procedury badawczej TSO/PB-14 wydanie 3 z dnia 19.12.2014r., przy użyciu analizatora wielogazowego typu X-am 5000 prod. Dräger Safety nr seryjny ARHM-0214 – świadectwo wzorcowania nr Z2-Z23.4180.127.2022.3942.1 z dnia 22 grudnia 2022r. Zakres metody dla tlenku węgla: (2,3 – 120) mg/m3; dla ditlenku azotu: (0,19 – 38) mg/m3; dla tlenku azotu: (0,13 – 65) mg/m3.",
+                displayInOneLine: true,
+                elementsOneLine: ["tlenek węgla", "ditlenek azotu", "tlenek azotu"]
             },
             {
-                name: "Tlenek węgla, ditlenek azotu i tlenek azotu",
-                shortName: "TSO/PG-11/W",
+                name: "TSO/PG-11/W",
                 description: "metoda elektrochemiczna wg procedury badawczej TSO/PB-14 wydanie 3 z dnia 19.12.2014r., przy użyciu analizatora wielogazowego typu X-am 5000 prod. Dräger Safety nr seryjny ARHM-0381 – świadectwo wzorcowania nr Z2-Z23.4180.109.2022.3186.1 z dnia 19 października 2022r.  Zakres metody dla tlenku węgla: (2,3 – 120) mg/m3; dla ditlenku azotu: (0,19 – 38) mg/m3; dla tlenku azotu: (0,13 – 65) mg/m3",
+                displayInOneLine: true,
+                elementsOneLine: ["tlenek węgla", "ditlenek azotu", "tlenek azotu"]
             },
-
         ],
     },
     {
