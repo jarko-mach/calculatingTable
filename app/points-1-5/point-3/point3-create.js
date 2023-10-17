@@ -75,7 +75,7 @@ export const addPoint3 = () => {
 
         const addToPoint_removeFromPoint_3_3 = (e) => {
 
-            // console.log("./././.")
+            console.log("./././.")
 
             const checkExistingAddedItems = (leftColumnNumber, centerColumnNumber) => {
                 let identicalElementFound = false
@@ -174,71 +174,77 @@ export const addPoint3 = () => {
             const leftWindowNumber = Number(document.querySelector(".boxLeft .addedColor").dataset.index)
             const centerWindowNumber = Number(e.currentTarget.closest(".centerItem").dataset.index)
 
-            if (e.srcElement.textContent === "Edytuj") {
-                newDiv3b_extra.classList.add("boxCenter_extra")
+            let centerExtraIsOpen = (document.querySelectorAll(".boxCenter_extra").length > 0) ? true : false
 
-                point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.sort()
+            if (!centerExtraIsOpen || e.srcElement.textContent === "Zapisz") {
 
-                const tableSpanLine = []
-                tableSpanLine.length = point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.length
-                tableSpanLine.fill(false)
-
-                const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem span .line")
-                addedElements.forEach((element, index) => {
-
-                    if (Number(element.closest(".addedItem").dataset.indexLeft) === leftWindowNumber && Number(element.closest(".addedItem").dataset.indexCenter) === centerWindowNumber) {
-                        tableSpanLine[Number(element.dataset.indexExtra)] = true
+                if (e.srcElement.textContent === "Edytuj") {
+                    newDiv3b_extra.classList.add("boxCenter_extra")
+    
+                    point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.sort()
+    
+                    const tableSpanLine = []
+                    tableSpanLine.length = point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.length
+                    tableSpanLine.fill(false)
+    
+                    const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem span .line")
+                    addedElements.forEach((element, index) => {
+    
+                        if (Number(element.closest(".addedItem").dataset.indexLeft) === leftWindowNumber && Number(element.closest(".addedItem").dataset.indexCenter) === centerWindowNumber) {
+                            tableSpanLine[Number(element.dataset.indexExtra)] = true
+                        }
+                    })
+                    // console.log("addedElements", addedElements, tableSpanLine)
+    
+                    point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.forEach((element, index) => {
+                        let inputChecked = tableSpanLine[index] ? " checked " : ""
+                        newDiv3b_extra.innerHTML += `<div class="centerItem_extra finger" id="name_extra${index}" data-index="${index}"><input type="checkbox"${inputChecked}><p>${element}</p></div>`
+                    })
+    
+                    const clickedCenter_extra = (evt) => {
+                        const checkBoxState = document.querySelector(`#name_extra${Number(evt.currentTarget.dataset.index)} input`)
+                        // console.log("1", evt.currentTarget, "2", checkBoxState.checked)
+                        const locClickedElement = evt.target.tagName
+                        // console.log(locClickedElement)
+                        if (locClickedElement !== 'INPUT') { checkBoxState.checked = !checkBoxState.checked }
                     }
-                })
-                // console.log("addedElements", addedElements, tableSpanLine)
-
-                point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.forEach((element, index) => {
-                    let inputChecked = tableSpanLine[index] ? " checked " : ""
-                    newDiv3b_extra.innerHTML += `<div class="centerItem_extra finger" id="name_extra${index}" data-index="${index}"><input type="checkbox"${inputChecked}><p>${element}</p></div>`
-                })
-
-                const clickedCenter_extra = (evt) => {
-                    const checkBoxState = document.querySelector(`#name_extra${Number(evt.currentTarget.dataset.index)} input`)
-                    // console.log("1", evt.currentTarget, "2", checkBoxState.checked)
-                    const locClickedElement = evt.target.tagName
-                    // console.log(locClickedElement)
-                    if (locClickedElement !== 'INPUT') { checkBoxState.checked = !checkBoxState.checked }
+    
+                    const table2b = document.querySelectorAll('.point3 .centerItem_extra')
+                    table2b.forEach((element, index) => {
+                        element.addEventListener('click', clickedCenter_extra)
+                    })
+                    e.srcElement.textContent = "Zapisz"
+                } else {
+                    // console.log("ukrywam")
+                    let htmlExchange = ""
+                    let addComa = ", "
+                    const checkedElements = document.querySelectorAll(`.centerItem_extra input:checked`)
+                    if (checkedElements.length > 0) {
+                        checkedElements.forEach((element, index) => {
+                            // console.log(element.parentElement.dataset.index, element.nextElementSibling.textContent, checkBoxState.checked)
+                            if (checkedElements.length - 1 === index) { addComa = "" }
+                            htmlExchange += `<p class="line" data-index-extra="${element.parentElement.dataset.index}">${element.nextElementSibling.textContent}${addComa}</p>`
+                        }
+                        )
+                    }
+                    let wasElements = document.querySelectorAll(".point3 .addedItemsContainer .addedItem")
+                    // console.log("wasElement", wasElements)
+                    wasElements.forEach((element, index) => {
+                        // console.log("mam", index, element)
+                        if (Number(element.dataset.indexLeft) === leftWindowNumber && Number(element.dataset.indexCenter) === centerWindowNumber) {
+                            // console.log("=", element.firstElementChild.nextSibling.innerHTML)
+                            element.firstElementChild.nextSibling.innerHTML = htmlExchange
+    
+                        }
+                    })
+    
+                    newDiv3b_extra.innerHTML = "";
+                    newDiv3b_extra.classList.remove("boxCenter_extra")
+                    e.srcElement.textContent = "Edytuj"
                 }
-
-                const table2b = document.querySelectorAll('.point3 .centerItem_extra')
-                table2b.forEach((element, index) => {
-                    element.addEventListener('click', clickedCenter_extra)
-                })
-                e.srcElement.textContent = "Dopisz"
-            } else {
-                // console.log("ukrywam")
-                let htmlExchange = ""
-                let addComa = ", "
-                const checkedElements = document.querySelectorAll(`.centerItem_extra input:checked`)
-                if (checkedElements.length > 0) {
-                    checkedElements.forEach((element, index) => {
-                        // console.log(element.parentElement.dataset.index, element.nextElementSibling.textContent, checkBoxState.checked)
-                        if (checkedElements.length - 1 === index) { addComa = "" }
-                        htmlExchange += `<p class="line" data-index-extra="${element.parentElement.dataset.index}">${element.nextElementSibling.textContent}${addComa}</p>`
-                    }
-                    )
-                }
-                let wasElements = document.querySelectorAll(".point3 .addedItemsContainer .addedItem")
-                // console.log("wasElement", wasElements)
-                wasElements.forEach((element, index) => {
-                    // console.log("mam", index, element)
-                    if (Number(element.dataset.indexLeft) === leftWindowNumber && Number(element.dataset.indexCenter) === centerWindowNumber) {
-                        // console.log("=", element.firstElementChild.nextSibling.innerHTML)
-                        element.firstElementChild.nextSibling.innerHTML = htmlExchange
-
-                    }
-                })
-
-                newDiv3b_extra.innerHTML = "";
-                newDiv3b_extra.classList.remove("boxCenter_extra")
-                e.srcElement.textContent = "Edytuj"
             }
-        }
+            }
+
 
         listElements.forEach((eleme, index) => {
             if (eleme.innerHTML.indexOf("button") !== -1) {
