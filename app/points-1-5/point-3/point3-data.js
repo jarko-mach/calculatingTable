@@ -1,22 +1,5 @@
 
 
-// const methodScopeOneLine_TSO_PB_08 = "Zakres metody: (0,28 - 4000) mg/m3."
-const methodBenzenOneLine = "Zakres metody dla benzenu: (0,01 - 50) mg/m3"
-
-// {
-//     mainName: "TESTOWE",
-//     elements: [
-//         {
-//             name: "Testowe Pyły niesklasyfikowane",
-//             description: `metoda grawimetryczna 11`
-//         },
-//         {
-//             name: "Testowe Pyły drewna",
-//             description: "metoda grawimetryczna 22",
-//         }
-//     ],
-// },
-
 export const point03_TableData = [
     {
         mainName: "PYŁY",
@@ -140,7 +123,7 @@ export const point03_TableData = [
                 name: " Związki organiczne wg TSO/PB-08",
                 description: "metoda chromatografii gazowej z detekcją płomieniowo-jonizacyjną (GC-FID) wg procedury badawczej TSO/PB-08 wydanie 8 z dnia 22.01.2022r. Sposób obliczania końcowego wyniku/rezultatu badania stanowiącego sumę poszczególnych oznaczanych parametrów (np. ksylen – mieszanina izomerów: 1,2-; 1,3-; 1,4-, trimetylobenzen – mieszanina izomerów: 1,2,3-; 1,2,4-; 1,3,5-, heksanu izomery acykliczne nasycone, z wyjątkiem heksanu: 2,3-dimetylobutan i 2-metylopentan), jest zgodny z Instrukcją Roboczą TSO/IR-57. Zakres metody: (0,28 - 4000) mg/m3.",
                 displayInOneLine: true,
-                elementsOneLine: ["pentan", "benzen", "heksan", "heptan", "oktan", "nonan ", "dekan", "undekan", "aceton", "octan etylu", "octan n-butylu", "butan-1-ol", "2-metylopropan-1-ol", "cyhloheksanon", "toluen", "etylobenzen", "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-", "styren", "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ", "tetrachloroeten", "trichloroeten ", "octan winylu", "butan-2-on ", "4-metylopentan-2-onu ", "eter dietylowy ", "octan metylu", "tetrachlorek węgla", "etanol", "propan-2-ol ", "1-metoksypropan-2-ol", "2-metoksyetanol", "2-etoksyetanol", "octan 2-metoksy-1-metyloetylu", "octan 2-metoksyetylu", "octan 2-etoksyetylu", "2-butoksyetanolu", "octan 2-butoksyetylu", "octan izopropylu", "dichlorometan", "octan propylu", "metakrylan metylu", "chloroform", "propan-1-ol", "dodekan", "tridekan", "propylobenzen", "chlorobenzen ", "metakrylan butylu", "acetonitryl", "metylocykloheksan", "octan izobutylu", "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)", "benzyna ekstrakcyjna (jako suma ……)", "benzyna do lakierów (jako suma ….)", "nafta (jako suma ….)"
+                elementsOneLine: ["pentan", "benzen (zakres metody dla benzenu: (0,01 - 50) mg/m3)", "heksan", "heptan", "oktan", "nonan ", "dekan", "undekan", "aceton", "octan etylu", "octan n-butylu", "butan-1-ol", "2-metylopropan-1-ol", "cyhloheksanon", "toluen", "etylobenzen", "ksylen – mieszanina izomerów: 1,2-; 1,3-, 1,4-", "styren", "trimetylobenzen – mieszanina izomerów: (1,2,3-, 1,2,4- i 1,3,5-) ", "tetrachloroeten", "trichloroeten ", "octan winylu", "butan-2-on ", "4-metylopentan-2-onu ", "eter dietylowy ", "octan metylu", "tetrachlorek węgla", "etanol", "propan-2-ol ", "1-metoksypropan-2-ol", "2-metoksyetanol", "2-etoksyetanol", "octan 2-metoksy-1-metyloetylu", "octan 2-metoksyetylu", "octan 2-etoksyetylu", "2-butoksyetanolu", "octan 2-butoksyetylu", "octan izopropylu", "dichlorometan", "octan propylu", "metakrylan metylu", "chloroform", "propan-1-ol", "dodekan", "tridekan", "propylobenzen", "chlorobenzen ", "metakrylan butylu", "acetonitryl", "metylocykloheksan", "octan izobutylu", "heksanu izomery acykliczne nasycone, z wyjątkiem heksanu (2,2-dimetylobutan; 2,3-dimetylobutan;  3-metylopentan; 2-metylopentan)", "benzyna ekstrakcyjna (jako suma ……)", "benzyna do lakierów (jako suma ….)", "nafta (jako suma ….)"
                 ]
             },
             {
