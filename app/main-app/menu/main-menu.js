@@ -4,6 +4,7 @@ import { operationIsDone_andSaveAll } from "../../miscellaneous/misc.js";
 import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5 } from "../../points-1-5/points-1-5-create.js";
 import { dialogBox_chooseExistingReport } from "../reports/dialogBox-old-read-reports.js"
 import { dialogBox_startNewReport } from "../reports/dialogBox-new-name-report.js";
+import { exportPoint0_Word } from "../menu/main-export.js";
 
 
 
@@ -34,6 +35,15 @@ let mainMenu_tableButtonsInfo = [
         descriptionClass: "footerDescription1",
         disabled: "",
         functionPerformed: function () { dialogBox_chooseExistingReport() }
+    },
+    {
+        id: "buttonExport",
+        class: "buttons",
+        buttonText: "Eksportuj",
+        descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
+        descriptionClass: "footerDescription1",
+        disabled: "",
+        functionPerformed: function () { exportPoint0_Word() }
     },
     {
         id: "buttonPoint1",
@@ -84,17 +94,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionClass: "footerDescription1",
         disabled: "",
         functionPerformed: function () { addNewPoint_5() }
-    },
-
-    // {
-    //     id: "buttonExport",
-    //     class: "buttons",
-    //     buttonText: "Eksportuj",
-    //     descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
-    //     descriptionClass: "footerDescription1",
-    //     disabled: "",
-    //     functionPerformed: function () { alert("tu chyba na razie nic nie będzie") }
-    // },
+    }
 ]
 
 export function createMainMenu() {
@@ -122,7 +122,8 @@ export function createMainMenu() {
                            </button>`
         textDivWithButtons += tempString
         if (i === 1) { textDivWithButtons += `<p class="textMenu">Zapisane lokalnie na dysku:</p>` }
-        if (i === 2) { textDivWithButtons += `<p class="textMenu">DODAJ:</p>` }
+        if (i === 2) { textDivWithButtons += `<p class="textMenu">Widoczne:</p>` }
+        if (i === 3) { textDivWithButtons += `<p class="textMenu">DODAJ:</p>` }
     }
     elementDivWithButtons.innerHTML = textDivWithButtons
 
