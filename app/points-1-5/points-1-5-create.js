@@ -5,6 +5,7 @@ import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
 import { addPoint3 } from "./point-3/point3-create.js"
 import { dialogBox_createPoint5_selectTableType } from "./point-5/dialogBox-table5a-or-5b.js"
+import { addPoint7 } from "./point-7/point7-create.js"
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
 
@@ -45,6 +46,9 @@ const createNewDivPoints = (number) => {
             case 5:
                 mainText = `5. ZESTAWIENIE BADAŃ`
                 break;
+            case 7:
+                mainText = `7. OMÓWIENIE BADAŃ`
+                break;
             default:
                 console.log(`Sorry, we are out of ${number}.`);
         }
@@ -80,6 +84,9 @@ const createNewDivPoints = (number) => {
             case 5:
                 dialogBox_createPoint5_selectTableType()
                 break;
+            case 7:
+                addPoint7();
+                break;
             default:
                 console.log(`Sorry, we are out of ${number}.`);
         }
@@ -108,4 +115,9 @@ export const addNewPoint_4 = () => {
 export const addNewPoint_5 = () => {
     createNewDivPoints(5)
     // saveReportAndTable()
+}
+
+export const addNewPoint_7 = () => {
+    createNewDivPoints(7)
+    saveReportAndTable()
 }

@@ -75,7 +75,7 @@ export const addPoint3 = () => {
 
         const addToPoint_removeFromPoint_3_3 = (e) => {
 
-            console.log("./././.")
+            // console.log("./././.")
 
             const checkExistingAddedItems = (leftColumnNumber, centerColumnNumber) => {
                 let identicalElementFound = false

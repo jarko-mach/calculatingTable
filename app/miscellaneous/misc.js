@@ -87,6 +87,8 @@ export const tempInformations = [
     { created: false, tableName: "" },
     { created: false, tableName: "" },
     { created: false, tableName: "" },
+    { created: false, tableName: "" },
+    { created: false, tableName: "" },
     { created: false, tableName: "" }
 ]
 

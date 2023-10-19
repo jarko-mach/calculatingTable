@@ -37,7 +37,7 @@ export const exportPoint0_Word = () => {
 
     let dataReport = JSON.parse(localStorage.getItem(`${localReportName}Report`))
     let dataTable = JSON.parse(localStorage.getItem(localTableName))
-    console.log("dataReport", dataReport)
+    // console.log("dataReport", dataReport)
     // console.log("dataTable", dataTable)
 
     // debugger
@@ -566,7 +566,7 @@ export const exportPoint0_Word = () => {
     const point_3_1 = () => {
         let myString = dataReport.point3.created ? {
             ...dataReport.point3.elements.map((element, index) => {
-                console.log("element", index, element)
+                // console.log("element", index, element)
                 return new docx.Paragraph({
                     style: "normal",
                     children: [
@@ -584,7 +584,7 @@ export const exportPoint0_Word = () => {
                 })
             }),
         } : " "
-        console.log("myString", myString)
+        // console.log("myString", myString)
         // return myString
     }
 
@@ -822,7 +822,7 @@ export const exportPoint0_Word = () => {
                     // point_3_1(),
 
                     ...dataReport.point3.elements.map((element, index) => {
-                        console.log("element", index, element)
+                        // console.log("element", index, element)
                         return new docx.Paragraph({
                             style: "normal",
                             children: [
