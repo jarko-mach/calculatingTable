@@ -27,7 +27,7 @@ import { tempInformations, readTemporaryReportName } from "../../../miscellaneou
 
 // START
 
-export const exportnewTable_Word = () => {
+export const exportnewTable5a_Word = () => {
     const localReportName = tempInformations[0].reportName
     const localTableName = tempInformations[5].tableName
     // const localTabName = tabName.slice(1, tabName.length - 1)
@@ -57,7 +57,7 @@ export const exportnewTable_Word = () => {
                     },
                     children: [
                         new docx.Paragraph({
-                            style: "headerTxt",
+                            style: "table5aHeaderTxt",
                             children: [
                                 new docx.TextRun({
                                     text: "TECHNO-SERVICE S.A.",
@@ -85,7 +85,7 @@ export const exportnewTable_Word = () => {
                         type: docx.WidthType.DXA,
                     },
                     children: [new docx.Paragraph({
-                        style: "headerTxt",
+                        style: "table5aHeaderTxt",
                         text: `Sprawozdanie NR TSO/${dataReport.numberTSO}/${dataReport.yearTSO}`,
                     })
                     ],
@@ -103,7 +103,7 @@ export const exportnewTable_Word = () => {
                         type: docx.WidthType.DXA,
                     },
                     children: [new docx.Paragraph({
-                        style: "headerTxt",
+                        style: "table5aHeaderTxt",
                         text: `Strona/Stron: 1/${dataReport.allPages}`,
                     })
                     ],
@@ -114,13 +114,14 @@ export const exportnewTable_Word = () => {
 
 
     const paragraphTabela1 = new docx.Paragraph({
-        style: "table1",
+        style: "table5a_number1",
         text: "Tabela nr 1",
         alignment: AlignmentType.LEFT,
+        pageBreakBefore: true,
     })
 
     const paragraphBadania = new docx.Paragraph({
-        style: "title",
+        style: "table5a_title",
         text: "BADANIA OŚWIETLENIA ELEKTRYCZNEGO",
         alignment: AlignmentType.CENTER,
     })
@@ -139,7 +140,7 @@ export const exportnewTable_Word = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "table5a_customer",
                                 text: "Nazwa i adres Klienta:",
                             }),
                         ],
@@ -151,7 +152,7 @@ export const exportnewTable_Word = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "table5a_customer",
                                 children: [
                                     new docx.TextRun({
                                         text: `${dataReport.customerName}`,
@@ -171,7 +172,7 @@ export const exportnewTable_Word = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "table5a_customer",
                                 text: "Miejsce wykonania badań:",
                             }),
                         ],
@@ -183,7 +184,7 @@ export const exportnewTable_Word = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "table5a_customer",
                                 children: [
                                     new docx.TextRun({
                                         text: `${dataReport.researchAddress}`,
@@ -203,7 +204,7 @@ export const exportnewTable_Word = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "table5a_customer",
                                 text: "Data wykonania badań:",
                             }),
                         ],
@@ -215,7 +216,7 @@ export const exportnewTable_Word = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "table5a_customer",
                                 children: [
                                     new docx.TextRun({
                                         text: `${dataReport.researchDate}`,
@@ -243,7 +244,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "1",
                 })
                 ],
@@ -260,7 +261,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "2",
                 })],
             }),
@@ -276,7 +277,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "3",
                 })],
             }),
@@ -292,7 +293,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "4",
                 })],
             }),
@@ -308,7 +309,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "5",
                 })
                 ],
@@ -325,7 +326,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "6",
                 })],
             }),
@@ -341,7 +342,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "7",
                 })],
             }),
@@ -357,7 +358,7 @@ export const exportnewTable_Word = () => {
                     type: docx.WidthType.DXA,
                 },
                 children: [new docx.Paragraph({
-                    style: "tableHeaderNumbers",
+                    style: "table5aHeaderNumbers",
                     text: "8",
                 })],
             }),
@@ -380,7 +381,7 @@ export const exportnewTable_Word = () => {
                 rowSpan: 2,
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "Lp.",
                 })
                 ],
@@ -399,7 +400,7 @@ export const exportnewTable_Word = () => {
                 rowSpan: 2,
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "Miejsce pomiarów (według schematu)",
                 })],
             }),
@@ -418,7 +419,7 @@ export const exportnewTable_Word = () => {
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [
                     new docx.Paragraph({
-                        style: "headerTxt",
+                        style: "table5aHeaderTxt",
                         children: [
                             new docx.TextRun({
                                 text: "Zmierzone natężenie oświetlenia elektrycznego ",
@@ -448,7 +449,7 @@ export const exportnewTable_Word = () => {
                 columnSpan: 2,
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     children: [
                         new docx.TextRun({
                             text: "Eksploatacyjne natężenie oświetlenia elektrycznego ",
@@ -466,7 +467,7 @@ export const exportnewTable_Word = () => {
                             text: " [lx]",
                         })
                     ],
-                    
+
                 })],
             }),
             new docx.TableCell({
@@ -483,7 +484,7 @@ export const exportnewTable_Word = () => {
                 columnSpan: 2,
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     children: [
                         new docx.TextRun({
                             text: "Równomierność oświetlenia elektrycznego ",
@@ -515,7 +516,7 @@ export const exportnewTable_Word = () => {
                 rowSpan: 2,
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "Zgodność z PN",
                 })],
             }),
@@ -537,7 +538,7 @@ export const exportnewTable_Word = () => {
                 },
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "z pomiarów",
                 })
                 ],
@@ -555,7 +556,7 @@ export const exportnewTable_Word = () => {
                 },
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "wg normy",
                 })],
             }),
@@ -572,7 +573,7 @@ export const exportnewTable_Word = () => {
                 },
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "z pomiarów",
                 })],
             }),
@@ -589,7 +590,7 @@ export const exportnewTable_Word = () => {
                 },
                 verticalAlign: docx.VerticalAlign.CENTER,
                 children: [new docx.Paragraph({
-                    style: "headerTxt",
+                    style: "table5aHeaderTxt",
                     text: "wg normy",
                 })],
             }),
@@ -629,8 +630,8 @@ export const exportnewTable_Word = () => {
         styles: {
             paragraphStyles: [
                 {
-                    id: "tableHeaderNumbers",
-                    name: "Numerki",
+                    id: "table5aHeaderNumbers",
+                    name: "tab5a-Numerki",
                     run: {
                         italics: true,
                         size: "8pt",
@@ -641,8 +642,8 @@ export const exportnewTable_Word = () => {
                     },
                 },
                 {
-                    id: "headerTxt",
-                    name: "Nagłówek tabeli",
+                    id: "table5aHeaderTxt",
+                    name: "tab5a-Nagłówek tabeli",
                     run: {
                         bold: true,
                         size: "8pt",
@@ -653,11 +654,11 @@ export const exportnewTable_Word = () => {
                     },
                 },
                 {
-                    id: "table1",
-                    name: "Tabela nr 1",
+                    id: "table5a_number1",
+                    name: "tab5a-Tabela nr 1",
                     run: {
                         bold: true,
-                        size: "14pt",
+                        size: "11pt",
                         font: "Calibri",
                     },
                     paragraph: {
@@ -666,11 +667,11 @@ export const exportnewTable_Word = () => {
                     },
                 },
                 {
-                    id: "title",
-                    name: "Tytuł",
+                    id: "table5a_title",
+                    name: "tab5a-Tytuł",
                     run: {
                         bold: true,
-                        size: "14pt",
+                        size: "12pt",
                         font: "Calibri",
                     },
                     paragraph: {
@@ -679,8 +680,8 @@ export const exportnewTable_Word = () => {
                     },
                 },
                 {
-                    id: "customer",
-                    name: "Klient",
+                    id: "table5a_customer",
+                    name: "tab5a-Klient",
                     run: {
                         // bold: true,
                         size: "11pt",
@@ -692,8 +693,8 @@ export const exportnewTable_Word = () => {
                     },
                 },
                 {
-                    id: "normalData",
-                    name: "treść",
+                    id: "table5a_normalData",
+                    name: "tab5a-treść",
                     run: {
                         // italics: true,
                         size: "9pt",
@@ -752,12 +753,12 @@ export const exportnewTable_Word = () => {
                     },
                 },
                 children: [
-                    tableTS3Columns,
+
                     paragraphTabela1,
                     paragraphBadania,
                     customerTable,
                     new docx.Paragraph({
-                        style: "headerTxt",
+                        style: "table5aHeaderTxt",
                         text: "  ",
                     }),
                     new docx.Table({
@@ -785,7 +786,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 alignment: docx.AlignmentType.CENTER,
                                                 children: [
                                                     new docx.TextRun({
@@ -809,7 +810,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 alignment: docx.AlignmentType.LEFT,
                                                 children: [
                                                     new docx.TextRun({
@@ -832,7 +833,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 text: element.info.measurings,
                                             })],
                                         }),
@@ -849,7 +850,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 children: [
                                                     new docx.TextRun({
                                                         text: `${removeFalse(element.info.wynik1)}`,
@@ -871,7 +872,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 text: element.info.norma1,
                                             })
                                             ],
@@ -889,7 +890,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
 
                                                 children: [
                                                     new docx.TextRun({
@@ -912,7 +913,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 text: element.info.norma2,
                                             })],
                                         }),
@@ -929,7 +930,7 @@ export const exportnewTable_Word = () => {
                                                 type: docx.WidthType.DXA,
                                             },
                                             children: [new docx.Paragraph({
-                                                style: "normalData",
+                                                style: "table5a_normalData",
                                                 text: element.info.compatibility,
                                             })],
                                         }),
@@ -942,11 +943,14 @@ export const exportnewTable_Word = () => {
             },
         ],
     });
+    return doc
+}
 
+export const exportnewTable_Word = () => {
+    let doc = exportnewTable5a_Word()
     docx.Packer.toBlob(doc).then((blob) => {
         // console.log("blob", blob);
-        saveAs(blob, "example.docx");
+        saveAs(blob, "tabelka5a.docx");
         // console.log("Document created successfully");
     });
-
 }
