@@ -3,6 +3,7 @@
 import { readTemporaryReportName } from "../../miscellaneous/misc.js";
 import { point03_TableData } from "./point3-data.js";
 import { readAndDisplayAllAdedPoints } from "../points-1-5-read-from-report.js";
+import { transformString_JsonToHtml, transformString_htmlToJson } from "./point3-data-operations.js";
 
 
 export const addPoint3 = () => {
@@ -58,17 +59,22 @@ export const addPoint3 = () => {
 
         const contentOfRightWindow = (selectedNumber) => {
             let localLeftWindowNumber = document.querySelector(".boxLeft .addedColor").dataset.index
-            let localCode = `<div class="contentRight finger" id="description" > ${point03_TableData[Number(localLeftWindowNumber)].elements[selectedNumber].description} </div>`
+            let localCode = `<div class="contentRight finger" id="description" > ${transformString_JsonToHtml(point03_TableData[Number(localLeftWindowNumber)].elements[selectedNumber].description)} </div>`
+            // correctDisplayingInfo(point03_TableData[Number(localLeftWindowNumber)].elements[selectedNumber].description)
             return localCode
         }
 
         const name_Bold = (evt) => {
+            if (evt.target.tagName !== "P" && evt.target.tagName !== "INPUT") return;
+            // console.log("bold", evt.target.tagName)
             evt.currentTarget.classList.add("bolded")
             const centerNumber = Number(evt.currentTarget.dataset.index)
             newDiv3c.innerHTML = contentOfRightWindow(centerNumber)
         }
 
         const name_UnBold = (evt) => {
+            if (evt.target.tagName !== "P" && evt.target.tagName !== "INPUT") return;
+            // console.log("un -- bold", evt.target.tagName)
             const locElement = document.querySelector(".boxCenter .bolded")
             if (locElement) { locElement.classList.remove("bolded") }
         }
@@ -111,7 +117,7 @@ export const addPoint3 = () => {
                 let locElement = document.querySelector(".addedItemsContainer")
                 let locWasHtml = locElement.innerHTML
                 let locIsHtml = ""
-                locIsHtml = `<div class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description}</descr></div>`
+                locIsHtml = `<div class="addedItem" data-index-left=${localLeftWindowNumber} data-index-center=${localCenterWindowNumber}><input type="checkbox"><span>${point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].name}</span><descr>${transformString_JsonToHtml(point03_TableData[localLeftWindowNumber].elements[localCenterWindowNumber].description)}</descr></div>`
                 locElement.innerHTML = `${locWasHtml}${locIsHtml}`
                 buttonAddToReport.disabled = (document.querySelectorAll(".addedItemsContainer .addedItem").length) ? false : true
             } else {
@@ -161,6 +167,7 @@ export const addPoint3 = () => {
 
         const listElements = document.querySelectorAll(".point3 .centerItem")
         listElements.forEach((eleme, index) => {
+            console.log("1", index, eleme)
             eleme.addEventListener("click", addToPoint_removeFromPoint_3_3)
             eleme.addEventListener("mouseout", name_UnBold)
             eleme.addEventListener("mouseover", name_Bold)
@@ -180,27 +187,27 @@ export const addPoint3 = () => {
 
                 if (e.srcElement.textContent === "Edytuj") {
                     newDiv3b_extra.classList.add("boxCenter_extra")
-    
+
                     point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.sort()
-    
+
                     const tableSpanLine = []
                     tableSpanLine.length = point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.length
                     tableSpanLine.fill(false)
-    
+
                     const addedElements = document.querySelectorAll(".addedItemsContainer .addedItem span .line")
                     addedElements.forEach((element, index) => {
-    
+
                         if (Number(element.closest(".addedItem").dataset.indexLeft) === leftWindowNumber && Number(element.closest(".addedItem").dataset.indexCenter) === centerWindowNumber) {
                             tableSpanLine[Number(element.dataset.indexExtra)] = true
                         }
                     })
                     // console.log("addedElements", addedElements, tableSpanLine)
-    
+
                     point03_TableData[leftWindowNumber].elements[centerWindowNumber].elementsOneLine.forEach((element, index) => {
                         let inputChecked = tableSpanLine[index] ? " checked " : ""
                         newDiv3b_extra.innerHTML += `<div class="centerItem_extra finger" id="name_extra${index}" data-index="${index}"><input type="checkbox"${inputChecked}><p>${element}</p></div>`
                     })
-    
+
                     const clickedCenter_extra = (evt) => {
                         const checkBoxState = document.querySelector(`#name_extra${Number(evt.currentTarget.dataset.index)} input`)
                         // console.log("1", evt.currentTarget, "2", checkBoxState.checked)
@@ -208,7 +215,7 @@ export const addPoint3 = () => {
                         // console.log(locClickedElement)
                         if (locClickedElement !== 'INPUT') { checkBoxState.checked = !checkBoxState.checked }
                     }
-    
+
                     const table2b = document.querySelectorAll('.point3 .centerItem_extra')
                     table2b.forEach((element, index) => {
                         element.addEventListener('click', clickedCenter_extra)
@@ -234,16 +241,16 @@ export const addPoint3 = () => {
                         if (Number(element.dataset.indexLeft) === leftWindowNumber && Number(element.dataset.indexCenter) === centerWindowNumber) {
                             // console.log("=", element.firstElementChild.nextSibling.innerHTML)
                             element.firstElementChild.nextSibling.innerHTML = htmlExchange
-    
+
                         }
                     })
-    
+
                     newDiv3b_extra.innerHTML = "";
                     newDiv3b_extra.classList.remove("boxCenter_extra")
                     e.srcElement.textContent = "Edytuj"
                 }
             }
-            }
+        }
 
 
         listElements.forEach((eleme, index) => {
@@ -374,7 +381,7 @@ export const addPoint3 = () => {
         // debugger
         const locElementts = document.querySelectorAll(".addedItemsContainer .addedItem")
         locElementts.forEach((elem, indx) => {
-            dataReport.point3.elements.push({ name: elem.firstElementChild.nextElementSibling?.textContent, description: elem.firstElementChild.nextElementSibling.nextElementSibling?.textContent })
+            dataReport.point3.elements.push({ name: elem.firstElementChild.nextElementSibling?.textContent, description: transformString_htmlToJson(elem.firstElementChild.nextElementSibling.nextElementSibling?.innerHTML) })
             // console.log("items", indx, elem, dataReport, readTemporaryReportName())
         })
         localStorage.setItem(`${readTemporaryReportName()}Report`, JSON.stringify(dataReport))

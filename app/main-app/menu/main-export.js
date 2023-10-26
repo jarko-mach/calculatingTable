@@ -131,18 +131,6 @@ export const exportPoint0_Word = () => {
         alignment: AlignmentType.CENTER,
     })
 
-    // const paragraphEmpty2 = () => {
-    //     let oneParagraph = new docx.Paragraph({
-    //         style: "title",
-    //         text: `.../.../.../...`,
-    //         alignment: AlignmentType.CENTER,
-    //     })
-    //     let myString = `children: [${oneParagraph}]`
-    //     console.log("oneParagraph", oneParagraph)
-    //     return myString
-    // }
-
-
     const paragraphBadania = new docx.Paragraph({
         style: "title",
         text: "Badania oświetlenia elektrycznego",
@@ -154,6 +142,26 @@ export const exportPoint0_Word = () => {
         text: "Tabela nr 1",
         alignment: AlignmentType.LEFT,
     })
+
+    const transformString_F = (information) => {
+        return new docx.Paragraph({
+            style: "customer",
+            children: [
+                new docx.TextRun({
+                    text: "Objętość to 3 m",
+                    // bold: true,
+                    // superScript: true,
+                }),
+                new docx.TextRun({
+                    text: "3",
+                    superScript: true,
+                }),
+                new docx.TextRun({
+                    text: " kamieni",
+                })
+            ],
+        })
+    }
 
     const widthCustomerColumn = convertMillimetersToTwip(40)
     const widthCustomer3Columns = 3 * widthCustomerColumn
@@ -190,12 +198,14 @@ export const exportPoint0_Word = () => {
                         },
                         columnSpan: 3,
                         children: [
+                            transformString_F(),
                             new docx.Paragraph({
                                 style: "customer",
                                 children: [
                                     new docx.TextRun({
                                         text: `${dataReport.customerName}`,
                                         bold: true,
+                                        // superScript: true,
                                     })
                                 ],
                             }),
@@ -860,12 +870,12 @@ export const exportPoint0_Word = () => {
         ],
     });
 
-    
+
     docx.Packer.toBlob(doc).then((blob) => {
         // console.log("blob", blob);
         saveAs(blob, "example.docx");
         // console.log("Document created successfully");
     });
-    
+
     exportnewTable_Word()
 }

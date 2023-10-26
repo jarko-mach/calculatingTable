@@ -44,7 +44,13 @@ export const localMemory_readReport = (reportName) => {
         }
         nodeList[nodeListCounter].value = dataReport[`${element}`]
         if (dataReport[`${element}`]) { nodeList[nodeListCounter].classList.remove("fieldToFill") }
-        if (nodeList[nodeListCounter].value.length > 35) nodeList[nodeListCounter].rows = Math.ceil(nodeList[nodeListCounter].value.length / 35)
+
+        let findN = nodeList[nodeListCounter].value.matchAll(/\n/g)
+        let findNCounter = [...findN].length
+        let extraLines = (findNCounter === 0) ? 0 : findNCounter
+        let longTextLines = (nodeList[nodeListCounter].value.length > 35) ? Math.ceil(nodeList[nodeListCounter].value.length / 35) : 1
+        nodeList[nodeListCounter].rows = extraLines + longTextLines
+        // console.log("dodano wierszy", nodeList[nodeListCounter].rows)
         // console.log("22 dodaje kolejne wiersze gdy tekst jest długi", dataReport[`${element}`])
         nodeListCounter++
     }

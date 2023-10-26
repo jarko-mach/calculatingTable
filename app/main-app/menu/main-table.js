@@ -3,14 +3,15 @@
 import { readTemporaryReportName } from "../../miscellaneous/misc.js"
 
 export const createMainTable = () => {
-
+    
     const removeFieldToFill = (e) => {
         // console.log("fieldToFill: e", e)
         e.target.classList.remove("fieldToFill")
     }
-
+    
     const foundElement = document.querySelector(".entry")
-    // console.log("foundElement", foundElement)
+    console.log("foundElement", foundElement)
+    // debugger
     foundElement.innerHTML =
         `<div class="reportTitle">
             <h1> SPRAWOZDANIE NR TSO /
