@@ -17,6 +17,6 @@ export const read_point3 = () => {
     newDiv3.innerHTML = ""
     dataReport.point3.elements.forEach((eleme, index) => {
         newDiv3.innerHTML += (eleme.description) ? `<div class="addedElement"><input type="text" class="point3input1" value="${eleme.name}"><textarea class="point3input2" rows="${Math.round(eleme.description.length / 84)}">${eleme.description}</textarea></div>` : `<div class="addedElement"><input type="text" class="point3input1" value="${eleme.name}"></div>`
-        console.log(index, eleme.description)
+        // console.log(index, eleme.description)
     })
 }

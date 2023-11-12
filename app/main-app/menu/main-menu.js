@@ -4,7 +4,7 @@ import { operationIsDone_andSaveAll } from "../../miscellaneous/misc.js";
 import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5, addNewPoint_7 } from "../../points-1-5/points-1-5-create.js";
 import { dialogBox_chooseExistingReport } from "../reports/dialogBox-old-read-reports.js"
 import { dialogBox_startNewReport } from "../reports/dialogBox-new-name-report.js";
-import { exportPoint0_Word } from "../menu/main-export.js";
+import { exportWord } from "../menu/main-export.js";
 
 
 
@@ -43,7 +43,7 @@ let mainMenu_tableButtonsInfo = [
         descriptionText: "<p>Umożliwia wyeksportowanie sprawozdania w formacie DOCX, który można otwierać korzystając np. z programu Word.</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
-        functionPerformed: function () { exportPoint0_Word() }
+        functionPerformed: function () { exportWord() }
     },
     {
         id: "buttonPoint1",

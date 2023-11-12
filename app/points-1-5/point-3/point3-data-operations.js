@@ -1,6 +1,5 @@
 "use strict"
 
-// import { find } from "lodash";
 import { law_regulations } from "./point3-data-law.js"
 
 export const transformString_JsonToHtml = (information) => {
@@ -30,26 +29,24 @@ export const transformString_JsonToHtml = (information) => {
 }
 
 export const transformString_JsonToWord = (information) => {
-    // console.log("PLUM")
-    const information_Table = [];
-    // information_Table.push({position: "11", element: "12"})
-    let stringToFind_Table = [
 
-        {
-            js_on: "\n",
-            wo_rd: { text: "", break: 1, },
-        },
-        {
-            js_on: "&#178",
-            wo_rd: { text: "2", superScript: true, }
-        },
-        {
-            js_on: "&#179",
-            wo_rd: { text: "3", superScript: true, }
-        },
+    const elementsToReplace_Table = [];
+
+    let stringsToReplace_Table = [
+        { js_on: "\n", wo_rd: { text: "", break: 1, }, },
+        { js_on: "&#178", wo_rd: { text: "2", superScript: true, } },
+        { js_on: "&#179", wo_rd: { text: "3", superScript: true, } },
     ]
     let myString
     let myArr
+
+    stringsToReplace_Table.forEach((element_js) => {
+        myString = information.matchAll(element_js.js_on)
+        myArr = [...myString]
+        myArr.forEach((element) => {
+            elementsToReplace_Table.push({ position: element.index, js_on: element_js.js_on, wo_rd: element_js.wo_rd })
+        })
+    })
 
     function mySort(a, b) {
         let A = a.position;
@@ -58,21 +55,41 @@ export const transformString_JsonToWord = (information) => {
         if (A > B) { return 2 }
         return 0
     }
+    elementsToReplace_Table.sort(mySort)
 
-    stringToFind_Table.forEach((element_js) => {
-        myString = information.matchAll(element_js.js_on)
-        myArr = [...myString]
-        myArr.forEach((element) => {
-            // console.log("22", element.index)
-            information_Table.push({ position: element.index, element: element_js.js_on })
-        })
-    })
-    information_Table.sort(mySort)
+    const onlyText_Table = []
+    let stringCharNumber = 0
 
-    return information_Table
+    for (let i = 0; i < elementsToReplace_Table.length; i++) {
+        onlyText_Table[i] = information.substring(stringCharNumber, elementsToReplace_Table[i].position)
+        stringCharNumber = elementsToReplace_Table[i].position + elementsToReplace_Table[i].js_on.length
+    }
+
+    // console.log(stringCharNumber, information.length)
+
+    if (stringCharNumber < information.length) {
+        onlyText_Table[elementsToReplace_Table.length] = information.substring(stringCharNumber, information.length)
+        elementsToReplace_Table.push({ position: information.length, js_on: "", wo_rd: "" })
+    }
+
+    let wordTable = []
+    let wordTableCounter = 0
+    // console.log("onlyText_Table", onlyText_Table, "elementsToReplace_Table", elementsToReplace_Table)
+
+    for (let i = 0; i < onlyText_Table.length; i++) {
+        // console.log("elemnt:", i, onlyText_Table[i])
+        wordTable.push({ text: onlyText_Table[i] })
+        wordTable.push(elementsToReplace_Table[i].wo_rd)
+    }
+    // wordTable.push({ text: onlyText_Table[i] })
+
+    // console.log("elementsToReplace_Table", elementsToReplace_Table)
+    // console.log("onlyText_Table ", onlyText_Table)
+    // console.log("word ", wordTable)
+    return wordTable;
 }
 
-console.log(transformString_JsonToWord("Ala \n AS&#178 \n i krowa AS&#179 \n "))
+// console.log(transformString_JsonToWord("Ala \n ma ASA&#178 \n i objętość to 12 m&#179 \n "))
 
 export const transformString_htmlToJson = (information) => {
     // console.log("1", information)

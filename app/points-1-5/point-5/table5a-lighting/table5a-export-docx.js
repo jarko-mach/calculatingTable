@@ -27,17 +27,334 @@ import { tempInformations, readTemporaryReportName } from "../../../miscellaneou
 
 // START
 
+const docTable5a = () => {
+    return new docx.Document({
+        // pageOrientation: docx.PageOrientation.LANDSCAPE,
+        styles: {
+            paragraphStyles: [
+                {
+                    id: "table5aHeaderNumbers",
+                    name: "tab5a-Numerki",
+                    run: {
+                        italics: true,
+                        size: "8pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                    },
+                },
+                {
+                    id: "table5aHeaderTxt",
+                    name: "tab5a-Nagłówek tabeli",
+                    run: {
+                        bold: true,
+                        size: "8pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                    },
+                },
+                {
+                    id: "table5a_number1",
+                    name: "tab5a-Tabela nr 1",
+                    run: {
+                        bold: true,
+                        size: "11pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.RIGHT,
+                        spacing: { line: 300, before: 650, after: 0 },
+                    },
+                },
+                {
+                    id: "table5a_title",
+                    name: "tab5a-Tytuł",
+                    run: {
+                        bold: true,
+                        size: "12pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        spacing: { line: 300, before: 250, after: 320 },
+                    },
+                },
+                {
+                    id: "table5a_customer",
+                    name: "tab5a-Klient",
+                    run: {
+                        // bold: true,
+                        size: "11pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.LEFT,
+                        spacing: { line: 300, before: 50, after: 32 },
+                    },
+                },
+                {
+                    id: "table5a_normalData",
+                    name: "tab5a-treść",
+                    run: {
+                        // italics: true,
+                        size: "9pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
+                        spacing: { line: 200, before: 20, after: 20 },
+                    },
+                },
+            ],
+            characterStyles: [
+                {
+                    id: "small",
+                    name: "Small",
+                    run: {
+                        size: "8pt",
+                    },
+                },
+                {
+                    id: "underln",
+                    name: "podkreślenie",
+                    run: {
+                        size: "9pt",
+                        underline: {
+                            type: UnderlineType.THICK,
+                        },
+                    },
+                },
+                {
+                    id: "italic",
+                    name: "kursywa",
+                    run: {
+                        italics: true,
+                    },
+                }
+            ],
+        },
+        sections: [
+            {
+                properties: {
+                    page: {
+                        size: {
+                            // orientation: PageOrientation.PORTRAIT,
+                            width: "210mm",
+                            height: "297mm",
+
+                        },
+                        margin: {
+                            top: "20mm",
+                            right: "10mm",
+                            bottom: "10mm",
+                            left: "20mm",
+                        }
+                    },
+                },
+                children: [
+
+                    paragraphTabela1,
+                    paragraphBadania,
+                    customerTable,
+                    new docx.Paragraph({
+                        style: "table5aHeaderTxt",
+                        text: "  ",
+                    }),
+                    new docx.Table({
+                        // borders: TableBorders.NONE,
+                        borders: docx.TableBorders.NONE,
+                        alignment: AlignmentType.CENTER,
+                        columnWidths: [convertMillimetersToTwip(6), convertMillimetersToTwip(65), convertMillimetersToTwip(45), convertMillimetersToTwip(14), convertMillimetersToTwip(12), convertMillimetersToTwip(11), convertMillimetersToTwip(11), convertMillimetersToTwip(12)],
+                        rows: [
+                            tableHeader1Text,
+                            tableHeader2Text,
+                            tableRowNumbers,
+                            ...dataTable.map((element, index) => {
+                                return new docx.TableRow({
+                                    children: [
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.TOP,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(6),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                alignment: docx.AlignmentType.CENTER,
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: element.info.numberLp,
+                                                        bold: element.typeOfRow === "rowTextBold" ? true : false,
+                                                    })
+                                                ],
+                                            })
+                                            ],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.TOP,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(65),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                alignment: docx.AlignmentType.LEFT,
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: element.info.place,
+                                                        bold: element.typeOfRow === "rowTextBold" ? true : false,
+                                                    })
+                                                ],
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.CENTER,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(45),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                text: element.info.measurings,
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(14),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: `${removeFalse(element.info.wynik1)}`,
+                                                        style: `${setUnderline(element.info.wynik1)}`,
+                                                    }),
+                                                ]
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(12),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                text: element.info.norma1,
+                                            })
+                                            ],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(11),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+
+                                                children: [
+                                                    new docx.TextRun({
+                                                        text: `${removeFalse(element.info.wynik2)}`,
+                                                        style: `${setUnderline(element.info.wynik2)}`,
+                                                    }),
+                                                ]
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(11),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                text: element.info.norma2,
+                                            })],
+                                        }),
+                                        new docx.TableCell({
+                                            verticalAlign: docx.VerticalAlign.BOTTOM,
+                                            borders: {
+                                                top: { style: BorderStyle.NONE, size: 0 * 8, color: "FFFFFF" },
+                                                bottom: addBottomBorder(element.typeOfRow),
+                                                left: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                                right: { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" },
+                                            },
+                                            width: {
+                                                size: convertMillimetersToTwip(12),
+                                                type: docx.WidthType.DXA,
+                                            },
+                                            children: [new docx.Paragraph({
+                                                style: "table5a_normalData",
+                                                text: element.info.compatibility,
+                                            })],
+                                        }),
+                                    ],
+                                })
+                            })
+                        ],
+                    }),
+                ],
+            },
+        ],
+    });
+}
+
 export const exportnewTable5a_Word = () => {
     const localReportName = tempInformations[0].reportName
     const localTableName = tempInformations[5].tableName
-    // const localTabName = tabName.slice(1, tabName.length - 1)
 
     let dataReport = JSON.parse(localStorage.getItem(`${localReportName}Report`))
     let dataTable = JSON.parse(localStorage.getItem(localTableName))
-    // console.log("dataReport", dataReport)
-    // console.log("dataTable", dataTable)
 
-    // debugger
     const tableTS3Columns = new docx.Table({
         alignment: AlignmentType.CENTER,
         verticalAlign: docx.VerticalAlign.CENTER,
@@ -111,7 +428,6 @@ export const exportnewTable5a_Word = () => {
             ],
         })]
     })
-
 
     const paragraphTabela1 = new docx.Paragraph({
         style: "table5a_number1",
@@ -624,7 +940,7 @@ export const exportnewTable5a_Word = () => {
             return { style: BorderStyle.THICK, size: 0.7 * 8, color: "000000" }
         }
     }
-
+    // docTable5a()
     const doc = new docx.Document({
         // pageOrientation: docx.PageOrientation.LANDSCAPE,
         styles: {

@@ -2,7 +2,8 @@
 "use strict";
 
 import { tempInformations } from "../../miscellaneous/misc.js";
-import { exportnewTable_Word } from "../../points-1-5/point-5/table5a-lighting/export-word-docx.js"
+import { exportnewTable_Word } from "../../points-1-5/point-5/table5a-lighting/table5a-export-docx.js"
+import { transformString_JsonToWord } from "../../points-1-5/point-3/point3-data-operations.js";
 
 import {
     Document,
@@ -30,7 +31,8 @@ import {
 // import { PageNumber } from "docx";
 
 
-export const exportPoint0_Word = () => {
+
+export const exportWord = () => {
     const localReportName = tempInformations[0].reportName
     const localTableName = tempInformations[5].tableName
     // const localTabName = tabName.slice(1, tabName.length - 1)
@@ -125,11 +127,24 @@ export const exportPoint0_Word = () => {
         alignment: AlignmentType.CENTER,
     })
 
-    const paragraphEmpty = new docx.Paragraph({
-        style: "title",
-        text: ``,
-        alignment: AlignmentType.CENTER,
-    })
+    const paragraphEmpty = (counter) => {
+        let myTable = new Array(counter)
+        myTable.fill("121")
+        // console.log("mytable", myTable, counter)
+        return new docx.Paragraph({
+            style: "title",
+            children: [
+                ...myTable.map((element, index) => {
+                    return new docx.TextRun({
+                        // style: "title",
+                        text: "  ",
+                        alignment: AlignmentType.CENTER,
+                        break: 1,
+                    })
+                })
+            ]
+        })
+    }
 
     const paragraphBadania = new docx.Paragraph({
         style: "title",
@@ -143,23 +158,37 @@ export const exportPoint0_Word = () => {
         alignment: AlignmentType.LEFT,
     })
 
-    const transformString_F = (information) => {
+    const convertingParagraph = (info, isBold, isStyle) => {
+        let myTable = transformString_JsonToWord(info)
         return new docx.Paragraph({
-            style: "customer",
+            style: isStyle,
             children: [
-                new docx.TextRun({
-                    text: "Objętość to 3 m",
-                    // bold: true,
-                    // superScript: true,
+                ...myTable.map((element, index) => {
+                    return new docx.TextRun({
+                        text: element.text,
+                        break: element.break,
+                        superScript: element.superScript,
+                        bold: isBold,
+                    })
                 }),
-                new docx.TextRun({
-                    text: "3",
-                    superScript: true,
+            ]
+        })
+    }
+
+    const convertingText = (info, isBold, isStyle) => {
+        let myTable = transformString_JsonToWord(info)
+        return new docx.TextRun({
+            style: isStyle,
+            children: [
+                ...myTable.map((element, index) => {
+                    return new docx.TextRun({
+                        text: element.text,
+                        break: element.break,
+                        superScript: element.superScript,
+                        bold: isBold,
+                    })
                 }),
-                new docx.TextRun({
-                    text: " kamieni",
-                })
-            ],
+            ]
         })
     }
 
@@ -198,17 +227,7 @@ export const exportPoint0_Word = () => {
                         },
                         columnSpan: 3,
                         children: [
-                            transformString_F(),
-                            new docx.Paragraph({
-                                style: "customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.customerName}`,
-                                        bold: true,
-                                        // superScript: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.customerName, true, "customer"),
                         ],
                     }),]
             }),
@@ -233,15 +252,7 @@ export const exportPoint0_Word = () => {
                             type: docx.WidthType.DXA,
                         },
                         children: [
-                            new docx.Paragraph({
-                                style: "customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.researchAddress}`,
-                                        bold: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.researchAddress, true, "customer"),
                         ],
                     }),]
             }),
@@ -266,15 +277,7 @@ export const exportPoint0_Word = () => {
                         },
                         columnSpan: 3,
                         children: [
-                            new docx.Paragraph({
-                                style: "customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.factorsTested}`,
-                                        bold: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.factorsTested, true, "customer"),
                         ],
                     }),]
             }),
@@ -299,15 +302,7 @@ export const exportPoint0_Word = () => {
                         },
                         columnSpan: 3,
                         children: [
-                            new docx.Paragraph({
-                                style: "customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.complied}`,
-                                        bold: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.complied, true, "customer"),
                         ],
                     }),]
             }),
@@ -491,10 +486,10 @@ export const exportPoint0_Word = () => {
     })
 
     const point_1 = () => {
+        // console.log("pkt 1", dataReport.point1.created)
         let myString = dataReport.point1.created ?
-            new docx.Paragraph({
-                style: "point", text: `1. PODSTAWA WYKONANIA BADAŃ`, alignment: AlignmentType.LEFT,
-            }) : ""
+            new docx.Paragraph({ style: "point", text: "1. PODSTAWA WYKONANIA BADAŃ", alignment: AlignmentType.LEFT, })
+            : new docx.Paragraph({ text: "Nie dodano punktu 1." })
         return myString
     }
 
@@ -503,15 +498,10 @@ export const exportPoint0_Word = () => {
             new docx.Paragraph({
                 style: "normal",
                 children: [
-                    new docx.TextRun({
-                        text: `1.1.  `,
-                        bold: true,
-                    }),
-                    new docx.TextRun({
-                        text: `${dataReport.point1.text1_1}`, alignment: AlignmentType.LEFT,
-                    })
+                    new docx.TextRun({ text: "1.1.  ", bold: true, }),
+                    convertingText(dataReport.point1.text1_1, false, "normal"),
                 ]
-            }) : ""
+            }) : new docx.Paragraph({ text: "" })
         return myString
     }
 
@@ -524,80 +514,99 @@ export const exportPoint0_Word = () => {
                         text: `1.2.  `,
                         bold: true,
                     }),
-                    new docx.TextRun({
-                        text: `${dataReport.point1.text1_2}`, alignment: AlignmentType.LEFT,
-                    })
+                    convertingText(dataReport.point1.text1_2, false, "normal"),
                 ]
-            }) : ""
+            }) : new docx.Paragraph({ text: "" })
         return myString
     }
 
     const point_2 = () => {
+        // console.log("pkt 2", dataReport.point2.created)
         let myString = dataReport.point2.created ?
             new docx.Paragraph({
                 style: "point", text: `2. CEL BADAŃ`, alignment: AlignmentType.LEFT,
-            }) : ""
+            }) : new docx.Paragraph({ text: "Nie dodano punktu 2." })
         return myString
     }
 
     const point_2_1 = () => {
         let myString = dataReport.point2.created ?
+            // convertingText(dataReport.point2.text2, false, "normal") : "....."
             new docx.Paragraph({
                 style: "normal",
                 text: dataReport.point2.text2,
                 alignment: AlignmentType.LEFT,
-            }) : ""
-        // console.log(".//.", `${dataReport.point2.text2}`)
-        // console.log(myString)
+            }) : new docx.Paragraph({ text: "" })
         return myString
     }
 
     const point_3 = () => {
-        // let myString = dataReport.point3.created ?
-        return new docx.Paragraph({
-            style: "point", text: `3. METODYKA BADAŃ`, alignment: AlignmentType.LEFT,
-        })
-        // : ""
-        // return myString
-    }
-
-    const point_4 = () => {
-        return new docx.Paragraph({
-            style: "point", text: `4. MIEJSCE I OKOLICZNOŚCI BADAŃ`, alignment: AlignmentType.LEFT,
-        })
-    }
-
-    const point_5 = () => {
-        return new docx.Paragraph({
-            style: "point", text: `5. ZESTAWIENIE BADAŃ`, alignment: AlignmentType.LEFT,
-        })
+        // console.log("pkt 3", dataReport.point3.created)
+        let myString = dataReport.point3.created ?
+            new docx.Paragraph({ style: "point", text: `3. METODYKA BADAŃ`, alignment: AlignmentType.LEFT }) : new docx.Paragraph({ text: "Nie dodano punktu 3." })
+        return myString
     }
 
     const point_3_1 = () => {
-        let myString = dataReport.point3.created ? {
-            ...dataReport.point3.elements.map((element, index) => {
-                // console.log("element", index, element)
-                return new docx.Paragraph({
-                    style: "normal",
-                    children: [
-                        new docx.TextRun({
-                            text: element.name,
-                            bold: true,
-                        }),
-                        new docx.TextRun({
-                            text: "  ",
-                        }),
-                        new docx.TextRun({
-                            text: element.description,
+        let myString = dataReport.point3.created ?
+            new docx.Paragraph({
+                style: "normal",
+                children: [
+                    new docx.TextRun({
+                        text: "",
+                        bold: true,
+                    }),
+                    ...dataReport.point3.elements.map((element, index) => {
+                        return new docx.Paragraph({
+                            style: "normal",
+                            children: [
+                                new docx.TextRun({
+                                    text: element.name,
+                                    bold: true,
+                                }),
+                                new docx.TextRun({
+                                    text: "  ",
+                                }),
+                                convertingText(element.description, false, "normal"),
+                            ]
                         })
-                    ]
-                })
-            }),
-        } : " "
-        // console.log("myString", myString)
-        // return myString
+                    })
+                ]
+            }) : new docx.Paragraph({ text: "" })
+        return myString
     }
 
+    const point_4 = () => {
+        // console.log("pkt 4", dataReport.point4.created)
+        let myString = dataReport.point4.created ?
+            new docx.Paragraph({ style: "point", text: `4. MIEJSCE I OKOLICZNOŚCI BADAŃ`, alignment: AlignmentType.LEFT }) : new docx.Paragraph({ text: "Nie dodano punktu 4." })
+        return myString
+    }
+
+    const point_4_1 = () => {
+        let myString = dataReport.point4.created ?
+            new docx.Paragraph({
+                style: "normal",
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui",
+            }) : new docx.Paragraph({ text: "" })
+        return myString
+    }
+
+    const point_5 = () => {
+        // console.log("pkt 5", dataReport.point5.created)
+        let myString = dataReport.point5.created ?
+            new docx.Paragraph({ style: "point", text: `5. ZESTAWIENIE BADAŃ`, alignment: AlignmentType.LEFT }) : new docx.Paragraph({ text: "Nie dodano punktu 5." })
+        return myString
+    }
+
+    const point_5_1 = () => {
+        let myString = dataReport.point5.created ?
+            new docx.Paragraph({
+                style: "normal",
+                text: "Tabela nr 1 – Badania oświetlenia elektrycznego",
+            }) : new docx.Paragraph({ text: "" })
+        return myString
+    }
 
     const doc = new docx.Document({
         // pageOrientation: docx.PageOrientation.LANDSCAPE,
@@ -765,18 +774,10 @@ export const exportPoint0_Word = () => {
                     },
                 },
                 children: [
-                    paragraphEmpty,
-                    paragraphEmpty,
-                    paragraphEmpty,
-                    paragraphEmpty,
+                    paragraphEmpty(4),
                     paragraphSprawozdanie,
-                    paragraphEmpty,
                     paragraphBadania,
-                    paragraphEmpty,
-                    // paragraphTabela1,
-                    paragraphEmpty,
-                    paragraphEmpty,
-                    paragraphEmpty,
+                    paragraphEmpty(3),
                     customerTable,
                 ]
             },
@@ -829,36 +830,11 @@ export const exportPoint0_Word = () => {
                     point_2(),
                     point_2_1(),
                     point_3(),
-                    // point_3_1(),
-
-                    ...dataReport.point3.elements.map((element, index) => {
-                        // console.log("element", index, element)
-                        return new docx.Paragraph({
-                            style: "normal",
-                            children: [
-                                new docx.TextRun({
-                                    text: element.name,
-                                    bold: true,
-                                }),
-                                new docx.TextRun({
-                                    text: "  ",
-                                }),
-                                new docx.TextRun({
-                                    text: element.description,
-                                })
-                            ]
-                        })
-                    }),
+                    point_3_1(),
                     point_4(),
-                    new docx.Paragraph({
-                        style: "normal",
-                        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui",
-                    }),
+                    point_4_1(),
                     point_5(),
-                    new docx.Paragraph({
-                        style: "normal",
-                        text: "Tabela nr 1 – Badania oświetlenia elektrycznego",
-                    }),
+                    point_5_1(),
                     new docx.Paragraph({
                         // pageBreakBefore: true,
                         style: "headerTxt",
@@ -877,5 +853,45 @@ export const exportPoint0_Word = () => {
         // console.log("Document created successfully");
     });
 
-    exportnewTable_Word()
+    // exportnewTable_Word()
+}
+
+
+export const exportWord_testing = () => {
+
+    const converting_1 = (info) => {
+        let myTable = transformString_JsonToWord(info)
+        // console.log("tabela", myTable)
+
+        return new docx.Paragraph({
+            children: [
+                ...myTable.map((element, index) => {
+                    return new docx.TextRun({
+                        style: "headerTxt",
+                        text: element.text,
+                        break: element.break,
+                        superScript: element.superScript,
+                    })
+                }),
+            ]
+        })
+    }
+
+    const doc = new docx.Document({
+        sections: [{
+            children: [
+                converting("Ala \n ma ASA&#178 \n i objętość to 12 m&#179 \n "),
+                new docx.Paragraph({
+                    style: "headerTxt",
+                    text: "......KONIEC...........  ",
+                }),
+            ]
+        }]
+    });
+
+    docx.Packer.toBlob(doc).then((blob) => {
+        // console.log("blob", blob);
+        saveAs(blob, "example.docx");
+        // console.log("Document created successfully");
+    });
 }

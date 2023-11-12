@@ -167,7 +167,7 @@ export const addPoint3 = () => {
 
         const listElements = document.querySelectorAll(".point3 .centerItem")
         listElements.forEach((eleme, index) => {
-            console.log("1", index, eleme)
+            // console.log("1", index, eleme)
             eleme.addEventListener("click", addToPoint_removeFromPoint_3_3)
             eleme.addEventListener("mouseout", name_UnBold)
             eleme.addEventListener("mouseover", name_Bold)

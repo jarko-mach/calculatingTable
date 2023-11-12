@@ -5,7 +5,7 @@ import { checkbox_RemoveTableRow_Changed, checkbox_ADDTableRow_Changed } from ".
 import { tableRecalcAll } from "./table5a-recalculate.js"
 import { operationIsDone_andSaveAll } from "../../../miscellaneous/misc.js"
 import { tableMenu_ShowHideAllDescriptions } from "./table5a-createMenu.js"
-import { exportnewTable_Word } from "./export-word-docx.js"
+import { exportnewTable_Word } from "./table5a-export-docx.js"
 
 export let tableMenu_ButtonsInfo = [
     {
