@@ -1,7 +1,7 @@
 "use strict";
 
 import { operationIsDone_andSaveAll } from "../../miscellaneous/misc.js";
-import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5, addNewPoint_7 } from "../../points-1-5/points-1-5-create.js";
+import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5, addNewPoint_7 } from "../../points-all/points-all-create.js";
 import { dialogBox_chooseExistingReport } from "../reports/dialogBox-old-read-reports.js"
 import { dialogBox_startNewReport } from "../reports/dialogBox-new-name-report.js";
 import { exportWord } from "../menu/main-export.js";
@@ -49,7 +49,7 @@ let mainMenu_tableButtonsInfo = [
         id: "buttonPoint1",
         class: "buttons",
         hrefID: "point1",
-        buttonText: "1. Podstawa wykonania badań",
+        buttonText: "1. Podstawa wykonania",
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
@@ -59,7 +59,7 @@ let mainMenu_tableButtonsInfo = [
         id: "buttonPoint2",
         class: "buttons",
         hrefID: "point2",
-        buttonText: "2. Cel badań",
+        buttonText: "2. Cel",
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
@@ -69,7 +69,7 @@ let mainMenu_tableButtonsInfo = [
         id: "buttonPoint3",
         class: "buttons",
         hrefID: "point3",
-        buttonText: "3. Metodyka badań",
+        buttonText: "3. Metodyka",
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
@@ -79,7 +79,7 @@ let mainMenu_tableButtonsInfo = [
         id: "buttonPoint4",
         class: "buttons",
         hrefID: "point4",
-        buttonText: "4. Miejsce i okoliczności badań",
+        buttonText: "4. Miejsce i okoliczności",
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
@@ -89,7 +89,7 @@ let mainMenu_tableButtonsInfo = [
         id: "buttonPoint5",
         class: "buttons",
         hrefID: "point5",
-        buttonText: "5. Zestawienie badań",
+        buttonText: "5. Zestawienie",
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
@@ -99,7 +99,7 @@ let mainMenu_tableButtonsInfo = [
         id: "buttonPoint7",
         class: "buttons",
         hrefID: "point7",
-        buttonText: "7. Omówienie badań",
+        buttonText: "7. Omówienie",
         descriptionText: "<p>....</p>",
         descriptionClass: "footerDescription1",
         disabled: "",
@@ -118,12 +118,12 @@ export function createMainMenu() {
     foundMainMenu.innerHTML =
         `<div class="menuElements"></div>
          <div class="mainMenuDescriptions"></div>
-         <div class="info">Wersja 2.01 <i>JM</i></div>
+         <div class="info">Wersja 3.10 <i>JM</i></div>
              `
     foundElement.before(foundMainMenu)
 
     const elementDivWithButtons = document.querySelector(".mainMenu .menuElements")
-    let textDivWithButtons = `<p class="textMenu">SPRAWOZDANIE:</p><p class="textMenu">Utwórz</p>`
+    let textDivWithButtons = `<p class="textMenu">SPRAWOZDANIE:</p>`
 
     for (let i = 0; i < mainMenu_tableButtonsInfo.length; i++) {
         let tempString = `<button id=${mainMenu_tableButtonsInfo[i].id} 
@@ -133,7 +133,7 @@ export function createMainMenu() {
         textDivWithButtons += tempString
         if (i === 1) { textDivWithButtons += `<p class="textMenu">Zapisane lokalnie na dysku:</p>` }
         if (i === 2) { textDivWithButtons += `<p class="textMenu">Widoczne:</p>` }
-        if (i === 3) { textDivWithButtons += `<p class="textMenu">DODAJ:</p>` }
+        if (i === 3) { textDivWithButtons += `<p class="textMenu">DODAJ / POKAŻ:</p>` }
     }
     elementDivWithButtons.innerHTML = textDivWithButtons
 

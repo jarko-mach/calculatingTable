@@ -1,10 +1,14 @@
 
 import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
-import { removeAllAddedPointsInHtml } from "./points-1-5-remove.js"
-import { findPreviousDiv } from "./points-1-5-create.js"
+import { removeAllAddedPointsInHtml } from "./points-all-remove.js"
+import { findPreviousDiv } from "./points-all-create.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
 import { read_point3 } from "./point-3/point3-read.js"
+import { addPoint4 } from "./point-4/point4-create.js"
+// import { addPoint5 } from "./point-5/point5-create.js"
+import { addPoint6 } from "./point-6/point6-create.js"
+import { addPoint7 } from "./point-7/point7-create.js"
 import { createStandardTable_5a } from "./point-5/table5a-lighting/table5a-createTable.js"
 import { readDataForTable_5a } from "./point-5/table5a-lighting/table5a-read-from-storage.js"
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
@@ -34,6 +38,12 @@ export const readDivPoints = (number) => {
             break;
         case 5:
             mainText = `5. ZESTAWIENIE BADAŃ`
+            break;
+        case 6:
+            mainText = `6. SCHEMAT POMIESZCZEŃ`
+            break;
+        case 7:
+            mainText = `7. OMÓWIENIE BADAŃ`
             break;
         default:
             console.log(`Sorry, we are out of ${number}.`);
@@ -82,12 +92,18 @@ export const readDivPoints = (number) => {
             read_point3()
             break;
         case 4:
-
+            addPoint4()
             break;
         case 5:
             // dialogBox_createPoint5_selectTableType()
             createStandardTable_5a(tempInformations[number].tableName)
             readDataForTable_5a()
+            break;
+        case 6:
+            addPoint6()
+            break;
+        case 7:
+            addPoint7()
             break;
         default:
             console.log(`Sorry, we are out of ${number}.`);

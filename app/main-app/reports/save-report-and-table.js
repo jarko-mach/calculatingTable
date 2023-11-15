@@ -1,21 +1,21 @@
 
 import { dataReportOriginal, readTemporaryReportName, tempInformations } from "../../miscellaneous/misc.js"
-import { saveTable } from "../../points-1-5/point-5/table5a-lighting/table5a-operations.js"
+import { saveTable } from "../../points-all/point-5/table5a-lighting/table5a-operations.js"
 
 
 export const saveReportAndTable = () => {
-    
+
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-    // console.log("zapisuję raport i tablicę, klasy:", myClasses)
+    console.log("zapisuję raport i tablicę, klasy:", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
-    
+
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
     dataReport.point3.elements.shift()
 
-    // console.log("saveReportAndTable - ...", dataReport)
-
+    console.log("saveReportAndTable - ...", dataReport)
+    // debugger
     const nameOfReport = readTemporaryReportName()
 
     let nodeListCounter = 0
@@ -50,7 +50,7 @@ export const saveReportAndTable = () => {
                 locElementts.forEach((elem, indx) => {
                     // console.log("items", indx, elem.firstElementChild.nextElementSibling.textContent)
                     // debugger
-                    dataReport.point3.elements.push({name:elem.firstElementChild.value, description:elem.firstElementChild.nextElementSibling?.value})
+                    dataReport.point3.elements.push({ name: elem.firstElementChild.value, description: elem.firstElementChild.nextElementSibling?.value })
                 })
             }
             continue
@@ -66,12 +66,15 @@ export const saveReportAndTable = () => {
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
                 dataReport[`${element}`].tableName = localTabNam
-                // console.log("nazwa taleli: ", localTabNam)
+                console.log("nazwa taleli: ", localTabNam)
                 saveTable(localTabNam)
             }
             continue
         }
-
+        if (element === "point7") {
+            dataReport[`${element}`].created = tempInformations[7].created
+            continue
+        }
         dataReport[`${element}`] = nodeList[nodeListCounter].value
 
         // console.log("save raport - element", dataReport[`${element}`])

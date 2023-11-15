@@ -1,15 +1,16 @@
 /* MENU - MAIN */
 
 .mainMenu {
-    background-color: red;
+    /* background-color: red; */
+    border: 0.1px solid rgb(53, 139, 30);
 }
 
 .menuBackground {
-    background-color: rgb(210, 241, 223);
+    /* background-color: rgb(210, 241, 223); */
     position: fixed;
     top: 20px;
     left: 10px;
-    width: 97px;
+    width: 77px;
 }
 
 .menuElements {
@@ -24,13 +25,26 @@
 }
 
 .menuElements .buttons {
-    margin: 2px 4px;
+    margin: 3px 4px;
     padding: 2px;
     font-size: 0.9em;
-    width: 88px;
+    /* text-align: left; */
+    width: 68px;
     cursor: pointer;
-    border: 0.3px solid rgb(53, 139, 30);
+    border: 0;
+    background-color: rgb(225, 240, 235);
 }
+
+.menuElements .buttons:hover {
+    color: rgb(53, 139, 30);
+    /* margin: 2px 4px; */
+    /* padding: 2px; */
+    /* font-size: 0.9em; */
+    /* width: 88px; */
+    /* cursor: pointer; */
+    background-color: lightgray;
+}
+
 
 .info {
     text-align: center;

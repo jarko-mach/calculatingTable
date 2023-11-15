@@ -46,6 +46,9 @@ const createNewDivPoints = (number) => {
             case 5:
                 mainText = `5. ZESTAWIENIE BADAŃ`
                 break;
+            case 6:
+                mainText = `6. SCHEMAT POMIESZCZEŃ`
+                break;
             case 7:
                 mainText = `7. OMÓWIENIE BADAŃ`
                 break;
@@ -68,21 +71,21 @@ const createNewDivPoints = (number) => {
 
         if (number === 5) {
             newDiv.innerHTML += `<div class="help"><p class="inform"><b>OPIS</b></p><p class="inform"><b>&nbsp5.1.&nbsp</b>Pod tabelą znajdują się przyciski, które pozwalają dopisywać do tabeli kolejne wiersze.</p>
-            <img src = "app/points-1-5/point-5/tabelka-gotowa.jpg" class="img" alt="Opis przycisków pod tabelą" width="500px">
+            <img src = "app/points-all/point-5/tabelka-gotowa.jpg" class="img" alt="Opis przycisków pod tabelą" width="500px">
             <p class="inform"><b>&nbsp5.2.&nbsp</b>Aby uzyskać efekt odstępu należy dodawać PUSTY WIERSZ. Nie ma wówczas potrzeby ustalania dodatkowo odstępu poniżej, ewentualnie powyżej akapitu.</p>
             <p class="inform"><b>&nbsp5.3.&nbsp</b>Oczywiście kolory w tabeli nie zostaną wyeksportowane do Worda. Służą one wyłącznie do rozróżniania wierszy na etapie wpisywania danych - tylko wiersze ZIELONE pozwalają wpisywać dane w kolumnie [3].</p>
             <p class="inform"><b>&nbsp5.4.&nbsp</b>Do usuwania/dodawania wierszy służą przyciski z lewej strony tabeli.</p>
 
             <p class="inform"><b>&nbsp5.4.1.&nbsp</b>Usuwanie – aktywujemy klikając checkbox "usuwanie".</p>
-            <img src = "app/points-1-5/point-5/tabelka-usuwanie.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
+            <img src = "app/points-all/point-5/tabelka-usuwanie.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
             <p class="inform">Następnie poruszając kursorem w obrębie tabelki wybieramy wiersz do usunięcia. Pod kursorem pojawiają się wiersze z czerwoną obwódką. Klikając – usuwamy wiersz.</p>
 
 
             <p class="inform"><b>&nbsp5.4.2.&nbsp</b>Dodawanie – aktywujemy klikając w checkbox "wstawianie"</p>
-            <img src = "app/points-1-5/point-5/tabelka-dodawanie.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
+            <img src = "app/points-all/point-5/tabelka-dodawanie.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
             <p class="inform">Następnie poruszając kursorem w obrębie tabelki wybieramy miejsce, w którym chcemy wstawić nowy wiersz. Pod kursorem pojawiają się wiersze z zieloną obwódką. Klikamy w wiersz i pojawia się okno opcji.</p>
 
-            <img src = "app/points-1-5/point-5/tabelka-dodawanie-opcje.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
+            <img src = "app/points-all/point-5/tabelka-dodawanie-opcje.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
             <p class="inform">Pozwalają one dokładnie określić miejsce wstawienia (nad klikniętym wierszem lub pod klikniętym wierszem) oraz rodzaj wstawianego wiersza (tożsame z przyciskami pod tabelą).</p><p class="inform"><b>.....</b></p><br></div>`
         }
 
@@ -103,6 +106,9 @@ const createNewDivPoints = (number) => {
                 break;
             case 5:
                 dialogBox_createPoint5_selectTableType()
+                break;
+            case 6:
+                addPoint6()
                 break;
             case 7:
                 addPoint7();

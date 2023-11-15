@@ -1,7 +1,7 @@
 "use strict"
 
 import { createStandardTable_5a } from "./table5a-lighting/table5a-createTable.js"
-import { remove_Point5_html } from "../../points-1-5/point-5/point-5-remove.js"
+import { remove_Point5_html } from "./point-5-remove.js"
 
 ////// ADD TABLE INTO POINT 5  -------------------------------------------------------------------------------
 

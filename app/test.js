@@ -1,7 +1,7 @@
 
 import { tempInformations } from "./miscellaneous/misc.js"
 import { dataReportOriginal } from "./miscellaneous/misc.js"
-import { point03_TableData } from "./points-1-5/point-3/point3-data.js"
+import { point03_TableData } from "./points-all/point-3/point3-data.js"
 
 export const test1 = () => {
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))

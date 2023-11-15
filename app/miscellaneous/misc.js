@@ -36,10 +36,8 @@ export let dataReportOriginal = {
         ]
     },
     point4: { created: false, tableName: "" },
-    point5: {
-        created: false,
-        tableName: ""
-    },
+    point5: { created: false, tableName: "" },
+    point7: { created: false, tableLaw: [] },
 
 }
 
@@ -82,14 +80,14 @@ export const convertClassesIntoOneString = (myTable) => {
 // informacje przechowywane lokalnie przed zapisem do Raportu
 
 export const tempInformations = [
-    { reportName: "" },
-    { created: false, tableName: "" },
-    { created: false, tableName: "" },
-    { created: false, tableName: "" },
-    { created: false, tableName: "" },
-    { created: false, tableName: "" },
-    { created: false, tableName: "" },
-    { created: false, tableName: "" }
+    { ID: 0, reportName: "" },
+    { ID: 1, created: false, tableName: "" },
+    { ID: 2, created: false, tableName: "" },
+    { ID: 3, created: false, tableName: "" },
+    { ID: 4, created: false, tableName: "" },
+    { ID: 5, created: false, tableName: "" },
+    { ID: 6, created: false, tableName: "" },
+    { ID: 7, created: false, tableName: "" }
 ]
 
 export const reset_tempInformations = () => {
@@ -154,7 +152,7 @@ export const infoReportsNamesRead = () => {
 
 export const operationIsDone_andSaveAll = () => {
     const element = document.querySelector(".confElement")
-    // console.log("element", element)
+    console.log("element", element)
 
     element.classList.add("confElementChange")
     setTimeout(() => {

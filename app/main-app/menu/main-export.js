@@ -2,8 +2,8 @@
 "use strict";
 
 import { tempInformations } from "../../miscellaneous/misc.js";
-import { exportnewTable_Word } from "../../points-1-5/point-5/table5a-lighting/table5a-export-docx.js"
-import { transformString_JsonToWord } from "../../points-1-5/point-3/point3-data-operations.js";
+import { exportnewTable_Word } from "../../points-all/point-5/table5a-lighting/table5a-export-docx.js"
+import { transformString_JsonToWord } from "../../points-all/point-3/point3-data-operations.js";
 
 import {
     Document,

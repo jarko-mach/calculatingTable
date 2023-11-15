@@ -133,5 +133,5 @@ const findLaw = (paramYes, paramNo) => {
     return foundTab
 }
 
-// console.log(`efekt`, findLaw(`ditlenek azotu`))
+console.log(`efekt`, findLaw(`oświetlenie`))
 

@@ -2,7 +2,7 @@
 
 import { readTemporaryReportName } from "../../miscellaneous/misc.js";
 import { point03_TableData } from "./point3-data.js";
-import { readAndDisplayAllAdedPoints } from "../points-1-5-read-from-report.js";
+import { readAndDisplayAllAdedPoints } from "../points-all-read-from-report.js";
 import { transformString_JsonToHtml, transformString_htmlToJson } from "./point3-data-operations.js";
 
 

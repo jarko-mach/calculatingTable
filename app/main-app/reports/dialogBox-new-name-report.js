@@ -3,7 +3,7 @@
 import { infoReportsNamesRead, infoReportsNamesSave, saveTemporaryReportName, reset_tempInformations } from "../../miscellaneous/misc.js";
 import { createMainTable } from "../menu/main-table.js"
 import { createMainMenu } from "../menu/main-menu.js";
-import { removeAllAddedPointsInHtml } from "../../points-1-5/points-1-5-remove.js"
+import { removeAllAddedPointsInHtml } from "../../points-all/points-all-remove.js"
 import { saveReportAndTable } from "./save-report-and-table.js"
 
 

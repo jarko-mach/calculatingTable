@@ -3,7 +3,7 @@
 import { createMainTable } from "../menu/main-table.js"
 import { createMainMenu } from "../menu/main-menu.js"
 import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../../miscellaneous/misc.js"
-import { readAndDisplayAllAdedPoints } from "../../points-1-5/points-1-5-read-from-report.js"
+import { readAndDisplayAllAdedPoints } from "../../points-all/points-all-read-from-report.js"
 import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
 
 export const localMemory_readReport = (reportName) => {
@@ -40,6 +40,10 @@ export const localMemory_readReport = (reportName) => {
             if (tempInformations[5].created) {
                 tempInformations[5].tableName = dataReport[`${element}`].tableName
             }
+            continue
+        }
+        if (element === "point7") {
+            tempInformations[7].created = dataReport[`${element}`].created
             continue
         }
         nodeList[nodeListCounter].value = dataReport[`${element}`]

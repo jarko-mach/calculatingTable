@@ -2,8 +2,8 @@
 
 import { dialogBox_chooseExistingReport } from "./dialogBox-old-read-reports.js"
 import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
-// import { remove_Point5_html } from "../../points-1-5/point-5/point-5-remove.js"
-// import { createStandardTable_5a } from "../../points-1-5/point-5/table5a-lighting/table5a-createTable.js"
+// import { remove_Point5_html } from "../../points-all/point-5/point-5-remove.js"
+// import { createStandardTable_5a } from "../../points-all/point-5/table5a-lighting/table5a-createTable.js"
 
 ////// START - CHOOSE REPORT - dialogBox_startNewReport()  or  dialogBox_readExistingReport()
 
