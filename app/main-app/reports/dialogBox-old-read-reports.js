@@ -17,36 +17,61 @@ export const localMemory_readReport = (reportName) => {
     const nodeList = document.querySelectorAll(myClasses)
 
     let nodeListCounter = 0
+
     for (let element in dataReport) {
-        if (element === "id") { continue }
+
+        console.log("element", element, dataReport[`${element}`])
+
+        if (element === "id") continue;
+
+        if (element === "reportType") {
+            tempInformations[0].reportType = dataReport[`${element}`]
+            nodeList[nodeListCounter].innerText = dataReport[`${element}`]
+            nodeListCounter++
+            continue;
+        }
+
         if (element === "point1") {
             tempInformations[1].created = dataReport[`${element}`].created
-            continue
+            continue;
         }
+
         if (element === "point2") {
             tempInformations[2].created = dataReport[`${element}`].created
-            continue
+            continue;
         }
+
         if (element === "point3") {
             tempInformations[3].created = dataReport[`${element}`].created
-            continue
+            continue;
         }
+
         if (element === "point4") {
             tempInformations[4].created = dataReport[`${element}`].created
-            continue
+            continue;
         }
+
         if (element === "point5") {
             tempInformations[5].created = dataReport[`${element}`].created
             if (tempInformations[5].created) {
                 tempInformations[5].tableName = dataReport[`${element}`].tableName
             }
-            continue
+            continue;
         }
+
+        if (element === "point6") {
+            tempInformations[6].created = dataReport[`${element}`].created
+            continue;
+        }
+
         if (element === "point7") {
             tempInformations[7].created = dataReport[`${element}`].created
-            continue
+            continue;
         }
+
+
         nodeList[nodeListCounter].value = dataReport[`${element}`]
+
         if (dataReport[`${element}`]) { nodeList[nodeListCounter].classList.remove("fieldToFill") }
 
         let findN = nodeList[nodeListCounter].value.matchAll(/\n/g)
@@ -66,10 +91,7 @@ export const dialogBox_chooseExistingReport = () => {
     const getOKButton = () => {
         const chosenReportName = document.querySelector(".openDialogBox #fileName").value
         // console.log("Odczytuję raport:", chosenReportName)
-        const foundElement = document.querySelector(".openDialogBox")
-        // console.log("OK foundElement", foundElement)
-
-        foundElement.innerHTML = ` `
+        getCancelButton()
         saveTemporaryReportName(chosenReportName)
         createMainTable()
         createMainMenu()
@@ -81,7 +103,6 @@ export const dialogBox_chooseExistingReport = () => {
 
     const getCancelButton = () => {
         const foundElement = document.querySelector(".openDialogBox")
-        // console.log("CANCEL foundElement", foundElement)
         foundElement.innerHTML = `<div class="openDialogBox"></div>`
     }
 

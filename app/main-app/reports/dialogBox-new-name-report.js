@@ -15,13 +15,12 @@ export const dialogBox_startNewReport = () => {
 
     const getOKButton = () => {
         const foundInputText = document.querySelector(".openDialogBox #fileName").value
-        const foundElement = document.querySelector(".openDialogBox")
-        foundElement.innerHTML = ``
+        // debugger
+        getCancelButton()
         infoReportsNamesSave(foundInputText)
         saveTemporaryReportName(foundInputText)
         createMainTable()
         createMainMenu()
-        // debugger
         removeAllAddedPointsInHtml()
         reset_tempInformations()
         saveReportAndTable()

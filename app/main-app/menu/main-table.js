@@ -1,14 +1,14 @@
 "use strict"
 
-import { readTemporaryReportName } from "../../miscellaneous/misc.js"
+import { readTemporaryReportName, tempInformations } from "../../miscellaneous/misc.js"
 
 export const createMainTable = () => {
-    
+
     const removeFieldToFill = (e) => {
         // console.log("fieldToFill: e", e)
         e.target.classList.remove("fieldToFill")
     }
-    
+
     const foundElement = document.querySelector(".entry")
     // console.log("foundElement", foundElement)
     // debugger
@@ -21,7 +21,7 @@ export const createMainTable = () => {
         </div>
         <h6><h7><i>Lokalna nazwa: </i></h7> ${readTemporaryReportName()}</h6>
         <div class="reportTitle">
-            <h2>Badania oświetlenia elektrycznego</h2>
+            <h2 id="reportType">${tempInformations[0].reportType}</h2>
         </div>
         <div class="customerGrid">
             <p class="customerLabel">Nazwa i adres Klienta:</p>

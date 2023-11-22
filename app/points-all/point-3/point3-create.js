@@ -289,7 +289,7 @@ export const addPoint3 = () => {
 
     const textElement = document.createElement("p")
     textElement.classList.add("inform")
-    textElement.innerHTML += `<b>&nbsp3.3.&nbsp</b>Dodajemy i usuwamy elementy z raportu korzystając z możliwości zaznaczania i odznaczania w środkowym oknie. W przypadku dolnego okna po zaznaczeniu pozycji uaktywni się przycisk poniżej.`
+    textElement.innerHTML += `<b>&nbsp3.3.&nbsp</b>Poniższe okno pokazuje wszystkie wybrane elementy. Możemy dodawać i usuwać elementy z tego okna albo korzystając z możliwości zaznaczania i odznaczania w środkowym oknie powyżej, albo zaznaczając elementy do usunięcia korzystając z checkboxów, a następnie korzystając z klawisza "Zaznaczone elementy - usuń".`
     foundPoint3.appendChild(textElement)
 
     const newAddedContainer = document.createElement("div")

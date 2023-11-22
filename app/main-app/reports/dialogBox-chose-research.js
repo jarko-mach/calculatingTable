@@ -1,30 +1,34 @@
 "use strict"
 
-import { dialogBox_chooseExistingReport } from "./dialogBox-old-read-reports.js"
-import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
-import { dialogBox_chooseResearch } from "./dialogBox-chose-research.js";
+import { dialogBox_chooseOldOrNewReport } from "./dialogBox-new-or-old-report.js";
+import { tempInformations } from "../../miscellaneous/misc.js";
+import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js";
 
-//  CHOOSE REPORT - dialogBox_startNewReport()  or  dialogBox_readExistingReport()
+//// START - CHOOSE RESEARCH
 
-export const dialogBox_chooseOldOrNewReport = () => {
-    let whatNext = ""
+export const dialogBox_chooseResearch = () => {
+    let reportType = ""
 
     const getOKButton = () => {
-        const radioGroupNewOrOld = document.querySelectorAll("input[name=insertNewOrOld]")
-        for (const radio of radioGroupNewOrOld) {
+        const radioGroupLightOrHealth = document.querySelectorAll("input[name=insertLightOrHealth]")
+        // debugger
+        for (const radio of radioGroupLightOrHealth) {
             if (radio.checked) {
-                whatNext = radio.value;
+                reportType = radio.labels[0].textContent
                 break;
             }
         }
-        getCancelButton();
 
-        if (whatNext === "new")  dialogBox_chooseResearch() 
-        if (whatNext === "existing") dialogBox_chooseExistingReport()
+        getCancelButton();
+        const elementHtml = document.querySelector(".entry")
+        elementHtml.innerHTML = `SPRAWOZDANIE <br><br>${reportType}`
+        tempInformations[0].reportType = reportType
+        console.log("1:",tempInformations[0].reportType)
+        dialogBox_startNewReport()
     }
 
     const getCancelButton = () => {
-        if (!whatNext) {
+        if (!reportType) {
             const endingElement = document.querySelector(".entry")
             endingElement.innerHTML = `<p>Dziękuję za współpracę i do zobaczenia następnym razem</p>`
         }
@@ -39,18 +43,18 @@ export const dialogBox_chooseOldOrNewReport = () => {
     newElement.innerHTML =
         ` 
         <div class="dialogBox">
-            <div class="dialogBoxHeader"> Sprawozdanie
+            <div class="dialogBoxHeader"> Sprawozdanie ma dotyczyć:
             </div>
             <div class="dialogBoxChild">
                 <fieldset class="fieldsetWidth">
                     <legend>Wybierz:</legend>
                     <div class="inputDiv">
-                        <input type="radio" id="insertExisting" name="insertNewOrOld" value="existing" checked>
-                        <label for="insertExisting">pokaż listę zapisanych sprawozdań</label>
+                        <input type="radio" id="insertLight" name="insertLightOrHealth" value="light" checked>
+                        <label for="insertLight">Badania oświetlenia elektrycznego</label>
                     </div>
                     <div class="inputDiv">
-                        <input type="radio" id="insertNew" name="insertNewOrOld" value="new">
-                        <label for="insertNew">utwórz nowe sprawozdanie</label>
+                        <input type="radio" id="insertHealth" name="insertLightOrHealth" value="health">
+                        <label for="insertHealth">Badania czynników szkodliwych dla zdrowia w środowisku pracy</label>
                     </div>
                 </fieldset>
                 <div class="btnLayout">

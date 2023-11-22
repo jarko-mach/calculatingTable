@@ -1,12 +1,12 @@
 
-import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
+import { tempInformations } from "../miscellaneous/misc.js"
 import { removeAllAddedPointsInHtml } from "./points-all-remove.js"
 import { findPreviousDiv } from "./points-all-create.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
 import { read_point3 } from "./point-3/point3-read.js"
 import { addPoint4 } from "./point-4/point4-create.js"
-// import { addPoint5 } from "./point-5/point5-create.js"
+
 import { addPoint6 } from "./point-6/point6-create.js"
 import { addPoint7 } from "./point-7/point7-create.js"
 import { createStandardTable_5a } from "./point-5/table5a-lighting/table5a-createTable.js"
@@ -51,11 +51,11 @@ export const readDivPoints = (number) => {
 
     newDiv.innerHTML =
         ` <p class="reportSubtitle">
-        <a id="point${number}"> <br> ${mainText} <br> </a><button class="butonDel" id="Button${number}">Delete</button>
+        <a id="point${number}"> <br> ${mainText} <br> </a><button class="butonDel" id="Button${number}">Usuń punkt ${number}</button>
         </p>`
-    if (number === 4) {
-        newDiv.innerHTML += `<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
-    }
+    // if (number === 4 || number === 6 || number === 7) {
+    //     newDiv.innerHTML += `<p style="color:darkgray;font-size:12px;">${loremIpsum}</p>`
+    // }
 
     const removePoint = (e) => {
         const myElem = e.target

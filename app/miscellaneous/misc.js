@@ -2,12 +2,11 @@
 
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
-export const loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui"
-
 export let dataReportOriginal = {
     id: 1,
     numberTSO: 111,
     yearTSO: 2023,
+    reportType: "",
     customerName: "P.H.U",
     researchAddress: "Hurtownie",
     factorsTested: "something",
@@ -35,9 +34,10 @@ export let dataReportOriginal = {
             },
         ]
     },
-    point4: { created: false, tableName: "" },
+    point4: { created: false, text4: "" },
     point5: { created: false, tableName: "" },
-    point7: { created: false, tableLaw: [] },
+    point6: { created: false, text6: "" },
+    point7: { created: false, text7: "" },
 
 }
 
@@ -57,7 +57,6 @@ export let dataTableOriginal = [
     }
 ]
 let dataTableJsonS
-export let dataTableLocal = []
 
 // w sytuacji kilku tabel każda ma inną nazwę, stąd aktualna/bieżąca nazwa tabeli nad którą pracujemy
 export const currentTablNam = []
@@ -80,7 +79,7 @@ export const convertClassesIntoOneString = (myTable) => {
 // informacje przechowywane lokalnie przed zapisem do Raportu
 
 export const tempInformations = [
-    { ID: 0, reportName: "" },
+    { ID: 0, reportName: "", reportType: "" },
     { ID: 1, created: false, tableName: "" },
     { ID: 2, created: false, tableName: "" },
     { ID: 3, created: false, tableName: "" },
@@ -152,7 +151,7 @@ export const infoReportsNamesRead = () => {
 
 export const operationIsDone_andSaveAll = () => {
     const element = document.querySelector(".confElement")
-    console.log("element", element)
+    // console.log("element", element)
 
     element.classList.add("confElementChange")
     setTimeout(() => {

@@ -29,10 +29,10 @@ export const law_regulations = [
             `Rozporządzenie Ministra Zdrowia z dnia 10.02.2021r. zmieniające rozporządzenie w sprawie substancji chemicznych, ich mieszanin, czynników lub procesów technologicznych o działaniu rakotwórczym lub mutagennym w środowisku pracy (Dz. U. 2021, poz.279).`]
     },
     {
-        description: `oświetlenie`,
-        regulations: [`Rozporządzenie Ministra Pracy i Polityki Społecznej zmieniające rozporządzenie w sprawie ogólnych przepisów bezpieczeństwa i higieny pracy z dn. 02.03.2007r. (Dz. U. Nr 49, poz.330).`,
-            `Obwieszczenie Ministra Rozwoju i Technologii z dnia 15.04.2022r. (Dz. U. 2022r., poz.1225) w sprawie ogłoszenia jednolitego tekstu rozporządzenia Ministra Infrastruktury w sprawie warunków technicznych, jakim powinny odpowiadać budynki i ich usytuowanie.`,
-            `Rozporządzenie Ministra Pracy i Polityki Socjalnej z dnia 01.12.1998r. w sprawie bezpieczeństwa i higieny pracy na stanowiskach wyposażonych w monitory ekranowe (Dz.U.1998 Nr 148, poz. 973).`]
+        description: `Badania oświetlenia elektrycznego`,
+        regulations: [`Rozporządzenie Ministra Pracy i Polityki Społecznej zmieniające rozporządzenie w sprawie ogólnych przepisów bezpieczeństwa i higieny pracy z dn. 02.03.2007r. (Dz. U. Nr 49, poz.330).`, 
+        `Obwieszczenie Ministra Rozwoju i Technologii z dnia 15.04.2022r. (Dz. U. 2022r., poz.1225) w sprawie ogłoszenia jednolitego tekstu rozporządzenia Ministra Infrastruktury w sprawie warunków technicznych, jakim powinny odpowiadać budynki i ich usytuowanie.`,
+        `Rozporządzenie Ministra Pracy i Polityki Socjalnej z dnia 01.12.1998r. w sprawie bezpieczeństwa i higieny pracy na stanowiskach wyposażonych w monitory ekranowe (Dz.U.1998 Nr 148, poz. 973).`]
     },
     {
         description: `oświetlenie awaryjne`,

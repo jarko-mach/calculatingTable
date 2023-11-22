@@ -8,7 +8,7 @@ import {
     convertClassesIntoOneString,
     tempInformations,
     currentTablNam,
-    dataTableLocal,
+    // dataTableLocal,
     dataTableOriginal, dataForm1
 } from "../../../miscellaneous/misc.js"
 
@@ -169,6 +169,7 @@ export const tableAddThinLine = (method, element) => {
 export const removeTableRow = (e) => {
     let element = e.target.closest("tr")
     // console.log("element remove", element)
+    // debugger
     if (element.classList == "rowTextBold isRedOutline" ||
         element.classList == "rowText isRedOutline" ||
         element.classList == "rowDate isRedOutline" ||
@@ -207,7 +208,7 @@ const convertRowClassesIntoOneStringWithTableName = (myTableName) => {
 export const checkbox_RemoveTableRow_Changed = () => {
     let readedClasses = convertRowClassesIntoOneStringWithTableName(currentTablNam[0])
     const nodeList = document.querySelectorAll(readedClasses)
-    // console.log("1",readedClasses)
+    // console.log("1", readedClasses)
     // console.log("2 trafione punkty do obliczeń:", nodeList.length)
 
     let checkBoxState = document.querySelector(`.${currentTablNam[0]} #removeTableRow`);
@@ -466,27 +467,29 @@ export const saveTable = (nameOfTable) => {
     //     alert("Błąd zapisu na dysku twardym. Program nie będzie działał poprawnie")
 
     // }
-
+    let dataTableLocal = []
     // odczytuję liczbę wierszy zapisanej tabeli
     let readedClassesFromTable = convertClassesIntoOneString(classTableRows)
     const rowsNumber = document.querySelectorAll(readedClassesFromTable).length
-    // console.log("liczba wierszy zapisu", rowsNumber)
-
+    // console.log("liczba wierszy (rowsNumber):", rowsNumber)
+    // console.log("Save Table")
+    // console.log("Save Table - nazwa tabeli", nameOfTable, "liczba wierszy zapisu", rowsNumber)
     // zwiększam tabelę z danymi o liczbę wierszy
     // console.log("warunek while", dataTableLocal.length, rowsNumber)
     while (dataTableLocal.length < rowsNumber) {
         let dataTableJsonS = JSON.parse(JSON.stringify(dataTableOriginal))
         dataTableLocal.push(...dataTableJsonS)
+        // console.log("push", dataTableLocal)
     }
-
+    // console.log("tworzę nową, pustą tabelę: dataTableLocal", dataTableLocal)
     // odczytuję liczbę wszystkich elementów tabeli wraz z typem wiersza
     readedClassesFromTable = convertClassesIntoOneString(classTableAll)
     let nodeList = document.querySelectorAll(readedClassesFromTable)
-    // console.log("liczba elementów:", nodeList.length)
-    // console.log("rodzaj elementów:", nodeList)
+    // console.log("liczba elementów aktualnej tabeli:", nodeList.length)
 
     for (let row = 0; row < rowsNumber; row++) {
 
+        // console.log("wiersz nr: ", row)
         let addRowElements = row * 9
         // console.log("Dodaję elementów:", addRowElements)
 
@@ -508,7 +511,7 @@ export const saveTable = (nameOfTable) => {
             if (dataTableLocal[row].info.measurings.length > 25) {
                 nodeList[3 + addRowElements].rows = Math.ceil(dataTableLocal[row].info.measurings.length / 25)
             }
-            nodeList[3 + addRowElements].value = dataTableLocal[row].info.measurings 
+            nodeList[3 + addRowElements].value = dataTableLocal[row].info.measurings
 
             // element 5 - eksploatacyjne wynik
             let wynik1Class = ""
@@ -532,8 +535,10 @@ export const saveTable = (nameOfTable) => {
             dataTableLocal[row].info.compatibility = nodeList[8 + addRowElements].value
         }
     }
+
     // console.log("tabela:", dataTableLocal)
     // console.log("JSON", JSON.stringify(dataTableLocal))
     localStorage.setItem(`${nameOfTable}`, JSON.stringify(dataTableLocal))
+    // debugger
 }
 

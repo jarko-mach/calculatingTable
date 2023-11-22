@@ -15,15 +15,22 @@ export const saveReportAndTable = () => {
     dataReport.point3.elements.shift()
 
     console.log("saveReportAndTable - ...", dataReport)
-    // debugger
+    console.log("nodelist", nodeList)
     const nameOfReport = readTemporaryReportName()
 
     let nodeListCounter = 0
+
     for (let element in dataReport) {
 
         if (element === "id") {
             dataReport[`${element}`] = Date.now()
             continue
+        }
+
+        if (element === "reportType") {
+            dataReport[`${element}`] = document.querySelector("#reportType").textContent
+            nodeListCounter++;
+            continue;
         }
 
         if (element === "point1") {
@@ -32,56 +39,69 @@ export const saveReportAndTable = () => {
                 dataReport[`${element}`].text1_1 = document.querySelector("#point11Text").value
                 dataReport[`${element}`].text1_2 = document.querySelector("#point12Text").value
                 dataReport[`${element}`].text1_3 = document.querySelector("#point13Text")?.value
-
             }
-            continue
+            continue;
         }
+
         if (element === "point2") {
             if (tempInformations[2].created) {
                 dataReport[`${element}`].created = tempInformations[2].created
                 dataReport[`${element}`].text2 = document.querySelector("#point2Text").value
             }
-            continue
+            continue;
         }
-        if (element === "point3") { //-------------------------------------------------------------------
+
+        if (element === "point3") {
             if (tempInformations[3].created) {
                 dataReport[`${element}`].created = tempInformations[3].created
                 const locElementts = document.querySelectorAll(".point3 .addedElement")
                 locElementts.forEach((elem, indx) => {
-                    // console.log("items", indx, elem.firstElementChild.nextElementSibling.textContent)
-                    // debugger
                     dataReport.point3.elements.push({ name: elem.firstElementChild.value, description: elem.firstElementChild.nextElementSibling?.value })
                 })
             }
-            continue
+            continue;
         }
+
         if (element === "point4") {
-            dataReport[`${element}`].created = tempInformations[4].created
-            continue
+            if (tempInformations[4].created) {
+                dataReport[`${element}`].created = tempInformations[4].created
+                dataReport[`${element}`].text4 = document.querySelector("#point4Text").value
+            }
+            continue;
         }
+
         if (element === "point5") {
-            // console.log("zapisuję raport punkt 5")
             dataReport[`${element}`].created = tempInformations[5].created
-            // console.log("i dalej...", dataReport[`${element}`].created)
             if (tempInformations[5].created) {
                 let localTabNam = tempInformations[5].tableName
                 dataReport[`${element}`].tableName = localTabNam
-                console.log("nazwa taleli: ", localTabNam)
+                // console.log("nazwa taleli: ", localTabNam)
                 saveTable(localTabNam)
             }
-            continue
+            continue;
         }
+
+        if (element === "point6") {
+            dataReport[`${element}`].created = tempInformations[6].created
+            if (tempInformations[6].created) {
+                dataReport[`${element}`].text6 = document.querySelector("#point6Text").value
+            }
+            continue;
+        }
+
         if (element === "point7") {
             dataReport[`${element}`].created = tempInformations[7].created
-            continue
+            if (tempInformations[7].created) {
+                dataReport[`${element}`].text7 = document.querySelector("#point7Text").value
+            }
+            continue;
         }
+
         dataReport[`${element}`] = nodeList[nodeListCounter].value
-
-        // console.log("save raport - element", dataReport[`${element}`])
-
         nodeListCounter++
     }
-    // console.log("2 saveOnlySomeOfReport - zapisuję dane:", dataReport)
+    console.log("saveReportAndTable:", dataReport)
+    console.log(nameOfReport)
     localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
 

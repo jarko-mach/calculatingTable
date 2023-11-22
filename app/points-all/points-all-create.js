@@ -1,10 +1,12 @@
 "use strict"
 
-import { tempInformations, loremIpsum } from "../miscellaneous/misc.js"
+import { tempInformations } from "../miscellaneous/misc.js"
 import { addPoint1_subpoints123 } from "./point-1/point1-create.js"
 import { addPoint2 } from "./point-2/point2-create.js"
 import { addPoint3 } from "./point-3/point3-create.js"
+import { addPoint4 } from "./point-4/point4-create.js"
 import { dialogBox_createPoint5_selectTableType } from "./point-5/dialogBox-table5a-or-5b.js"
+import { addPoint6 } from "./point-6/point6-create.js"
 import { addPoint7 } from "./point-7/point7-create.js"
 import { saveReportAndTable } from "../main-app/reports/save-report-and-table.js"
 
@@ -60,17 +62,26 @@ const createNewDivPoints = (number) => {
             ` <p class="reportSubtitle">
                     <a id="point${number}"> <br> ${mainText} <br> </a>
                 </p>`
-        if (number === 3) {
-            newDiv.innerHTML += `<p class="inform"><b>&nbsp3.1.&nbsp</b>Wybieramy myszką grupę z okna, kliknięciem zaznaczamy swój wybór (pojawi się kolor czerwony).</p>`
-            newDiv.innerHTML += `<p class="inform"><b>&nbsp3.2.&nbsp</b>Wybieramy myszką podgrupę z kolejnego okna, kliknięciem dodajemy lub usuwamy wybrany element do/z raportu.</p>`
-        }
-        if (number === 4) {
-            newDiv.innerHTML += `<p style="color:darkolivegreen;font-size:12px;">${loremIpsum}</p>`
-            newDiv.classList.add("points_1_2_3_4_5_MarginBottom")
-        }
 
-        if (number === 5) {
-            newDiv.innerHTML += `<div class="help"><p class="inform"><b>OPIS</b></p><p class="inform"><b>&nbsp5.1.&nbsp</b>Pod tabelą znajdują się przyciski, które pozwalają dopisywać do tabeli kolejne wiersze.</p>
+        foundElement.after(newDiv)
+        // debugger
+        switch (number) {
+            case 1:
+                addPoint1_subpoints123()
+                break;
+            case 2:
+                addPoint2()
+                break;
+            case 3:
+                newDiv.innerHTML += `<p class="inform"><b>&nbsp3.1.&nbsp</b>Wybieramy myszką grupę z okna, kliknięciem zaznaczamy swój wybór (pojawi się kolor czerwony).</p>`
+                newDiv.innerHTML += `<p class="inform"><b>&nbsp3.2.&nbsp</b>Wybieramy myszką podgrupę z kolejnego okna, kliknięciem dodajemy lub usuwamy wybrany element do/z okna pod punktem 3.3. (poniżej), w którym widoczne będą wszystkie zaznaczone elementy łącznie.</p>`
+                addPoint3()
+                break;
+            case 4:
+                addPoint4()
+                break;
+            case 5:
+                newDiv.innerHTML += `<div class="help"><p class="inform"><b>OPIS</b></p><p class="inform"><b>&nbsp5.1.&nbsp</b>Pod tabelą znajdują się przyciski, które pozwalają dopisywać do tabeli kolejne wiersze.</p>
             <img src = "app/points-all/point-5/tabelka-gotowa.jpg" class="img" alt="Opis przycisków pod tabelą" width="500px">
             <p class="inform"><b>&nbsp5.2.&nbsp</b>Aby uzyskać efekt odstępu należy dodawać PUSTY WIERSZ. Nie ma wówczas potrzeby ustalania dodatkowo odstępu poniżej, ewentualnie powyżej akapitu.</p>
             <p class="inform"><b>&nbsp5.3.&nbsp</b>Oczywiście kolory w tabeli nie zostaną wyeksportowane do Worda. Służą one wyłącznie do rozróżniania wierszy na etapie wpisywania danych - tylko wiersze ZIELONE pozwalają wpisywać dane w kolumnie [3].</p>
@@ -87,24 +98,6 @@ const createNewDivPoints = (number) => {
 
             <img src = "app/points-all/point-5/tabelka-dodawanie-opcje.jpg" class="img" alt="Opis przycisków obok tabelki" width="400px">
             <p class="inform">Pozwalają one dokładnie określić miejsce wstawienia (nad klikniętym wierszem lub pod klikniętym wierszem) oraz rodzaj wstawianego wiersza (tożsame z przyciskami pod tabelą).</p><p class="inform"><b>.....</b></p><br></div>`
-        }
-
-        foundElement.after(newDiv)
-        // debugger
-        switch (number) {
-            case 1:
-                addPoint1_subpoints123()
-                break;
-            case 2:
-                addPoint2()
-                break;
-            case 3:
-                addPoint3()
-                break;
-            case 4:
-
-                break;
-            case 5:
                 dialogBox_createPoint5_selectTableType()
                 break;
             case 6:
@@ -140,6 +133,11 @@ export const addNewPoint_4 = () => {
 
 export const addNewPoint_5 = () => {
     createNewDivPoints(5)
+    // saveReportAndTable()
+}
+
+export const addNewPoint_6 = () => {
+    createNewDivPoints(6)
     // saveReportAndTable()
 }
 

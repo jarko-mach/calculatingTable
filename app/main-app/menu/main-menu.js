@@ -1,9 +1,9 @@
 "use strict";
 
 import { operationIsDone_andSaveAll } from "../../miscellaneous/misc.js";
-import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5, addNewPoint_7 } from "../../points-all/points-all-create.js";
+import { addNewPoint_1, addNewPoint_2, addNewPoint_3, addNewPoint_4, addNewPoint_5, addNewPoint_6, addNewPoint_7 } from "../../points-all/points-all-create.js";
 import { dialogBox_chooseExistingReport } from "../reports/dialogBox-old-read-reports.js"
-import { dialogBox_startNewReport } from "../reports/dialogBox-new-name-report.js";
+import { dialogBox_chooseResearch } from "../reports/dialogBox-chose-research.js"
 import { exportWord } from "../menu/main-export.js";
 
 
@@ -16,7 +16,7 @@ let mainMenu_tableButtonsInfo = [
         buttonText: "Nowe",
         descriptionText: `<p>Rozpoczyna nowe sprawozdanie`,
         disabled: "",
-        functionPerformed: function () { dialogBox_startNewReport() },
+        functionPerformed: function () { dialogBox_chooseResearch() },
     },
     {
         id: "buttonSave",
@@ -94,6 +94,16 @@ let mainMenu_tableButtonsInfo = [
         descriptionClass: "footerDescription1",
         disabled: "",
         functionPerformed: function () { addNewPoint_5() }
+    },
+    {
+        id: "buttonPoint6",
+        class: "buttons",
+        hrefID: "point6",
+        buttonText: "6. Schemat",
+        descriptionText: "<p>....</p>",
+        descriptionClass: "footerDescription1",
+        disabled: "",
+        functionPerformed: function () { addNewPoint_6() }
     },
     {
         id: "buttonPoint7",
