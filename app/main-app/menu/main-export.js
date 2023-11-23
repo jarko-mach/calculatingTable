@@ -30,7 +30,58 @@ import {
 } from "../../../docx/build/index.js"
 // import { PageNumber } from "docx";
 
+export const convertingParagraph = (info, isBold, isStyle) => {
+    let myTable = transformString_JsonToWord(info)
+    return new docx.Paragraph({
+        style: isStyle,
+        children: [
+            ...myTable.map((element, index) => {
+                return new docx.TextRun({
+                    text: element.text,
+                    break: element.break,
+                    superScript: element.superScript,
+                    bold: isBold,
+                })
+            }),
+        ]
+    })
+}
 
+export const convertingText = (info, isBold, isStyle) => {
+    let myTable = transformString_JsonToWord(info)
+    return new docx.TextRun({
+        style: isStyle,
+        children: [
+            ...myTable.map((element, index) => {
+                return new docx.TextRun({
+                    text: element.text,
+                    break: element.break,
+                    superScript: element.superScript,
+                    bold: isBold,
+                })
+            }),
+        ]
+    })
+}
+
+export const paragraphEmpty = (counter) => {
+    let myTable = new Array(counter)
+    myTable.fill("121")
+    // console.log("mytable", myTable, counter)
+    return new docx.Paragraph({
+        style: "title",
+        children: [
+            ...myTable.map((element, index) => {
+                return new docx.TextRun({
+                    // style: "title",
+                    text: "  ",
+                    alignment: AlignmentType.CENTER,
+                    break: 1,
+                })
+            })
+        ]
+    })
+}
 
 export const exportWord = () => {
     const localReportName = tempInformations[0].reportName
@@ -121,30 +172,13 @@ export const exportWord = () => {
         })]
     })
 
+
     const paragraphSprawozdanie = new docx.Paragraph({
         style: "title",
         text: `SPRAWOZDANIE NR TSO/${dataReport.numberTSO}/${dataReport.yearTSO}`,
         alignment: AlignmentType.CENTER,
     })
 
-    const paragraphEmpty = (counter) => {
-        let myTable = new Array(counter)
-        myTable.fill("121")
-        // console.log("mytable", myTable, counter)
-        return new docx.Paragraph({
-            style: "title",
-            children: [
-                ...myTable.map((element, index) => {
-                    return new docx.TextRun({
-                        // style: "title",
-                        text: "  ",
-                        alignment: AlignmentType.CENTER,
-                        break: 1,
-                    })
-                })
-            ]
-        })
-    }
 
     const paragraphBadania = new docx.Paragraph({
         style: "title",
@@ -157,40 +191,6 @@ export const exportWord = () => {
         text: "Tabela nr 1",
         alignment: AlignmentType.LEFT,
     })
-
-    const convertingParagraph = (info, isBold, isStyle) => {
-        let myTable = transformString_JsonToWord(info)
-        return new docx.Paragraph({
-            style: isStyle,
-            children: [
-                ...myTable.map((element, index) => {
-                    return new docx.TextRun({
-                        text: element.text,
-                        break: element.break,
-                        superScript: element.superScript,
-                        bold: isBold,
-                    })
-                }),
-            ]
-        })
-    }
-
-    const convertingText = (info, isBold, isStyle) => {
-        let myTable = transformString_JsonToWord(info)
-        return new docx.TextRun({
-            style: isStyle,
-            children: [
-                ...myTable.map((element, index) => {
-                    return new docx.TextRun({
-                        text: element.text,
-                        break: element.break,
-                        superScript: element.superScript,
-                        bold: isBold,
-                    })
-                }),
-            ]
-        })
-    }
 
     const widthCustomerColumn = convertMillimetersToTwip(40)
     const widthCustomer3Columns = 3 * widthCustomerColumn
@@ -616,12 +616,12 @@ export const exportWord = () => {
 
     const point_6_1 = () => {
         let myString = dataReport.point6.created ?
-        convertingParagraph(dataReport.point6.text6, false, "normal")
+            convertingParagraph(dataReport.point6.text6, false, "normal")
             // new docx.Paragraph({
-                // style: "normal",
-                // text: dataReport.point6.text6,
-                // alignment: AlignmentType.LEFT,            }) 
-                : new docx.Paragraph({ text: "" })
+            // style: "normal",
+            // text: dataReport.point6.text6,
+            // alignment: AlignmentType.LEFT,            }) 
+            : new docx.Paragraph({ text: "" })
         return myString
     }
 
@@ -634,12 +634,12 @@ export const exportWord = () => {
 
     const point_7_1 = () => {
         let myString = dataReport.point7.created ?
-        convertingParagraph(dataReport.point7.text7, false, "normal")
+            convertingParagraph(dataReport.point7.text7, false, "normal")
             // new docx.Paragraph({
-                // style: "normal",
-                // text: dataReport.point7.text7,
-                // alignment: AlignmentType.LEFT,            }) 
-                : new docx.Paragraph({ text: "" })
+            // style: "normal",
+            // text: dataReport.point7.text7,
+            // alignment: AlignmentType.LEFT,            }) 
+            : new docx.Paragraph({ text: "" })
         return myString
     }
 

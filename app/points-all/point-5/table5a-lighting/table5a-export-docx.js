@@ -24,6 +24,7 @@ import {
 // "../../docx/build/index.js"
 
 import { tempInformations, readTemporaryReportName } from "../../../miscellaneous/misc.js"
+import { convertingParagraph } from "../../../main-app/menu/main-export.js";
 
 // START
 
@@ -467,15 +468,7 @@ export const exportnewTable5a_Word = () => {
                             type: docx.WidthType.DXA,
                         },
                         children: [
-                            new docx.Paragraph({
-                                style: "table5a_customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.customerName}`,
-                                        bold: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.customerName, true, "table5a_customer")
                         ],
                     }),]
             }),
@@ -499,15 +492,7 @@ export const exportnewTable5a_Word = () => {
                             type: docx.WidthType.DXA,
                         },
                         children: [
-                            new docx.Paragraph({
-                                style: "table5a_customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.researchAddress}`,
-                                        bold: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.researchAddress, true, "table5a_customer")
                         ],
                     }),]
             }),
@@ -531,15 +516,7 @@ export const exportnewTable5a_Word = () => {
                             type: docx.WidthType.DXA,
                         },
                         children: [
-                            new docx.Paragraph({
-                                style: "table5a_customer",
-                                children: [
-                                    new docx.TextRun({
-                                        text: `${dataReport.researchDate}`,
-                                        bold: true,
-                                    })
-                                ],
-                            }),
+                            convertingParagraph(dataReport.researchDate, true, "table5a_customer")
                         ],
                     }),]
             }),
@@ -1037,7 +1014,7 @@ export const exportnewTable5a_Word = () => {
                     run: {
                         size: "9pt",
                         underline: {
-                            type: UnderlineType.THICK,
+                            type: UnderlineType.SINGLE,
                         },
                     },
                 },
