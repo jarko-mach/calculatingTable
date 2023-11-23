@@ -43,8 +43,7 @@ export const dialogBox_chooseResearch = () => {
     newElement.innerHTML =
         ` 
         <div class="dialogBox">
-            <div class="dialogBoxHeader"> Sprawozdanie ma dotyczyć:
-            </div>
+            <div class="dialogBoxHeader">Utwórz nowe sprawozdanie</div>
             <div class="dialogBoxChild">
                 <fieldset class="fieldsetWidth">
                     <legend>Wybierz:</legend>

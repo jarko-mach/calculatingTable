@@ -585,12 +585,11 @@ export const exportWord = () => {
 
     const point_4_1 = () => {
         let myString = dataReport.point4.created ?
-            new docx.Paragraph({
-                style: "normal",
-                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta ante eu urna vestibulum accumsan. Nulla facilisi. Sed consequat quam sem, ac gravida libero dictum a. Donec mollis velit scelerisque erat iaculis commodo. Maecenas interdum neque vel dui",
-            }) : new docx.Paragraph({ text: "" })
+            convertingParagraph(dataReport.point4.text4, false, "normal")
+            : new docx.Paragraph({ text: "" })
         return myString
     }
+
 
     const point_5 = () => {
         // console.log("pkt 5", dataReport.point5.created)
@@ -607,6 +606,43 @@ export const exportWord = () => {
             }) : new docx.Paragraph({ text: "" })
         return myString
     }
+
+    const point_6 = () => {
+        // console.log("pkt 4", dataReport.point4.created)
+        let myString = dataReport.point6.created ?
+            new docx.Paragraph({ style: "point", text: `6. SCHEMAT POMIESZCZEŃ`, alignment: AlignmentType.LEFT }) : new docx.Paragraph({ text: "Nie dodano punktu 6." })
+        return myString
+    }
+
+    const point_6_1 = () => {
+        let myString = dataReport.point6.created ?
+        convertingParagraph(dataReport.point6.text6, false, "normal")
+            // new docx.Paragraph({
+                // style: "normal",
+                // text: dataReport.point6.text6,
+                // alignment: AlignmentType.LEFT,            }) 
+                : new docx.Paragraph({ text: "" })
+        return myString
+    }
+
+    const point_7 = () => {
+        // console.log("pkt 4", dataReport.point4.created)
+        let myString = dataReport.point7.created ?
+            new docx.Paragraph({ style: "point", text: `7. OMÓWIENIE BADAŃ`, alignment: AlignmentType.LEFT }) : new docx.Paragraph({ text: "Nie dodano punktu 7." })
+        return myString
+    }
+
+    const point_7_1 = () => {
+        let myString = dataReport.point7.created ?
+        convertingParagraph(dataReport.point7.text7, false, "normal")
+            // new docx.Paragraph({
+                // style: "normal",
+                // text: dataReport.point7.text7,
+                // alignment: AlignmentType.LEFT,            }) 
+                : new docx.Paragraph({ text: "" })
+        return myString
+    }
+
 
     const doc = new docx.Document({
         // pageOrientation: docx.PageOrientation.LANDSCAPE,
@@ -835,6 +871,10 @@ export const exportWord = () => {
                     point_4_1(),
                     point_5(),
                     point_5_1(),
+                    point_6(),
+                    point_6_1(),
+                    point_7(),
+                    point_7_1(),
                     new docx.Paragraph({
                         // pageBreakBefore: true,
                         style: "headerTxt",

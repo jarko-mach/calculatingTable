@@ -5,6 +5,7 @@ import { createMainMenu } from "../menu/main-menu.js"
 import { dataReportOriginal, tempInformations, infoReportsNamesRead, saveTemporaryReportName } from "../../miscellaneous/misc.js"
 import { readAndDisplayAllAdedPoints } from "../../points-all/points-all-read-from-report.js"
 import { dialogBox_startNewReport } from "./dialogBox-new-name-report.js"
+import { dialogBox_chooseResearch } from "./dialogBox-chose-research.js"
 
 export const localMemory_readReport = (reportName) => {
 
@@ -110,7 +111,8 @@ export const dialogBox_chooseExistingReport = () => {
 
     if (!wasNames) {
         alert("Brak zapisanych sprawozdań")
-        dialogBox_startNewReport()
+        // dialogBox_startNewReport()
+        dialogBox_chooseResearch()
         return
     }
     // console.log("wasNames", wasNames)
