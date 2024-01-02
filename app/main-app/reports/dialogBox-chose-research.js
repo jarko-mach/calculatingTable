@@ -23,7 +23,7 @@ export const dialogBox_chooseResearch = () => {
         const elementHtml = document.querySelector(".entry")
         elementHtml.innerHTML = `SPRAWOZDANIE <br><br>${reportType}`
         tempInformations[0].reportType = reportType
-        console.log("1:",tempInformations[0].reportType)
+        // console.log("1:",tempInformations[0].reportType)
         dialogBox_startNewReport()
     }
 

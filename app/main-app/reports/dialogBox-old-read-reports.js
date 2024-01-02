@@ -21,7 +21,7 @@ export const localMemory_readReport = (reportName) => {
 
     for (let element in dataReport) {
 
-        console.log("element", element, dataReport[`${element}`])
+        // console.log("element", element, dataReport[`${element}`])
 
         if (element === "id") continue;
 
@@ -78,8 +78,9 @@ export const localMemory_readReport = (reportName) => {
         let findN = nodeList[nodeListCounter].value.matchAll(/\n/g)
         let findNCounter = [...findN].length
         let extraLines = (findNCounter === 0) ? 0 : findNCounter
-        let longTextLines = (nodeList[nodeListCounter].value.length > 35) ? Math.ceil(nodeList[nodeListCounter].value.length / 35) : 1
+        let longTextLines = (nodeList[nodeListCounter].value.length > 40) ? Math.ceil(nodeList[nodeListCounter].value.length / 35) : 1
         nodeList[nodeListCounter].rows = extraLines + longTextLines
+        // console.log(document.querySelectorAll("textarea"))
         // console.log("dodano wierszy", nodeList[nodeListCounter].rows)
         // console.log("22 dodaje kolejne wiersze gdy tekst jest długi", dataReport[`${element}`])
         nodeListCounter++

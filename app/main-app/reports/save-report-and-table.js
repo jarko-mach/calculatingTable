@@ -8,14 +8,14 @@ export const saveReportAndTable = () => {
     let foundClasses = ""
     for (const element in dataReportOriginal) { foundClasses += `#${element}, ` }
     let myClasses = foundClasses.slice(0, foundClasses.length - 2)
-    console.log("zapisuję raport i tablicę, klasy:", myClasses)
+    // console.log("zapisuję raport i tablicę, klasy:", myClasses)
     const nodeList = document.querySelectorAll(myClasses)
 
     let dataReport = JSON.parse(JSON.stringify(dataReportOriginal))
     dataReport.point3.elements.shift()
 
-    console.log("saveReportAndTable - ...", dataReport)
-    console.log("nodelist", nodeList)
+    // console.log("saveReportAndTable - ...", dataReport)
+    // console.log("nodelist", nodeList)
     const nameOfReport = readTemporaryReportName()
 
     let nodeListCounter = 0
@@ -100,8 +100,8 @@ export const saveReportAndTable = () => {
         dataReport[`${element}`] = nodeList[nodeListCounter].value
         nodeListCounter++
     }
-    console.log("saveReportAndTable:", dataReport)
-    console.log(nameOfReport)
+    // console.log("saveReportAndTable:", dataReport)
+    // console.log(nameOfReport)
     localStorage.setItem(`${nameOfReport}Report`, JSON.stringify(dataReport))
 }
 

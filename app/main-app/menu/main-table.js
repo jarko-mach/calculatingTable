@@ -11,7 +11,7 @@ export const createMainTable = () => {
 
     const foundElement = document.querySelector(".entry")
     // console.log("foundElement", foundElement)
-    // debugger
+    
     foundElement.innerHTML =
         `<div class="reportTitle">
             <h1> SPRAWOZDANIE NR TSO /
