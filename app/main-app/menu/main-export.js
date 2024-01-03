@@ -174,14 +174,14 @@ export const exportWord = () => {
 
 
     const paragraphSprawozdanie = new docx.Paragraph({
-        style: "title",
+        style: "title1",
         text: `SPRAWOZDANIE NR TSO/${dataReport.numberTSO}/${dataReport.yearTSO}`,
         alignment: AlignmentType.CENTER,
     })
 
 
     const paragraphBadania = new docx.Paragraph({
-        style: "title",
+        style: "title2",
         text: "Badania oświetlenia elektrycznego",
         alignment: AlignmentType.CENTER,
     })
@@ -215,7 +215,7 @@ export const exportWord = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "customer_description",
                                 text: "Nazwa i adres Klienta:",
                             }),
                         ],
@@ -240,7 +240,7 @@ export const exportWord = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "customer_description",
                                 text: "Miejsce wykonania badań:",
                             }),
                         ],
@@ -265,7 +265,7 @@ export const exportWord = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "customer_description",
                                 text: "Badane czynniki:",
                             }),
                         ],
@@ -277,7 +277,7 @@ export const exportWord = () => {
                         },
                         columnSpan: 3,
                         children: [
-                            convertingParagraph(dataReport.factorsTested, true, "customer"),
+                            convertingParagraph(dataReport.factorsTested, false, "customer_description"),
                         ],
                     }),]
             }),
@@ -290,7 +290,7 @@ export const exportWord = () => {
                         },
                         children: [
                             new docx.Paragraph({
-                                style: "customer",
+                                style: "customer_description",
                                 text: "Sporządził/a i autoryzował/a:",
                             }),
                         ],
@@ -302,7 +302,7 @@ export const exportWord = () => {
                         },
                         columnSpan: 3,
                         children: [
-                            convertingParagraph(dataReport.complied, true, "customer"),
+                            convertingParagraph(dataReport.complied, false, "customer_description"),
                         ],
                     }),]
             }),
@@ -456,24 +456,30 @@ export const exportWord = () => {
                         columnSpan: 4,
                         children: [
                             new docx.Paragraph({
-                                style: "customerData",
+                                style: "customerPoint",
                                 alignment: docx.AlignmentType.LEFT,
                                 text: ``,
 
                             }), new docx.Paragraph({
-                                style: "customerData",
+                                style: "customerPoint",
                                 alignment: docx.AlignmentType.LEFT,
                                 text: `1. Wyniki badań odnoszą się wyłącznie do badanych obiektów.`,
 
                             }),
                             new docx.Paragraph({
-                                style: "customerData",
+                                style: "customerPoint",
                                 alignment: docx.AlignmentType.LEFT,
-                                text: `2. Bez pisemnej zgody kierownika Pracowni Ochrony Środowiska "Techno-Service" S.A., sprawozdanie nie może być powielane inaczej jak tylko w całości.`,
+                                text: `2. Bez pisemnej zgody kierownika Pracowni Ochrony Środowiska "Techno-Service" S.A., sprawozdanie nie może być powielane`,
+                                break: 1,
+                            }),
+                            new docx.Paragraph({
+                                style: "customerPoint",
+                                alignment: docx.AlignmentType.LEFT,
+                                text: `     inaczej jak tylko w całości.`,
 
                             }),
                             new docx.Paragraph({
-                                style: "customerData",
+                                style: "customerPoint",
                                 alignment: docx.AlignmentType.LEFT,
                                 text: `3. Klient ma prawo do złożenia skargi.`,
 
@@ -686,8 +692,21 @@ export const exportWord = () => {
                 //     },
                 // },
                 {
-                    id: "title",
-                    name: "Tytuł",
+                    id: "title1",
+                    name: "Tytuł1",
+                    run: {
+                        bold: true,
+                        size: "16pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        spacing: { line: 300, before: 250, after: 320 },
+                    },
+                },
+                {
+                    id: "title2",
+                    name: "Tytuł2",
                     run: {
                         bold: true,
                         size: "14pt",
@@ -699,11 +718,11 @@ export const exportWord = () => {
                     },
                 },
                 {
-                    id: "customer",
-                    name: "Klient",
+                    id: "customer_description",
+                    name: "Klient opis",
                     run: {
                         // bold: true,
-                        size: "10pt",
+                        size: "9pt",
                         font: "Calibri",
                     },
                     paragraph: {
@@ -712,7 +731,20 @@ export const exportWord = () => {
                         spacing: { line: 250, before: 150, after: 132 },
                     },
                 },
-
+                {
+                    id: "customer",
+                    name: "Klient",
+                    run: {
+                        bold: true,
+                        size: "11pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.LEFT,
+                        indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
+                        spacing: { line: 250, before: 150, after: 132 },
+                    },
+                },
                 {
                     id: "customerData",
                     name: "Data",
@@ -725,6 +757,20 @@ export const exportWord = () => {
                         alignment: docx.AlignmentType.CENTER,
                         indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
                         spacing: { line: 250, before: 70, after: 50 },
+                    },
+                },
+                {
+                    id: "customerPoint",
+                    name: "Data",
+                    run: {
+                        // bold: true,
+                        size: "8pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
+                        spacing: { line: 220, before: 5, after: 5 },
                     },
                 },
                 {
@@ -812,8 +858,9 @@ export const exportWord = () => {
                 children: [
                     paragraphEmpty(4),
                     paragraphSprawozdanie,
+                    paragraphEmpty(1),
                     paragraphBadania,
-                    paragraphEmpty(3),
+                    paragraphEmpty(12),
                     customerTable,
                 ]
             },
