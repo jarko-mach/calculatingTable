@@ -172,6 +172,93 @@ export const exportWord = () => {
         })]
     })
 
+    const tableTS4Columns = new docx.Table({
+        alignment: AlignmentType.CENTER,
+        verticalAlign: docx.VerticalAlign.CENTER,
+        rows: [new docx.TableRow({
+            children: [
+                new docx.TableCell({
+                    borders: {
+                        top: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        bottom: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        left: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                        right: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                    },
+                    verticalAlign: docx.VerticalAlign.CENTER,
+                    width: {
+                        size: convertMillimetersToTwip(32),
+                        type: docx.WidthType.DXA,
+                    },
+                    children: [new docx.Paragraph({
+                        style: "normal",
+                        alignment: docx.AlignmentType.CENTER,
+                        text: `ts`,
+                    })
+                    ],
+                }),
+                new docx.TableCell({
+                    borders: {
+                        top: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        bottom: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        left: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                        right: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                    },
+                    verticalAlign: docx.VerticalAlign.CENTER,
+                    width: {
+                        size: convertMillimetersToTwip(70),
+                        type: docx.WidthType.DXA,
+                    },
+                    children: [
+                        convertingParagraph("TECHNO - SERVICE S.A.\n80-222 Gdańsk, ul. Siedlicka 6", true, "title3"),
+                        convertingParagraph("PRACOWNIA OCHRONY ŚRODOWISKA \n80-432 Gdańsk, ul. Leczkowa 22a", true, "title3"),
+                        convertingParagraph("tel./fax: 58 341-47-96\ntel.: 58 34-04-225, 58 34-04-224", true, "title3b"),
+                        convertingParagraph("e-mail: pracownia@technoservice.com.pl\nwww.technoservice.com.pl ", false, "title3b"),
+                    ]
+                }),
+
+                new docx.TableCell({
+                    borders: {
+                        top: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        bottom: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        left: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                        right: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                    },
+                    verticalAlign: docx.VerticalAlign.CENTER,
+                    width: {
+                        size: convertMillimetersToTwip(35),
+                        type: docx.WidthType.DXA,
+                    },
+                    children: [new docx.Paragraph({
+                        style: "normal",
+                        alignment: docx.AlignmentType.CENTER,
+                        text: "ilac",
+                    })
+                    ],
+                }),
+                new docx.TableCell({
+                    borders: {
+                        top: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        bottom: { style: BorderStyle.NONE, size: .7 * 8, color: "444178" },
+                        left: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                        right: { style: BorderStyle.NONE, size: .7 * 8, color: "BB1A2F" },
+                    },
+                    verticalAlign: docx.VerticalAlign.CENTER,
+                    width: {
+                        size: convertMillimetersToTwip(25),
+                        type: docx.WidthType.DXA,
+                    },
+                    children: [new docx.Paragraph({
+                        style: "normal",
+                        alignment: docx.AlignmentType.CENTER,
+                        text: "PCA",
+
+                    })
+                    ],
+                }),
+            ],
+        })]
+    })
+
 
     const paragraphSprawozdanie = new docx.Paragraph({
         style: "title1",
@@ -502,7 +589,7 @@ export const exportWord = () => {
     const point_1_1 = () => {
         let myString = dataReport.point1.created ?
             new docx.Paragraph({
-                style: "normal",
+                style: "subPoint1",
                 children: [
                     new docx.TextRun({ text: "1.1.  ", bold: true, }),
                     convertingText(dataReport.point1.text1_1, false, "normal"),
@@ -514,7 +601,7 @@ export const exportWord = () => {
     const point_1_2 = () => {
         let myString = dataReport.point1.created ?
             new docx.Paragraph({
-                style: "normal",
+                style: "subPoint1",
                 children: [
                     new docx.TextRun({
                         text: `1.2.  `,
@@ -539,7 +626,7 @@ export const exportWord = () => {
         let myString = dataReport.point2.created ?
             // convertingText(dataReport.point2.text2, false, "normal") : "....."
             new docx.Paragraph({
-                style: "normal",
+                style: "subPoint2",
                 text: dataReport.point2.text2,
                 alignment: AlignmentType.LEFT,
             }) : new docx.Paragraph({ text: "" })
@@ -556,7 +643,7 @@ export const exportWord = () => {
     const point_3_1 = () => {
         let myString = dataReport.point3.created ?
             new docx.Paragraph({
-                style: "normal",
+                style: "subPoint2",
                 children: [
                     new docx.TextRun({
                         text: "",
@@ -564,7 +651,7 @@ export const exportWord = () => {
                     }),
                     ...dataReport.point3.elements.map((element, index) => {
                         return new docx.Paragraph({
-                            style: "normal",
+                            style: "subPoint2",
                             children: [
                                 new docx.TextRun({
                                     text: element.name,
@@ -591,7 +678,7 @@ export const exportWord = () => {
 
     const point_4_1 = () => {
         let myString = dataReport.point4.created ?
-            convertingParagraph(dataReport.point4.text4, false, "normal")
+            convertingParagraph(dataReport.point4.text4, false, "subPoint2")
             : new docx.Paragraph({ text: "" })
         return myString
     }
@@ -607,7 +694,7 @@ export const exportWord = () => {
     const point_5_1 = () => {
         let myString = dataReport.point5.created ?
             new docx.Paragraph({
-                style: "normal",
+                style: "subPoint2",
                 text: "Tabela nr 1 – Badania oświetlenia elektrycznego",
             }) : new docx.Paragraph({ text: "" })
         return myString
@@ -622,7 +709,7 @@ export const exportWord = () => {
 
     const point_6_1 = () => {
         let myString = dataReport.point6.created ?
-            convertingParagraph(dataReport.point6.text6, false, "normal")
+            convertingParagraph(dataReport.point6.text6, false, "subPoint2")
             // new docx.Paragraph({
             // style: "normal",
             // text: dataReport.point6.text6,
@@ -640,7 +727,7 @@ export const exportWord = () => {
 
     const point_7_1 = () => {
         let myString = dataReport.point7.created ?
-            convertingParagraph(dataReport.point7.text7, false, "normal")
+            convertingParagraph(dataReport.point7.text7, false, "subPoint2")
             // new docx.Paragraph({
             // style: "normal",
             // text: dataReport.point7.text7,
@@ -678,19 +765,6 @@ export const exportWord = () => {
                         alignment: docx.AlignmentType.CENTER,
                     },
                 },
-                // {
-                //     id: "table1",
-                //     name: "Tabela nr 1",
-                //     run: {
-                //         bold: true,
-                //         size: "14pt",
-                //         font: "Calibri",
-                //     },
-                //     paragraph: {
-                //         alignment: docx.AlignmentType.RIGHT,
-                //         spacing: { line: 300, before: 650, after: 0 },
-                //     },
-                // },
                 {
                     id: "title1",
                     name: "Tytuł1",
@@ -715,6 +789,30 @@ export const exportWord = () => {
                     paragraph: {
                         alignment: docx.AlignmentType.CENTER,
                         spacing: { line: 300, before: 250, after: 320 },
+                    },
+                },
+                {
+                    id: "title3",
+                    name: "Tytuł3",
+                    run: {
+                        size: "10pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        spacing: { line: 250, before: 100, after: 0 },
+                    },
+                },
+                {
+                    id: "title3b",
+                    name: "Tytuł3b",
+                    run: {
+                        size: "8pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.CENTER,
+                        spacing: { line: 250, before: 0, after: 0 },
                     },
                 },
                 {
@@ -747,9 +845,8 @@ export const exportWord = () => {
                 },
                 {
                     id: "customerData",
-                    name: "Data",
+                    name: "Klient Data",
                     run: {
-                        // bold: true,
                         size: "9pt",
                         font: "Calibri",
                     },
@@ -761,9 +858,8 @@ export const exportWord = () => {
                 },
                 {
                     id: "customerPoint",
-                    name: "Data",
+                    name: "Klient punkt",
                     run: {
-                        // bold: true,
                         size: "8pt",
                         font: "Calibri",
                     },
@@ -777,15 +873,59 @@ export const exportWord = () => {
                     id: "point",
                     name: "punkt",
                     run: {
-                        // italics: true,
                         size: "11pt",
                         font: "Calibri",
                         bold: true,
                     },
                     paragraph: {
                         alignment: docx.AlignmentType.LEFT,
-                        // indent: { left: convertMillimetersToTwip(2), right: convertMillimetersToTwip(2) },
-                        spacing: { line: 300, before: convertMillimetersToTwip(6), after: convertMillimetersToTwip(2) },
+                        spacing: {
+                            line: 300,
+                            before: convertMillimetersToTwip(8),
+                            after: convertMillimetersToTwip(2)
+                        },
+                    },
+                },
+                {
+                    id: "subPoint1",
+                    name: "podpunkt 1",
+                    run: {
+                        size: "11pt",
+                        font: "Calibri",
+                        bold: true,
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.LEFT,
+                        indent: {
+                            left: convertMillimetersToTwip(8),
+                            right: convertMillimetersToTwip(2),
+                            hanging: convertMillimetersToTwip(8),
+                        },
+                        spacing: { 
+                            line: 240, 
+                            before: convertMillimetersToTwip(4), 
+                            after: convertMillimetersToTwip(2) },
+                    },
+                },
+                {
+                    id: "subPoint2",
+                    name: "podpunkt 2",
+                    run: {
+                        size: "11pt",
+                        font: "Calibri",
+                    },
+                    paragraph: {
+                        alignment: docx.AlignmentType.LEFT,
+                        indent: {
+                            left: convertMillimetersToTwip(6),
+                            right: convertMillimetersToTwip(2),
+                            // hanging: convertMillimetersToTwip(8),
+                        },
+                        spacing: {
+                            line: 240,
+                            before: convertMillimetersToTwip(2),
+                            after: convertMillimetersToTwip(2)
+                        },
                     },
                 },
                 {
@@ -856,11 +996,12 @@ export const exportWord = () => {
                     },
                 },
                 children: [
-                    paragraphEmpty(4),
+                    tableTS4Columns,
+                    paragraphEmpty(8),
                     paragraphSprawozdanie,
                     paragraphEmpty(1),
                     paragraphBadania,
-                    paragraphEmpty(12),
+                    paragraphEmpty(8),
                     customerTable,
                 ]
             },
